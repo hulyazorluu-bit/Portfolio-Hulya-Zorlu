@@ -3,59 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hulya Zorlu - UI/UX Designer, Paris 2026. Specialised in user experience, interface design and prototyping." />
-  <title>Hulya Zorlu - UI/UX Designer</title>
-
+  <meta name="description" content="Hulya Zorlu — UI/UX Designer & Product Owner, Paris 2026." />
+  <title>Hulya Zorlu — UI/UX Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
   <!-- ── Loader ── -->
   <div class="loader" id="loader">
-    <div class="loader__inner">
-      <span class="loader__name">Hulya Zorlu</span>
-      <div class="loader__bar"><div class="loader__fill"></div></div>
-    </div>
+    <div class="loader__hz">HZ</div>
+    <div class="loader__bar"><div class="loader__fill"></div></div>
+    <p class="loader__name">Hulya Zorlu</p>
   </div>
 
-  <!-- ── Custom cursor ── -->
+  <!-- ── Cursor ── -->
   <div class="cursor" id="cursor"></div>
   <div class="cursor-dot" id="cursorDot"></div>
 
-  <!-- ── Navigation ── -->
+  <!-- ── Nav ── -->
   <nav class="nav" id="nav">
-    <div class="nav__logo">
-      <a href="#hero" class="nav__logo-link" aria-label="Hulya Zorlu - Home">
-        <!-- Character mascot logo -->
-        <svg class="nav__mascot" width="36" height="46" viewBox="0 0 72 92" fill="none" aria-hidden="true">
-          <!-- Hair back -->
-          <path d="M10 28 C8 12 12 2 36 1 C60 2 64 12 62 28 C66 52 64 72 58 86 C50 94 22 94 14 86 C8 72 6 52 10 28Z" fill="#0D0D0D"/>
-          <!-- Face -->
-          <ellipse cx="36" cy="50" rx="23" ry="27" fill="#F8F5F0"/>
-          <!-- Bang left -->
-          <path d="M36 1 C34 22 30 30 26 34 C19 24 11 26 9 34 C8 24 10 10 36 1Z" fill="#0D0D0D"/>
-          <!-- Bang right (side-swept) -->
-          <path d="M36 1 C38 22 42 30 46 36 C54 26 63 30 63 40 C64 28 62 10 36 1Z" fill="#0D0D0D"/>
-          <!-- Left eye -->
-          <path d="M20 49 Q27 44 32 49 Q27 54 20 49Z" fill="#0D0D0D"/>
-          <circle cx="24" cy="47" r="1.6" fill="white"/>
-          <!-- Right eye -->
-          <path d="M40 49 Q46 44 52 49 Q46 54 40 49Z" fill="#0D0D0D"/>
-          <circle cx="44" cy="47" r="1.6" fill="white"/>
-          <!-- Eyebrows -->
-          <path d="M18 43 Q25 39 31 41" stroke="#0D0D0D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-          <path d="M41 41 Q47 39 54 43" stroke="#0D0D0D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-          <!-- Smile -->
-          <path d="M28 63 Q36 70 44 63" stroke="#0D0D0D" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-          <!-- Ear (right) -->
-          <ellipse cx="58" cy="52" rx="4" ry="6" fill="#F0EDE8"/>
-        </svg>
-      </a>
-    </div>
+    <a href="#hero" class="nav__logo">
+      <img src="assets/hulya.png" alt="Hulya Zorlu" class="nav__logo-img" />
+    </a>
     <ul class="nav__links">
       <li><a href="#about"      class="nav__link">About</a></li>
       <li><a href="#projects"   class="nav__link">Work</a></li>
@@ -63,12 +35,11 @@
       <li><a href="#skills"     class="nav__link">Skills</a></li>
       <li><a href="#contact"    class="nav__link">Contact</a></li>
     </ul>
-    <button class="nav__menu-toggle" id="menuToggle" aria-label="Toggle menu">
-      <span></span><span></span>
-    </button>
+    <a href="mailto:hulya.zorlu@latoile.em-lyon.com" class="nav__cta">Hire me ✦</a>
+    <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span></button>
   </nav>
 
-  <!-- Mobile menu -->
+  <!-- ── Mobile menu ── -->
   <div class="mobile-menu" id="mobileMenu">
     <ul>
       <li><a href="#about"      class="mobile-link">About</a></li>
@@ -79,439 +50,296 @@
     </ul>
   </div>
 
-  <!-- ── Hero ── -->
-  <section class="hero" id="hero">
-    <div class="hero__bg-text" aria-hidden="true">DESIGN</div>
+  <!-- ══════════════════════════════════════════════
+       SECTIONS
+  ══════════════════════════════════════════════ -->
+  <main>
 
-    <div class="hero__inner">
+    <!-- ─── HERO ─── -->
+    <section class="section hero" id="hero">
+      <div class="blob blob--lime" style="--bx:12%;--by:18%;--bs:540px;--bd:13s;--bdy:-2s"></div>
+      <div class="blob blob--pink" style="--bx:78%;--by:65%;--bs:420px;--bd:17s;--bdy:-5s"></div>
+      <div class="blob blob--lime" style="--bx:85%;--by:8%;--bs:300px;--bd:11s;--bdy:-8s"></div>
+      <div class="blob blob--pink" style="--bx:5%;--by:80%;--bs:260px;--bd:15s;--bdy:-3s"></div>
 
-      <!-- Left: text -->
-      <div class="hero__left">
-        <div class="hero__eyebrow reveal">Portfolio · Paris, 2026</div>
-        <h1 class="hero__name reveal">
-          <span class="hero__name-line">Hulya</span>
-          <span class="hero__name-line hero__name-accent">Zorlu</span>
-        </h1>
-        <div class="hero__subtitle reveal">
-          <span class="hero__subtitle-prefix">-</span>
-          <span class="typed" id="typed"></span>
-          <span class="typed-cursor" aria-hidden="true">|</span>
+      <div class="hero__inner">
+        <div class="hero__left">
+          <p class="hero__eyebrow pop-in" style="--pd:.1s">✦ Portfolio 2026 · Paris</p>
+          <h1 class="hero__title">
+            <span class="hero__word pop-in" style="--pd:.2s">HULYA</span>
+            <span class="hero__word hero__word--lime pop-in" style="--pd:.35s">ZORLU</span>
+          </h1>
+          <p class="hero__sub pop-in" style="--pd:.5s">UI/UX Designer &amp; Product Owner</p>
+          <div class="hero__actions pop-in" style="--pd:.65s">
+            <a href="#projects" class="btn btn--lime">View Work ↓</a>
+            <a href="#contact"  class="btn btn--ghost">Say Hello ✉</a>
+          </div>
+        </div>
+
+        <div class="hero__right pop-in" style="--pd:.4s">
+          <div class="hero__portrait-outer">
+            <div class="hero__portrait-shadow"></div>
+            <div class="hero__portrait-card">
+              <img src="assets/hulya.png" alt="Hulya Zorlu illustrated portrait" />
+              <span class="hero__portrait-badge">UI/UX ✦</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- Right: portrait illustration -->
-      <div class="hero__right reveal">
-        <div class="hero__portrait-wrap">
-          <div class="hero__portrait-deco" aria-hidden="true"></div>
-          <svg class="hero__portrait" viewBox="0 0 280 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrated portrait of Hulya Zorlu">
-            <!-- Hair back -->
-            <path d="M50 92 C38 52 44 16 90 7 C108 3 126 1 140 1 C154 1 172 3 190 7 C236 16 242 52 230 92 C246 140 252 200 244 265 C236 316 208 355 185 360 C165 364 155 362 140 362 C125 362 115 364 95 360 C72 355 44 316 36 265 C28 200 34 140 50 92Z" fill="#0D0D0D"/>
-            <!-- Face -->
-            <ellipse cx="140" cy="168" rx="66" ry="78" fill="#F8F5F0"/>
-            <!-- Bang left -->
-            <path d="M140 1 C136 32 130 54 122 68 C110 48 94 50 80 62 C68 74 67 95 69 112 C61 86 60 60 68 40 C80 14 110 -2 140 1Z" fill="#0D0D0D"/>
-            <!-- Bang right (side-swept) -->
-            <path d="M140 1 C144 32 150 54 158 70 C172 52 188 56 202 72 C214 88 212 112 208 128 C216 100 218 70 212 48 C200 16 170 -2 140 1Z" fill="#0D0D0D"/>
-            <!-- Left hair strand -->
-            <path d="M69 112 C52 155 48 205 52 252 C58 298 74 336 90 356 C74 326 64 282 60 240 C56 196 58 152 69 112Z" fill="#0D0D0D"/>
-            <!-- Right hair strand -->
-            <path d="M208 128 C228 174 232 224 226 270 C218 318 202 348 188 360 C206 340 218 302 222 260 C226 214 224 168 208 128Z" fill="#0D0D0D"/>
-            <!-- Left eyebrow -->
-            <path d="M96 148 Q111 141 124 145" stroke="#0D0D0D" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-            <!-- Right eyebrow -->
-            <path d="M156 145 Q169 141 184 148" stroke="#0D0D0D" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-            <!-- Left eye -->
-            <path d="M91 167 Q107 157 122 167 Q107 179 91 167Z" fill="#0D0D0D"/>
-            <circle cx="103" cy="163" r="3" fill="white"/>
-            <path d="M89 164 L94 159" stroke="#0D0D0D" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M93 161 L97 156" stroke="#0D0D0D" stroke-width="1.4" stroke-linecap="round"/>
-            <path d="M122 164 L118 159" stroke="#0D0D0D" stroke-width="1.8" stroke-linecap="round"/>
-            <!-- Right eye -->
-            <path d="M158 167 Q173 157 189 167 Q173 179 158 167Z" fill="#0D0D0D"/>
-            <circle cx="170" cy="163" r="3" fill="white"/>
-            <path d="M156 164 L160 159" stroke="#0D0D0D" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M190 164 L186 159" stroke="#0D0D0D" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M186 161 L183 156" stroke="#0D0D0D" stroke-width="1.4" stroke-linecap="round"/>
-            <!-- Nose -->
-            <path d="M136 193 Q140 202 144 193" stroke="#0D0D0D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-            <!-- Smile -->
-            <path d="M126 218 Q140 230 154 218" stroke="#0D0D0D" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-            <!-- Right ear -->
-            <ellipse cx="205" cy="172" rx="7" ry="10" fill="#EDE9E3"/>
-            <path d="M200 167 Q205 173 202 181" stroke="#0D0D0D" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-            <!-- Neck suggestion -->
-            <path d="M126 242 Q140 260 154 242" stroke="#0D0D0D" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.35"/>
-          </svg>
-        </div>
+      <div class="hero__scroll">
+        <span>scroll</span>
+        <div class="hero__scroll-line"></div>
       </div>
+    </section>
 
-    </div>
-
-    <div class="hero__scroll reveal">
-      <span>Scroll</span>
-      <div class="hero__scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- ── About ── -->
-  <section class="about section" id="about">
-    <div class="container">
-      <div class="about__grid">
-        <div class="about__label reveal">
-          <span class="section-label">01 - About</span>
+    <!-- ─── ABOUT ─── -->
+    <section class="section about" id="about">
+      <div class="about__inner">
+        <div class="about__left">
+          <span class="pill pill--pink pop-in" style="--pd:0s">01 — About</span>
+          <blockquote class="about__quote pop-in" style="--pd:.1s">
+            "Design is not just what it <em class="hl-lime">looks like</em> —<br/>
+            it's how it <em class="hl-pink">feels</em> &amp; how it works."
+          </blockquote>
+          <div class="about__langs pop-in" style="--pd:.25s">
+            <span class="pill pill--lime">🇫🇷 French — Native</span>
+            <span class="pill pill--white">🇹🇷 Turkish — Native</span>
+            <span class="pill pill--pink">🇬🇧 English — C1</span>
+          </div>
         </div>
-        <div class="about__content">
 
-          <h2 class="about__heading reveal">
-            Designing experiences<br />
-            that <em>feel</em> as good<br />
-            as they look.
-          </h2>
-
-          <p class="about__intro reveal">
-            UI/UX designer with a foundation in data analytics and marketing strategy.
-            After discovering the world of interfaces through agency work, I now specialise
+        <div class="about__right">
+          <p class="about__bio pop-in" style="--pd:.15s">
+            UI/UX designer with roots in data analytics &amp; marketing strategy.
+            After discovering digital interfaces through agency work, I now specialise
             in user-centred design — from research and wireframing to high-fidelity
-            prototypes — while building my front-end development skills.
+            prototypes — while sharpening my front-end development skills.
           </p>
-
-          <!-- Specialty cards -->
-          <div class="about__specialties reveal">
-            <div class="specialty-card">
-              <span class="specialty-num">01</span>
-              <h3 class="specialty-title">User Experience Design</h3>
-              <p class="specialty-desc">Designing with empathy user journeys that delight users and meet their needs.</p>
+          <div class="about__facts pop-in" style="--pd:.28s">
+            <div class="fact-card">
+              <span class="fact-num">3+</span>
+              <span class="fact-label">Years<br/>Experience</span>
             </div>
-            <div class="specialty-card">
-              <span class="specialty-num">02</span>
-              <h3 class="specialty-title">User Interface Design</h3>
-              <p class="specialty-desc">Creating intuitive digital experiences through visual aesthetics and interaction design.</p>
+            <div class="fact-card fact-card--lime">
+              <span class="fact-num">10+</span>
+              <span class="fact-label">Projects<br/>Done</span>
             </div>
-            <div class="specialty-card">
-              <span class="specialty-num">03</span>
-              <h3 class="specialty-title">Design Prototype</h3>
-              <p class="specialty-desc">Translating ideas into interactive prototypes that bridge design and development.</p>
+            <div class="fact-card fact-card--pink">
+              <span class="fact-num">3</span>
+              <span class="fact-label">Languages<br/>Spoken</span>
             </div>
           </div>
-
-          <!-- UI/UX skill sets -->
-          <div class="about__ux-skills reveal">
-            <div class="ux-skill-group">
-              <span class="ux-skill-group__label">UX</span>
-              <div class="ux-skill-group__tags">
-                <span class="tag">Empathy</span>
-                <span class="tag">User Research</span>
-                <span class="tag">Wireframing</span>
-                <span class="tag">Prototyping</span>
-                <span class="tag">User Flow</span>
-                <span class="tag">Collaboration</span>
-              </div>
-            </div>
-            <div class="ux-skill-group">
-              <span class="ux-skill-group__label">UI</span>
-              <div class="ux-skill-group__tags">
-                <span class="tag">Visual &amp; UI</span>
-                <span class="tag">Critical Thinking</span>
-                <span class="tag">Problem-Solving</span>
-                <span class="tag">Information Design</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Languages -->
-          <div class="about__languages reveal">
-            <div class="lang-item">
-              <span class="lang-name">French</span>
-              <span class="lang-level">Native - C2</span>
-            </div>
-            <span class="lang-sep" aria-hidden="true">·</span>
-            <div class="lang-item">
-              <span class="lang-name">Turkish</span>
-              <span class="lang-level">Native - C2</span>
-            </div>
-            <span class="lang-sep" aria-hidden="true">·</span>
-            <div class="lang-item">
-              <span class="lang-name">English</span>
-              <span class="lang-level">Professional - C1</span>
-            </div>
-          </div>
-
+          <p class="about__location pop-in" style="--pd:.38s">📍 Paris, France — open to worldwide opportunities</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── Projects ── -->
-  <section class="projects section" id="projects">
-    <div class="container">
+    <!-- ─── PROJECTS ─── -->
+    <section class="section projects" id="projects">
       <div class="projects__header">
-        <span class="section-label reveal">02 - Work</span>
-        <h2 class="projects__heading reveal">Selected Projects</h2>
+        <span class="pill pill--lime pop-in" style="--pd:0s">02 — Work</span>
+        <h2 class="section-title pop-in" style="--pd:.1s">Selected Projects</h2>
       </div>
+      <div class="projects__grid">
 
-      <div class="projects__list">
-
-        <!-- Project 1 -->
-        <article class="project-card reveal" data-index="01">
-          <div class="project-card__media">
-            <div class="project-card__float-wrap">
-              <img src="assets/tamino.png" alt="Album Website - Tamino Amir" class="project-card__img" loading="lazy" />
-              <div class="project-card__overlay"></div>
-            </div>
+        <article class="project-card project-card--lime pop-in" style="--pd:.1s">
+          <div class="project-card__img">
+            <img src="assets/tamino.png" alt="Album Website — Tamino Amir" />
           </div>
-          <div class="project-card__info">
-            <span class="project-card__num">01</span>
-            <h3 class="project-card__title">Album Website</h3>
-            <p class="project-card__desc">A web experience inspired by Tamino's artistic universe and his album Amir, highlighting his aesthetic, music and visual identity.</p>
-            <div class="project-card__tags">
-              <span class="tag tag--accent">Web Design</span>
-              <span class="tag tag--accent">Development</span>
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span class="project-num">01</span>
+              <div class="project-card__tags">
+                <span class="pill pill--dark">Web Design</span>
+                <span class="pill pill--dark">Dev</span>
+              </div>
             </div>
-            <a href="#" class="project-card__link btn-link">
-              View Case Study
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
+            <h3>Album Website</h3>
+            <p>A web experience inspired by Tamino's artistic universe — his album Amir, aesthetic, music and visual identity.</p>
+            <a href="#" class="btn btn--dark">Case Study ↗</a>
           </div>
         </article>
 
-        <!-- Project 2 -->
-        <article class="project-card project-card--reverse reveal" data-index="02">
-          <div class="project-card__media">
-            <div class="project-card__float-wrap">
-              <img src="assets/Hand and Iphone 16 Pro.jpg" alt="Wevent - Event App" class="project-card__img" loading="lazy" />
-              <div class="project-card__overlay"></div>
-            </div>
+        <article class="project-card project-card--pink pop-in" style="--pd:.2s">
+          <div class="project-card__img">
+            <img src="assets/Hand and Iphone 16 Pro.jpg" alt="Wevent Event App" />
           </div>
-          <div class="project-card__info">
-            <span class="project-card__num">02</span>
-            <h3 class="project-card__title">Wevent - Event App</h3>
-            <p class="project-card__desc">An all-in-one mobile app dedicated to event creation and management. Allows users to design, manage and experience events in a fluid, collaborative and intuitive way.</p>
-            <div class="project-card__tags">
-              <span class="tag tag--accent">Prototyping</span>
-              <span class="tag tag--accent">UI/UX Design</span>
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span class="project-num">02</span>
+              <div class="project-card__tags">
+                <span class="pill pill--dark">UI/UX</span>
+                <span class="pill pill--dark">Mobile</span>
+              </div>
             </div>
-            <a href="#" class="project-card__link btn-link">
-              View Case Study
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
+            <h3>Wevent — Event App</h3>
+            <p>All-in-one mobile app for event creation &amp; management — fluid, collaborative, intuitive.</p>
+            <a href="#" class="btn btn--dark">Case Study ↗</a>
           </div>
         </article>
 
-        <!-- Project 3 -->
-        <article class="project-card reveal" data-index="03">
-          <div class="project-card__media">
-            <div class="project-card__float-wrap">
-              <img src="assets/mockupDeezerAPI.jpg" alt="Deezer API Project" class="project-card__img" loading="lazy" />
-              <div class="project-card__overlay"></div>
-            </div>
+        <article class="project-card project-card--white pop-in" style="--pd:.3s">
+          <div class="project-card__img">
+            <img src="assets/mockupDeezerAPI.jpg" alt="Deezer API Project" />
           </div>
-          <div class="project-card__info">
-            <span class="project-card__num">03</span>
-            <h3 class="project-card__title">Deezer API</h3>
-            <p class="project-card__desc">Using JavaScript to manipulate the DOM and fetch data from the Deezer API. Built a search bar to find artists and dynamically display songs as cards.</p>
-            <div class="project-card__tags">
-              <span class="tag tag--accent">HTML/CSS</span>
-              <span class="tag tag--accent">JavaScript</span>
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span class="project-num">03</span>
+              <div class="project-card__tags">
+                <span class="pill pill--dark">JavaScript</span>
+                <span class="pill pill--dark">API</span>
+              </div>
             </div>
-            <a href="#" class="project-card__link btn-link">
-              View Case Study
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
+            <h3>Deezer API</h3>
+            <p>Dynamic music search with vanilla JS — fetching data from the Deezer API and rendering artist cards.</p>
+            <a href="#" class="btn btn--dark">Case Study ↗</a>
           </div>
         </article>
 
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── Experience ── -->
-  <section class="experience section" id="experience">
-    <div class="container">
-      <div class="experience__grid">
-        <div class="experience__label">
-          <span class="section-label reveal">03 - Experience</span>
+    <!-- ─── EXPERIENCE ─── -->
+    <section class="section experience" id="experience">
+      <div class="experience__inner">
+        <div class="experience__header">
+          <span class="pill pill--pink pop-in" style="--pd:0s">03 — Experience</span>
+          <h2 class="section-title pop-in" style="--pd:.1s">Career Path</h2>
         </div>
-        <div class="experience__list">
-          <h2 class="experience__heading reveal">Career Path</h2>
+        <div class="exp-grid">
 
-          <div class="exp-group reveal"><span class="exp-group__label">Work</span></div>
-
-          <div class="exp-item reveal">
-            <div class="exp-item__year">Mar 2026 - Jul 2026</div>
-            <div class="exp-item__body">
-              <h3 class="exp-item__role">Certificate - Web Design &amp; Development</h3>
-              <span class="exp-item__company">La Toile - Emlyon Business School, Paris</span>
-              <span class="exp-item__desc">HTML, CSS, Figma, JavaScript, APIs</span>
-              <span class="exp-item__type exp-item__type--accent">Certificate</span>
+          <div class="exp-card pop-in" style="--pd:.1s">
+            <div class="exp-card__top">
+              <span class="pill pill--lime">2026</span>
+              <span class="exp-icon">🎓</span>
             </div>
+            <h3>Web Design &amp; Dev Certificate</h3>
+            <p>La Toile — Emlyon Business School, Paris</p>
+            <span class="exp-tag">HTML · CSS · Figma · JS</span>
           </div>
 
-          <div class="exp-item reveal">
-            <div class="exp-item__year">2024 - 2025</div>
-            <div class="exp-item__body">
-              <h3 class="exp-item__role">Software Tester</h3>
-              <span class="exp-item__company">M2i Formation, Paris</span>
-              <span class="exp-item__desc">Selenium, Cypress, Postman, Agile, TMAP</span>
-              <span class="exp-item__type">Apprenticeship</span>
+          <div class="exp-card pop-in" style="--pd:.15s">
+            <div class="exp-card__top">
+              <span class="pill pill--pink">2024–25</span>
+              <span class="exp-icon">🧪</span>
             </div>
+            <h3>Software Tester</h3>
+            <p>M2i Formation, Paris — Apprenticeship</p>
+            <span class="exp-tag">Selenium · Cypress · Postman · Agile</span>
           </div>
 
-          <div class="exp-item reveal">
-            <div class="exp-item__year">2024</div>
-            <div class="exp-item__body">
-              <h3 class="exp-item__role">Liaison Officer</h3>
-              <span class="exp-item__company">Olympic Broadcasting Services, Paris</span>
-              <span class="exp-item__desc">Paris 2024 Olympic Games</span>
-              <span class="exp-item__type">Mission</span>
+          <div class="exp-card exp-card--lime pop-in" style="--pd:.2s">
+            <div class="exp-card__top">
+              <span class="pill pill--dark">2024</span>
+              <span class="exp-icon">🏅</span>
             </div>
+            <h3>Liaison Officer</h3>
+            <p>Olympic Broadcasting Services — Paris 2024</p>
+            <span class="exp-tag">Mission · Paris Olympics</span>
           </div>
 
-          <div class="exp-item reveal">
-            <div class="exp-item__year">Mar 2023 - Sep 2024</div>
-            <div class="exp-item__body">
-              <h3 class="exp-item__role">UX Research Lead</h3>
-              <span class="exp-item__company">TANKE - Creative Marketing Agency, Paris</span>
-              <span class="exp-item__desc">Registration rate +15% &nbsp;·&nbsp; Product analysis time -25%</span>
-              <span class="exp-item__type">Work-Study</span>
+          <div class="exp-card exp-card--pink pop-in" style="--pd:.25s">
+            <div class="exp-card__top">
+              <span class="pill pill--dark">2023–24</span>
+              <span class="exp-icon">🔬</span>
             </div>
+            <h3>UX Research Lead</h3>
+            <p>TANKE — Creative Marketing Agency, Paris</p>
+            <span class="exp-tag">+15% registration · -25% analysis time</span>
           </div>
 
-          <div class="exp-item reveal">
-            <div class="exp-item__year">Sep - Dec 2022</div>
-            <div class="exp-item__body">
-              <h3 class="exp-item__role">Strategic Planner Assistant</h3>
-              <span class="exp-item__company">AustralieGAD - Advertising Agency, Paris</span>
-              <span class="exp-item__desc">Campaign performance +12%</span>
-              <span class="exp-item__type">Internship</span>
+          <div class="exp-card pop-in" style="--pd:.3s">
+            <div class="exp-card__top">
+              <span class="pill pill--lime">2022</span>
+              <span class="exp-icon">📊</span>
             </div>
+            <h3>Strategic Planner Assistant</h3>
+            <p>AustralieGAD — Advertising Agency, Paris</p>
+            <span class="exp-tag">+12% campaign performance</span>
           </div>
 
-          <div class="exp-group reveal"><span class="exp-group__label">Education</span></div>
-
-          <div class="exp-item reveal">
-            <div class="exp-item__year">2022 - 2024</div>
-            <div class="exp-item__body">
-              <h3 class="exp-item__role">MSc Data Analytics &amp; Marketing Manager</h3>
-              <span class="exp-item__company">INSEEC Business School, Paris</span>
-              <span class="exp-item__type">Master's</span>
+          <div class="exp-card pop-in" style="--pd:.35s">
+            <div class="exp-card__top">
+              <span class="pill pill--pink">2022–24</span>
+              <span class="exp-icon">🎓</span>
             </div>
-          </div>
-
-          <div class="exp-item reveal">
-            <div class="exp-item__year">2020 - 2021</div>
-            <div class="exp-item__body">
-              <h3 class="exp-item__role">Erasmus Exchange - Business Administration</h3>
-              <span class="exp-item__company">Universidade do Algarve, Portugal</span>
-              <span class="exp-item__type">Exchange</span>
-            </div>
-          </div>
-
-          <div class="exp-item reveal">
-            <div class="exp-item__year">2018 - 2021</div>
-            <div class="exp-item__body">
-              <h3 class="exp-item__role">BA Applied Foreign Languages, International Business</h3>
-              <span class="exp-item__company">Université Jean Monnet, Saint-Etienne</span>
-              <span class="exp-item__type">Bachelor's</span>
-            </div>
+            <h3>MSc Data Analytics &amp; Marketing</h3>
+            <p>INSEEC Business School, Paris</p>
+            <span class="exp-tag">Master's · Education</span>
           </div>
 
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── Skills ── -->
-  <section class="skills section" id="skills">
-    <div class="container">
-      <div class="skills__header">
-        <span class="section-label reveal">04 - Skills</span>
-        <h2 class="skills__heading reveal">Toolkit</h2>
-      </div>
-      <div class="skills__grid">
-        <div class="skills__col reveal">
-          <h3 class="skills__col-title">Technical</h3>
-          <ul class="skills__list">
-            <li>HTML / CSS</li>
-            <li>JavaScript</li>
-            <li>Figma</li>
-            <li>SQL</li>
-            <li>Python</li>
-            <li>Power BI</li>
-            <li>Tableau</li>
-            <li>Google Analytics</li>
-            <li>Selenium</li>
-            <li>Cypress</li>
-            <li>Postman</li>
-          </ul>
-        </div>
-        <div class="skills__col reveal">
-          <h3 class="skills__col-title">Tools</h3>
-          <ul class="skills__list">
-            <li>Jira</li>
-            <li>Confluence</li>
-            <li>Squash TM</li>
-            <li>Mantis</li>
-            <li>Google Workspace</li>
-            <li>Pack Office</li>
-          </ul>
-        </div>
-        <div class="skills__col reveal">
-          <h3 class="skills__col-title">Methods</h3>
-          <ul class="skills__list">
-            <li>UX Research</li>
-            <li>User Journey Mapping</li>
-            <li>Agile / Scrum</li>
-            <li>TMAP</li>
-            <li>KPI Analysis</li>
-            <li>RGPD Data</li>
-          </ul>
+    <!-- ─── SKILLS ─── -->
+    <section class="section skills" id="skills">
+      <div class="skills__inner">
+        <span class="pill pill--lime pop-in" style="--pd:0s">04 — Skills</span>
+        <h2 class="section-title pop-in" style="--pd:.1s">My Toolkit</h2>
+        <div class="skills__cloud pop-in" style="--pd:.2s">
+          <span class="sk sk--lg sk--lime"  style="--fd:3s;--fy:12px;--fr:-2deg">Figma</span>
+          <span class="sk sk--md sk--pink"  style="--fd:4.2s;--fy:8px;--fr:1.5deg">UX Research</span>
+          <span class="sk sk--lg sk--white" style="--fd:3.6s;--fy:14px;--fr:-1deg">Wireframing</span>
+          <span class="sk sk--sm sk--pink"  style="--fd:5.1s;--fy:10px;--fr:2deg">Prototyping</span>
+          <span class="sk sk--md sk--lime"  style="--fd:4.7s;--fy:11px;--fr:-1.5deg">HTML / CSS</span>
+          <span class="sk sk--lg sk--white" style="--fd:3.2s;--fy:9px;--fr:1deg">JavaScript</span>
+          <span class="sk sk--sm sk--lime"  style="--fd:6s;--fy:16px;--fr:-2.5deg">SQL</span>
+          <span class="sk sk--md sk--pink"  style="--fd:4.9s;--fy:12px;--fr:0.5deg">Python</span>
+          <span class="sk sk--sm sk--white" style="--fd:5.5s;--fy:13px;--fr:2.5deg">Selenium</span>
+          <span class="sk sk--md sk--lime"  style="--fd:3.8s;--fy:8px;--fr:-1deg">Cypress</span>
+          <span class="sk sk--sm sk--pink"  style="--fd:4.4s;--fy:10px;--fr:1.5deg">Postman</span>
+          <span class="sk sk--lg sk--white" style="--fd:5.2s;--fy:15px;--fr:-0.5deg">Agile / Scrum</span>
+          <span class="sk sk--md sk--lime"  style="--fd:3.5s;--fy:9px;--fr:2deg">Jira</span>
+          <span class="sk sk--sm sk--pink"  style="--fd:4.1s;--fy:11px;--fr:-2deg">Power BI</span>
+          <span class="sk sk--md sk--white" style="--fd:6.3s;--fy:14px;--fr:1deg">Tableau</span>
+          <span class="sk sk--sm sk--lime"  style="--fd:5.8s;--fy:7px;--fr:-1.5deg">TMAP</span>
+          <span class="sk sk--md sk--pink"  style="--fd:3.9s;--fy:13px;--fr:0.8deg">User Flows</span>
+          <span class="sk sk--sm sk--white" style="--fd:4.6s;--fy:10px;--fr:-2.2deg">Google Analytics</span>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── Contact ── -->
-  <section class="contact section" id="contact">
-    <div class="container">
-      <span class="section-label reveal">05 - Contact</span>
-      <h2 class="contact__heading reveal">
-        Let's work<br />
-        <em>together.</em>
-      </h2>
-      <p class="contact__sub reveal">
-        Based in Paris - open to design opportunities worldwide.
-      </p>
+    <!-- ─── CONTACT ─── -->
+    <section class="section contact" id="contact">
+      <div class="blob blob--lime" style="--bx:15%;--by:35%;--bs:480px;--bd:14s;--bdy:0s"></div>
+      <div class="blob blob--pink" style="--bx:80%;--by:55%;--bs:360px;--bd:11s;--bdy:-4s"></div>
 
-      <div class="contact__details reveal">
-        <a href="mailto:zorluu.hulya@gmail.com" class="contact__detail-item">
-          <span class="contact__detail-label">Email</span>
-          <span class="contact__detail-value">zorluu.hulya@gmail.com</span>
-        </a>
-        <a href="tel:+33625964257" class="contact__detail-item">
-          <span class="contact__detail-label">Phone</span>
-          <span class="contact__detail-value">+33 (0) 6 25 96 42 57</span>
-        </a>
-        <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" class="contact__detail-item">
-          <span class="contact__detail-label">LinkedIn</span>
-          <span class="contact__detail-value">linkedin.com/in/hulya-zorlu</span>
-        </a>
+      <div class="contact__inner">
+        <span class="pill pill--pink pop-in" style="--pd:0s">05 — Contact</span>
+        <h2 class="contact__title pop-in" style="--pd:.1s">
+          Let's work<br/>together <span class="sparkle">✦</span>
+        </h2>
+        <p class="contact__sub pop-in" style="--pd:.2s">
+          Based in Paris — open to design opportunities worldwide.
+        </p>
+        <div class="contact__actions pop-in" style="--pd:.3s">
+          <a href="mailto:hulya.zorlu@latoile.em-lyon.com" class="btn btn--lime btn--xl">Say Hello ✉</a>
+        </div>
+        <div class="contact__links pop-in" style="--pd:.42s">
+          <a href="mailto:hulya.zorlu@latoile.em-lyon.com" class="clink">
+            <span class="clink__label">Email</span>
+            <span class="clink__val">hulya.zorlu@latoile.em-lyon.com</span>
+          </a>
+          <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" class="clink">
+            <span class="clink__label">LinkedIn</span>
+            <span class="clink__val">linkedin.com/in/hulya-zorlu</span>
+          </a>
+          <div class="clink">
+            <span class="clink__label">Location</span>
+            <span class="clink__val">📍 Paris, France</span>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div class="contact__actions reveal">
-        <a href="mailto:zorluu.hulya@gmail.com" class="btn btn--primary">
-          Say Hello
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3.5 9h11M9.5 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-    </div>
-  </section>
+  </main>
 
   <!-- ── Footer ── -->
   <footer class="footer">
-    <div class="container footer__inner">
-      <span class="footer__copy">© 2026 Hulya Zorlu</span>
-      <span class="footer__tagline">Designed &amp; coded by me.</span>
-    </div>
+    <span>© 2026 Hulya Zorlu — Paris ✦</span>
+    <span>Designed &amp; coded by me.</span>
   </footer>
 
   <script src="js/main.js"></script>
