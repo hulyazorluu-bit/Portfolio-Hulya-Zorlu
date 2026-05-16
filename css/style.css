@@ -48,8 +48,8 @@ em  { font-style: italic; }
 .cursor {
   position: fixed; top: 0; left: 0;
   width: 36px; height: 36px;
-  background: rgba(255, 255, 255, 0.75);
-  border: 2px solid var(--black);
+  background: transparent;
+  border: 1.5px solid rgba(202, 255, 0, 0.45);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
@@ -58,24 +58,24 @@ em  { font-style: italic; }
     width  .25s var(--ease-out),
     height .25s var(--ease-out),
     background .2s,
-    border-color .2s;
+    border-color .2s,
+    opacity .2s;
 }
 
 .cursor-dot {
   position: fixed; top: 0; left: 0;
-  width: 6px; height: 6px;
-  background: var(--black);
+  width: 5px; height: 5px;
+  background: rgba(202, 255, 0, 0.55);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  box-shadow: 0 0 0 1.5px rgba(255, 255, 255, 0.7);
 }
 
 .cursor.hovering {
   width: 52px; height: 52px;
-  background: rgba(202, 255, 0, 0.22);
-  border-color: var(--accent);
+  background: rgba(202, 255, 0, 0.1);
+  border-color: rgba(202, 255, 0, 0.65);
 }
 
 /* ── Loader ── */
