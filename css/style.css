@@ -287,9 +287,9 @@ ul  { list-style: none; }
 }
 
 .hero__title {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(52px, 9vw, 118px);
-  font-weight: 800; line-height: .94; letter-spacing: .02em;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(44px, 7.5vw, 100px);
+  font-weight: 700; line-height: .92; letter-spacing: .06em;
   text-transform: uppercase;
   display: flex; flex-direction: column; margin-bottom: 28px;
 }
