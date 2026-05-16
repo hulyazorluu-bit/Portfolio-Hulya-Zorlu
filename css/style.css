@@ -212,8 +212,8 @@ ul  { list-style: none; }
   animation-delay: var(--bdy, 0s);
   pointer-events: none; z-index: 0;
 }
-.blob--lime { background: var(--lime); opacity: .11; }
-.blob--pink { background: var(--pink); opacity: .11; }
+.blob--lime { background: var(--lime); opacity: .14; }
+.blob--pink { background: var(--pink); opacity: .14; }
 
 @keyframes blobDrift {
   0%   { transform: translate(-50%, -50%) scale(1); }
@@ -371,7 +371,7 @@ ul  { list-style: none; }
 }
 .cs-label { padding-top: 6px; }
 
-.cs-header { display: flex; flex-direction: column; gap: 16px; margin-bottom: 60px; }
+.cs-header { display: flex; flex-direction: column; gap: 16px; margin-bottom: 60px; align-items: flex-start; }
 
 .cs-heading {
   font-family: var(--fh);
