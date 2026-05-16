@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hulya Zorlu — UI/UX Designer & Web Designer portfolio" />
+  <title>Hulya Zorlu — UI/UX Designer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Page loader -->
+  <div class="loader" id="loader">
+    <div class="loader__inner">
+      <span class="loader__name">Hulya Zorlu</span>
+      <div class="loader__bar"><div class="loader__fill"></div></div>
+    </div>
+  </div>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav" id="nav">
+    <div class="nav__logo">
+      <a href="#hero">HZ</a>
+    </div>
+    <ul class="nav__links">
+      <li><a href="#about" class="nav__link">About</a></li>
+      <li><a href="#projects" class="nav__link">Work</a></li>
+      <li><a href="#experience" class="nav__link">Experience</a></li>
+      <li><a href="#contact" class="nav__link">Contact</a></li>
+    </ul>
+    <button class="nav__menu-toggle" id="menuToggle" aria-label="Menu">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#about" class="mobile-link">About</a></li>
+      <li><a href="#projects" class="mobile-link">Work</a></li>
+      <li><a href="#experience" class="mobile-link">Experience</a></li>
+      <li><a href="#contact" class="mobile-link">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- ── Hero ── -->
+  <section class="hero" id="hero">
+    <div class="hero__bg-text" aria-hidden="true">DESIGN</div>
+
+    <div class="hero__content">
+      <div class="hero__eyebrow reveal">Portfolio 2024–2025</div>
+      <h1 class="hero__name reveal">
+        <span class="hero__name-line">Hulya</span>
+        <span class="hero__name-line">Zorlu</span>
+      </h1>
+      <div class="hero__subtitle reveal">
+        <span class="hero__subtitle-prefix">—</span>
+        <span class="typed" id="typed"></span>
+        <span class="typed-cursor" aria-hidden="true">|</span>
+      </div>
+    </div>
+
+    <div class="hero__scroll reveal">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+
+    <div class="hero__accent" aria-hidden="true"></div>
+  </section>
+
+  <!-- ── About ── -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__label reveal">
+          <span class="section-label">01 — About</span>
+        </div>
+        <div class="about__content">
+          <h2 class="about__heading reveal">
+            Designing experiences<br />
+            that <em>feel</em> as good<br />
+            as they look.
+          </h2>
+          <div class="about__body reveal">
+            <p>
+              Je suis Hulya Zorlu, designer UI/UX basée en France. Je crée des
+              interfaces numériques pensées pour l'utilisateur — alliant
+              esthétique soignée, clarté fonctionnelle et attention aux détails.
+            </p>
+            <p>
+              Mon parcours hybride entre design, stratégie créative et
+              développement me permet d'aborder chaque projet avec une vision
+              complète, du brief à la livraison.
+            </p>
+          </div>
+          <div class="about__tags reveal">
+            <span class="tag">UI Design</span>
+            <span class="tag">UX Research</span>
+            <span class="tag">Prototyping</span>
+            <span class="tag">Web Design</span>
+            <span class="tag">Figma</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Projects ── -->
+  <section class="projects section" id="projects">
+    <div class="container">
+      <div class="projects__header">
+        <span class="section-label reveal">02 — Work</span>
+        <h2 class="projects__heading reveal">Selected Projects</h2>
+      </div>
+
+      <div class="projects__list">
+
+        <!-- Project 1 -->
+        <article class="project-card reveal" data-index="01">
+          <div class="project-card__media">
+            <div class="project-card__float-wrap">
+              <img
+                src="assets/tamino.png"
+                alt="Album Musique — Tamino Amir website"
+                class="project-card__img"
+                loading="lazy"
+              />
+              <div class="project-card__overlay"></div>
+            </div>
+          </div>
+          <div class="project-card__info">
+            <span class="project-card__num">01</span>
+            <h3 class="project-card__title">Album Musique</h3>
+            <p class="project-card__desc">
+              Création d'un site web inspiré de l'univers artistique de Tamino
+              et de son album Amir, mettant en avant son esthétique, sa musique
+              et son identité visuelle.
+            </p>
+            <div class="project-card__tags">
+              <span class="tag tag--accent">Web Design</span>
+              <span class="tag tag--accent">Development</span>
+            </div>
+            <a href="#" class="project-card__link btn-link">
+              View Case Study
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card project-card--reverse reveal" data-index="02">
+          <div class="project-card__media">
+            <div class="project-card__float-wrap">
+              <img
+                src="assets/Hand and Iphone 16 Pro.jpg"
+                alt="Event App — Wevent"
+                class="project-card__img"
+                loading="lazy"
+              />
+              <div class="project-card__overlay"></div>
+            </div>
+          </div>
+          <div class="project-card__info">
+            <span class="project-card__num">02</span>
+            <h3 class="project-card__title">Event App</h3>
+            <p class="project-card__desc">
+              Wevent est une application mobile tout-en-un dédiée à la création
+              et à l'organisation d'événements.
+            </p>
+            <div class="project-card__tags">
+              <span class="tag tag--accent">Prototypage</span>
+              <span class="tag tag--accent">UI/UX Design</span>
+            </div>
+            <a href="#" class="project-card__link btn-link">
+              View Case Study
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card reveal" data-index="03">
+          <div class="project-card__media">
+            <div class="project-card__float-wrap">
+              <img
+                src="assets/mockupDeezerAPI.jpg"
+                alt="Deezer API project"
+                class="project-card__img"
+                loading="lazy"
+              />
+              <div class="project-card__overlay"></div>
+            </div>
+          </div>
+          <div class="project-card__info">
+            <span class="project-card__num">03</span>
+            <h3 class="project-card__title">Deezer API</h3>
+            <p class="project-card__desc">
+              Utilisation de JavaScript pour manipuler le DOM et récupérer des
+              données depuis l'API Deezer.
+            </p>
+            <div class="project-card__tags">
+              <span class="tag tag--accent">HTML/CSS</span>
+              <span class="tag tag--accent">Javascript</span>
+            </div>
+            <a href="#" class="project-card__link btn-link">
+              View Case Study
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Experience ── -->
+  <section class="experience section" id="experience">
+    <div class="container">
+      <div class="experience__grid">
+        <div class="experience__label">
+          <span class="section-label reveal">03 — Experience</span>
+        </div>
+        <div class="experience__list">
+          <h2 class="experience__heading reveal">Career Path</h2>
+
+          <div class="exp-item reveal">
+            <div class="exp-item__year">2024 — 2025</div>
+            <div class="exp-item__body">
+              <h3 class="exp-item__role">Tester de logiciel</h3>
+              <span class="exp-item__company">M2i Formation</span>
+              <span class="exp-item__type">Apprentissage</span>
+            </div>
+          </div>
+
+          <div class="exp-item reveal">
+            <div class="exp-item__year">2024</div>
+            <div class="exp-item__body">
+              <h3 class="exp-item__role">Liaison Officer</h3>
+              <span class="exp-item__company">Olympic Broadcasting Services</span>
+              <span class="exp-item__type">Mission</span>
+            </div>
+          </div>
+
+          <div class="exp-item reveal">
+            <div class="exp-item__year">2023 — 2024</div>
+            <div class="exp-item__body">
+              <h3 class="exp-item__role">UX Designer</h3>
+              <span class="exp-item__company">TANKE — Agence créative de marketing d'influence</span>
+              <span class="exp-item__type">Stage / Alternance</span>
+            </div>
+          </div>
+
+          <div class="exp-item reveal">
+            <div class="exp-item__year">2022</div>
+            <div class="exp-item__body">
+              <h3 class="exp-item__role">Assistante Planner Stratégique</h3>
+              <span class="exp-item__company">AustralieGAD — Agence de Publicité</span>
+              <span class="exp-item__type">Stage</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ── -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <span class="section-label reveal">04 — Contact</span>
+      <h2 class="contact__heading reveal">
+        Let's work<br />
+        <em>together.</em>
+      </h2>
+      <p class="contact__sub reveal">
+        Open to new opportunities, collaborations and creative projects.
+      </p>
+
+      <div class="contact__actions reveal">
+        <a href="mailto:hulya.zorlu@example.com" class="btn btn--primary">
+          Say Hello
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M3.5 9h11M9.5 4l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="contact__links reveal">
+        <a href="https://linkedin.com/in/hulyazorlu" target="_blank" rel="noopener" class="contact__social">LinkedIn</a>
+        <a href="https://behance.net/hulyazorlu" target="_blank" rel="noopener" class="contact__social">Behance</a>
+        <a href="https://dribbble.com/hulyazorlu" target="_blank" rel="noopener" class="contact__social">Dribbble</a>
+        <a href="https://github.com/hulyazorluu-bit" target="_blank" rel="noopener" class="contact__social">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__copy">© 2025 Hulya Zorlu</span>
+      <span class="footer__tagline">Designed &amp; built with intention.</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
