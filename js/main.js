@@ -68,7 +68,7 @@
 
   /* ── Typed Text ── */
   const typedEl    = document.getElementById('typed');
-  const words      = ['UI/UX Designer', 'Product Owner', 'Creative'];
+  const words      = ['UI/UX Designer', 'Design', 'HTML/CSS/JavaScript'];
   let wordIdx      = 0;
   let charIdx      = 0;
   let isDeleting   = false;
