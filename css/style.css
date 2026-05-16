@@ -284,8 +284,9 @@ ul  { list-style: none; }
 
 .hero__title {
   font-family: var(--fh);
-  font-size: clamp(68px, 13vw, 168px);
-  font-weight: 700; line-height: .88; letter-spacing: -.05em;
+  font-size: clamp(68px, 12vw, 152px);
+  font-weight: 700; line-height: .92; letter-spacing: .04em;
+  text-transform: uppercase;
   display: flex; flex-direction: column; margin-bottom: 28px;
 }
 .hero__word { display: block; }
