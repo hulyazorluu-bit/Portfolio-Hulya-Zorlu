@@ -19,7 +19,7 @@
       --card:      #0E0E0E;
       --card2:     #141414;
       --lime:      #CAFF00;
-      --pink:      #FF2D78;
+      --blue:      #0066FF;
       --white:     #FFFFFF;
       --gray:      #6B6B6B;
       --border:    #1C1C1C;
@@ -271,7 +271,7 @@
     }
     .blob-2 {
       width: 380px; height: 380px;
-      background: var(--pink); opacity: 0.07;
+      background: var(--blue); opacity: 0.07;
       bottom: -80px; left: -80px;
       animation: drift 11s ease-in-out infinite reverse;
     }
@@ -429,31 +429,31 @@
     }
 
     /* Thumb 2 - Zenify */
-    .t2 { background: linear-gradient(140deg, #12000a, #250010); }
+    .t2 { background: linear-gradient(140deg, #000a1a, #001030); }
     .t2::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 65% 50%, rgba(255,45,120,0.32) 0%, transparent 70%);
+      background: radial-gradient(ellipse at 65% 50%, rgba(0,102,255,0.32) 0%, transparent 70%);
     }
     .t2::after {
       content: 'Z';
       position: absolute;
       font-family: var(--head); font-size: 130px; font-weight: 900;
-      color: var(--pink); opacity: 0.25;
+      color: var(--blue); opacity: 0.25;
       bottom: -24px; right: 14px; line-height: 1;
     }
     .t2-pill {
       position: absolute;
-      background: rgba(255,45,120,0.25);
-      border: 1px solid rgba(255,45,120,0.5);
+      background: rgba(0,102,255,0.25);
+      border: 1px solid rgba(0,102,255,0.5);
       border-radius: var(--r-xl);
       width: 90px; height: 34px;
       top: 28px; left: 24px;
     }
     .t2-pill2 {
       position: absolute;
-      background: rgba(255,45,120,0.15);
-      border: 1px solid rgba(255,45,120,0.3);
+      background: rgba(0,102,255,0.15);
+      border: 1px solid rgba(0,102,255,0.3);
       border-radius: var(--r-xl);
       width: 60px; height: 24px;
       top: 72px; left: 24px;
@@ -556,7 +556,7 @@
       margin-bottom: 10px;
     }
     .exp-role { font-family: var(--head); font-size: 16px; font-weight: 800; letter-spacing: -0.2px; margin-bottom: 3px; }
-    .exp-co { font-size: 13px; color: var(--pink); font-weight: 600; margin-bottom: 10px; }
+    .exp-co { font-size: 13px; color: var(--blue); font-weight: 600; margin-bottom: 10px; }
     .exp-desc { font-size: 13px; color: var(--gray); line-height: 1.65; }
 
     .exp-dot-r {
