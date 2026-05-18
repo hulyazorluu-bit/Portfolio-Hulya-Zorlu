@@ -116,26 +116,53 @@ initNavTypewriter();
   });
 })();
 
-/* ── TYPEWRITER [SCROLL TO EXPLORE_] ── */
+/* ── TYPEWRITER [SCROLL TO EXPLORE — looping] ── */
 function startTypewriter(delayMs) {
   const el   = qs('#typewriter-out');
   const wrap = qs('#typewriter-wrap');
   if (!el || !wrap) return;
 
-  const text   = 'SCROLL TO EXPLORE';
-  const cursor = '<span class="blink-cur"></span>';
-  let i = 0;
+  const fullText = '[SCROLL TO EXPLORE';
+  let displayed  = '';
+  let cursorOn   = true;
+  let phase      = 'typing'; /* typing | waiting | erasing */
 
   setTimeout(() => {
     gsap.to(wrap, { opacity: 1, duration: 0.3 });
-    el.innerHTML = '[' + cursor + ']';
 
-    setTimeout(function type() {
-      if (i < text.length) {
-        el.innerHTML = '[' + text.slice(0, ++i) + cursor + ']';
-        setTimeout(type, 60);
+    /* Cursor blink every 500ms */
+    setInterval(() => {
+      cursorOn = !cursorOn;
+      el.textContent = displayed + (cursorOn ? '|' : ' ');
+    }, 500);
+
+    function render() {
+      el.textContent = displayed + (cursorOn ? '|' : ' ');
+    }
+
+    function loop() {
+      if (phase === 'typing') {
+        if (displayed.length < fullText.length) {
+          displayed = fullText.slice(0, displayed.length + 1);
+          render();
+          setTimeout(loop, 80);
+        } else {
+          phase = 'waiting';
+          setTimeout(() => { phase = 'erasing'; loop(); }, 3000);
+        }
+      } else if (phase === 'erasing') {
+        if (displayed.length > 0) {
+          displayed = displayed.slice(0, -1);
+          render();
+          setTimeout(loop, 40);
+        } else {
+          phase = 'typing';
+          setTimeout(loop, 500);
+        }
       }
-    }, 220);
+    }
+
+    loop();
   }, delayMs);
 }
 
