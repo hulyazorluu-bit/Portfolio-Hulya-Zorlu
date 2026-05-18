@@ -1,20 +1,26 @@
 /* ================================================================
    HULYA ZORLU — PORTFOLIO JS
+   Bauhaus Graphique
    ================================================================ */
 
-/* === LOADER === */
+/* ================================================================
+   LOADER — Geometric assembly then reveal
+   ================================================================ */
 window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
+  // Let CSS animations play (approx 1.1s), then fade out
   setTimeout(() => {
     loader.classList.add('hidden');
-    // Trigger hero reveal after loader fades
+    // Fire hero reveals right after
     setTimeout(() => {
-      document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible'));
-    }, 100);
-  }, 1800);
+      document.querySelectorAll('.s-hero .reveal').forEach(el => el.classList.add('visible'));
+    }, 80);
+  }, 1500);
 });
 
-/* === CUSTOM CURSOR === */
+/* ================================================================
+   CURSOR — Black square, turns red on hover
+   ================================================================ */
 const cursor = document.getElementById('cursor');
 let mx = window.innerWidth / 2, my = window.innerHeight / 2;
 let cx = mx, cy = my;
@@ -22,8 +28,9 @@ let cx = mx, cy = my;
 document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
 
 (function trackCursor() {
-  cx += (mx - cx) * 0.1;
-  cy += (my - cy) * 0.1;
+  // Tight follow — Bauhaus feels precise, not laggy
+  cx += (mx - cx) * 0.18;
+  cy += (my - cy) * 0.18;
   if (cursor) {
     cursor.style.left = cx + 'px';
     cursor.style.top  = cy + 'px';
@@ -31,18 +38,23 @@ document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; })
   requestAnimationFrame(trackCursor);
 })();
 
-document.querySelectorAll('a, button, .proj-card__visual, .specialty, .pill, .contact-link').forEach(el => {
-  el.addEventListener('mouseenter', () => cursor?.classList.add('hovered'));
-  el.addEventListener('mouseleave', () => cursor?.classList.remove('hovered'));
+const hoverTargets = 'a, button, .proj-card, .sp, .lang-badge, .discip, .t-item, .contact-link';
+document.querySelectorAll(hoverTargets).forEach(el => {
+  el.addEventListener('mouseenter', () => cursor?.classList.add('on-hover'));
+  el.addEventListener('mouseleave', () => cursor?.classList.remove('on-hover'));
 });
 
-/* === NAV SCROLL === */
+/* ================================================================
+   NAV — Solid black border on scroll
+   ================================================================ */
 const nav = document.getElementById('nav');
-const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
-window.addEventListener('scroll', onScroll, { passive: true });
-onScroll();
+const syncNav = () => nav.classList.toggle('scrolled', window.scrollY > 20);
+window.addEventListener('scroll', syncNav, { passive: true });
+syncNav();
 
-/* === MOBILE MENU === */
+/* ================================================================
+   MOBILE MENU
+   ================================================================ */
 const burger     = document.getElementById('burger');
 const mobileMenu = document.getElementById('mobileMenu');
 const menuClose  = document.getElementById('menuClose');
@@ -64,27 +76,29 @@ function closeMenu() {
 
 burger.addEventListener('click', () => mobileMenu.classList.contains('open') ? closeMenu() : openMenu());
 menuClose.addEventListener('click', closeMenu);
-document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeMenu));
-
-// Close on Escape key
+document.querySelectorAll('.ml').forEach(l => l.addEventListener('click', closeMenu));
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
-/* === SCROLL REVEAL === */
-const revealObserver = new IntersectionObserver(entries => {
+/* ================================================================
+   SCROLL REVEAL — Hard snap from left (no soft easing in CSS)
+   ================================================================ */
+const revealObs = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
+      revealObs.unobserve(entry.target);
     }
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+}, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
 
-document.querySelectorAll(':not(.hero) .reveal').forEach(el => revealObserver.observe(el));
+document.querySelectorAll(':not(.s-hero) .reveal').forEach(el => revealObs.observe(el));
 
-/* === SMOOTH SCROLL === */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', e => {
-    const target = document.querySelector(anchor.getAttribute('href'));
+/* ================================================================
+   SMOOTH SCROLL
+   ================================================================ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
     if (target) {
       e.preventDefault();
       target.scrollIntoView({ behavior: 'smooth' });
@@ -92,17 +106,21 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-/* === PARALLAX ON HERO NAME (subtle) === */
-const heroName = document.querySelector('.hero__name');
-if (heroName && window.matchMedia('(min-width: 1025px)').matches) {
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    heroName.style.transform = `translateY(${y * 0.12}px)`;
-  }, { passive: true });
-}
+/* ================================================================
+   ACTIVE NAV LINK — highlights current section
+   ================================================================ */
+const sections = document.querySelectorAll('.section');
+const navLinks = document.querySelectorAll('.nav__link');
 
-/* === RESPECT REDUCED MOTION === */
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.documentElement.style.scrollBehavior = 'auto';
-  if (heroName) heroName.style.transform = '';
-}
+const sectionObs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      navLinks.forEach(l => {
+        l.style.color = l.getAttribute('href') === `#${id}` ? 'var(--R)' : '';
+      });
+    }
+  });
+}, { threshold: 0.4 });
+
+sections.forEach(s => sectionObs.observe(s));

@@ -3,200 +3,234 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hulya Zorlu — Designer UI/UX basée à Paris, spécialisée en recherche utilisateur, wireframing et prototypage haute fidélité." />
+  <meta name="description" content="Hulya Zorlu - UI/UX Designer basée à Paris. Recherche utilisateur, wireframing, prototypage haute fidélité." />
   <meta name="author" content="Hulya Zorlu" />
-  <title>Hulya Zorlu — Designer UI/UX</title>
+  <title>HULYA ZORLU — UI/UX DESIGNER</title>
   <link rel="icon" type="image/png" href="logo avatar hulya.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- Loader -->
-  <div class="loader" id="loader">
-    <div class="loader__inner">
-      <img src="assets/hulya.png" alt="" class="loader__avatar" aria-hidden="true" />
-      <div class="loader__track"><div class="loader__fill"></div></div>
+  <!-- ═══ LOADER ═══ -->
+  <div id="loader" class="loader" role="status" aria-label="Chargement">
+    <div class="loader__stage">
+      <div class="loader__circle"></div>
+      <div class="loader__square"></div>
+      <div class="loader__bar"></div>
     </div>
+    <p class="loader__label">HULYA ZORLU</p>
   </div>
 
-  <!-- Curseur -->
-  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <!-- ═══ CURSEUR ═══ -->
+  <div id="cursor" class="cursor" aria-hidden="true"></div>
 
-  <!-- Nav -->
+  <!-- ═══ NAV ═══ -->
   <nav class="nav" id="nav">
     <a href="#hero" class="nav__brand">
       <img src="assets/hulya.png" alt="Hulya Zorlu" class="nav__avatar" />
     </a>
-    <ul class="nav__links">
-      <li><a href="#about"      class="nav__link">À propos</a></li>
-      <li><a href="#projects"   class="nav__link">Projets</a></li>
-      <li><a href="#experience" class="nav__link">Expérience</a></li>
-      <li><a href="#skills"     class="nav__link">Compétences</a></li>
-      <li><a href="#contact"    class="nav__link">Contact</a></li>
+    <ul class="nav__links" role="list">
+      <li><a href="#about"      class="nav__link">A PROPOS</a></li>
+      <li><a href="#projects"   class="nav__link">PROJETS</a></li>
+      <li><a href="#experience" class="nav__link">EXPERIENCE</a></li>
+      <li><a href="#skills"     class="nav__link">COMPETENCES</a></li>
+      <li><a href="#contact"    class="nav__link">CONTACT</a></li>
     </ul>
     <button class="nav__burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
-      <span></span><span></span>
+      <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <!-- Menu mobile -->
+  <!-- ═══ MENU MOBILE ═══ -->
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-    <button class="mobile-menu__close" id="menuClose" aria-label="Fermer le menu">
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-        <path d="M15 5L5 15M5 5l10 10"/>
+    <button class="mobile-menu__close" id="menuClose" aria-label="Fermer">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square">
+        <path d="M18 6L6 18M6 6l12 12"/>
       </svg>
     </button>
-    <ul>
-      <li><a href="#about"      class="mobile-link">À propos</a></li>
-      <li><a href="#projects"   class="mobile-link">Projets</a></li>
-      <li><a href="#experience" class="mobile-link">Expérience</a></li>
-      <li><a href="#skills"     class="mobile-link">Compétences</a></li>
-      <li><a href="#contact"    class="mobile-link">Contact</a></li>
+    <ul role="list">
+      <li><a href="#about"      class="ml">A PROPOS</a></li>
+      <li><a href="#projects"   class="ml">PROJETS</a></li>
+      <li><a href="#experience" class="ml">EXPERIENCE</a></li>
+      <li><a href="#skills"     class="ml">COMPETENCES</a></li>
+      <li><a href="#contact"    class="ml">CONTACT</a></li>
     </ul>
   </div>
 
   <main>
 
-    <!-- ═══ HERO ═══ -->
-    <section class="section hero" id="hero">
-      <div class="blob b1"></div>
-      <div class="blob b2"></div>
-      <div class="blob b3"></div>
+    <!-- ═══════════════════════════════════
+         01 - HERO
+    ═══════════════════════════════════ -->
+    <section class="section s-hero" id="hero">
+      <!-- Decorative geometry -->
+      <div class="geo" aria-hidden="true">
+        <div class="geo__circle-lg"></div>
+        <div class="geo__circle-sm"></div>
+        <div class="geo__rect"></div>
+        <div class="geo__diag"></div>
+      </div>
 
       <div class="hero__inner">
-        <div class="hero__left">
-          <p class="hero__eyebrow reveal" style="--d:.05s">✦ Portfolio 2026 - Paris</p>
-          <h1 class="hero__name">
-            <span class="reveal" style="--d:.15s">Hulya</span>
-            <em class="reveal" style="--d:.25s">Zorlu</em>
-          </h1>
-          <p class="hero__role reveal" style="--d:.35s">Designer UI/UX</p>
-          <div class="hero__actions reveal" style="--d:.45s">
-            <a href="#projects" class="btn btn-sage">Voir mes projets</a>
-            <a href="#contact"  class="btn btn-ghost">Me contacter</a>
-          </div>
+        <div class="hero__name">
+          <span class="hero__line reveal" style="--d:0s">HULYA</span>
+          <span class="hero__line hero__line--out reveal" style="--d:.08s">ZORLU</span>
         </div>
-
-        <div class="hero__right reveal" style="--d:.2s">
-          <div class="portrait">
-            <div class="portrait__bg"></div>
-            <div class="portrait__card">
-              <img src="assets/hulya.png" alt="Portrait de Hulya Zorlu" />
-              <span class="portrait__badge">UI/UX</span>
-            </div>
-          </div>
+        <div class="hero__sub reveal" style="--d:.18s">
+          <span class="hero__role">UI/UX DESIGNER</span>
+          <span class="hero__sep" aria-hidden="true">—</span>
+          <span class="hero__city">PARIS 2026</span>
+        </div>
+        <div class="hero__rule" aria-hidden="true"></div>
+        <div class="hero__actions reveal" style="--d:.28s">
+          <a href="#projects" class="btn btn-fill">VOIR MES PROJETS</a>
+          <a href="#contact"  class="btn btn-out">ME CONTACTER</a>
         </div>
       </div>
 
-      <div class="scroll-hint reveal" style="--d:.6s" aria-hidden="true">
-        <span>défiler</span>
-        <div class="scroll-hint__line"></div>
+      <div class="hero__index" aria-hidden="true">
+        <span>01</span>
+        <div class="hero__index-line"></div>
       </div>
     </section>
 
-    <!-- ═══ À PROPOS ═══ -->
-    <section class="section about" id="about">
-      <div class="blob b4"></div>
-      <div class="blob b5"></div>
+    <!-- ═══════════════════════════════════
+         02 - A PROPOS
+    ═══════════════════════════════════ -->
+    <section class="section s-about" id="about">
+      <div class="section__label" aria-hidden="true">02</div>
       <div class="container">
-        <p class="section-label reveal">01 - À propos</p>
         <div class="about__grid">
-          <div class="about__quote reveal" style="--d:.08s">
-            <blockquote>
-              Concevoir des expériences qui se
-              <em>ressentent</em> autant qu'elles se voient.
-            </blockquote>
-          </div>
-          <div class="about__body">
-            <p class="about__bio reveal" style="--d:.14s">
-              Designer UI/UX passionnée par la création d'expériences digitales intuitives et centrées utilisateur. Issue d'un parcours mêlant data et stratégie marketing, je me suis spécialisée dans la conception d'interfaces : recherche utilisateur, wireframing, prototypage haute fidélité et réflexion UX.
+
+          <div class="about__left">
+            <p class="about__num reveal" style="--d:0s">01</p>
+            <h2 class="about__title reveal" style="--d:.06s">A PROPOS</h2>
+            <p class="about__bio reveal" style="--d:.12s">
+              Designer UI/UX passionnée par la création d'expériences digitales intuitives et centrées utilisateur. Issue d'un parcours mêlant data et stratégie marketing, je me suis spécialisée dans la conception d'interfaces : recherche utilisateur, wireframing, prototypage haute fidélité et réflexion UX. Je développe également des compétences en front-end afin de concevoir des expériences esthétiques, cohérentes et fonctionnelles.
             </p>
-            <div class="specialties reveal" style="--d:.2s">
-              <div class="specialty">
-                <span class="specialty__num">01</span>
-                <div><h3>UX Design</h3><p>Parcours centrés sur l'empathie et les vrais besoins.</p></div>
+
+            <div class="about__specs reveal" style="--d:.18s">
+              <div class="spec-row">
+                <span class="spec-key">SPECIALITE</span>
+                <span class="spec-val">UI/UX DESIGN, PROTOTYPAGE</span>
               </div>
-              <div class="specialty">
-                <span class="specialty__num">02</span>
-                <div><h3>UI Design</h3><p>Interfaces intuitives, esthétiques et cohérentes.</p></div>
+              <div class="spec-row">
+                <span class="spec-key">LOCALISATION</span>
+                <span class="spec-val">PARIS, FRANCE</span>
               </div>
-              <div class="specialty">
-                <span class="specialty__num">03</span>
-                <div><h3>Prototypage</h3><p>Du concept au prototype interactif haute fidélité.</p></div>
+              <div class="spec-row">
+                <span class="spec-key">DISPONIBILITE</span>
+                <span class="spec-val">OUVERTE AUX OPPORTUNITES</span>
               </div>
-            </div>
-            <div class="lang-badges reveal" style="--d:.26s">
-              <span class="lang-badge">Français - C2</span>
-              <span class="lang-badge">Turc - C2</span>
-              <span class="lang-badge">Anglais - C1</span>
             </div>
           </div>
+
+          <div class="about__divider" aria-hidden="true"></div>
+
+          <div class="about__right">
+            <h3 class="about__right-title reveal" style="--d:.08s">DISCIPLINES</h3>
+            <div class="discip-list reveal" style="--d:.14s">
+              <div class="discip">
+                <span class="discip__n">01</span>
+                <div>
+                  <strong>UX DESIGN</strong>
+                  <p>Parcours centrés sur l'empathie et les vrais besoins utilisateurs.</p>
+                </div>
+              </div>
+              <div class="discip">
+                <span class="discip__n">02</span>
+                <div>
+                  <strong>UI DESIGN</strong>
+                  <p>Interfaces intuitives, esthétiques et cohérentes.</p>
+                </div>
+              </div>
+              <div class="discip">
+                <span class="discip__n">03</span>
+                <div>
+                  <strong>PROTOTYPAGE</strong>
+                  <p>Du concept au prototype interactif haute fidélité.</p>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="about__right-title reveal" style="--d:.2s" style="margin-top:32px">LANGUES</h3>
+            <div class="lang-row reveal" style="--d:.26s">
+              <span class="lang-badge">FR - C2</span>
+              <span class="lang-badge">TR - C2</span>
+              <span class="lang-badge">EN - C1</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ═══ PROJETS ═══ -->
-    <section class="section projects" id="projects">
-      <div class="blob b6"></div>
+    <!-- ═══════════════════════════════════
+         03 - PROJETS
+    ═══════════════════════════════════ -->
+    <section class="section s-projects" id="projects">
+      <div class="section__label" aria-hidden="true">03</div>
       <div class="container">
-        <p class="section-label reveal">02 - Projets</p>
-        <h2 class="section-title reveal" style="--d:.05s">Projets</h2>
+        <header class="sec-hd reveal" style="--d:0s">
+          <h2 class="sec-title">PROJETS</h2>
+          <div class="sec-line" aria-hidden="true"></div>
+        </header>
 
-        <div class="proj-list">
+        <div class="proj-grid">
 
-          <article class="proj-card reveal" style="--d:.1s">
-            <div class="proj-card__visual proj-card__visual--sage">
+          <article class="proj-card reveal" style="--d:.08s">
+            <div class="proj-card__num">01</div>
+            <div class="proj-card__img">
               <img src="assets/tamino.png" alt="Site web Album - Tamino Amir" loading="lazy" />
             </div>
-            <div class="proj-card__info">
-              <span class="proj-num">01</span>
-              <h3>Site web Album</h3>
-              <p>Une expérience web inspirée de l'univers artistique de Tamino - son album Amir, son esthétique, sa musique et son identité visuelle.</p>
-              <div class="proj-tags">
-                <span>Web Design</span><span>Développement</span>
+            <div class="proj-card__body">
+              <h3 class="proj-card__title">ALBUM WEBSITE</h3>
+              <p class="proj-card__desc">Création d'un site web inspiré de l'univers artistique de Tamino et de son album Amir.</p>
+              <div class="proj-card__tags">
+                <span>WEB DESIGN</span><span>DEVELOPPEMENT</span>
               </div>
-              <a href="#" class="link-arrow">
-                Voir le projet
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <a href="#" class="proj-card__cta">
+                VOIR LE PROJET
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
               </a>
             </div>
           </article>
 
-          <article class="proj-card proj-card--rev reveal" style="--d:.15s">
-            <div class="proj-card__visual proj-card__visual--rose">
+          <article class="proj-card reveal" style="--d:.14s">
+            <div class="proj-card__num">02</div>
+            <div class="proj-card__img">
               <img src="assets/Hand and Iphone 16 Pro.jpg" alt="Wevent - Application événementielle" loading="lazy" />
             </div>
-            <div class="proj-card__info">
-              <span class="proj-num">02</span>
-              <h3>Wevent - Application événementielle</h3>
-              <p>Application mobile tout-en-un dédiée à la création et gestion d'événements - fluide, collaborative et intuitive.</p>
-              <div class="proj-tags">
-                <span>Prototypage</span><span>Design UI/UX</span>
+            <div class="proj-card__body">
+              <h3 class="proj-card__title">WEVENT</h3>
+              <p class="proj-card__desc">Application mobile tout-en-un dédiée à la création et l'organisation d'événements.</p>
+              <div class="proj-card__tags">
+                <span>PROTOTYPAGE</span><span>UI/UX DESIGN</span>
               </div>
-              <a href="#" class="link-arrow">
-                Voir le projet
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <a href="#" class="proj-card__cta">
+                VOIR LE PROJET
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
               </a>
             </div>
           </article>
 
           <article class="proj-card reveal" style="--d:.2s">
-            <div class="proj-card__visual proj-card__visual--cream">
+            <div class="proj-card__num">03</div>
+            <div class="proj-card__img">
               <img src="assets/mockupDeezerAPI.jpg" alt="API Deezer" loading="lazy" />
             </div>
-            <div class="proj-card__info">
-              <span class="proj-num">03</span>
-              <h3>API Deezer</h3>
-              <p>Moteur de recherche musical en JavaScript vanilla - récupère les données de l'API Deezer et affiche dynamiquement les fiches artistes.</p>
-              <div class="proj-tags">
-                <span>HTML/CSS</span><span>JavaScript</span>
+            <div class="proj-card__body">
+              <h3 class="proj-card__title">DEEZER API</h3>
+              <p class="proj-card__desc">Utilisation de JavaScript pour récupérer des données depuis l'API Deezer et afficher les fiches artistes.</p>
+              <div class="proj-card__tags">
+                <span>HTML/CSS</span><span>JAVASCRIPT</span>
               </div>
-              <a href="#" class="link-arrow">
-                Voir le projet
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <a href="#" class="proj-card__cta">
+                VOIR LE PROJET
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
               </a>
             </div>
           </article>
@@ -205,184 +239,203 @@
       </div>
     </section>
 
-    <!-- ═══ EXPÉRIENCE ═══ -->
-    <section class="section experience" id="experience">
-      <div class="blob b7"></div>
+    <!-- ═══════════════════════════════════
+         04 - EXPERIENCE
+    ═══════════════════════════════════ -->
+    <section class="section s-exp" id="experience">
+      <div class="section__label" aria-hidden="true">04</div>
       <div class="container">
-        <p class="section-label reveal">03 - Expérience</p>
-        <h2 class="section-title reveal" style="--d:.05s">Mon Parcours</h2>
+        <header class="sec-hd reveal" style="--d:0s">
+          <h2 class="sec-title">EXPERIENCE</h2>
+          <div class="sec-line" aria-hidden="true"></div>
+        </header>
 
         <div class="exp-cols">
+
           <div class="exp-col">
-            <h3 class="exp-col__heading reveal" style="--d:.08s">Expérience</h3>
+            <h3 class="exp-col__hd reveal" style="--d:.06s">EXPERIENCE PRO</h3>
             <div class="timeline">
-              <div class="timeline__line"></div>
+              <div class="timeline__rail" aria-hidden="true"></div>
 
-              <div class="timeline__item reveal" style="--d:.12s">
-                <div class="timeline__dot"></div>
-                <div class="timeline__date">Mars 2026 - Juil. 2026</div>
-                <div class="timeline__body">
-                  <h4>Certificat Design Web &amp; Développement</h4>
-                  <span class="timeline__co">La Toile - emlyon Business School, Paris</span>
-                  <span class="timeline__desc">HTML, CSS, JavaScript, Figma, APIs</span>
-                  <span class="exp-badge">Certificat</span>
+              <div class="t-item reveal" style="--d:.1s">
+                <div class="t-item__year">MARS 2026 - JUIL. 2026</div>
+                <div class="t-item__body">
+                  <h4>CERTIFICAT WEB DESIGN ET DEVELOPPEMENT</h4>
+                  <span class="t-item__co">La Toile - emlyon Business School, Paris</span>
+                  <span class="t-item__desc">HTML, CSS, JavaScript, Figma, APIs</span>
+                  <span class="t-badge">CERTIFICAT</span>
                 </div>
               </div>
 
-              <div class="timeline__item reveal" style="--d:.17s">
-                <div class="timeline__dot"></div>
-                <div class="timeline__date">2024 - 2025</div>
-                <div class="timeline__body">
-                  <h4>Testeur Logiciel</h4>
-                  <span class="timeline__co">M2i Formation, Paris</span>
-                  <span class="timeline__desc">Selenium, Cypress, Postman, Squash TM, Mantis, TMAP, Agile</span>
-                  <span class="exp-badge">Alternance</span>
+              <div class="t-item reveal" style="--d:.15s">
+                <div class="t-item__year">2024 - 2025</div>
+                <div class="t-item__body">
+                  <h4>TESTEUR DE LOGICIEL</h4>
+                  <span class="t-item__co">M2i Formation, Paris</span>
+                  <span class="t-item__desc">Selenium, Cypress, Postman, Squash TM, Mantis, TMAP, Agile</span>
+                  <span class="t-badge">ALTERNANCE</span>
                 </div>
               </div>
 
-              <div class="timeline__item reveal" style="--d:.22s">
-                <div class="timeline__dot"></div>
-                <div class="timeline__date">Mars 2023 - Sept. 2024</div>
-                <div class="timeline__body">
-                  <h4>Chef de Projet UX</h4>
-                  <span class="timeline__co">TANKE - Agence créative de marketing d'influence, Paris</span>
-                  <span class="timeline__desc">Refonte de parcours utilisateurs, tests UX, coordination des équipes créa et data</span>
-                  <span class="exp-badge">Alternance</span>
+              <div class="t-item reveal" style="--d:.2s">
+                <div class="t-item__year">2024</div>
+                <div class="t-item__body">
+                  <h4>LIAISON OFFICER JO 2024</h4>
+                  <span class="t-item__co">Olympic Broadcasting Services, Paris</span>
+                  <span class="t-badge">MISSION</span>
                 </div>
               </div>
 
-              <div class="timeline__item reveal" style="--d:.27s">
-                <div class="timeline__dot"></div>
-                <div class="timeline__date">Sept. - Déc. 2022</div>
-                <div class="timeline__body">
-                  <h4>Assistante Planner Stratégique</h4>
-                  <span class="timeline__co">AustralieGAD - Agence de publicité, Paris</span>
-                  <span class="timeline__desc">Analyse des performances de campagnes, recommandations stratégiques, veille concurrentielle</span>
-                  <span class="exp-badge">Stage</span>
+              <div class="t-item reveal" style="--d:.25s">
+                <div class="t-item__year">MARS 2023 - SEPT. 2024</div>
+                <div class="t-item__body">
+                  <h4>CHEF DE PROJET UX RESEARCH</h4>
+                  <span class="t-item__co">TANKE - Agence créative de marketing d'influence, Paris</span>
+                  <span class="t-item__desc">Refonte de parcours utilisateurs, tests UX, coordination équipes créa et data</span>
+                  <span class="t-badge">ALTERNANCE</span>
+                </div>
+              </div>
+
+              <div class="t-item reveal" style="--d:.3s">
+                <div class="t-item__year">SEPT. - DEC. 2022</div>
+                <div class="t-item__body">
+                  <h4>ASSISTANTE PLANNER STRATEGIQUE</h4>
+                  <span class="t-item__co">AustralieGAD - Agence de publicité, Paris</span>
+                  <span class="t-item__desc">Analyse des performances de campagnes, recommandations stratégiques, veille concurrentielle</span>
+                  <span class="t-badge">STAGE</span>
                 </div>
               </div>
             </div>
           </div>
 
+          <div class="exp-divider" aria-hidden="true"></div>
+
           <div class="exp-col">
-            <h3 class="exp-col__heading reveal" style="--d:.08s">Formation</h3>
+            <h3 class="exp-col__hd reveal" style="--d:.06s">FORMATION</h3>
             <div class="timeline">
-              <div class="timeline__line"></div>
+              <div class="timeline__rail" aria-hidden="true"></div>
 
-              <div class="timeline__item reveal" style="--d:.12s">
-                <div class="timeline__dot"></div>
-                <div class="timeline__date">2022 - 2024</div>
-                <div class="timeline__body">
-                  <h4>MSc Data Analytics &amp; Marketing Management</h4>
-                  <span class="timeline__co">INSEEC Business School, Paris</span>
-                  <span class="timeline__desc">Marketing digital, SQL, analyse de données, stratégie de marque</span>
-                  <span class="exp-badge">Master</span>
+              <div class="t-item reveal" style="--d:.1s">
+                <div class="t-item__year">2022 - 2024</div>
+                <div class="t-item__body">
+                  <h4>MSC DATA ANALYTICS ET MARKETING MANAGEMENT</h4>
+                  <span class="t-item__co">INSEEC Business School, Paris</span>
+                  <span class="t-item__desc">Marketing digital, SQL, analyse de données, stratégie de marque</span>
+                  <span class="t-badge">MASTER</span>
                 </div>
               </div>
 
-              <div class="timeline__item reveal" style="--d:.17s">
-                <div class="timeline__dot"></div>
-                <div class="timeline__date">2020 - 2021</div>
-                <div class="timeline__body">
-                  <h4>Échange Erasmus - Business Administration</h4>
-                  <span class="timeline__co">Université d'Algarve, Portugal</span>
-                  <span class="exp-badge">Échange universitaire</span>
+              <div class="t-item reveal" style="--d:.15s">
+                <div class="t-item__year">2020 - 2021</div>
+                <div class="t-item__body">
+                  <h4>ECHANGE ERASMUS - BUSINESS ADMINISTRATION</h4>
+                  <span class="t-item__co">Université d'Algarve, Portugal</span>
+                  <span class="t-badge">ECHANGE</span>
                 </div>
               </div>
 
-              <div class="timeline__item reveal" style="--d:.22s">
-                <div class="timeline__dot"></div>
-                <div class="timeline__date">2018 - 2021</div>
-                <div class="timeline__body">
-                  <h4>Licence Langues Étrangères Appliquées - Commerce International</h4>
-                  <span class="timeline__co">Université Jean Monnet, Saint-Étienne</span>
-                  <span class="exp-badge">Licence</span>
+              <div class="t-item reveal" style="--d:.2s">
+                <div class="t-item__year">2018 - 2021</div>
+                <div class="t-item__body">
+                  <h4>LICENCE LANGUES ETRANGERES APPLIQUEES</h4>
+                  <span class="t-item__co">Université Jean Monnet, Saint-Etienne</span>
+                  <span class="t-item__desc">Commerce International</span>
+                  <span class="t-badge">LICENCE</span>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- ═══ COMPÉTENCES ═══ -->
-    <section class="section skills" id="skills">
-      <div class="blob b8"></div>
+    <!-- ═══════════════════════════════════
+         05 - COMPETENCES
+    ═══════════════════════════════════ -->
+    <section class="section s-skills" id="skills">
+      <div class="section__label" aria-hidden="true">05</div>
       <div class="container">
-        <p class="section-label reveal">04 - Compétences</p>
-        <h2 class="section-title reveal" style="--d:.05s">Mes outils</h2>
+        <header class="sec-hd reveal" style="--d:0s">
+          <h2 class="sec-title">COMPETENCES</h2>
+          <div class="sec-line" aria-hidden="true"></div>
+        </header>
 
         <div class="skill-groups">
-          <div class="skill-group reveal" style="--d:.1s">
-            <h3 class="skill-group__title">Conception</h3>
-            <div class="pills">
-              <span class="pill pill--sage">Figma</span>
-              <span class="pill pill--rose">Wireframing</span>
-              <span class="pill pill--sage">Prototypage</span>
-              <span class="pill pill--cream">Recherche UX</span>
-              <span class="pill pill--rose">Tests utilisateurs</span>
-              <span class="pill pill--cream">Parcours utilisateur</span>
+          <div class="skill-group reveal" style="--d:.08s">
+            <h3 class="skill-group__hd">CONCEPTION</h3>
+            <div class="skill-pills">
+              <span class="sp">FIGMA</span>
+              <span class="sp">WIREFRAMING</span>
+              <span class="sp">PROTOTYPAGE</span>
+              <span class="sp">RECHERCHE UX</span>
+              <span class="sp">TESTS UTILISATEURS</span>
+              <span class="sp">DESIGN SYSTEM</span>
             </div>
           </div>
-          <div class="skill-group reveal" style="--d:.16s">
-            <h3 class="skill-group__title">Développement</h3>
-            <div class="pills">
-              <span class="pill pill--sage">HTML / CSS</span>
-              <span class="pill pill--cream">JavaScript</span>
-              <span class="pill pill--rose">SQL</span>
-              <span class="pill pill--sage">Python</span>
-              <span class="pill pill--cream">Selenium</span>
-              <span class="pill pill--rose">Cypress</span>
-              <span class="pill pill--sage">Postman</span>
-              <span class="pill pill--cream">Google Analytics</span>
+          <div class="skill-group reveal" style="--d:.14s">
+            <h3 class="skill-group__hd">DEVELOPPEMENT</h3>
+            <div class="skill-pills">
+              <span class="sp">HTML</span>
+              <span class="sp">CSS</span>
+              <span class="sp">JAVASCRIPT</span>
+              <span class="sp">SQL</span>
+              <span class="sp">PYTHON</span>
+              <span class="sp">SELENIUM</span>
+              <span class="sp">CYPRESS</span>
+              <span class="sp">POSTMAN</span>
+              <span class="sp">GOOGLE ANALYTICS</span>
+              <span class="sp">POWER BI</span>
             </div>
           </div>
-          <div class="skill-group reveal" style="--d:.22s">
-            <h3 class="skill-group__title">Méthodes &amp; Outils</h3>
-            <div class="pills">
-              <span class="pill pill--rose">Agile / Scrum</span>
-              <span class="pill pill--cream">Jira</span>
-              <span class="pill pill--sage">Confluence</span>
-              <span class="pill pill--rose">Notion</span>
-              <span class="pill pill--cream">Squash TM</span>
-              <span class="pill pill--sage">Power BI</span>
-              <span class="pill pill--rose">Tableau</span>
-              <span class="pill pill--cream">TMAP</span>
+          <div class="skill-group reveal" style="--d:.2s">
+            <h3 class="skill-group__hd">METHODES ET OUTILS</h3>
+            <div class="skill-pills">
+              <span class="sp">AGILE / SCRUM</span>
+              <span class="sp">JIRA</span>
+              <span class="sp">CONFLUENCE</span>
+              <span class="sp">NOTION</span>
+              <span class="sp">SQUASH TM</span>
+              <span class="sp">TMAP</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ═══ CONTACT ═══ -->
-    <section class="section contact" id="contact">
-      <div class="blob b9"></div>
-      <div class="blob b10"></div>
+    <!-- ═══════════════════════════════════
+         06 - CONTACT
+    ═══════════════════════════════════ -->
+    <section class="section s-contact" id="contact">
+      <div class="section__label" aria-hidden="true">06</div>
       <div class="container">
-        <p class="section-label reveal">05 - Contact</p>
         <div class="contact-inner">
-          <h2 class="contact-title reveal" style="--d:.06s">
-            Travaillons<br><em>ensemble</em>
-          </h2>
-          <p class="contact-sub reveal" style="--d:.12s">Basée à Paris, ouverte aux opportunités partout dans le monde.</p>
-
-          <div class="contact-links reveal" style="--d:.18s">
-            <a href="mailto:zorluu.hulya@gmail.com" class="contact-link">
-              <span class="contact-link__label">Email</span>
-              <span class="contact-link__val">zorluu.hulya@gmail.com</span>
-            </a>
-            <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" class="contact-link">
-              <span class="contact-link__label">LinkedIn</span>
-              <span class="contact-link__val">linkedin.com/in/hulya-zorlu</span>
-            </a>
-            <div class="contact-link">
-              <span class="contact-link__label">Localisation</span>
-              <span class="contact-link__val">Paris, France</span>
-            </div>
+          <div class="contact-left reveal" style="--d:0s">
+            <h2 class="contact-title">
+              <span>TRAVAILLONS</span>
+              <span class="contact-title__red">ENSEMBLE</span>
+            </h2>
+            <div class="contact-underline" aria-hidden="true"></div>
+            <p class="contact-sub">Basée à Paris, ouverte aux opportunités partout dans le monde.</p>
           </div>
-
-          <div class="reveal" style="--d:.24s">
-            <a href="mailto:zorluu.hulya@gmail.com" class="btn btn-sage btn-lg">Envoyer un message</a>
+          <div class="contact-right reveal" style="--d:.1s">
+            <div class="contact-links">
+              <a href="mailto:zorluu.hulya@gmail.com" class="contact-link">
+                <span class="contact-link__key">EMAIL</span>
+                <span class="contact-link__val">zorluu.hulya@gmail.com</span>
+                <svg class="contact-link__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+              </a>
+              <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" class="contact-link">
+                <span class="contact-link__key">LINKEDIN</span>
+                <span class="contact-link__val">linkedin.com/in/hulya-zorlu</span>
+                <svg class="contact-link__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="square"/></svg>
+              </a>
+              <div class="contact-link contact-link--static">
+                <span class="contact-link__key">LOCALISATION</span>
+                <span class="contact-link__val">PARIS, FRANCE</span>
+              </div>
+            </div>
+            <a href="mailto:zorluu.hulya@gmail.com" class="btn btn-fill btn-lg">ENVOYER UN MESSAGE</a>
           </div>
         </div>
       </div>
@@ -392,7 +445,7 @@
 
   <footer class="footer">
     <span>© 2026 @HULYAZORLU</span>
-    <span>Conçu &amp; développé par moi.</span>
+    <span>CONÇU ET DEVELOPPE PAR MOI.</span>
   </footer>
 
   <script src="js/main.js"></script>
