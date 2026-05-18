@@ -32,17 +32,27 @@ setupWave(qs('#wave-zorlu'));
 setupWave(qs('#wave-trav'));
 setupWave(qs('#wave-ens'));
 
-/* Only animate on non-mobile for perf */
+/* ── TEXT DISTORTION — random glitch per character ── */
 if (!isMobile()) {
-  (function animateWaves(t) {
-    const secs = t / 1000;
+  (function distortionLoop() {
     waveGroups.forEach(spans => {
-      spans.forEach((span, i) => {
-        span.style.transform = `translateY(${Math.sin(secs * 2 + i * 0.4) * 8}px)`;
+      spans.forEach(span => {
+        if (Math.random() > 0.96) {
+          const x    = (Math.random() - 0.5) * 7;
+          const y    = (Math.random() - 0.5) * 5;
+          const skew = (Math.random() - 0.5) * 10;
+          const op   = 0.6 + Math.random() * 0.4;
+          span.style.transform = `translate(${x}px,${y}px) skewX(${skew}deg)`;
+          span.style.opacity   = op;
+          setTimeout(() => {
+            span.style.transform = '';
+            span.style.opacity   = '';
+          }, 40 + Math.random() * 80);
+        }
       });
     });
-    requestAnimationFrame(animateWaves);
-  })(0);
+    requestAnimationFrame(distortionLoop);
+  })();
 }
 
 /* ── CLOCK (Paris timezone) ── */

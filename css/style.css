@@ -316,7 +316,7 @@ a:hover .arr { transform: translate(2px, -2px); }
 /* Main title — Inter 800 */
 .wave-text {
   font-family: var(--fi);
-  font-weight: 600;
+  font-weight: 300;
   font-size: clamp(72px, 10vw, 160px);
   line-height: 0.88;
   letter-spacing: -0.03em;
