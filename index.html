@@ -1,539 +1,422 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hulya Zorlu - Designer UI/UX</title>
-  <meta name="description" content="Portfolio de Hulya Zorlu, Designer UI/UX - Paris 2026">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; cursor: none; }
-    :root {
-      --bg: #0A0A0A; --card: #111111; --lime: #CAFF00; --pink: #FF2D78;
-      --white: #FFFFFF; --gray: #888888; --gray2: #555555; --border: #222222;
-      --nav-h: 72px; --head: 'Archivo', sans-serif; --body: 'Space Grotesk', sans-serif;
-      --spring: cubic-bezier(0.34, 1.56, 0.64, 1); --ease: cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    body { background: var(--bg); color: var(--white); font-family: var(--body); overflow-x: hidden; }
-
-    /* LOADER */
-    #loader { position: fixed; inset: 0; z-index: 9999; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; transition: opacity .7s var(--ease), visibility .7s var(--ease); }
-    #loader.hide { opacity: 0; visibility: hidden; pointer-events: none; }
-    .ld-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
-    .ld-logo { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 2px solid var(--lime); position: relative; z-index: 2; animation: ldIn 1.8s var(--spring) forwards; }
-    @keyframes ldIn { 0% { transform: scale(0) rotate(-160deg); opacity: 0; } 65% { transform: scale(1.1) rotate(8deg); opacity: 1; } 82% { transform: scale(0.96) rotate(-3deg); } 100% { transform: scale(1) rotate(0deg); opacity: 1; } }
-    .ld-ring { position: absolute; width: 130px; height: 130px; border-radius: 50%; border: 1.5px solid var(--lime); opacity: 0; animation: ldRing 1.5s var(--ease) .5s infinite; }
-    @keyframes ldRing { 0% { transform: scale(0.9); opacity: .7; } 100% { transform: scale(1.8); opacity: 0; } }
-    .ld-txt { font-family: var(--head); font-size: 11px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; color: var(--gray); animation: fadeUp .5s var(--ease) 1.1s both; }
-    @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
-
-    /* CURSOR */
-    #cur { position: fixed; z-index: 9998; pointer-events: none; width: 16px; height: 16px; background: var(--lime); border-radius: 50%; transform: translate(-50%,-50%); transition: width .25s var(--spring), height .25s var(--spring); mix-blend-mode: difference; }
-    #cur.big { width: 48px; height: 48px; }
-    .ct { position: fixed; z-index: 9997; pointer-events: none; border-radius: 50%; background: var(--lime); transform: translate(-50%,-50%); }
-
-    /* SNAP */
-    #snap { height: 100vh; overflow-y: scroll; scroll-snap-type: y mandatory; scrollbar-width: none; -ms-overflow-style: none; }
-    #snap::-webkit-scrollbar { display: none; }
-    section { height: 100vh; scroll-snap-align: start; position: relative; overflow: hidden; display: flex; align-items: center; }
-
-    /* NAVBAR */
-    nav { position: fixed; inset: 0 0 auto 0; z-index: 500; height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; background: rgba(10,10,10,.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,.06); }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer; }
-    .nav-logo img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--lime); }
-    .nav-logo span { font-family: var(--head); font-size: 16px; font-weight: 800; color: var(--white); }
-    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
-    .nav-links a { font-family: var(--body); font-size: 14px; font-weight: 500; color: var(--gray); text-decoration: none; cursor: pointer; transition: color .2s ease; position: relative; }
-    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1.5px; background: var(--lime); border-radius: 2px; transition: width .35s var(--spring); }
-    .nav-links a:hover, .nav-links a.on { color: var(--white); }
-    .nav-links a:hover::after, .nav-links a.on::after { width: 100%; }
-    .nav-cta { font-family: var(--head); font-size: 13px !important; font-weight: 700 !important; background: var(--lime); color: var(--bg) !important; padding: 9px 22px; border-radius: 40px; cursor: pointer; transition: transform .3s var(--spring), box-shadow .3s ease !important; }
-    .nav-cta::after { display: none !important; }
-    .nav-cta:hover { transform: scale(1.06); box-shadow: 0 0 28px rgba(202,255,0,.3) !important; }
-
-    /* HAMBURGER */
-    .burg { display: none; flex-direction: column; gap: 5px; cursor: pointer; border: none; background: none; padding: 6px; z-index: 600; }
-    .burg span { display: block; width: 22px; height: 2px; background: var(--white); border-radius: 2px; transition: transform .3s ease, opacity .3s ease, background .3s ease; }
-    .burg.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); background: var(--lime); }
-    .burg.open span:nth-child(2) { opacity: 0; }
-    .burg.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); background: var(--lime); }
-    #mm { display: none; position: fixed; inset: 0; z-index: 550; background: rgba(10,10,10,.97); backdrop-filter: blur(20px); flex-direction: column; align-items: center; justify-content: center; gap: 24px; opacity: 0; transform: translateY(-100%); transition: opacity .4s ease, transform .4s var(--spring); }
-    #mm.open { opacity: 1; transform: none; }
-    #mm a { font-family: var(--head); font-size: 38px; font-weight: 900; letter-spacing: -1px; color: var(--white); text-decoration: none; cursor: pointer; transition: color .2s ease; }
-    #mm a:hover { color: var(--lime); }
-
-    /* HERO */
-    #hero { background: radial-gradient(ellipse 60% 70% at 20% 60%, rgba(202,255,0,.07) 0%, transparent 100%), radial-gradient(ellipse 50% 60% at 85% 85%, rgba(255,45,120,.06) 0%, transparent 100%), var(--bg); padding-top: var(--nav-h); }
-    .hero-inner { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 1fr 420px; gap: 32px; align-items: center; position: relative; z-index: 2; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--body); font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); margin-bottom: 20px; }
-    .hero-badge-icon { color: var(--lime); }
-    .hero-title { font-family: var(--head); font-size: clamp(64px, 10vw, 120px); font-weight: 900; line-height: .9; letter-spacing: -3px; margin-bottom: 22px; }
-    .hero-title .t-white { display: block; color: var(--white); }
-    .hero-title .t-lime  { display: block; color: var(--lime); }
-    .hero-role { font-size: 18px; font-weight: 400; color: var(--gray); margin-bottom: 36px; }
-    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
-    .btn-lime { font-family: var(--head); font-size: 15px; font-weight: 700; background: var(--lime); color: var(--bg); padding: 14px 28px; border-radius: 40px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: transform .35s var(--spring), box-shadow .35s ease; }
-    .btn-lime:hover { transform: scale(1.05) translateY(-2px); box-shadow: 0 0 36px rgba(202,255,0,.3); }
-    .btn-dark { font-family: var(--head); font-size: 15px; font-weight: 600; background: rgba(255,255,255,.06); color: var(--white); padding: 14px 28px; border-radius: 40px; border: 1px solid rgba(255,255,255,.12); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; transition: transform .35s var(--spring), border-color .25s ease; }
-    .btn-dark:hover { transform: scale(1.05) translateY(-2px); border-color: rgba(202,255,0,.4); }
-    .scroll-ind { display: flex; align-items: center; gap: 14px; font-family: var(--head); font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gray); }
-    .scroll-line { width: 60px; height: 1.5px; background: linear-gradient(to right, var(--lime), transparent); border-radius: 2px; }
-
-    /* AVATAR CARD */
-    .hero-right { display: flex; align-items: center; justify-content: center; }
-    .card-stack { position: relative; width: 300px; height: 380px; }
-    .card-back { position: absolute; inset: 0; background: var(--pink); border-radius: 36px; transform: rotate(3deg) translate(14px, 14px); }
-    .card-front { position: absolute; inset: 0; background: var(--white); border-radius: 36px; border: 3px solid var(--lime); overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 20px; }
-    .card-front img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; }
-    .card-pill { position: absolute; bottom: 20px; right: 20px; background: var(--lime); color: var(--bg); font-family: var(--head); font-size: 12px; font-weight: 800; padding: 7px 14px; border-radius: 40px; white-space: nowrap; }
-
-    /* SECTION COMMON */
-    .s-tag { display: inline-flex; align-items: center; gap: 8px; font-family: var(--body); font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--lime); margin-bottom: 14px; }
-    .s-tag::before { content: ''; width: 18px; height: 1.5px; background: var(--lime); border-radius: 2px; flex-shrink: 0; }
-    .s-title { font-family: var(--head); font-size: clamp(34px, 4.5vw, 56px); font-weight: 900; letter-spacing: -1.5px; line-height: 1; }
-    .s-title .lime { color: var(--lime); }
-
-    /* A PROPOS */
-    #apropos { background: #0D0D0D; }
-    .ap-inner { width: 100%; max-width: 1200px; margin: 0 auto; padding: calc(var(--nav-h) + 20px) 48px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-    .ap-img-wrap { position: relative; }
-    .ap-img { width: 100%; aspect-ratio: 4/5; max-width: 360px; border-radius: 30px; object-fit: cover; border: 2px solid rgba(202,255,0,.2); }
-    .ap-img-deco { position: absolute; bottom: -16px; right: -16px; width: 110px; height: 110px; background: rgba(202,255,0,.07); border: 1px solid rgba(202,255,0,.2); border-radius: 22px; display: flex; align-items: center; justify-content: center; }
-    .ap-img-deco span { font-family: var(--head); font-size: 13px; font-weight: 800; color: var(--lime); text-align: center; line-height: 1.3; }
-    .ap-text { font-size: 15px; color: var(--gray); line-height: 1.8; margin-top: 20px; margin-bottom: 32px; }
-    .ap-values { display: flex; flex-direction: column; gap: 14px; }
-    .ap-val { display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; }
-    .ap-val-dot { width: 8px; height: 8px; background: var(--lime); border-radius: 50%; flex-shrink: 0; }
-
-    /* PROJECTS */
-    #projets { background: var(--bg); }
-    .proj-inner { width: 100%; max-width: 1200px; margin: 0 auto; padding: calc(var(--nav-h) + 20px) 48px 48px; }
-    .proj-head { margin-bottom: 28px; }
-    .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .pcard { background: var(--card); border: 1px solid var(--border); border-radius: 28px; overflow: hidden; cursor: pointer; display: flex; flex-direction: column; transition: transform .4s var(--spring), border-color .3s ease, box-shadow .4s ease; }
-    .pcard:hover { transform: translateY(-8px) scale(1.02); border-color: rgba(202,255,0,.3); box-shadow: 0 20px 50px rgba(0,0,0,.5); }
-    .pthumb { height: 190px; position: relative; overflow: hidden; flex-shrink: 0; }
-    .pt1 { background: #0A0A0A; }
-    .pt1::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(202,255,0,.2) 0%, transparent 60%); }
-    .pt1::after { content: 'F'; position: absolute; font-family: var(--head); font-size: 130px; font-weight: 900; color: var(--lime); opacity: .1; bottom: -20px; right: 10px; line-height: 1; }
-    .pt1-c1 { position: absolute; width: 60px; height: 60px; background: var(--lime); opacity: .6; border-radius: 50%; bottom: 28px; left: 36px; }
-    .pt1-c2 { position: absolute; width: 30px; height: 30px; background: var(--lime); opacity: .8; border-radius: 50%; bottom: 64px; left: 84px; }
-    .pt2 { background: #08080E; }
-    .pt2::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 65% 50%, rgba(255,45,120,.25) 0%, transparent 65%); }
-    .pt2-phone { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 54px; height: 94px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,45,120,.35); border-radius: 14px; overflow: hidden; padding: 8px 7px; display: flex; flex-direction: column; gap: 5px; }
-    .pt2-bar { height: 5px; border-radius: 4px; }
-    .pt2-b1 { background: var(--pink); width: 70%; }
-    .pt2-b2 { background: rgba(255,45,120,.4); width: 90%; }
-    .pt2-b3 { background: rgba(255,45,120,.2); width: 55%; }
-    .pt2-btn { margin-top: 5px; height: 14px; background: var(--pink); border-radius: 6px; opacity: .8; }
-    .pt3 { background: #050510; }
-    .pt3::before { content: ''; position: absolute; inset: 0; background: linear-gradient(rgba(202,255,0,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(202,255,0,.04) 1px, transparent 1px); background-size: 26px 26px; }
-    .pt3-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); display: flex; align-items: center; justify-content: center; }
-    .pt3-ring { width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--lime); box-shadow: 0 0 24px rgba(202,255,0,.3); }
-    .pt3-ring2 { position: absolute; width: 100px; height: 100px; border-radius: 50%; border: 1px solid rgba(202,255,0,.15); }
-    .pt3-dot { position: absolute; width: 10px; height: 10px; background: var(--lime); border-radius: 50%; box-shadow: 0 0 10px var(--lime); }
-    .pchip { position: absolute; top: 12px; right: 12px; background: rgba(10,10,10,.82); border: 1px solid rgba(255,255,255,.1); border-radius: 40px; padding: 4px 12px; font-size: 11px; font-weight: 600; color: var(--gray); backdrop-filter: blur(8px); }
-    .pbody { padding: 20px 22px; flex: 1; display: flex; flex-direction: column; }
-    .pnum { font-family: var(--head); font-size: 10px; font-weight: 700; color: var(--lime); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
-    .pname { font-family: var(--head); font-size: 17px; font-weight: 800; letter-spacing: -.2px; margin-bottom: 8px; }
-    .pdesc { font-size: 13px; color: var(--gray); line-height: 1.65; flex: 1; }
-    .ptags { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 14px; }
-    .ptag { background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 40px; padding: 4px 11px; font-size: 11px; color: var(--gray); font-weight: 500; }
-
-    /* EXPERIENCE */
-    #experience { background: #0D0D0D; }
-    .exp-inner { width: 100%; max-width: 1200px; margin: 0 auto; padding: calc(var(--nav-h) + 20px) 48px 48px; }
-    .exp-head { margin-bottom: 30px; }
-    .exp-layout { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 0 32px; }
-    .exp-line { background: linear-gradient(to bottom, transparent, var(--border) 15%, var(--border) 85%, transparent); }
-    .exp-col-l { display: flex; flex-direction: column; gap: 16px; padding-right: 24px; }
-    .exp-col-r { display: flex; flex-direction: column; gap: 16px; padding-left: 24px; padding-top: 44px; }
-    .ecard { background: var(--card); border: 1px solid var(--border); border-radius: 24px; padding: 20px 22px; position: relative; cursor: default; transition: border-color .3s ease, transform .35s var(--spring); }
-    .ecard:hover { border-color: rgba(202,255,0,.25); transform: scale(1.015); }
-    .ecard-dot { position: absolute; width: 8px; height: 8px; background: var(--lime); border-radius: 50%; box-shadow: 0 0 8px var(--lime); }
-    .ecard-dot.r { right: -36px; top: 26px; }
-    .ecard-dot.l { left: -36px; top: 26px; }
-    .edate { display: inline-block; background: rgba(202,255,0,.08); color: var(--lime); border-radius: 40px; padding: 3px 12px; font-size: 11px; font-weight: 700; letter-spacing: .5px; margin-bottom: 10px; }
-    .erole { font-family: var(--head); font-size: 15px; font-weight: 800; letter-spacing: -.2px; margin-bottom: 3px; }
-    .eco { font-size: 13px; color: var(--pink); font-weight: 600; margin-bottom: 10px; }
-    .edesc { font-size: 13px; color: var(--gray); line-height: 1.65; }
-
-    /* SKILLS */
-    #competences { background: var(--bg); }
-    .sk-inner { width: 100%; max-width: 1200px; margin: 0 auto; padding: calc(var(--nav-h) + 20px) 48px 48px; display: grid; grid-template-columns: 1fr 1.5fr; gap: 64px; align-items: center; }
-    .sk-sub { font-size: 15px; color: var(--gray); line-height: 1.75; margin-top: 18px; max-width: 320px; }
-    .sk-right { display: flex; flex-direction: column; gap: 22px; }
-    .sk-row { display: grid; grid-template-columns: 110px 1fr; gap: 14px; align-items: start; }
-    .sk-lbl { font-family: var(--head); font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray2); padding-top: 9px; }
-    .sk-pills { display: flex; flex-wrap: wrap; gap: 8px; }
-    .pill { background: var(--card); border: 1px solid var(--border); border-radius: 40px; padding: 8px 16px; font-size: 13px; font-weight: 500; color: var(--gray); cursor: default; transition: background .22s ease, border-color .22s ease, color .22s ease, transform .35s var(--spring); }
-    .pill:hover { background: var(--lime); border-color: var(--lime); color: var(--bg); transform: scale(1.06) translateY(-2px); }
-    .pill.hi { background: rgba(202,255,0,.08); border-color: rgba(202,255,0,.25); color: var(--lime); }
-    .pill.hip { background: rgba(255,45,120,.08); border-color: rgba(255,45,120,.25); color: var(--pink); }
-    .sk-sep { width: 100%; height: 1px; background: var(--border); }
-
-    /* CONTACT */
-    #contact { flex-direction: column; background: #0D0D0D; }
-    .ct-main { flex: 1; display: flex; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto; padding: calc(var(--nav-h) + 20px) 48px 0; }
-    .ct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; width: 100%; }
-    .ct-sub { font-size: 15px; color: var(--gray); line-height: 1.75; margin-top: 18px; margin-bottom: 32px; }
-    .ct-links { display: flex; flex-direction: column; gap: 12px; }
-    .ctlink { display: flex; align-items: center; gap: 14px; background: var(--card); border: 1px solid var(--border); border-radius: 22px; padding: 16px 20px; text-decoration: none; color: var(--white); cursor: pointer; transition: transform .35s var(--spring), border-color .3s ease, box-shadow .3s ease; }
-    .ctlink:hover { transform: translateX(8px) scale(1.015); border-color: rgba(202,255,0,.28); box-shadow: 0 10px 28px rgba(0,0,0,.4); }
-    .ctlink-ic { width: 42px; height: 42px; flex-shrink: 0; background: rgba(202,255,0,.08); border-radius: 14px; display: flex; align-items: center; justify-content: center; }
-    .ctlink-ic svg { width: 18px; height: 18px; color: var(--lime); }
-    .ctlink-lbl { font-size: 10px; color: var(--gray); font-weight: 600; letter-spacing: .5px; margin-bottom: 2px; }
-    .ctlink-val { font-family: var(--head); font-size: 14px; font-weight: 700; }
-    .ctlink-arr { margin-left: auto; color: var(--gray); }
-    .ct-card { background: var(--card); border: 1px solid var(--border); border-radius: 36px; padding: 44px 36px; text-align: center; position: relative; overflow: hidden; }
-    .ct-card::before { content: ''; position: absolute; pointer-events: none; width: 300px; height: 300px; background: radial-gradient(circle, rgba(202,255,0,.06) 0%, transparent 70%); top: -100px; right: -60px; }
-    .ct-av { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(202,255,0,.35); margin: 0 auto 16px; display: block; box-shadow: 0 0 24px rgba(202,255,0,.14); }
-    .ct-name { font-family: var(--head); font-size: 20px; font-weight: 900; letter-spacing: -.4px; margin-bottom: 5px; }
-    .ct-role { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
-    .ct-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(202,255,0,.08); border: 1px solid rgba(202,255,0,.2); border-radius: 40px; padding: 10px 20px; color: var(--lime); font-size: 13px; font-weight: 600; }
-    .pulse { width: 7px; height: 7px; background: var(--lime); border-radius: 50%; animation: pls 2s ease infinite; flex-shrink: 0; }
-    @keyframes pls { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.4; transform:scale(.7); } }
-    .site-footer { width: 100%; border-top: 1px solid var(--border); padding: 16px 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; }
-    .ft-brand { font-family: var(--head); font-size: 13px; font-weight: 900; letter-spacing: 2px; }
-    .ft-brand span { color: var(--lime); }
-    .ft-copy { font-size: 12px; color: var(--gray); }
-    .ft-soc { display: flex; gap: 8px; }
-    .ft-soc a { width: 34px; height: 34px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; text-decoration: none; color: var(--gray); cursor: pointer; transition: background .2s ease, color .2s ease, transform .35s var(--spring), border-color .2s ease; }
-    .ft-soc a:hover { background: var(--lime); color: var(--bg); border-color: var(--lime); transform: scale(1.1) translateY(-2px); }
-    .ft-soc svg { width: 15px; height: 15px; }
-
-    /* REVEAL */
-    .rv  { opacity:0; transform: translateY(40px) scale(0.94); }
-    .rvl { opacity:0; transform: translateX(-40px) scale(0.94); }
-    .rvr { opacity:0; transform: translateX(40px) scale(0.94); }
-    .rv.on  { animation: aRv  .7s var(--spring) both; }
-    .rvl.on { animation: aRvL .7s var(--spring) both; }
-    .rvr.on { animation: aRvR .7s var(--spring) both; }
-    @keyframes aRv  { from { opacity:0; transform:translateY(40px) scale(0.94); } to { opacity:1; transform:none; } }
-    @keyframes aRvL { from { opacity:0; transform:translateX(-40px) scale(0.94); } to { opacity:1; transform:none; } }
-    @keyframes aRvR { from { opacity:0; transform:translateX(40px) scale(0.94); } to { opacity:1; transform:none; } }
-    .d1{animation-delay:.08s} .d2{animation-delay:.16s} .d3{animation-delay:.24s} .d4{animation-delay:.32s} .d5{animation-delay:.40s}
-    @media (prefers-reduced-motion:reduce) { *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; } }
-
-    /* RESPONSIVE */
-    @media (max-width: 1024px) {
-      nav { padding: 0 22px; }
-      .nav-links { display: none; }
-      .burg { display: flex; }
-      #mm { display: flex; }
-      #snap { scroll-snap-type: none; height: auto; overflow-y: visible; }
-      section { height: auto; min-height: 100svh; scroll-snap-align: none; overflow: visible; }
-      #hero { padding-top: var(--nav-h); }
-      .hero-inner { grid-template-columns: 1fr; padding: calc(var(--nav-h) + 28px) 22px 60px; gap: 48px; }
-      .hero-right { order: -1; }
-      .card-stack { width: 220px; height: 280px; }
-      .card-back { border-radius: 28px; transform: rotate(3deg) translate(10px, 10px); }
-      .card-front { border-radius: 28px; }
-      .ap-inner { grid-template-columns: 1fr; gap: 32px; padding: calc(var(--nav-h) + 28px) 22px 48px; }
-      .ap-img { max-width: 100%; aspect-ratio: 16/9; }
-      .proj-inner { padding: calc(var(--nav-h) + 28px) 22px 48px; }
-      .proj-grid { grid-template-columns: 1fr; }
-      .exp-inner { padding: calc(var(--nav-h) + 28px) 22px 48px; }
-      .exp-layout { grid-template-columns: 1fr; gap: 14px; }
-      .exp-line { display: none; }
-      .exp-col-l, .exp-col-r { padding: 0; }
-      .exp-col-r { padding-top: 0; }
-      .ecard-dot { display: none; }
-      .sk-inner { grid-template-columns: 1fr; gap: 32px; padding: calc(var(--nav-h) + 28px) 22px 48px; }
-      .sk-row { grid-template-columns: 1fr; gap: 8px; }
-      .ct-main { padding: calc(var(--nav-h) + 28px) 22px 24px; }
-      .ct-grid { grid-template-columns: 1fr; gap: 32px; }
-      .site-footer { padding: 16px 22px; flex-direction: column; gap: 10px; text-align: center; }
-    }
-    @media (max-width: 600px) {
-      .hero-title { letter-spacing: -2px; }
-      .hero-btns { flex-direction: column; }
-      .btn-lime, .btn-dark { width: 100%; justify-content: center; }
-      .ct-card { padding: 28px 20px; }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hulya Zorlu — Designer UI/UX, Paris 2026." />
+  <title>Hulya Zorlu — Designer UI/UX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-<div id="loader">
-  <div class="ld-wrap">
-    <div class="ld-ring"></div>
-    <img src="logo avatar hulya.png" alt="Hulya Zorlu" class="ld-logo">
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <img src="assets/hulya.png" alt="Hulya Zorlu" class="loader__logo" />
+    <div class="loader__bar"><div class="loader__fill"></div></div>
+    <p class="loader__name">Hulya Zorlu</p>
   </div>
-  <span class="ld-txt">Portfolio</span>
-</div>
 
-<div id="cur"></div>
+  <!-- Curseur -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
 
-<nav>
-  <a href="#hero" class="nav-logo">
-    <img src="logo avatar hulya.png" alt="Logo Hulya Zorlu">
-    <span>Hulya Zorlu</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#apropos">A propos</a></li>
-    <li><a href="#projets">Projets</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#competences">Competences</a></li>
-    <li><a href="#contact" class="nav-cta">Contact</a></li>
-  </ul>
-  <button class="burg" id="burg" aria-label="Menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+  <!-- Nav -->
+  <nav class="nav" id="nav">
+    <a href="#hero" class="nav__logo">
+      <img src="assets/hulya.png" alt="Hulya Zorlu" class="nav__logo-img" />
+    </a>
+    <ul class="nav__links">
+      <li><a href="#about"      class="nav__link">À propos</a></li>
+      <li><a href="#projects"   class="nav__link">Projets</a></li>
+      <li><a href="#experience" class="nav__link">Expérience</a></li>
+      <li><a href="#skills"     class="nav__link">Compétences</a></li>
+      <li><a href="#contact"    class="nav__link">Contact</a></li>
+    </ul>
+    <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+  </nav>
 
-<div id="mm">
-  <a href="#apropos">A propos</a>
-  <a href="#projets">Projets</a>
-  <a href="#experience">Experience</a>
-  <a href="#competences">Competences</a>
-  <a href="#contact">Contact</a>
-</div>
+  <!-- Menu mobile -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#about"      class="mobile-link">À propos</a></li>
+      <li><a href="#projects"   class="mobile-link">Projets</a></li>
+      <li><a href="#experience" class="mobile-link">Expérience</a></li>
+      <li><a href="#skills"     class="mobile-link">Compétences</a></li>
+      <li><a href="#contact"    class="mobile-link">Contact</a></li>
+    </ul>
+  </div>
 
-<div id="snap">
+  <main>
 
-  <section id="hero">
-    <div class="hero-inner">
-      <div class="hero-left">
-        <div class="hero-badge rv"><span class="hero-badge-icon">+</span> PORTFOLIO 2026 &middot; PARIS</div>
-        <h1 class="hero-title">
-          <span class="t-white rv d1">HULYA</span>
-          <span class="t-lime rv d2">ZORLU</span>
-        </h1>
-        <p class="hero-role rv d3">Designer UI/UX</p>
-        <div class="hero-btns rv d4">
-          <a href="#projets" class="btn-lime">Voir mes projets &darr;</a>
-          <a href="#contact" class="btn-dark">Me contacter</a>
+    <!-- ═══ HERO ═══ -->
+    <section class="section hero" id="hero">
+      <div class="blob blob--lime" style="--bx:12%;--by:18%;--bs:540px;--bd:13s;--bdy:-2s"></div>
+      <div class="blob blob--pink" style="--bx:78%;--by:65%;--bs:420px;--bd:17s;--bdy:-5s"></div>
+      <div class="blob blob--lime" style="--bx:85%;--by:8%;--bs:300px;--bd:11s;--bdy:-8s"></div>
+      <div class="blob blob--pink" style="--bx:5%;--by:80%;--bs:260px;--bd:15s;--bdy:-3s"></div>
+
+      <div class="hero__inner">
+        <div class="hero__left">
+          <p class="hero__eyebrow pop-in" style="--pd:.1s">✦ Portfolio 2026 · Paris</p>
+          <h1 class="hero__title">
+            <span class="hero__word pop-in" style="--pd:.2s">HULYA</span>
+            <span class="hero__word hero__word--lime pop-in" style="--pd:.35s">ZORLU</span>
+          </h1>
+          <p class="hero__sub pop-in" style="--pd:.5s">Designer UI/UX</p>
+          <div class="hero__actions pop-in" style="--pd:.65s">
+            <a href="#projects" class="btn btn--lime">Voir mes projets ↓</a>
+            <a href="#contact"  class="btn btn--ghost">Me contacter</a>
+          </div>
         </div>
-        <div class="scroll-ind rv d5">
-          <span>DEFILER</span>
-          <div class="scroll-line"></div>
-        </div>
-      </div>
-      <div class="hero-right rv d3">
-        <div class="card-stack">
-          <div class="card-back"></div>
-          <div class="card-front">
-            <img src="logo avatar hulya.png" alt="Hulya Zorlu - Designer UI/UX">
-            <div class="card-pill">UI/UX &rarr;</div>
+
+        <div class="hero__right pop-in" style="--pd:.4s">
+          <div class="hero__portrait-outer">
+            <div class="hero__portrait-shadow"></div>
+            <div class="hero__portrait-card">
+              <img src="assets/hulya.png" alt="Portrait illustré de Hulya Zorlu" />
+              <span class="hero__portrait-badge">UI/UX ✦</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section id="apropos">
-    <div class="ap-inner">
-      <div class="ap-img-wrap rvl">
-        <img src="logo avatar hulya.png" alt="Hulya Zorlu" class="ap-img">
-        <div class="ap-img-deco"><span>Paris<br>2026</span></div>
+      <div class="hero__scroll">
+        <span>défiler</span>
+        <div class="hero__scroll-line"></div>
       </div>
-      <div class="ap-right">
-        <div class="s-tag rv">A propos</div>
-        <h2 class="s-title rv d1">Je suis<br><span class="lime">Hulya Zorlu</span></h2>
-        <p class="ap-text rv d2">Designer UI/UX passionnee, je travaille en agence a Paris ou je concois des interfaces digitales qui allient esthetique soignee et experience utilisateur intuitive. Je transforme des besoins complexes en produits simples, beaux et memorables.</p>
-        <div class="ap-values rv d3">
-          <div class="ap-val"><div class="ap-val-dot"></div>Design centre sur l'utilisateur</div>
-          <div class="ap-val"><div class="ap-val-dot"></div>Interfaces elegantes et accessibles</div>
-          <div class="ap-val"><div class="ap-val-dot"></div>Collaboration etroite avec les equipes dev</div>
-          <div class="ap-val"><div class="ap-val-dot"></div>Systemes de design evolutifs</div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="projets">
-    <div class="proj-inner">
-      <div class="proj-head">
-        <div class="s-tag rv">Mes realisations</div>
-        <h2 class="s-title rv d1">Projets <span class="lime">selectionnes</span></h2>
-      </div>
-      <div class="proj-grid">
-        <div class="pcard rv d1">
-          <div class="pthumb pt1"><div class="pt1-c1"></div><div class="pt1-c2"></div><span class="pchip">Branding</span></div>
-          <div class="pbody">
-            <div class="pnum">01</div>
-            <h3 class="pname">Fleura - Identite Visuelle</h3>
-            <p class="pdesc">Creation complete d'une identite de marque pour une boutique florale de luxe : logo, charte graphique, supports et site vitrine.</p>
-            <div class="ptags"><span class="ptag">Figma</span><span class="ptag">Branding</span><span class="ptag">Print</span></div>
+    <!-- ═══ À PROPOS ═══ -->
+    <section class="content-section" id="about">
+      <div class="blob blob--lime" style="--bx:90%;--by:20%;--bs:380px;--bd:15s;--bdy:-3s"></div>
+      <div class="blob blob--pink" style="--bx:5%;--by:75%;--bs:320px;--bd:12s;--bdy:-6s"></div>
+      <div class="container">
+        <div class="cs-grid">
+          <div class="cs-label">
+            <span class="pill pill--white pop-in" style="--pd:0s">01 - À propos</span>
           </div>
-        </div>
-        <div class="pcard rv d2">
-          <div class="pthumb pt2"><div class="pt2-phone"><div class="pt2-bar pt2-b1"></div><div class="pt2-bar pt2-b2"></div><div class="pt2-bar pt2-b3"></div><div class="pt2-btn"></div></div><span class="pchip">UI/UX Mobile</span></div>
-          <div class="pbody">
-            <div class="pnum">02</div>
-            <h3 class="pname">Zenify - App Bien-etre</h3>
-            <p class="pdesc">Conception de l'interface et de l'UX pour une application mobile de meditation et suivi du bien-etre mental.</p>
-            <div class="ptags"><span class="ptag">Adobe XD</span><span class="ptag">Prototypage</span><span class="ptag">Mobile</span></div>
-          </div>
-        </div>
-        <div class="pcard rv d3">
-          <div class="pthumb pt3"><div class="pt3-center"><div class="pt3-ring2"></div><div class="pt3-ring"></div><div class="pt3-dot"></div></div><span class="pchip">Dashboard SaaS</span></div>
-          <div class="pbody">
-            <div class="pnum">03</div>
-            <h3 class="pname">Noctua - Tableau de Bord</h3>
-            <p class="pdesc">Design et integration d'un tableau de bord analytique pour une plateforme SaaS, avec visualisations en temps reel.</p>
-            <div class="ptags"><span class="ptag">Figma</span><span class="ptag">Dashboard</span><span class="ptag">SaaS</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+          <div class="cs-body">
 
-  <section id="experience">
-    <div class="exp-inner">
-      <div class="exp-head">
-        <div class="s-tag rv">Mon parcours</div>
-        <h2 class="s-title rv d1">Experi<span class="lime">ence</span></h2>
-      </div>
-      <div class="exp-layout">
-        <div class="exp-col-l">
-          <div class="ecard rvl d1">
-            <span class="edate">2022 - Aujourd'hui</span>
-            <h3 class="erole">Designer UI/UX Freelance</h3>
-            <p class="eco">Independante - Paris, France</p>
-            <p class="edesc">Accompagnement de startups et PME dans la conception de leurs interfaces digitales. Creation de systemes de design complets et collaboration etroite avec les equipes dev.</p>
-            <div class="ecard-dot r"></div>
-          </div>
-          <div class="ecard rvl d3">
-            <span class="edate">Stage - 2019</span>
-            <h3 class="erole">Designeuse Web - Stage</h3>
-            <p class="eco">Studio Creactif - Paris, France</p>
-            <p class="edesc">Realisation de maquettes et prototypes pour des clients grands comptes. Participation aux phases de recherche utilisateur.</p>
-            <div class="ecard-dot r"></div>
-          </div>
-        </div>
-        <div class="exp-line"></div>
-        <div class="exp-col-r">
-          <div class="ecard rvr d2">
-            <span class="edate">2020 - 2022</span>
-            <h3 class="erole">Designeuse Web</h3>
-            <p class="eco">Agence Pixel et Co - Lyon, France</p>
-            <p class="edesc">Refonte de sites e-commerce et creation de campagnes digitales. Optimisation de l'UX et conception de landing pages a fort taux de conversion.</p>
-            <div class="ecard-dot l"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+            <h2 class="cs-heading pop-in" style="--pd:.1s">
+              Concevoir des expériences<br />
+              qui se <em class="hl-lime">ressentent</em> autant<br />
+              qu'elles se voient.
+            </h2>
 
-  <section id="competences">
-    <div class="sk-inner">
-      <div>
-        <div class="s-tag rv">Expertise</div>
-        <h2 class="s-title rv d1">Compe<span class="lime">tences</span></h2>
-        <p class="sk-sub rv d2">Maitrise des outils de design les plus avances et des technologies web modernes, pour des resultats qui combinent esthetique et fonctionnalite.</p>
-      </div>
-      <div class="sk-right">
-        <div class="sk-row rv d1">
-          <span class="sk-lbl">Design</span>
-          <div class="sk-pills"><span class="pill hi">Figma</span><span class="pill hi">Adobe XD</span><span class="pill">Illustrator</span><span class="pill">Photoshop</span><span class="pill">After Effects</span><span class="pill">Framer</span></div>
-        </div>
-        <div class="sk-sep rv"></div>
-        <div class="sk-row rv d2">
-          <span class="sk-lbl">Dev</span>
-          <div class="sk-pills"><span class="pill hi">HTML5</span><span class="pill hi">CSS3</span><span class="pill">JavaScript</span><span class="pill">WordPress</span><span class="pill">Webflow</span><span class="pill">Shopify</span></div>
-        </div>
-        <div class="sk-sep rv"></div>
-        <div class="sk-row rv d3">
-          <span class="sk-lbl">Methodes</span>
-          <div class="sk-pills"><span class="pill hip">UX Research</span><span class="pill hip">Design System</span><span class="pill">Prototypage</span><span class="pill">Tests utilisateurs</span><span class="pill">Accessibilite</span><span class="pill">Agile</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+            <p class="cs-intro pop-in" style="--pd:.18s">
+              Designer UI/UX passionnée par la création d'expériences digitales intuitives et centrées utilisateur. Issue d'un parcours mêlant data et stratégie marketing, j'ai découvert l'univers du digital en agence, où je me suis spécialisée dans la conception d'interfaces : recherche utilisateur, wireframing, prototypage haute fidélité et réflexion UX. Je développe également des compétences en front-end afin de concevoir des expériences à la fois esthétiques, cohérentes et fonctionnelles.
+            </p>
 
-  <section id="contact">
-    <div class="ct-main">
-      <div class="ct-grid">
-        <div>
-          <div class="s-tag rv">Contact</div>
-          <h2 class="s-title rv d1">Travaillons<br><span class="lime">ensemble</span></h2>
-          <p class="ct-sub rv d2">Un projet en tete ? Je serais ravie d'echanger avec vous et de donner vie a vos idees.</p>
-          <div class="ct-links">
-            <a href="mailto:hulya.zorluu@gmail.com" class="ctlink rv d3">
-              <div class="ctlink-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
-              <div><div class="ctlink-lbl">Email</div><div class="ctlink-val">hulya.zorluu@gmail.com</div></div>
-              <svg class="ctlink-arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            <div class="specialty-grid pop-in" style="--pd:.26s">
+              <div class="specialty-card">
+                <span class="specialty-num">01</span>
+                <h3>UX Design</h3>
+                <p>Concevoir avec empathie des parcours utilisateurs qui répondent aux vrais besoins.</p>
+              </div>
+              <div class="specialty-card">
+                <span class="specialty-num">02</span>
+                <h3>UI Design</h3>
+                <p>Créer des interfaces intuitives à travers l'esthétique visuelle et le design d'interaction.</p>
+              </div>
+              <div class="specialty-card">
+                <span class="specialty-num">03</span>
+                <h3>Prototypage</h3>
+                <p>Transformer les idées en prototypes interactifs qui font le pont entre design et développement.</p>
+              </div>
+            </div>
+
+            <div class="ux-skills pop-in" style="--pd:.34s">
+              <div class="ux-row">
+                <span class="ux-label">UX</span>
+                <div class="ux-tags">
+                  <span class="tag">Empathie</span>
+                  <span class="tag">Recherche utilisateur</span>
+                  <span class="tag">Wireframing</span>
+                  <span class="tag">Prototypage</span>
+                  <span class="tag">Parcours utilisateur</span>
+                  <span class="tag">Collaboration</span>
+                </div>
+              </div>
+              <div class="ux-row">
+                <span class="ux-label">UI</span>
+                <div class="ux-tags">
+                  <span class="tag">Identité visuelle</span>
+                  <span class="tag">Esprit critique</span>
+                  <span class="tag">Résolution de problèmes</span>
+                  <span class="tag">Design de l'information</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="lang-row pop-in" style="--pd:.42s">
+              <div class="lang-item"><span class="lang-name">Français</span><span class="lang-lvl">Natif - C2</span></div>
+              <span class="lang-dot" aria-hidden="true">·</span>
+              <div class="lang-item"><span class="lang-name">Turc</span><span class="lang-lvl">Natif - C2</span></div>
+              <span class="lang-dot" aria-hidden="true">·</span>
+              <div class="lang-item"><span class="lang-name">Anglais</span><span class="lang-lvl">Professionnel - C1</span></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ PROJETS ═══ -->
+    <section class="content-section content-section--alt" id="projects">
+      <div class="blob blob--lime" style="--bx:8%;--by:30%;--bs:340px;--bd:14s;--bdy:-4s"></div>
+      <div class="container">
+        <div class="cs-header pop-in" style="--pd:0s">
+          <span class="pill pill--lime">02 - Projets</span>
+          <h2 class="cs-heading">Projets</h2>
+        </div>
+
+        <div class="proj-list">
+
+          <article class="proj-card pop-in" style="--pd:.1s">
+            <div class="proj-card__media">
+              <div class="proj-card__float">
+                <img src="assets/tamino.png" alt="Site web Album - Tamino Amir" loading="lazy" />
+              </div>
+            </div>
+            <div class="proj-card__info">
+              <span class="proj-num">01</span>
+              <h3 class="proj-card__title">Site web Album</h3>
+              <p class="proj-card__desc">Une expérience web inspirée de l'univers artistique de Tamino - son album Amir, son esthétique, sa musique et son identité visuelle.</p>
+              <div class="proj-card__tags">
+                <span class="tag">Web Design</span>
+                <span class="tag">Développement</span>
+              </div>
+              <a href="#" class="btn-link">Voir le projet <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </article>
+
+          <article class="proj-card proj-card--rev pop-in" style="--pd:.1s">
+            <div class="proj-card__media">
+              <div class="proj-card__float">
+                <img src="assets/Hand and Iphone 16 Pro.jpg" alt="Wevent - Application événementielle" loading="lazy" />
+              </div>
+            </div>
+            <div class="proj-card__info">
+              <span class="proj-num">02</span>
+              <h3 class="proj-card__title">Wevent - Application événementielle</h3>
+              <p class="proj-card__desc">Application mobile tout-en-un dédiée à la création et gestion d'événements - fluide, collaborative et intuitive.</p>
+              <div class="proj-card__tags">
+                <span class="tag">Prototypage</span>
+                <span class="tag">Design UI/UX</span>
+              </div>
+              <a href="#" class="btn-link">Voir le projet <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </article>
+
+          <article class="proj-card pop-in" style="--pd:.1s">
+            <div class="proj-card__media">
+              <div class="proj-card__float">
+                <img src="assets/mockupDeezerAPI.jpg" alt="API Deezer" loading="lazy" />
+              </div>
+            </div>
+            <div class="proj-card__info">
+              <span class="proj-num">03</span>
+              <h3 class="proj-card__title">API Deezer</h3>
+              <p class="proj-card__desc">Moteur de recherche musical en JavaScript vanilla - récupère les données de l'API Deezer et affiche dynamiquement les fiches artistes.</p>
+              <div class="proj-card__tags">
+                <span class="tag">HTML/CSS</span>
+                <span class="tag">JavaScript</span>
+              </div>
+              <a href="#" class="btn-link">Voir le projet <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ EXPÉRIENCE ═══ -->
+    <section class="content-section" id="experience">
+      <div class="blob blob--pink" style="--bx:88%;--by:35%;--bs:360px;--bd:16s;--bdy:-2s"></div>
+      <div class="blob blob--lime" style="--bx:3%;--by:60%;--bs:300px;--bd:13s;--bdy:-7s"></div>
+      <div class="container">
+        <div class="cs-grid">
+          <div class="cs-label">
+            <span class="pill pill--white pop-in" style="--pd:0s">03 - Expérience</span>
+          </div>
+          <div class="cs-body">
+            <h2 class="cs-heading pop-in" style="--pd:.08s">Mon Parcours</h2>
+
+            <div class="exp-group pop-in" style="--pd:.14s"><span class="exp-group-label">Expérience</span></div>
+
+            <div class="exp-item pop-in" style="--pd:.18s">
+              <div class="exp-item__year">Mars 2026 - Juil. 2026</div>
+              <div class="exp-item__body">
+                <h3>Certificat Design Web &amp; Développement</h3>
+                <span class="exp-company">La Toile - emlyon Business School, Paris</span>
+                <span class="exp-desc">HTML, CSS, JavaScript, Figma, APIs</span>
+                <span class="exp-badge">Certificat</span>
+              </div>
+            </div>
+
+            <div class="exp-item pop-in" style="--pd:.22s">
+              <div class="exp-item__year">2024 - 2025</div>
+              <div class="exp-item__body">
+                <h3>Testeur Logiciel</h3>
+                <span class="exp-company">M2i Formation, Paris</span>
+                <span class="exp-desc">Selenium, Cypress, Postman, Squash TM, Mantis, TMAP, Agile</span>
+                <span class="exp-badge">Alternance</span>
+              </div>
+            </div>
+
+            <div class="exp-item pop-in" style="--pd:.3s">
+              <div class="exp-item__year">Mars 2023 - Sept. 2024</div>
+              <div class="exp-item__body">
+                <h3>Chef de Projet UX</h3>
+                <span class="exp-company">TANKE - Agence créative de marketing d'influence, Paris</span>
+                <span class="exp-desc">Refonte de parcours utilisateurs, tests UX, coordination des équipes créa et data</span>
+                <span class="exp-badge">Alternance</span>
+              </div>
+            </div>
+
+            <div class="exp-item pop-in" style="--pd:.34s">
+              <div class="exp-item__year">Sept. - Déc. 2022</div>
+              <div class="exp-item__body">
+                <h3>Assistante Planner Stratégique</h3>
+                <span class="exp-company">AustralieGAD - Agence de publicité, Paris</span>
+                <span class="exp-desc">Analyse des performances de campagnes, recommandations stratégiques, veille concurrentielle</span>
+                <span class="exp-badge">Stage</span>
+              </div>
+            </div>
+
+            <div class="exp-group pop-in" style="--pd:.38s"><span class="exp-group-label">Formation</span></div>
+
+            <div class="exp-item pop-in" style="--pd:.42s">
+              <div class="exp-item__year">2022 - 2024</div>
+              <div class="exp-item__body">
+                <h3>MSc Data Analytics &amp; Marketing Management</h3>
+                <span class="exp-company">INSEEC Business School, Paris</span>
+                <span class="exp-desc">Marketing digital, SQL, analyse de données, stratégie de marque</span>
+                <span class="exp-badge">Master</span>
+              </div>
+            </div>
+
+            <div class="exp-item pop-in" style="--pd:.46s">
+              <div class="exp-item__year">2020 - 2021</div>
+              <div class="exp-item__body">
+                <h3>Échange Erasmus - Business Administration</h3>
+                <span class="exp-company">Université d'Algarve, Portugal</span>
+                <span class="exp-badge">Échange universitaire</span>
+              </div>
+            </div>
+
+            <div class="exp-item pop-in" style="--pd:.5s">
+              <div class="exp-item__year">2018 - 2021</div>
+              <div class="exp-item__body">
+                <h3>Licence Langues Étrangères Appliquées - Commerce International</h3>
+                <span class="exp-company">Université Jean Monnet, Saint-Étienne</span>
+                <span class="exp-badge">Licence</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ COMPÉTENCES ═══ -->
+    <section class="content-section content-section--alt" id="skills">
+      <div class="blob blob--pink" style="--bx:85%;--by:55%;--bs:380px;--bd:12s;--bdy:-5s"></div>
+      <div class="blob blob--lime" style="--bx:10%;--by:25%;--bs:300px;--bd:16s;--bdy:-2s"></div>
+      <div class="container">
+        <div class="cs-header pop-in" style="--pd:0s">
+          <span class="pill pill--lime">04 - Compétences</span>
+          <h2 class="cs-heading">Mes outils</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skills-col pop-in" style="--pd:.1s">
+            <h3 class="skills-col__title">Technique</h3>
+            <ul class="skills-list">
+              <li>HTML / CSS</li>
+              <li>JavaScript</li>
+              <li>Figma</li>
+              <li>SQL</li>
+              <li>Python</li>
+              <li>Power BI</li>
+              <li>Tableau</li>
+              <li>Google Analytics</li>
+              <li>Selenium</li>
+              <li>Cypress</li>
+              <li>Postman</li>
+            </ul>
+          </div>
+          <div class="skills-col pop-in" style="--pd:.18s">
+            <h3 class="skills-col__title">Outils</h3>
+            <ul class="skills-list">
+              <li>Notion</li>
+              <li>Jira</li>
+              <li>Confluence</li>
+              <li>Squash TM</li>
+              <li>Mantis</li>
+              <li>Google Workspace</li>
+              <li>Pack Office</li>
+            </ul>
+          </div>
+          <div class="skills-col pop-in" style="--pd:.26s">
+            <h3 class="skills-col__title">Méthodes</h3>
+            <ul class="skills-list">
+              <li>Recherche UX</li>
+              <li>Cartographie des parcours</li>
+              <li>Agile / Scrum</li>
+              <li>TMAP</li>
+              <li>Analyse KPI</li>
+              <li>Données RGPD</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CONTACT ═══ -->
+    <section class="content-section" id="contact">
+      <div class="blob blob--lime" style="--bx:15%;--by:40%;--bs:480px;--bd:14s;--bdy:0s"></div>
+      <div class="blob blob--pink" style="--bx:80%;--by:55%;--bs:360px;--bd:11s;--bdy:-4s"></div>
+      <div class="container">
+        <div class="contact-inner">
+          <span class="pill pill--white pop-in" style="--pd:0s">05 - Contact</span>
+          <h2 class="contact-title pop-in" style="--pd:.1s">
+            Travaillons<br/>ensemble <span class="sparkle">✦</span>
+          </h2>
+          <p class="contact-sub pop-in" style="--pd:.2s">Basée à Paris, ouverte aux opportunités partout dans le monde.</p>
+
+          <div class="contact-cards pop-in" style="--pd:.3s">
+            <a href="mailto:zorluu.hulya@gmail.com" class="clink">
+              <span class="clink__label">Email</span>
+              <span class="clink__val">zorluu.hulya@gmail.com</span>
             </a>
-            <a href="https://www.linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener noreferrer" class="ctlink rv d4">
-              <div class="ctlink-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></div>
-              <div><div class="ctlink-lbl">LinkedIn</div><div class="ctlink-val">linkedin.com/in/hulya-zorlu</div></div>
-              <svg class="ctlink-arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" class="clink">
+              <span class="clink__label">LinkedIn</span>
+              <span class="clink__val">linkedin.com/in/hulya-zorlu</span>
             </a>
+            <div class="clink">
+              <span class="clink__label">Localisation</span>
+              <span class="clink__val">Paris, France</span>
+            </div>
+          </div>
+
+          <div class="pop-in" style="--pd:.42s">
+            <a href="mailto:zorluu.hulya@gmail.com" class="btn btn--lime btn--xl">Me contacter</a>
           </div>
         </div>
-        <div class="ct-card rvr d2">
-          <img src="logo avatar hulya.png" alt="Hulya Zorlu" class="ct-av">
-          <div class="ct-name">Hulya Zorlu</div>
-          <div class="ct-role">Designer UI/UX - Paris</div>
-          <div class="ct-badge"><span class="pulse"></span>Disponible pour collaborer</div>
-        </div>
       </div>
-    </div>
-    <footer class="site-footer">
-      <div class="ft-brand"><span>@HULYA</span>ZORLU</div>
-      <div class="ft-copy">2026 Hulya Zorlu. Tous droits reserves.</div>
-      <div class="ft-soc">
-        <a href="mailto:hulya.zorluu@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
-        <a href="https://www.linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
-      </div>
-    </footer>
-  </section>
+    </section>
 
-</div>
+  </main>
 
-<script>
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('loader').classList.add('hide');
-    document.querySelectorAll('#hero .rv, #hero .rvl, #hero .rvr').forEach(el => el.classList.add('on'));
-  }, 2400);
-});
-const cur = document.getElementById('cur');
-const N = 10, dots = [], m = { x:-200, y:-200 };
-for (let i = 0; i < N; i++) {
-  const d = document.createElement('div'); d.className = 'ct';
-  const s = Math.max(2, 10 - i * 0.8);
-  d.style.cssText = `width:${s}px;height:${s}px;opacity:${(1-i/N)*.5};`;
-  document.body.appendChild(d); dots.push({ el:d, x:-200, y:-200 });
-}
-document.addEventListener('mousemove', e => { m.x = e.clientX; m.y = e.clientY; });
-(function loop() {
-  cur.style.left = m.x+'px'; cur.style.top = m.y+'px';
-  let px = m.x, py = m.y;
-  dots.forEach((dot, i) => {
-    const sp = .3 + i*.03; dot.x += (px-dot.x)*sp; dot.y += (py-dot.y)*sp;
-    dot.el.style.left = dot.x+'px'; dot.el.style.top = dot.y+'px'; px = dot.x; py = dot.y;
-  });
-  requestAnimationFrame(loop);
-})();
-document.querySelectorAll('a,button,.pcard,.ctlink,.pill,.nav-logo').forEach(el => {
-  el.addEventListener('mouseenter', () => cur.classList.add('big'));
-  el.addEventListener('mouseleave', () => cur.classList.remove('big'));
-});
-if ('ontouchstart' in window) { cur.style.display='none'; dots.forEach(d=>d.el.style.display='none'); document.documentElement.style.cursor='auto'; }
-const burg=document.getElementById('burg'), mm=document.getElementById('mm');
-burg.addEventListener('click', () => {
-  const open=mm.classList.contains('open'); burg.classList.toggle('open'); mm.classList.toggle('open');
-  burg.setAttribute('aria-expanded',String(!open)); document.body.style.overflow=open?'':'hidden';
-});
-mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ burg.classList.remove('open'); mm.classList.remove('open'); burg.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }));
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.rv:not(#hero .rv),.rvl,.rvr').forEach(el=>obs.observe(el));
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    e.preventDefault(); const t=document.querySelector(a.getAttribute('href')); if(!t)return;
-    const snap=document.getElementById('snap');
-    window.innerWidth<=1024?t.scrollIntoView({behavior:'smooth'}):snap.scrollTo({top:t.offsetTop,behavior:'smooth'});
-  });
-});
-const navAs=document.querySelectorAll('.nav-links a:not(.nav-cta)'),secs=document.querySelectorAll('section[id]'),snap=document.getElementById('snap');
-function updNav(){const sy=snap.scrollTop||window.scrollY;secs.forEach(s=>{const top=s.offsetTop-120,id=s.getAttribute('id');navAs.forEach(a=>{if(a.getAttribute('href')==='#'+id)a.classList.toggle('on',sy>=top&&sy<top+s.offsetHeight);});});}
-snap.addEventListener('scroll',updNav,{passive:true}); window.addEventListener('scroll',updNav,{passive:true});
-</script>
+  <!-- Footer -->
+  <footer class="footer">
+    <span>© 2026 HULYAZORLU</span>
+    <span>Conçu &amp; développé par moi.</span>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
