@@ -1,5 +1,5 @@
 /* ================================================================
-   HULYA ZORLU - DARK MAGAZINE / VOGUE LUXE v6
+   HULYA ZORLU - DARK MAGAZINE / VOGUE LUXE v7
    GSAP 3 + ScrollTrigger
    ================================================================ */
 
