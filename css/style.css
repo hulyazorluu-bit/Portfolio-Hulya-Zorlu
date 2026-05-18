@@ -1,5 +1,5 @@
 /* ================================================================
-   HULYA ZORLU - DARK MAGAZINE / VOGUE LUXE
+   HULYA ZORLU - DARK MAGAZINE / VOGUE LUXE v6
    #080808 . #FFFFFF . #C9A96E . Cormorant Garamond + Inter
    ================================================================ */
 
@@ -89,7 +89,7 @@ button { background: none; border: none; cursor: none; }
 #loader {
   position: fixed;
   inset: 0;
-  background: var(--bg);
+  background: #080808;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,6 +101,7 @@ button { background: none; border: none; cursor: none; }
   border-radius: 50%;
   object-fit: cover;
   filter: brightness(1.05);
+  margin-bottom: 60px;
 }
 #loader-bar {
   position: absolute;
@@ -111,7 +112,7 @@ button { background: none; border: none; cursor: none; }
 #loader-fill {
   height: 100%;
   width: 0;
-  background: var(--gold);
+  background: #C9A96E;
 }
 
 /* -- NAV -- */
@@ -246,7 +247,7 @@ button { background: none; border: none; cursor: none; }
   opacity: 0;
 }
 
-/* -- GOLD LINES (reusable) -- */
+/* -- GOLD LINES -- */
 .gold-sep,
 .contact-gold-line {
   height: 1px;
@@ -284,7 +285,6 @@ button { background: none; border: none; cursor: none; }
 .ht {
   display: inline-block;
   opacity: 0;
-  transform: translateY(24px);
   will-change: transform, opacity;
 }
 .hero-sub {
@@ -297,8 +297,6 @@ button { background: none; border: none; cursor: none; }
   height: 1px;
   width: 0;
   background: var(--gold);
-  max-width: 360px;
-  width: 0;
 }
 .hero-byline {
   font-family: var(--fb);
@@ -307,7 +305,6 @@ button { background: none; border: none; cursor: none; }
   letter-spacing: 6px;
   color: var(--gold);
   opacity: 0;
-  transform: translateY(8px);
 }
 .hero-scroll {
   position: absolute;
@@ -476,8 +473,6 @@ button { background: none; border: none; cursor: none; }
   color: var(--gold);
   transform: translateX(4px) rotate(-45deg);
 }
-
-/* Floating project image */
 .p-img {
   position: fixed;
   top: 0; left: 0;
@@ -639,7 +634,6 @@ button { background: none; border: none; cursor: none; }
   transition: color .2s;
 }
 .c-link:hover .c-val { color: var(--gold); }
-
 .cta-btn {
   display: inline-block;
   font-family: var(--fb);
