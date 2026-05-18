@@ -3,30 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hulya Zorlu — Designer UI/UX, Paris 2026." />
+  <meta name="description" content="Hulya Zorlu — Designer UI/UX basée à Paris, spécialisée en recherche utilisateur, wireframing et prototypage haute fidélité." />
+  <meta name="author" content="Hulya Zorlu" />
   <title>Hulya Zorlu — Designer UI/UX</title>
+  <link rel="icon" type="image/png" href="logo avatar hulya.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
   <!-- Loader -->
   <div class="loader" id="loader">
-    <img src="assets/hulya.png" alt="Hulya Zorlu" class="loader__logo" />
-    <div class="loader__bar"><div class="loader__fill"></div></div>
-    <p class="loader__name">Hulya Zorlu</p>
+    <div class="loader__inner">
+      <img src="assets/hulya.png" alt="" class="loader__avatar" aria-hidden="true" />
+      <div class="loader__track"><div class="loader__fill"></div></div>
+    </div>
   </div>
 
   <!-- Curseur -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
 
   <!-- Nav -->
   <nav class="nav" id="nav">
-    <a href="#hero" class="nav__logo">
-      <img src="assets/hulya.png" alt="Hulya Zorlu" class="nav__logo-img" />
+    <a href="#hero" class="nav__brand">
+      <img src="assets/hulya.png" alt="Hulya Zorlu" class="nav__avatar" />
     </a>
     <ul class="nav__links">
       <li><a href="#about"      class="nav__link">À propos</a></li>
@@ -35,11 +37,18 @@
       <li><a href="#skills"     class="nav__link">Compétences</a></li>
       <li><a href="#contact"    class="nav__link">Contact</a></li>
     </ul>
-    <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+    <button class="nav__burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
   </nav>
 
   <!-- Menu mobile -->
-  <div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <button class="mobile-menu__close" id="menuClose" aria-label="Fermer le menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M15 5L5 15M5 5l10 10"/>
+      </svg>
+    </button>
     <ul>
       <li><a href="#about"      class="mobile-link">À propos</a></li>
       <li><a href="#projects"   class="mobile-link">Projets</a></li>
@@ -53,179 +62,142 @@
 
     <!-- ═══ HERO ═══ -->
     <section class="section hero" id="hero">
-      <div class="blob blob--lime" style="--bx:12%;--by:18%;--bs:540px;--bd:13s;--bdy:-2s"></div>
-      <div class="blob blob--pink" style="--bx:78%;--by:65%;--bs:420px;--bd:17s;--bdy:-5s"></div>
-      <div class="blob blob--lime" style="--bx:85%;--by:8%;--bs:300px;--bd:11s;--bdy:-8s"></div>
-      <div class="blob blob--pink" style="--bx:5%;--by:80%;--bs:260px;--bd:15s;--bdy:-3s"></div>
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
+      <div class="blob b3"></div>
 
       <div class="hero__inner">
         <div class="hero__left">
-          <p class="hero__eyebrow pop-in" style="--pd:.1s">✦ Portfolio 2026 · Paris</p>
-          <h1 class="hero__title">
-            <span class="hero__word pop-in" style="--pd:.2s">HULYA</span>
-            <span class="hero__word hero__word--lime pop-in" style="--pd:.35s">ZORLU</span>
+          <p class="hero__eyebrow reveal" style="--d:.05s">✦ Portfolio 2026 - Paris</p>
+          <h1 class="hero__name">
+            <span class="reveal" style="--d:.15s">Hulya</span>
+            <em class="reveal" style="--d:.25s">Zorlu</em>
           </h1>
-          <p class="hero__sub pop-in" style="--pd:.5s">Designer UI/UX</p>
-          <div class="hero__actions pop-in" style="--pd:.65s">
-            <a href="#projects" class="btn btn--lime">Voir mes projets ↓</a>
-            <a href="#contact"  class="btn btn--ghost">Me contacter</a>
+          <p class="hero__role reveal" style="--d:.35s">Designer UI/UX</p>
+          <div class="hero__actions reveal" style="--d:.45s">
+            <a href="#projects" class="btn btn-sage">Voir mes projets</a>
+            <a href="#contact"  class="btn btn-ghost">Me contacter</a>
           </div>
         </div>
 
-        <div class="hero__right pop-in" style="--pd:.4s">
-          <div class="hero__portrait-outer">
-            <div class="hero__portrait-shadow"></div>
-            <div class="hero__portrait-card">
-              <img src="assets/hulya.png" alt="Portrait illustré de Hulya Zorlu" />
-              <span class="hero__portrait-badge">UI/UX ✦</span>
+        <div class="hero__right reveal" style="--d:.2s">
+          <div class="portrait">
+            <div class="portrait__bg"></div>
+            <div class="portrait__card">
+              <img src="assets/hulya.png" alt="Portrait de Hulya Zorlu" />
+              <span class="portrait__badge">UI/UX</span>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="hero__scroll">
+      <div class="scroll-hint reveal" style="--d:.6s" aria-hidden="true">
         <span>défiler</span>
-        <div class="hero__scroll-line"></div>
+        <div class="scroll-hint__line"></div>
       </div>
     </section>
 
     <!-- ═══ À PROPOS ═══ -->
-    <section class="content-section" id="about">
-      <div class="blob blob--lime" style="--bx:90%;--by:20%;--bs:380px;--bd:15s;--bdy:-3s"></div>
-      <div class="blob blob--pink" style="--bx:5%;--by:75%;--bs:320px;--bd:12s;--bdy:-6s"></div>
+    <section class="section about" id="about">
+      <div class="blob b4"></div>
+      <div class="blob b5"></div>
       <div class="container">
-        <div class="cs-grid">
-          <div class="cs-label">
-            <span class="pill pill--white pop-in" style="--pd:0s">01 - À propos</span>
+        <p class="section-label reveal">01 - À propos</p>
+        <div class="about__grid">
+          <div class="about__quote reveal" style="--d:.08s">
+            <blockquote>
+              Concevoir des expériences qui se
+              <em>ressentent</em> autant qu'elles se voient.
+            </blockquote>
           </div>
-          <div class="cs-body">
-
-            <h2 class="cs-heading pop-in" style="--pd:.1s">
-              Concevoir des expériences<br />
-              qui se <em class="hl-lime">ressentent</em> autant<br />
-              qu'elles se voient.
-            </h2>
-
-            <p class="cs-intro pop-in" style="--pd:.18s">
-              Designer UI/UX passionnée par la création d'expériences digitales intuitives et centrées utilisateur. Issue d'un parcours mêlant data et stratégie marketing, j'ai découvert l'univers du digital en agence, où je me suis spécialisée dans la conception d'interfaces : recherche utilisateur, wireframing, prototypage haute fidélité et réflexion UX. Je développe également des compétences en front-end afin de concevoir des expériences à la fois esthétiques, cohérentes et fonctionnelles.
+          <div class="about__body">
+            <p class="about__bio reveal" style="--d:.14s">
+              Designer UI/UX passionnée par la création d'expériences digitales intuitives et centrées utilisateur. Issue d'un parcours mêlant data et stratégie marketing, je me suis spécialisée dans la conception d'interfaces : recherche utilisateur, wireframing, prototypage haute fidélité et réflexion UX.
             </p>
-
-            <div class="specialty-grid pop-in" style="--pd:.26s">
-              <div class="specialty-card">
-                <span class="specialty-num">01</span>
-                <h3>UX Design</h3>
-                <p>Concevoir avec empathie des parcours utilisateurs qui répondent aux vrais besoins.</p>
+            <div class="specialties reveal" style="--d:.2s">
+              <div class="specialty">
+                <span class="specialty__num">01</span>
+                <div><h3>UX Design</h3><p>Parcours centrés sur l'empathie et les vrais besoins.</p></div>
               </div>
-              <div class="specialty-card">
-                <span class="specialty-num">02</span>
-                <h3>UI Design</h3>
-                <p>Créer des interfaces intuitives à travers l'esthétique visuelle et le design d'interaction.</p>
+              <div class="specialty">
+                <span class="specialty__num">02</span>
+                <div><h3>UI Design</h3><p>Interfaces intuitives, esthétiques et cohérentes.</p></div>
               </div>
-              <div class="specialty-card">
-                <span class="specialty-num">03</span>
-                <h3>Prototypage</h3>
-                <p>Transformer les idées en prototypes interactifs qui font le pont entre design et développement.</p>
+              <div class="specialty">
+                <span class="specialty__num">03</span>
+                <div><h3>Prototypage</h3><p>Du concept au prototype interactif haute fidélité.</p></div>
               </div>
             </div>
-
-            <div class="ux-skills pop-in" style="--pd:.34s">
-              <div class="ux-row">
-                <span class="ux-label">UX</span>
-                <div class="ux-tags">
-                  <span class="tag">Empathie</span>
-                  <span class="tag">Recherche utilisateur</span>
-                  <span class="tag">Wireframing</span>
-                  <span class="tag">Prototypage</span>
-                  <span class="tag">Parcours utilisateur</span>
-                  <span class="tag">Collaboration</span>
-                </div>
-              </div>
-              <div class="ux-row">
-                <span class="ux-label">UI</span>
-                <div class="ux-tags">
-                  <span class="tag">Identité visuelle</span>
-                  <span class="tag">Esprit critique</span>
-                  <span class="tag">Résolution de problèmes</span>
-                  <span class="tag">Design de l'information</span>
-                </div>
-              </div>
+            <div class="lang-badges reveal" style="--d:.26s">
+              <span class="lang-badge">Français - C2</span>
+              <span class="lang-badge">Turc - C2</span>
+              <span class="lang-badge">Anglais - C1</span>
             </div>
-
-            <div class="lang-row pop-in" style="--pd:.42s">
-              <div class="lang-item"><span class="lang-name">Français</span><span class="lang-lvl">Natif - C2</span></div>
-              <span class="lang-dot" aria-hidden="true">·</span>
-              <div class="lang-item"><span class="lang-name">Turc</span><span class="lang-lvl">Natif - C2</span></div>
-              <span class="lang-dot" aria-hidden="true">·</span>
-              <div class="lang-item"><span class="lang-name">Anglais</span><span class="lang-lvl">Professionnel - C1</span></div>
-            </div>
-
           </div>
         </div>
       </div>
     </section>
 
     <!-- ═══ PROJETS ═══ -->
-    <section class="content-section content-section--alt" id="projects">
-      <div class="blob blob--lime" style="--bx:8%;--by:30%;--bs:340px;--bd:14s;--bdy:-4s"></div>
+    <section class="section projects" id="projects">
+      <div class="blob b6"></div>
       <div class="container">
-        <div class="cs-header pop-in" style="--pd:0s">
-          <span class="pill pill--lime">02 - Projets</span>
-          <h2 class="cs-heading">Projets</h2>
-        </div>
+        <p class="section-label reveal">02 - Projets</p>
+        <h2 class="section-title reveal" style="--d:.05s">Projets</h2>
 
         <div class="proj-list">
 
-          <article class="proj-card pop-in" style="--pd:.1s">
-            <div class="proj-card__media">
-              <div class="proj-card__float">
-                <img src="assets/tamino.png" alt="Site web Album - Tamino Amir" loading="lazy" />
-              </div>
+          <article class="proj-card reveal" style="--d:.1s">
+            <div class="proj-card__visual proj-card__visual--sage">
+              <img src="assets/tamino.png" alt="Site web Album - Tamino Amir" loading="lazy" />
             </div>
             <div class="proj-card__info">
               <span class="proj-num">01</span>
-              <h3 class="proj-card__title">Site web Album</h3>
-              <p class="proj-card__desc">Une expérience web inspirée de l'univers artistique de Tamino - son album Amir, son esthétique, sa musique et son identité visuelle.</p>
-              <div class="proj-card__tags">
-                <span class="tag">Web Design</span>
-                <span class="tag">Développement</span>
+              <h3>Site web Album</h3>
+              <p>Une expérience web inspirée de l'univers artistique de Tamino - son album Amir, son esthétique, sa musique et son identité visuelle.</p>
+              <div class="proj-tags">
+                <span>Web Design</span><span>Développement</span>
               </div>
-              <a href="#" class="btn-link">Voir le projet <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a href="#" class="link-arrow">
+                Voir le projet
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
             </div>
           </article>
 
-          <article class="proj-card proj-card--rev pop-in" style="--pd:.1s">
-            <div class="proj-card__media">
-              <div class="proj-card__float">
-                <img src="assets/Hand and Iphone 16 Pro.jpg" alt="Wevent - Application événementielle" loading="lazy" />
-              </div>
+          <article class="proj-card proj-card--rev reveal" style="--d:.15s">
+            <div class="proj-card__visual proj-card__visual--rose">
+              <img src="assets/Hand and Iphone 16 Pro.jpg" alt="Wevent - Application événementielle" loading="lazy" />
             </div>
             <div class="proj-card__info">
               <span class="proj-num">02</span>
-              <h3 class="proj-card__title">Wevent - Application événementielle</h3>
-              <p class="proj-card__desc">Application mobile tout-en-un dédiée à la création et gestion d'événements - fluide, collaborative et intuitive.</p>
-              <div class="proj-card__tags">
-                <span class="tag">Prototypage</span>
-                <span class="tag">Design UI/UX</span>
+              <h3>Wevent - Application événementielle</h3>
+              <p>Application mobile tout-en-un dédiée à la création et gestion d'événements - fluide, collaborative et intuitive.</p>
+              <div class="proj-tags">
+                <span>Prototypage</span><span>Design UI/UX</span>
               </div>
-              <a href="#" class="btn-link">Voir le projet <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a href="#" class="link-arrow">
+                Voir le projet
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
             </div>
           </article>
 
-          <article class="proj-card pop-in" style="--pd:.1s">
-            <div class="proj-card__media">
-              <div class="proj-card__float">
-                <img src="assets/mockupDeezerAPI.jpg" alt="API Deezer" loading="lazy" />
-              </div>
+          <article class="proj-card reveal" style="--d:.2s">
+            <div class="proj-card__visual proj-card__visual--cream">
+              <img src="assets/mockupDeezerAPI.jpg" alt="API Deezer" loading="lazy" />
             </div>
             <div class="proj-card__info">
               <span class="proj-num">03</span>
-              <h3 class="proj-card__title">API Deezer</h3>
-              <p class="proj-card__desc">Moteur de recherche musical en JavaScript vanilla - récupère les données de l'API Deezer et affiche dynamiquement les fiches artistes.</p>
-              <div class="proj-card__tags">
-                <span class="tag">HTML/CSS</span>
-                <span class="tag">JavaScript</span>
+              <h3>API Deezer</h3>
+              <p>Moteur de recherche musical en JavaScript vanilla - récupère les données de l'API Deezer et affiche dynamiquement les fiches artistes.</p>
+              <div class="proj-tags">
+                <span>HTML/CSS</span><span>JavaScript</span>
               </div>
-              <a href="#" class="btn-link">Voir le projet <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a href="#" class="link-arrow">
+                Voir le projet
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
             </div>
           </article>
 
@@ -234,176 +206,183 @@
     </section>
 
     <!-- ═══ EXPÉRIENCE ═══ -->
-    <section class="content-section" id="experience">
-      <div class="blob blob--pink" style="--bx:88%;--by:35%;--bs:360px;--bd:16s;--bdy:-2s"></div>
-      <div class="blob blob--lime" style="--bx:3%;--by:60%;--bs:300px;--bd:13s;--bdy:-7s"></div>
+    <section class="section experience" id="experience">
+      <div class="blob b7"></div>
       <div class="container">
-        <div class="cs-grid">
-          <div class="cs-label">
-            <span class="pill pill--white pop-in" style="--pd:0s">03 - Expérience</span>
+        <p class="section-label reveal">03 - Expérience</p>
+        <h2 class="section-title reveal" style="--d:.05s">Mon Parcours</h2>
+
+        <div class="exp-cols">
+          <div class="exp-col">
+            <h3 class="exp-col__heading reveal" style="--d:.08s">Expérience</h3>
+            <div class="timeline">
+              <div class="timeline__line"></div>
+
+              <div class="timeline__item reveal" style="--d:.12s">
+                <div class="timeline__dot"></div>
+                <div class="timeline__date">Mars 2026 - Juil. 2026</div>
+                <div class="timeline__body">
+                  <h4>Certificat Design Web &amp; Développement</h4>
+                  <span class="timeline__co">La Toile - emlyon Business School, Paris</span>
+                  <span class="timeline__desc">HTML, CSS, JavaScript, Figma, APIs</span>
+                  <span class="exp-badge">Certificat</span>
+                </div>
+              </div>
+
+              <div class="timeline__item reveal" style="--d:.17s">
+                <div class="timeline__dot"></div>
+                <div class="timeline__date">2024 - 2025</div>
+                <div class="timeline__body">
+                  <h4>Testeur Logiciel</h4>
+                  <span class="timeline__co">M2i Formation, Paris</span>
+                  <span class="timeline__desc">Selenium, Cypress, Postman, Squash TM, Mantis, TMAP, Agile</span>
+                  <span class="exp-badge">Alternance</span>
+                </div>
+              </div>
+
+              <div class="timeline__item reveal" style="--d:.22s">
+                <div class="timeline__dot"></div>
+                <div class="timeline__date">Mars 2023 - Sept. 2024</div>
+                <div class="timeline__body">
+                  <h4>Chef de Projet UX</h4>
+                  <span class="timeline__co">TANKE - Agence créative de marketing d'influence, Paris</span>
+                  <span class="timeline__desc">Refonte de parcours utilisateurs, tests UX, coordination des équipes créa et data</span>
+                  <span class="exp-badge">Alternance</span>
+                </div>
+              </div>
+
+              <div class="timeline__item reveal" style="--d:.27s">
+                <div class="timeline__dot"></div>
+                <div class="timeline__date">Sept. - Déc. 2022</div>
+                <div class="timeline__body">
+                  <h4>Assistante Planner Stratégique</h4>
+                  <span class="timeline__co">AustralieGAD - Agence de publicité, Paris</span>
+                  <span class="timeline__desc">Analyse des performances de campagnes, recommandations stratégiques, veille concurrentielle</span>
+                  <span class="exp-badge">Stage</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="cs-body">
-            <h2 class="cs-heading pop-in" style="--pd:.08s">Mon Parcours</h2>
 
-            <div class="exp-group pop-in" style="--pd:.14s"><span class="exp-group-label">Expérience</span></div>
+          <div class="exp-col">
+            <h3 class="exp-col__heading reveal" style="--d:.08s">Formation</h3>
+            <div class="timeline">
+              <div class="timeline__line"></div>
 
-            <div class="exp-item pop-in" style="--pd:.18s">
-              <div class="exp-item__year">Mars 2026 - Juil. 2026</div>
-              <div class="exp-item__body">
-                <h3>Certificat Design Web &amp; Développement</h3>
-                <span class="exp-company">La Toile - emlyon Business School, Paris</span>
-                <span class="exp-desc">HTML, CSS, JavaScript, Figma, APIs</span>
-                <span class="exp-badge">Certificat</span>
+              <div class="timeline__item reveal" style="--d:.12s">
+                <div class="timeline__dot"></div>
+                <div class="timeline__date">2022 - 2024</div>
+                <div class="timeline__body">
+                  <h4>MSc Data Analytics &amp; Marketing Management</h4>
+                  <span class="timeline__co">INSEEC Business School, Paris</span>
+                  <span class="timeline__desc">Marketing digital, SQL, analyse de données, stratégie de marque</span>
+                  <span class="exp-badge">Master</span>
+                </div>
+              </div>
+
+              <div class="timeline__item reveal" style="--d:.17s">
+                <div class="timeline__dot"></div>
+                <div class="timeline__date">2020 - 2021</div>
+                <div class="timeline__body">
+                  <h4>Échange Erasmus - Business Administration</h4>
+                  <span class="timeline__co">Université d'Algarve, Portugal</span>
+                  <span class="exp-badge">Échange universitaire</span>
+                </div>
+              </div>
+
+              <div class="timeline__item reveal" style="--d:.22s">
+                <div class="timeline__dot"></div>
+                <div class="timeline__date">2018 - 2021</div>
+                <div class="timeline__body">
+                  <h4>Licence Langues Étrangères Appliquées - Commerce International</h4>
+                  <span class="timeline__co">Université Jean Monnet, Saint-Étienne</span>
+                  <span class="exp-badge">Licence</span>
+                </div>
               </div>
             </div>
-
-            <div class="exp-item pop-in" style="--pd:.22s">
-              <div class="exp-item__year">2024 - 2025</div>
-              <div class="exp-item__body">
-                <h3>Testeur Logiciel</h3>
-                <span class="exp-company">M2i Formation, Paris</span>
-                <span class="exp-desc">Selenium, Cypress, Postman, Squash TM, Mantis, TMAP, Agile</span>
-                <span class="exp-badge">Alternance</span>
-              </div>
-            </div>
-
-            <div class="exp-item pop-in" style="--pd:.3s">
-              <div class="exp-item__year">Mars 2023 - Sept. 2024</div>
-              <div class="exp-item__body">
-                <h3>Chef de Projet UX</h3>
-                <span class="exp-company">TANKE - Agence créative de marketing d'influence, Paris</span>
-                <span class="exp-desc">Refonte de parcours utilisateurs, tests UX, coordination des équipes créa et data</span>
-                <span class="exp-badge">Alternance</span>
-              </div>
-            </div>
-
-            <div class="exp-item pop-in" style="--pd:.34s">
-              <div class="exp-item__year">Sept. - Déc. 2022</div>
-              <div class="exp-item__body">
-                <h3>Assistante Planner Stratégique</h3>
-                <span class="exp-company">AustralieGAD - Agence de publicité, Paris</span>
-                <span class="exp-desc">Analyse des performances de campagnes, recommandations stratégiques, veille concurrentielle</span>
-                <span class="exp-badge">Stage</span>
-              </div>
-            </div>
-
-            <div class="exp-group pop-in" style="--pd:.38s"><span class="exp-group-label">Formation</span></div>
-
-            <div class="exp-item pop-in" style="--pd:.42s">
-              <div class="exp-item__year">2022 - 2024</div>
-              <div class="exp-item__body">
-                <h3>MSc Data Analytics &amp; Marketing Management</h3>
-                <span class="exp-company">INSEEC Business School, Paris</span>
-                <span class="exp-desc">Marketing digital, SQL, analyse de données, stratégie de marque</span>
-                <span class="exp-badge">Master</span>
-              </div>
-            </div>
-
-            <div class="exp-item pop-in" style="--pd:.46s">
-              <div class="exp-item__year">2020 - 2021</div>
-              <div class="exp-item__body">
-                <h3>Échange Erasmus - Business Administration</h3>
-                <span class="exp-company">Université d'Algarve, Portugal</span>
-                <span class="exp-badge">Échange universitaire</span>
-              </div>
-            </div>
-
-            <div class="exp-item pop-in" style="--pd:.5s">
-              <div class="exp-item__year">2018 - 2021</div>
-              <div class="exp-item__body">
-                <h3>Licence Langues Étrangères Appliquées - Commerce International</h3>
-                <span class="exp-company">Université Jean Monnet, Saint-Étienne</span>
-                <span class="exp-badge">Licence</span>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
     </section>
 
     <!-- ═══ COMPÉTENCES ═══ -->
-    <section class="content-section content-section--alt" id="skills">
-      <div class="blob blob--pink" style="--bx:85%;--by:55%;--bs:380px;--bd:12s;--bdy:-5s"></div>
-      <div class="blob blob--lime" style="--bx:10%;--by:25%;--bs:300px;--bd:16s;--bdy:-2s"></div>
+    <section class="section skills" id="skills">
+      <div class="blob b8"></div>
       <div class="container">
-        <div class="cs-header pop-in" style="--pd:0s">
-          <span class="pill pill--lime">04 - Compétences</span>
-          <h2 class="cs-heading">Mes outils</h2>
-        </div>
-        <div class="skills-grid">
-          <div class="skills-col pop-in" style="--pd:.1s">
-            <h3 class="skills-col__title">Technique</h3>
-            <ul class="skills-list">
-              <li>HTML / CSS</li>
-              <li>JavaScript</li>
-              <li>Figma</li>
-              <li>SQL</li>
-              <li>Python</li>
-              <li>Power BI</li>
-              <li>Tableau</li>
-              <li>Google Analytics</li>
-              <li>Selenium</li>
-              <li>Cypress</li>
-              <li>Postman</li>
-            </ul>
+        <p class="section-label reveal">04 - Compétences</p>
+        <h2 class="section-title reveal" style="--d:.05s">Mes outils</h2>
+
+        <div class="skill-groups">
+          <div class="skill-group reveal" style="--d:.1s">
+            <h3 class="skill-group__title">Conception</h3>
+            <div class="pills">
+              <span class="pill pill--sage">Figma</span>
+              <span class="pill pill--rose">Wireframing</span>
+              <span class="pill pill--sage">Prototypage</span>
+              <span class="pill pill--cream">Recherche UX</span>
+              <span class="pill pill--rose">Tests utilisateurs</span>
+              <span class="pill pill--cream">Parcours utilisateur</span>
+            </div>
           </div>
-          <div class="skills-col pop-in" style="--pd:.18s">
-            <h3 class="skills-col__title">Outils</h3>
-            <ul class="skills-list">
-              <li>Notion</li>
-              <li>Jira</li>
-              <li>Confluence</li>
-              <li>Squash TM</li>
-              <li>Mantis</li>
-              <li>Google Workspace</li>
-              <li>Pack Office</li>
-            </ul>
+          <div class="skill-group reveal" style="--d:.16s">
+            <h3 class="skill-group__title">Développement</h3>
+            <div class="pills">
+              <span class="pill pill--sage">HTML / CSS</span>
+              <span class="pill pill--cream">JavaScript</span>
+              <span class="pill pill--rose">SQL</span>
+              <span class="pill pill--sage">Python</span>
+              <span class="pill pill--cream">Selenium</span>
+              <span class="pill pill--rose">Cypress</span>
+              <span class="pill pill--sage">Postman</span>
+              <span class="pill pill--cream">Google Analytics</span>
+            </div>
           </div>
-          <div class="skills-col pop-in" style="--pd:.26s">
-            <h3 class="skills-col__title">Méthodes</h3>
-            <ul class="skills-list">
-              <li>Recherche UX</li>
-              <li>Cartographie des parcours</li>
-              <li>Agile / Scrum</li>
-              <li>TMAP</li>
-              <li>Analyse KPI</li>
-              <li>Données RGPD</li>
-            </ul>
+          <div class="skill-group reveal" style="--d:.22s">
+            <h3 class="skill-group__title">Méthodes &amp; Outils</h3>
+            <div class="pills">
+              <span class="pill pill--rose">Agile / Scrum</span>
+              <span class="pill pill--cream">Jira</span>
+              <span class="pill pill--sage">Confluence</span>
+              <span class="pill pill--rose">Notion</span>
+              <span class="pill pill--cream">Squash TM</span>
+              <span class="pill pill--sage">Power BI</span>
+              <span class="pill pill--rose">Tableau</span>
+              <span class="pill pill--cream">TMAP</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ═══ CONTACT ═══ -->
-    <section class="content-section" id="contact">
-      <div class="blob blob--lime" style="--bx:15%;--by:40%;--bs:480px;--bd:14s;--bdy:0s"></div>
-      <div class="blob blob--pink" style="--bx:80%;--by:55%;--bs:360px;--bd:11s;--bdy:-4s"></div>
+    <section class="section contact" id="contact">
+      <div class="blob b9"></div>
+      <div class="blob b10"></div>
       <div class="container">
+        <p class="section-label reveal">05 - Contact</p>
         <div class="contact-inner">
-          <span class="pill pill--white pop-in" style="--pd:0s">05 - Contact</span>
-          <h2 class="contact-title pop-in" style="--pd:.1s">
-            Travaillons<br/>ensemble <span class="sparkle">✦</span>
+          <h2 class="contact-title reveal" style="--d:.06s">
+            Travaillons<br><em>ensemble</em>
           </h2>
-          <p class="contact-sub pop-in" style="--pd:.2s">Basée à Paris, ouverte aux opportunités partout dans le monde.</p>
+          <p class="contact-sub reveal" style="--d:.12s">Basée à Paris, ouverte aux opportunités partout dans le monde.</p>
 
-          <div class="contact-cards pop-in" style="--pd:.3s">
-            <a href="mailto:zorluu.hulya@gmail.com" class="clink">
-              <span class="clink__label">Email</span>
-              <span class="clink__val">zorluu.hulya@gmail.com</span>
+          <div class="contact-links reveal" style="--d:.18s">
+            <a href="mailto:zorluu.hulya@gmail.com" class="contact-link">
+              <span class="contact-link__label">Email</span>
+              <span class="contact-link__val">zorluu.hulya@gmail.com</span>
             </a>
-            <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" class="clink">
-              <span class="clink__label">LinkedIn</span>
-              <span class="clink__val">linkedin.com/in/hulya-zorlu</span>
+            <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" class="contact-link">
+              <span class="contact-link__label">LinkedIn</span>
+              <span class="contact-link__val">linkedin.com/in/hulya-zorlu</span>
             </a>
-            <div class="clink">
-              <span class="clink__label">Localisation</span>
-              <span class="clink__val">Paris, France</span>
+            <div class="contact-link">
+              <span class="contact-link__label">Localisation</span>
+              <span class="contact-link__val">Paris, France</span>
             </div>
           </div>
 
-          <div class="pop-in" style="--pd:.42s">
-            <a href="mailto:zorluu.hulya@gmail.com" class="btn btn--lime btn--xl">Me contacter</a>
+          <div class="reveal" style="--d:.24s">
+            <a href="mailto:zorluu.hulya@gmail.com" class="btn btn-sage btn-lg">Envoyer un message</a>
           </div>
         </div>
       </div>
@@ -411,9 +390,8 @@
 
   </main>
 
-  <!-- Footer -->
   <footer class="footer">
-    <span>© 2026 HULYAZORLU</span>
+    <span>© 2026 @HULYAZORLU</span>
     <span>Conçu &amp; développé par moi.</span>
   </footer>
 
