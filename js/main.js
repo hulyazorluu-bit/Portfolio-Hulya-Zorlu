@@ -68,6 +68,30 @@ setInterval(updateClock, 1000);
   });
 })();
 
+/* ── TYPEWRITER [SCROLL TO EXPLORE_] ── */
+function startTypewriter(delayMs) {
+  const el = qs('#typewriter-out');
+  const wrap = qs('#typewriter-wrap');
+  if (!el || !wrap) return;
+
+  const text = 'SCROLL TO EXPLORE';
+  let i = 0;
+
+  // Fade in the wrapper first
+  setTimeout(() => {
+    gsap.to(wrap, { opacity: 1, duration: 0.3, ease: 'power2.out' });
+    el.innerHTML = '[<span class="blink-cur">_</span>]';
+
+    setTimeout(function type() {
+      if (i < text.length) {
+        el.innerHTML = '[' + text.slice(0, i + 1) + '<span class="blink-cur">_</span>]';
+        i++;
+        setTimeout(type, 58);
+      }
+    }, 180);
+  }, delayMs);
+}
+
 /* ── PAGE REVEAL (after loader) ── */
 function revealPage() {
   // Hero lines slide up
@@ -78,11 +102,19 @@ function revealPage() {
     ease: 'power4.out'
   });
 
-  // Hero meta, label, bottom fade up
-  gsap.fromTo(['.hero-meta', '.hero-label', '.hero-bottom'],
+  // Hero meta + label fade up
+  gsap.fromTo(['.hero-meta', '.hero-label'],
     { opacity: 0, y: 20 },
     { opacity: 1, y: 0, duration: 0.85, stagger: 0.12, ease: 'power3.out', delay: 0.55 }
   );
+
+  // Social links fade in
+  gsap.to('.hero-ext-links', {
+    opacity: 1, duration: 0.7, ease: 'power2.out', delay: 0.9
+  });
+
+  // Typewriter starts after hero is visible
+  startTypewriter(1200);
 
   initScrollAnimations();
 }
@@ -110,7 +142,10 @@ function initScrollAnimations() {
   const sections = [
     { id: 'hero',        link: '#hero' },
     { id: 'projects',    link: '#projects' },
-    { id: 'about',       link: '#about' }
+    { id: 'about',       link: '#about' },
+    { id: 'experience',  link: '#experience' },
+    { id: 'competences', link: '#competences' },
+    { id: 'contact',     link: '#contact' }
   ];
   sections.forEach(({ id, link }) => {
     const sec = qs('#' + id);
@@ -123,7 +158,10 @@ function initScrollAnimations() {
   });
 
   function setActiveNav(href) {
-    qsa('.nav-link').forEach(l => l.classList.toggle('active', l.getAttribute('href') === href));
+    qsa('.nav-link').forEach(l => {
+      const match = l.getAttribute('href') === href;
+      l.classList.toggle('active', match);
+    });
   }
 
   /* Sec labels */
