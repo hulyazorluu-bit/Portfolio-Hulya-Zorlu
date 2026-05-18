@@ -9,6 +9,37 @@ const qs  = (s, c = document) => c.querySelector(s);
 const qsa = (s, c = document) => [...c.querySelectorAll(s)];
 const isMobile = () => window.innerWidth < 768;
 
+/* ── NAV TYPEWRITER HOVER ── */
+function initNavTypewriter() {
+  qsa('.nav-link').forEach(link => {
+    const original = link.textContent.trim();
+    // Fixer la largeur avant toute animation pour éviter le saut
+    link.style.minWidth = link.offsetWidth + 'px';
+
+    let timer;
+
+    link.addEventListener('mouseenter', function () {
+      clearTimeout(timer);
+      this.classList.add('nav-active');
+      this.textContent = '';
+      let i = 0;
+      const type = () => {
+        if (i < original.length) {
+          this.textContent += original[i++];
+          timer = setTimeout(type, 38);
+        }
+      };
+      type();
+    });
+
+    link.addEventListener('mouseleave', function () {
+      clearTimeout(timer);
+      this.classList.remove('nav-active');
+      this.textContent = original;
+    });
+  });
+}
+
 /* ── WAVY TEXT ── */
 function applyWave(el) {
   if (!el) return;
@@ -28,6 +59,9 @@ applyWave(qs('#wave-hulya'));
 applyWave(qs('#wave-zorlu'));
 applyWave(qs('#wave-trav'));
 applyWave(qs('#wave-ens'));
+
+/* Init nav typewriter immédiatement (avant le loader pour fixer les largeurs) */
+initNavTypewriter();
 
 /* ── CLOCK (Paris time) ── */
 function updateClock() {
@@ -159,8 +193,7 @@ function initScrollAnimations() {
 
   function setActiveNav(href) {
     qsa('.nav-link').forEach(l => {
-      const match = l.getAttribute('href') === href;
-      l.classList.toggle('active', match);
+      l.classList.remove('active');
     });
   }
 

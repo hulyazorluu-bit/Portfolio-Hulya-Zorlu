@@ -168,7 +168,8 @@ button { background: none; border: none; cursor: pointer; }
 .nav-links {
   display: flex;
   align-items: center;
-  gap: .3rem;
+  gap: .2rem;
+  margin-left: auto; /* pousse la nav complètement à droite */
 }
 .nav-link {
   font-family: var(--fm);
@@ -176,44 +177,25 @@ button { background: none; border: none; cursor: pointer; }
   letter-spacing: 2px;
   text-transform: uppercase;
   color: inherit;
-  opacity: .6;
-  padding: 5px 10px;
-  border-radius: 3px;
-  transition: background .15s, color .15s, opacity .15s;
+  opacity: .55;
+  padding: 6px 12px;
+  border-radius: 0; /* pas de border-radius */
+  transition: background .1s, color .1s, opacity .1s;
   white-space: nowrap;
+  /* largeur fixée pour éviter le saut au typewriter */
+  display: inline-block;
+  text-align: center;
 }
-.nav-link:hover,
-.nav-link.active {
+.nav-link.nav-active,
+.nav-link:hover {
   background: var(--black);
-  color: var(--white);
+  color: var(--white) !important;
   opacity: 1;
 }
-#nav.nav-dark .nav-link:hover,
-#nav.nav-dark .nav-link.active {
+#nav.nav-dark .nav-link.nav-active,
+#nav.nav-dark .nav-link:hover {
   background: var(--white);
-  color: var(--black);
-}
-.nav-cta {
-  font-family: var(--fm);
-  font-size: .48rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  padding: 8px 18px;
-  background: var(--black);
-  color: var(--white);
-  border-radius: 4px;
-  transition: background .25s, color .25s;
-  white-space: nowrap;
-}
-.nav-cta:hover {
-  background: rgba(10,10,10,0.75);
-}
-#nav.nav-dark .nav-cta {
-  background: var(--white);
-  color: var(--black);
-}
-#nav.nav-dark .nav-cta:hover {
-  background: rgba(255,255,255,0.8);
+  color: var(--black) !important;
 }
 #burger {
   display: none;
@@ -320,10 +302,10 @@ button { background: none; border: none; cursor: pointer; }
 }
 .wave-text {
   font-family: var(--fi);
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(72px, 12vw, 185px);
   line-height: 0.87;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   color: var(--black);
   display: block;
 }
@@ -523,7 +505,7 @@ a:hover .arr { transform: translate(2px, -2px); }
 }
 .about-line {
   font-family: var(--fi);
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(32px, 5.5vw, 80px);
   line-height: 1.0;
   letter-spacing: -0.03em;
@@ -634,7 +616,7 @@ a:hover .arr { transform: translate(2px, -2px); }
 }
 .skills-text {
   font-family: var(--fi);
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(20px, 3.5vw, 52px);
   line-height: 1.3;
   letter-spacing: -0.02em;
@@ -688,7 +670,7 @@ a:hover .arr { transform: translate(2px, -2px); }
 }
 .contact-line {
   font-family: var(--fi);
-  font-weight: 400;
+  font-weight: 300;
   font-size: clamp(52px, 9.5vw, 150px);
   line-height: 0.9;
   letter-spacing: -0.03em;
