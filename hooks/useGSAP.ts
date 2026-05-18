@@ -3,7 +3,8 @@
 import { useEffect, useRef } from 'react'
 
 type GSAPInstance = {
-  registerPlugin: (...plugins: unknown[]) => void
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  registerPlugin: (...plugins: any[]) => void
   ticker: {
     add: (fn: (time: number) => void) => void
     lagSmoothing: (a: number, b: number) => void
@@ -26,7 +27,8 @@ export function useGSAPInit() {
         gsap.registerPlugin(ScrollTrigger, TextPlugin)
 
         // Expose gsap on window for Lenis sync
-        ;(window as unknown as { gsap: GSAPInstance }).gsap = gsap
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ;(window as unknown as Record<string, any>).gsap = gsap
 
         // Refresh ScrollTrigger on resize
         let resizeTimer: ReturnType<typeof setTimeout>
@@ -48,7 +50,8 @@ export function useGSAPInit() {
 }
 
 export function useGSAP(
-  callback: (gsap: import('gsap').gsap.Context, ScrollTrigger: import('gsap/ScrollTrigger').ScrollTrigger) => (() => void) | void,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  callback: (ctx: any, ScrollTrigger: any) => (() => void) | void,
   deps: unknown[] = []
 ) {
   const cleanupRef = useRef<(() => void) | void>(undefined)
@@ -63,7 +66,7 @@ export function useGSAP(
       if (cancelled) return
 
       const ctx = gsap.context(() => {})
-      cleanupRef.current = callback(ctx as unknown as import('gsap').gsap.Context, ScrollTrigger as unknown as import('gsap/ScrollTrigger').ScrollTrigger)
+      cleanupRef.current = callback(ctx, ScrollTrigger)
     }
 
     run()
