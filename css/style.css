@@ -54,6 +54,16 @@ button { background: none; border: none; cursor: pointer; }
   animation: wave 2.4s ease-in-out infinite;
 }
 
+/* -- GRADIENT REVEAL OVERLAY (post-loader) -- */
+#reveal-gradient {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: linear-gradient(to bottom, #0A0A0A 0%, #0A0A0A 30%, rgba(10,10,10,0) 100%);
+  pointer-events: none;
+  opacity: 0;
+}
+
 /* -- LOADER -- */
 #loader {
   position: fixed;
@@ -272,7 +282,7 @@ button { background: none; border: none; cursor: pointer; }
   background: var(--cream);
   min-height: 100svh;
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 48% 52%;
   grid-template-rows: 1fr auto;
   padding: 56px 0 clamp(28px, 4vw, 48px);
   position: relative;
@@ -366,7 +376,7 @@ button { background: none; border: none; cursor: pointer; }
 }
 .hero-ext {
   font-family: var(--fm);
-  font-size: clamp(11px, .9vw, 13px);
+  font-size: clamp(9px, .75vw, 11px);
   letter-spacing: 2px;
   color: #5a5a5a;
   opacity: 1;

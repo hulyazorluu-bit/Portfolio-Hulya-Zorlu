@@ -75,15 +75,19 @@ setInterval(updateClock, 1000);
 
 /* ── LOADER ── */
 (function initLoader() {
-  const loader  = qs('#loader');
-  const counter = qs('#loader-counter');
+  const loader   = qs('#loader');
+  const counter  = qs('#loader-counter');
+  const gradient = qs('#reveal-gradient');
   if (!loader || !counter) return;
 
-  const obj = { val: 0 };
+  /* Start at 090, count slowly to 100 */
+  const obj = { val: 90 };
+  counter.textContent = '090';
+
   gsap.to(obj, {
     val: 100,
-    duration: 2.5,
-    ease: 'power1.inOut',
+    duration: 3.2,
+    ease: 'power1.out',
     onUpdate() {
       counter.textContent = String(Math.floor(obj.val)).padStart(3, '0');
     },
@@ -92,9 +96,22 @@ setInterval(updateClock, 1000);
         yPercent: -100,
         duration: 0.9,
         ease: 'power3.inOut',
-        delay: 0.2,
+        delay: 0.3,
         onComplete() {
           loader.style.display = 'none';
+
+          /* Black-to-transparent gradient curtain from top */
+          if (gradient) {
+            gsap.set(gradient, { opacity: 1 });
+            gsap.to(gradient, {
+              opacity: 0,
+              duration: 1.4,
+              ease: 'power2.inOut',
+              delay: 0.1,
+              onComplete() { gradient.style.display = 'none'; }
+            });
+          }
+
           revealPage();
         }
       });
