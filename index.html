@@ -3,321 +3,320 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hulya Zorlu - UI/UX Designer basée à Paris. Recherche utilisateur, wireframing, prototypage haute fidélité." />
+  <meta name="description" content="Hulya Zorlu - UI/UX Designer basee a Paris. Recherche utilisateur, wireframing, prototypage haute fidelite." />
   <meta name="author" content="Hulya Zorlu" />
-  <title>HULYA ZORLU — UI/UX DESIGNER</title>
+  <meta name="theme-color" content="#080808" />
+  <title>Hulya Zorlu - UI/UX Designer</title>
   <link rel="icon" type="image/png" href="logo avatar hulya.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
   <!-- LOADER -->
-  <div id="loader" class="loader" aria-label="Chargement" role="status">
-    <div class="loader__text" aria-hidden="true">
-      <span class="lc" style="--i:0">H</span><span class="lc" style="--i:1">U</span><span class="lc" style="--i:2">L</span><span class="lc" style="--i:3">Y</span><span class="lc" style="--i:4">A</span><span class="lc lc--sp" style="--i:5">&nbsp;</span><span class="lc" style="--i:6">Z</span><span class="lc" style="--i:7">O</span><span class="lc" style="--i:8">R</span><span class="lc" style="--i:9">L</span><span class="lc" style="--i:10">U</span>
+  <div id="loader" role="status" aria-label="Chargement">
+    <img src="logo avatar hulya.png" id="loader-logo" alt="Hulya Zorlu" />
+    <div id="loader-bar">
+      <div id="loader-fill"></div>
     </div>
   </div>
 
-  <!-- CURSOR -->
-  <div id="cursor" class="cursor" aria-hidden="true"></div>
+  <!-- CUSTOM CURSOR -->
+  <div id="c-ring" aria-hidden="true"></div>
+  <div id="c-dot"  aria-hidden="true"></div>
+
+  <!-- GRAIN -->
+  <div class="grain" aria-hidden="true"></div>
 
   <!-- NAV -->
-  <nav class="nav" id="nav">
-    <a href="#hero" class="nav__brand">
-      <img src="assets/hulya.png" alt="Hulya Zorlu" class="nav__avatar" />
+  <nav id="nav">
+    <a href="#hero" class="nav-brand">
+      <img src="logo avatar hulya.png" class="nav-avatar" alt="Hulya Zorlu" />
+      <span class="nav-name">HULYA ZORLU</span>
     </a>
-    <ul class="nav__links" role="list">
-      <li><a href="#about"      class="nav__link"><span>A PROPOS</span></a></li>
-      <li><a href="#projects"   class="nav__link"><span>PROJETS</span></a></li>
-      <li><a href="#experience" class="nav__link"><span>EXPERIENCE</span></a></li>
-      <li><a href="#skills"     class="nav__link"><span>COMPETENCES</span></a></li>
-      <li><a href="#contact"    class="nav__link"><span>CONTACT</span></a></li>
+    <ul class="nav-links" role="list">
+      <li><a href="#about"      class="nav-link">A Propos</a></li>
+      <li><a href="#projects"   class="nav-link">Projets</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#skills"     class="nav-link">Competences</a></li>
+      <li><a href="#contact"    class="nav-link">Contact</a></li>
     </ul>
-    <button class="nav__burger" id="burger" aria-label="Menu" aria-expanded="false">
+    <button id="burger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span>
     </button>
   </nav>
 
   <!-- MOBILE MENU -->
-  <div class="mob-menu" id="mobMenu" aria-hidden="true">
-    <button class="mob-menu__x" id="mobClose" aria-label="Fermer">
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1l20 20M21 1L1 21"/></svg>
+  <div id="mob-menu" aria-hidden="true">
+    <button id="mob-close" aria-label="Fermer">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><path d="M2 2l16 16M18 2L2 18"/></svg>
     </button>
     <ul role="list">
-      <li><a href="#about"      class="mob-link">A PROPOS</a></li>
-      <li><a href="#projects"   class="mob-link">PROJETS</a></li>
-      <li><a href="#experience" class="mob-link">EXPERIENCE</a></li>
-      <li><a href="#skills"     class="mob-link">COMPETENCES</a></li>
-      <li><a href="#contact"    class="mob-link">CONTACT</a></li>
+      <li><a href="#about"      class="mob-link">A Propos</a></li>
+      <li><a href="#projects"   class="mob-link">Projets</a></li>
+      <li><a href="#experience" class="mob-link">Experience</a></li>
+      <li><a href="#skills"     class="mob-link">Competences</a></li>
+      <li><a href="#contact"    class="mob-link">Contact</a></li>
     </ul>
   </div>
 
   <main>
 
-    <!-- ══════════ HERO ══════════ -->
-    <section class="sec hero" id="hero">
-      <div class="hero__top">
-        <div class="hero__name" aria-label="Hulya Zorlu">
-          <div class="hero__word" aria-hidden="true">
-            <span class="hc" style="--i:0">H</span><span class="hc" style="--i:1">U</span><span class="hc" style="--i:2">L</span><span class="hc" style="--i:3">Y</span><span class="hc" style="--i:4">A</span>
+    <!-- HERO -->
+    <section class="sec s-hero" id="hero">
+      <div class="hero-inner">
+        <div class="hero-title" aria-label="Designer UI/UX">
+          <div class="h-line">
+            <span class="ht">D</span><span class="ht">E</span><span class="ht">S</span><span class="ht">I</span><span class="ht">G</span><span class="ht">N</span><span class="ht">E</span><span class="ht">R</span>
           </div>
-          <div class="hero__word" aria-hidden="true">
-            <span class="hc" style="--i:5">Z</span><span class="hc" style="--i:6">O</span><span class="hc" style="--i:7">R</span><span class="hc" style="--i:8">L</span><span class="hc" style="--i:9">U</span>
+          <div class="h-line">
+            <span class="ht">U</span><span class="ht">I</span><span class="ht">/</span><span class="ht">U</span><span class="ht">X</span>
           </div>
         </div>
-        <div class="hero__meta">
-          <span class="hero__role">UI/UX DESIGNER</span>
-          <span class="hero__city">PARIS 2026</span>
+        <div class="hero-sub">
+          <div class="hero-gold-line"></div>
+          <p class="hero-byline">Hulya Zorlu &nbsp;-&nbsp; Paris 2026</p>
         </div>
       </div>
-      <div class="hero__rule"></div>
-      <div class="hero__bottom">
-        <p class="hero__tagline">Concevoir des expériences qui se ressentent autant qu'elles se voient.</p>
-        <div class="hero__actions">
-          <a href="#projects" class="btn btn-o">VOIR MES PROJETS</a>
-          <a href="#contact"  class="btn btn-ghost">ME CONTACTER</a>
-        </div>
+      <div class="hero-scroll" aria-hidden="true">
+        <span class="hs-label">SCROLL</span>
+        <div class="hs-line"></div>
       </div>
     </section>
 
-    <!-- ══════════ A PROPOS ══════════ -->
-    <section class="sec" id="about">
+    <!-- A PROPOS -->
+    <section class="sec s-about" id="about">
       <div class="container">
-        <div class="sec-label clip-wrap"><span class="clip-inner">A PROPOS</span></div>
+        <p class="sec-tag">01 - A PROPOS</p>
         <div class="about-grid">
-          <div class="about-quote">
-            <blockquote class="clip-wrap"><span class="clip-inner">
-              Concevoir avec<br>empathie des<br><em>expériences</em><br>qui durent.
-            </span></blockquote>
+          <div class="about-left">
+            <blockquote class="about-quote">
+              Designer passionnee<br>par l'experience<br><em>utilisateur.</em>
+            </blockquote>
           </div>
-          <div class="about-body">
+          <div class="about-right">
             <p class="about-bio">
-              Designer UI/UX passionnée par la création d'expériences digitales intuitives et centrées utilisateur. Issue d'un parcours mêlant data et stratégie marketing, je me suis spécialisée dans la conception d'interfaces : recherche utilisateur, wireframing, prototypage haute fidélité et réflexion UX.
+              Designer UI/UX passionnee par la creation d'experiences digitales intuitives et centrees utilisateur. Issue d'un parcours melant data et strategie marketing, je me suis specialisee dans la conception d'interfaces : recherche utilisateur, wireframing, prototypage haute fidelite et reflexion UX.
             </p>
             <div class="about-specs">
-              <div class="spec"><span class="spec-k">SPECIALITE</span><span class="spec-v">UI/UX DESIGN · PROTOTYPAGE</span></div>
-              <div class="spec"><span class="spec-k">VILLE</span><span class="spec-v">PARIS, FRANCE</span></div>
-              <div class="spec"><span class="spec-k">DISPONIBILITE</span><span class="spec-v">OUVERTE AUX OPPORTUNITES</span></div>
+              <div class="spec-row">
+                <span class="spec-k">SPECIALITE</span>
+                <span class="spec-v">UI/UX Design, Prototypage</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">LOCALISATION</span>
+                <span class="spec-v">Paris, France</span>
+              </div>
+              <div class="spec-row">
+                <span class="spec-k">DISPONIBILITE</span>
+                <span class="spec-v">Ouverte aux opportunites</span>
+              </div>
             </div>
             <div class="lang-pills">
-              <span class="lp">FRANCAIS C2</span>
-              <span class="lp">TURC C2</span>
-              <span class="lp">ANGLAIS C1</span>
+              <span class="lpill">FR C2</span>
+              <span class="lpill">TR C2</span>
+              <span class="lpill">EN C1</span>
             </div>
           </div>
         </div>
+        <div class="gold-sep"></div>
       </div>
     </section>
 
-    <!-- ══════════ PROJETS ══════════ -->
-    <section class="sec" id="projects">
+    <!-- PROJETS -->
+    <section class="sec s-projects" id="projects">
       <div class="container">
-        <div class="sec-label clip-wrap"><span class="clip-inner">PROJETS</span></div>
-
+        <p class="sec-tag">02 - PROJETS</p>
         <div class="proj-list">
 
-          <a href="#" class="proj-row" data-img="assets/tamino.png">
-            <span class="proj-row__n">01</span>
-            <div class="proj-row__body">
-              <h3 class="proj-row__title">ALBUM WEBSITE</h3>
-              <p class="proj-row__desc">Création d'un site web inspiré de l'univers artistique de Tamino et de son album Amir.</p>
+          <a href="#" class="proj-row">
+            <span class="pn">01</span>
+            <div class="p-body">
+              <h3 class="p-title">Album Website</h3>
+              <div class="p-tags"><span>Web Design</span><span>Developpement</span></div>
             </div>
-            <div class="proj-row__tags">
-              <span>WEB DESIGN</span><span>DEVELOPPEMENT</span>
+            <div class="p-arrow">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <div class="proj-row__arrow">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <img class="proj-hover-img" src="assets/tamino.png" alt="" aria-hidden="true" loading="lazy" />
+            <img class="p-img" src="assets/tamino.png" alt="" aria-hidden="true" loading="lazy" />
           </a>
 
-          <a href="#" class="proj-row" data-img="assets/Hand and Iphone 16 Pro.jpg">
-            <span class="proj-row__n">02</span>
-            <div class="proj-row__body">
-              <h3 class="proj-row__title">WEVENT</h3>
-              <p class="proj-row__desc">Application mobile dédiée à la création et l'organisation d'événements.</p>
+          <a href="#" class="proj-row">
+            <span class="pn">02</span>
+            <div class="p-body">
+              <h3 class="p-title">Wevent</h3>
+              <div class="p-tags"><span>Prototypage</span><span>UI/UX Design</span></div>
             </div>
-            <div class="proj-row__tags">
-              <span>PROTOTYPAGE</span><span>UI/UX DESIGN</span>
+            <div class="p-arrow">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <div class="proj-row__arrow">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <img class="proj-hover-img" src="assets/Hand and Iphone 16 Pro.jpg" alt="" aria-hidden="true" loading="lazy" />
+            <img class="p-img" src="assets/Hand and Iphone 16 Pro.jpg" alt="" aria-hidden="true" loading="lazy" />
           </a>
 
-          <a href="#" class="proj-row" data-img="assets/mockupDeezerAPI.jpg">
-            <span class="proj-row__n">03</span>
-            <div class="proj-row__body">
-              <h3 class="proj-row__title">DEEZER API</h3>
-              <p class="proj-row__desc">Utilisation de JavaScript pour récupérer des données depuis l'API Deezer.</p>
+          <a href="#" class="proj-row">
+            <span class="pn">03</span>
+            <div class="p-body">
+              <h3 class="p-title">Deezer API</h3>
+              <div class="p-tags"><span>HTML/CSS</span><span>JavaScript</span></div>
             </div>
-            <div class="proj-row__tags">
-              <span>HTML/CSS</span><span>JAVASCRIPT</span>
+            <div class="p-arrow">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
-            <div class="proj-row__arrow">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-            <img class="proj-hover-img" src="assets/mockupDeezerAPI.jpg" alt="" aria-hidden="true" loading="lazy" />
+            <img class="p-img" src="assets/mockupDeezerAPI.jpg" alt="" aria-hidden="true" loading="lazy" />
           </a>
 
         </div>
       </div>
     </section>
 
-    <!-- ══════════ EXPERIENCE ══════════ -->
-    <section class="sec" id="experience">
+    <!-- EXPERIENCE -->
+    <section class="sec s-exp" id="experience">
       <div class="container">
-        <div class="sec-label clip-wrap"><span class="clip-inner">EXPERIENCE</span></div>
-
+        <p class="sec-tag">03 - EXPERIENCE</p>
         <div class="exp-list">
+          <div class="exp-timeline" aria-hidden="true"></div>
 
-          <div class="exp-row reveal">
-            <span class="exp-row__year">MARS 2026 - JUIL. 2026</span>
-            <div class="exp-row__body">
-              <h4>CERTIFICAT WEB DESIGN ET DEVELOPPEMENT</h4>
-              <span class="exp-row__co">La Toile - emlyon Business School, Paris</span>
-              <span class="exp-row__desc">HTML, CSS, JavaScript, Figma, APIs</span>
+          <div class="exp-item">
+            <span class="exp-year">Mars 2026 - Juil. 2026</span>
+            <div class="exp-body">
+              <h4 class="exp-title">Certificat Web Design et Developpement</h4>
+              <span class="exp-co">La Toile - emlyon Business School, Paris</span>
             </div>
-            <span class="exp-tag">CERTIFICAT</span>
+            <span class="exp-badge">CERTIFICAT</span>
           </div>
 
-          <div class="exp-row reveal" style="--d:.04s">
-            <span class="exp-row__year">2024 - 2025</span>
-            <div class="exp-row__body">
-              <h4>TESTEUR DE LOGICIEL</h4>
-              <span class="exp-row__co">M2i Formation, Paris</span>
-              <span class="exp-row__desc">Selenium, Cypress, Postman, Squash TM, Mantis, TMAP, Agile</span>
+          <div class="exp-item">
+            <span class="exp-year">2024 - 2025</span>
+            <div class="exp-body">
+              <h4 class="exp-title">Testeur de Logiciel</h4>
+              <span class="exp-co">M2i Formation, Paris</span>
             </div>
-            <span class="exp-tag">ALTERNANCE</span>
+            <span class="exp-badge">ALTERNANCE</span>
           </div>
 
-          <div class="exp-row reveal" style="--d:.08s">
-            <span class="exp-row__year">2024</span>
-            <div class="exp-row__body">
-              <h4>LIAISON OFFICER JO 2024</h4>
-              <span class="exp-row__co">Olympic Broadcasting Services, Paris</span>
+          <div class="exp-item">
+            <span class="exp-year">Mars 2023 - Sept. 2024</span>
+            <div class="exp-body">
+              <h4 class="exp-title">Chef de Projet UX Research</h4>
+              <span class="exp-co">TANKE, Paris</span>
             </div>
-            <span class="exp-tag">MISSION</span>
+            <span class="exp-badge">ALTERNANCE</span>
           </div>
 
-          <div class="exp-row reveal" style="--d:.12s">
-            <span class="exp-row__year">MARS 2023 - SEPT. 2024</span>
-            <div class="exp-row__body">
-              <h4>CHEF DE PROJET UX RESEARCH</h4>
-              <span class="exp-row__co">TANKE - Agence créative de marketing d'influence, Paris</span>
-              <span class="exp-row__desc">Refonte de parcours utilisateurs, tests UX, coordination équipes créa et data</span>
+          <div class="exp-item">
+            <span class="exp-year">2024</span>
+            <div class="exp-body">
+              <h4 class="exp-title">Liaison Officer JO 2024</h4>
+              <span class="exp-co">Olympic Broadcasting Services, Paris</span>
             </div>
-            <span class="exp-tag">ALTERNANCE</span>
+            <span class="exp-badge">MISSION</span>
           </div>
 
-          <div class="exp-row reveal" style="--d:.16s">
-            <span class="exp-row__year">SEPT. - DEC. 2022</span>
-            <div class="exp-row__body">
-              <h4>ASSISTANTE PLANNER STRATEGIQUE</h4>
-              <span class="exp-row__co">AustralieGAD - Agence de publicité, Paris</span>
-              <span class="exp-row__desc">Analyse des performances de campagnes, recommandations stratégiques, veille concurrentielle</span>
+          <div class="exp-item">
+            <span class="exp-year">Sept. - Dec. 2022</span>
+            <div class="exp-body">
+              <h4 class="exp-title">Assistante Planner Strategique</h4>
+              <span class="exp-co">AustralieGAD, Paris</span>
             </div>
-            <span class="exp-tag">STAGE</span>
+            <span class="exp-badge">STAGE</span>
           </div>
 
-          <div class="exp-row exp-row--form reveal" style="--d:.06s">
-            <span class="exp-row__year">2022 - 2024</span>
-            <div class="exp-row__body">
-              <h4>MSC DATA ANALYTICS ET MARKETING MANAGEMENT</h4>
-              <span class="exp-row__co">INSEEC Business School, Paris</span>
+          <div class="exp-item exp-form">
+            <span class="exp-year">2022 - 2024</span>
+            <div class="exp-body">
+              <h4 class="exp-title">MSc Data Analytics et Marketing Management</h4>
+              <span class="exp-co">INSEEC Business School, Paris</span>
             </div>
-            <span class="exp-tag">MASTER</span>
+            <span class="exp-badge">MASTER</span>
           </div>
 
-          <div class="exp-row exp-row--form reveal" style="--d:.1s">
-            <span class="exp-row__year">2020 - 2021</span>
-            <div class="exp-row__body">
-              <h4>ECHANGE ERASMUS - BUSINESS ADMINISTRATION</h4>
-              <span class="exp-row__co">Université d'Algarve, Portugal</span>
+          <div class="exp-item exp-form">
+            <span class="exp-year">2020 - 2021</span>
+            <div class="exp-body">
+              <h4 class="exp-title">Echange Erasmus - Business Administration</h4>
+              <span class="exp-co">Universite d'Algarve, Portugal</span>
             </div>
-            <span class="exp-tag">ECHANGE</span>
+            <span class="exp-badge">ECHANGE</span>
           </div>
 
-          <div class="exp-row exp-row--form reveal" style="--d:.14s">
-            <span class="exp-row__year">2018 - 2021</span>
-            <div class="exp-row__body">
-              <h4>LICENCE LANGUES ETRANGERES APPLIQUEES</h4>
-              <span class="exp-row__co">Université Jean Monnet, Saint-Etienne</span>
+          <div class="exp-item exp-form">
+            <span class="exp-year">2018 - 2021</span>
+            <div class="exp-body">
+              <h4 class="exp-title">Licence Langues Etrangeres Appliquees</h4>
+              <span class="exp-co">Universite Jean Monnet, Saint-Etienne</span>
             </div>
-            <span class="exp-tag">LICENCE</span>
+            <span class="exp-badge">LICENCE</span>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- ══════════ COMPETENCES ══════════ -->
-    <section class="sec" id="skills">
+    <!-- COMPETENCES -->
+    <section class="sec s-skills" id="skills">
       <div class="container">
-        <div class="sec-label clip-wrap"><span class="clip-inner">COMPETENCES</span></div>
-        <div class="skills-scatter reveal">
-          <span class="sk sk-xl">FIGMA</span>
-          <span class="sk sk-lg">HTML</span>
-          <span class="sk sk-xl">CSS</span>
-          <span class="sk sk-lg">JAVASCRIPT</span>
-          <span class="sk sk-md">SQL</span>
-          <span class="sk sk-md">PYTHON</span>
-          <span class="sk sk-sm">POWER BI</span>
-          <span class="sk sk-lg">SELENIUM</span>
-          <span class="sk sk-md">CYPRESS</span>
-          <span class="sk sk-sm">POSTMAN</span>
-          <span class="sk sk-lg">JIRA</span>
-          <span class="sk sk-xl">AGILE</span>
-          <span class="sk sk-md">GOOGLE ANALYTICS</span>
-          <span class="sk sk-sm">CONFLUENCE</span>
-          <span class="sk sk-md">NOTION</span>
-          <span class="sk sk-sm">SQUASH TM</span>
-          <span class="sk sk-md">PROTOTYPAGE</span>
-          <span class="sk sk-lg">RECHERCHE UX</span>
-          <span class="sk sk-sm">TMAP</span>
+        <p class="sec-tag">04 - COMPETENCES</p>
+        <div class="skills-wrap">
+          <span class="sk">Figma</span>
+          <span class="sk">HTML</span>
+          <span class="sk">CSS</span>
+          <span class="sk">JavaScript</span>
+          <span class="sk">SQL</span>
+          <span class="sk">Python</span>
+          <span class="sk">Power BI</span>
+          <span class="sk">Selenium</span>
+          <span class="sk">Cypress</span>
+          <span class="sk">Postman</span>
+          <span class="sk">Jira</span>
+          <span class="sk">Agile</span>
+          <span class="sk">Google Analytics</span>
+          <span class="sk">Recherche UX</span>
+          <span class="sk">Prototypage</span>
         </div>
       </div>
     </section>
 
-    <!-- ══════════ CONTACT ══════════ -->
+    <!-- CONTACT -->
     <section class="sec s-contact" id="contact">
       <div class="container">
-        <div class="sec-label clip-wrap"><span class="clip-inner">CONTACT</span></div>
-        <h2 class="contact-cta clip-wrap"><span class="clip-inner">TRAVAILLONS<br>ENSEMBLE</span></h2>
-        <div class="contact-under"></div>
+        <h2 class="contact-title">
+          <span class="ct-line">TRAVAILLONS</span>
+          <span class="ct-line italic">ENSEMBLE</span>
+        </h2>
+        <div class="contact-gold-line"></div>
         <div class="contact-body">
           <div class="contact-links">
-            <a href="mailto:zorluu.hulya@gmail.com" class="c-link reveal">
-              <span class="c-link__key">EMAIL</span>
-              <span class="c-link__val">zorluu.hulya@gmail.com</span>
+            <a href="mailto:zorluu.hulya@gmail.com" class="c-link">
+              <span class="c-label">EMAIL</span>
+              <span class="c-val">zorluu.hulya@gmail.com
+                <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
             </a>
-            <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" class="c-link reveal" style="--d:.05s">
-              <span class="c-link__key">LINKEDIN</span>
-              <span class="c-link__val">linkedin.com/in/hulya-zorlu</span>
+            <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" class="c-link">
+              <span class="c-label">LINKEDIN</span>
+              <span class="c-val">linkedin.com/in/hulya-zorlu
+                <svg width="14" height="14" fill="none" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
             </a>
-            <div class="c-link reveal" style="--d:.1s">
-              <span class="c-link__key">LOCALISATION</span>
-              <span class="c-link__val">PARIS, FRANCE</span>
-            </div>
           </div>
-          <div class="contact-cta-btn reveal" style="--d:.06s">
-            <a href="mailto:zorluu.hulya@gmail.com" class="btn btn-o btn-round btn-lg">ENVOYER UN MESSAGE</a>
-          </div>
+          <a href="mailto:zorluu.hulya@gmail.com" class="cta-btn" id="cta-btn">
+            Envoyer un message
+          </a>
         </div>
       </div>
     </section>
 
   </main>
 
-  <footer class="footer">
-    <span>© 2026 @HULYAZORLU</span>
-    <span>CONÇU ET DÉVELOPPÉ PAR MOI.</span>
+  <footer>
+    <span>&copy; 2026 @HULYAZORLU</span>
+    <span>Concu et developpe par moi.</span>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
