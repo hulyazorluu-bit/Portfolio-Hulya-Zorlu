@@ -10,7 +10,7 @@ const qs  = (s, c = document) => c.querySelector(s);
 const qsa = (s, c = document) => [...c.querySelectorAll(s)];
 
 /* ================================================================
-   CURSOR - hollow ring (lerp) + gold dot (exact)
+   CURSOR
    ================================================================ */
 (function initCursor() {
   if (isMobile()) return;
@@ -18,7 +18,7 @@ const qsa = (s, c = document) => [...c.querySelectorAll(s)];
   const ring = qs('#c-ring');
   const dot  = qs('#c-dot');
   const mouse   = { x: innerWidth / 2, y: innerHeight / 2 };
-  const ringPos = { x: mouse.x,        y: mouse.y };
+  const ringPos = { x: mouse.x, y: mouse.y };
 
   document.addEventListener('mousemove', e => {
     mouse.x = e.clientX;
@@ -33,32 +33,19 @@ const qsa = (s, c = document) => [...c.querySelectorAll(s)];
     requestAnimationFrame(tick);
   })();
 
-  /* hover states */
   qsa('a:not(.proj-row), button, .sk, .lpill').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      ring.classList.add('hover-link');
-      ring.textContent = 'VOIR';
-    });
-    el.addEventListener('mouseleave', () => {
-      ring.classList.remove('hover-link');
-      ring.textContent = '';
-    });
+    el.addEventListener('mouseenter', () => { ring.classList.add('hover-link'); ring.textContent = 'VOIR'; });
+    el.addEventListener('mouseleave', () => { ring.classList.remove('hover-link'); ring.textContent = ''; });
   });
 
   qsa('.proj-row').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      ring.classList.remove('hover-link');
-      ring.classList.add('hover-proj');
-      ring.textContent = '';
-    });
-    el.addEventListener('mouseleave', () => {
-      ring.classList.remove('hover-proj');
-    });
+    el.addEventListener('mouseenter', () => { ring.classList.remove('hover-link'); ring.classList.add('hover-proj'); ring.textContent = ''; });
+    el.addEventListener('mouseleave', () => { ring.classList.remove('hover-proj'); });
   });
 })();
 
 /* ================================================================
-   LOADER - gold progress bar then fade
+   LOADER - barre dorée puis fondu
    ================================================================ */
 window.addEventListener('load', () => {
   const fill   = qs('#loader-fill');
@@ -68,13 +55,13 @@ window.addEventListener('load', () => {
     width: '100%',
     duration: 1.6,
     ease: 'power2.inOut',
-    onComplete: () => {
+    onComplete() {
       gsap.to(loader, {
         opacity: 0,
-        duration: 0.55,
-        delay: 0.15,
+        duration: 0.5,
+        delay: 0.12,
         ease: 'power2.inOut',
-        onComplete: () => {
+        onComplete() {
           loader.style.display = 'none';
           revealHero();
         }
@@ -84,7 +71,7 @@ window.addEventListener('load', () => {
 });
 
 /* ================================================================
-   HERO REVEAL - letters fade + gold line + byline
+   HERO REVEAL - lettres une par une puis ligne dorée
    ================================================================ */
 function revealHero() {
   const chars  = qsa('.ht');
@@ -92,253 +79,162 @@ function revealHero() {
   const byline = qs('.hero-byline');
   const scroll = qs('.hero-scroll');
 
-  gsap.to(chars, {
-    opacity: 1,
-    y: 0,
-    stagger: 0.055,
-    duration: 0.85,
-    ease: 'power3.out'
-  });
+  /* fromTo = start clair, pas de conflit avec CSS */
+  gsap.fromTo(chars,
+    { opacity: 0, y: 24 },
+    { opacity: 1, y: 0, stagger: 0.055, duration: 0.85, ease: 'power3.out' }
+  );
 
-  const afterChars = chars.length * 0.055 + 0.3;
+  const delay = chars.length * 0.055 + 0.3;
 
-  gsap.to(gLine, {
-    width: 240,
-    duration: 1,
-    delay: afterChars,
-    ease: 'power3.inOut'
-  });
+  gsap.to(gLine,   { width: 240, duration: 1, delay, ease: 'power3.inOut' });
+  gsap.fromTo(byline,
+    { opacity: 0, y: 8 },
+    { opacity: 1, y: 0, duration: 0.7, delay: delay + 0.2, ease: 'power3.out' }
+  );
+  gsap.to(scroll, { opacity: 1, duration: 0.6, delay: delay + 0.7 });
 
-  gsap.to(byline, {
-    opacity: 1,
-    y: 0,
-    duration: 0.7,
-    delay: afterChars + 0.2,
-    ease: 'power3.out'
-  });
-
-  gsap.to(scroll, {
-    opacity: 1,
-    duration: 0.6,
-    delay: afterChars + 0.6,
-    ease: 'power2.out'
-  });
-
-  /* reveal sec-tag for all sections after page ready */
-  gsap.to('.sec-tag', {
-    opacity: 1,
-    duration: 0.6,
-    stagger: 0.1,
-    scrollTrigger: {
-      trigger: '#about',
-      start: 'top 90%'
-    }
-  });
+  /* Démarrer toutes les animations scroll APRÈS le loader */
+  initScrollAnimations();
 }
 
 /* ================================================================
-   PARALLAX HERO - text rises slower than scroll
+   SCROLL ANIMATIONS - lancé après revealHero()
    ================================================================ */
-gsap.to('.hero-inner', {
-  y: -80,
-  ease: 'none',
-  scrollTrigger: {
-    trigger: '.s-hero',
-    start: 'top top',
-    end: 'bottom top',
-    scrub: 1.4
-  }
-});
+function initScrollAnimations() {
 
-/* ================================================================
-   NAV - blur on scroll
-   ================================================================ */
-ScrollTrigger.create({
-  start: 'top -50',
-  onEnter:     () => qs('#nav').classList.add('scrolled'),
-  onLeaveBack: () => qs('#nav').classList.remove('scrolled')
-});
-
-/* ================================================================
-   ABOUT - slide in from left + grow gold line
-   ================================================================ */
-gsap.to('.about-quote', {
-  opacity: 1,
-  x: 0,
-  duration: 1,
-  ease: 'power3.out',
-  scrollTrigger: { trigger: '.about-quote', start: 'top 80%' }
-});
-gsap.set('.about-quote', { x: -40 });
-
-gsap.to('.about-bio', {
-  opacity: 1,
-  y: 0,
-  duration: 0.8,
-  ease: 'power3.out',
-  scrollTrigger: { trigger: '.about-bio', start: 'top 82%' }
-});
-gsap.set('.about-bio', { y: 20 });
-
-gsap.to('.about-specs', {
-  opacity: 1,
-  y: 0,
-  duration: 0.7,
-  delay: 0.1,
-  ease: 'power3.out',
-  scrollTrigger: { trigger: '.about-specs', start: 'top 82%' }
-});
-gsap.set('.about-specs', { y: 20 });
-
-gsap.to('.lang-pills', {
-  opacity: 1,
-  y: 0,
-  duration: 0.6,
-  delay: 0.15,
-  ease: 'power3.out',
-  scrollTrigger: { trigger: '.lang-pills', start: 'top 85%' }
-});
-gsap.set('.lang-pills', { y: 16 });
-
-gsap.to('.gold-sep', {
-  width: '100%',
-  duration: 1.1,
-  ease: 'power3.inOut',
-  scrollTrigger: { trigger: '.gold-sep', start: 'top 88%' }
-});
-
-/* ================================================================
-   PROJECTS - fade up rows + floating image on cursor
-   ================================================================ */
-qsa('.proj-row').forEach((row, i) => {
-  /* scroll reveal */
-  gsap.to(row, {
-    opacity: 1,
-    y: 0,
-    duration: 0.8,
-    delay: i * 0.08,
-    ease: 'power3.out',
-    scrollTrigger: { trigger: row, start: 'top 82%' }
+  /* Parallax hero */
+  gsap.to('.hero-inner', {
+    y: -80, ease: 'none',
+    scrollTrigger: { trigger: '.s-hero', start: 'top top', end: 'bottom top', scrub: 1.4 }
   });
-  gsap.set(row, { y: 28 });
 
-  /* floating image follow cursor */
-  const img = row.querySelector('.p-img');
-  if (!img) return;
-
-  gsap.set(img, { xPercent: -50, yPercent: -50 });
-
-  row.addEventListener('mouseenter', () => {
-    gsap.to(img, { opacity: 1, duration: 0.35, ease: 'power2.out' });
+  /* Nav blur au scroll */
+  ScrollTrigger.create({
+    start: 'top -50',
+    onEnter:     () => qs('#nav').classList.add('scrolled'),
+    onLeaveBack: () => qs('#nav').classList.remove('scrolled')
   });
-  row.addEventListener('mouseleave', () => {
-    gsap.to(img, { opacity: 0, duration: 0.25 });
+
+  /* Section tags */
+  qsa('.sec-tag').forEach(tag => {
+    gsap.fromTo(tag,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.7, ease: 'power2.out',
+        scrollTrigger: { trigger: tag, start: 'top 88%' } }
+    );
   });
-  row.addEventListener('mousemove', e => {
-    gsap.to(img, {
-      x: e.clientX,
-      y: e.clientY,
-      duration: 0.55,
-      ease: 'power3.out',
-      overwrite: 'auto'
+
+  /* About */
+  gsap.fromTo('.about-quote',
+    { opacity: 0, x: -40 },
+    { opacity: 1, x: 0, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.about-quote', start: 'top 80%' } }
+  );
+  gsap.fromTo('.about-bio',
+    { opacity: 0, y: 20 },
+    { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+      scrollTrigger: { trigger: '.about-bio', start: 'top 83%' } }
+  );
+  gsap.fromTo('.about-specs',
+    { opacity: 0, y: 16 },
+    { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
+      scrollTrigger: { trigger: '.about-specs', start: 'top 83%' } }
+  );
+  gsap.fromTo('.lang-pills',
+    { opacity: 0, y: 12 },
+    { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out',
+      scrollTrigger: { trigger: '.lang-pills', start: 'top 86%' } }
+  );
+  gsap.to('.gold-sep', {
+    width: '100%', duration: 1.1, ease: 'power3.inOut',
+    scrollTrigger: { trigger: '.gold-sep', start: 'top 88%' }
+  });
+
+  /* Projets */
+  qsa('.proj-row').forEach((row, i) => {
+    gsap.fromTo(row,
+      { opacity: 0, y: 28 },
+      { opacity: 1, y: 0, duration: 0.8, delay: i * 0.08, ease: 'power3.out',
+        scrollTrigger: { trigger: row, start: 'top 83%' } }
+    );
+
+    const img = row.querySelector('.p-img');
+    if (!img) return;
+
+    /* init image hors écran, centrée sur curseur */
+    gsap.set(img, { xPercent: -50, yPercent: -50, x: -300, y: -300 });
+
+    row.addEventListener('mouseenter', () =>
+      gsap.to(img, { opacity: 1, duration: 0.35, ease: 'power2.out' })
+    );
+    row.addEventListener('mouseleave', () =>
+      gsap.to(img, { opacity: 0, duration: 0.25 })
+    );
+    row.addEventListener('mousemove', e => {
+      gsap.to(img, { x: e.clientX, y: e.clientY, duration: 0.55, ease: 'power3.out', overwrite: 'auto' });
     });
   });
-});
 
-/* ================================================================
-   EXPERIENCE - slide from right + staggered
-   ================================================================ */
-qsa('.exp-item').forEach((item, i) => {
-  gsap.to(item, {
-    opacity: 1,
-    x: 0,
-    duration: 0.75,
-    delay: i * 0.06,
-    ease: 'power3.out',
-    scrollTrigger: { trigger: item, start: 'top 84%' }
+  /* Experience */
+  qsa('.exp-item').forEach((item, i) => {
+    gsap.fromTo(item,
+      { opacity: 0, x: 36 },
+      { opacity: 1, x: 0, duration: 0.75, delay: i * 0.06, ease: 'power3.out',
+        scrollTrigger: { trigger: item, start: 'top 84%' } }
+    );
   });
-  gsap.set(item, { x: 36 });
-});
 
-/* ================================================================
-   SKILLS - cascade from bottom
-   ================================================================ */
-gsap.to('.sk', {
-  opacity: 1,
-  y: 0,
-  stagger: 0.045,
-  duration: 0.55,
-  ease: 'power3.out',
-  scrollTrigger: { trigger: '.skills-wrap', start: 'top 78%' }
-});
-gsap.set('.sk', { y: 18 });
+  /* Competences */
+  gsap.fromTo('.sk',
+    { opacity: 0, y: 18 },
+    { opacity: 1, y: 0, stagger: 0.045, duration: 0.55, ease: 'power3.out',
+      scrollTrigger: { trigger: '.skills-wrap', start: 'top 78%' } }
+  );
 
-/* ================================================================
-   CONTACT - title lines + gold line
-   ================================================================ */
-gsap.to('.ct-line', {
-  opacity: 1,
-  y: 0,
-  stagger: 0.14,
-  duration: 1,
-  ease: 'power3.out',
-  scrollTrigger: { trigger: '.contact-title', start: 'top 78%' }
-});
-gsap.set('.ct-line', { y: 32 });
-
-gsap.to('.contact-gold-line', {
-  width: '100%',
-  duration: 1.1,
-  ease: 'power3.inOut',
-  scrollTrigger: { trigger: '.contact-gold-line', start: 'top 85%' }
-});
-
-gsap.from('.c-link, .cta-btn', {
-  y: 24,
-  opacity: 0,
-  stagger: 0.1,
-  duration: 0.7,
-  ease: 'power3.out',
-  scrollTrigger: { trigger: '.contact-body', start: 'top 82%' }
-});
-
-/* ================================================================
-   SEC-TAG reveal per section
-   ================================================================ */
-qsa('.sec-tag').forEach(tag => {
-  gsap.to(tag, {
-    opacity: 1,
-    duration: 0.7,
-    ease: 'power2.out',
-    scrollTrigger: { trigger: tag, start: 'top 85%' }
+  /* Contact */
+  gsap.fromTo('.ct-line',
+    { opacity: 0, y: 32 },
+    { opacity: 1, y: 0, stagger: 0.14, duration: 1, ease: 'power3.out',
+      scrollTrigger: { trigger: '.contact-title', start: 'top 78%' } }
+  );
+  gsap.to('.contact-gold-line', {
+    width: '100%', duration: 1.1, ease: 'power3.inOut',
+    scrollTrigger: { trigger: '.contact-gold-line', start: 'top 85%' }
   });
-});
+  gsap.fromTo('.c-link',
+    { opacity: 0, y: 20 },
+    { opacity: 1, y: 0, stagger: 0.1, duration: 0.7, ease: 'power3.out',
+      scrollTrigger: { trigger: '.contact-links', start: 'top 82%' } }
+  );
+  gsap.fromTo('.cta-btn',
+    { opacity: 0, y: 16 },
+    { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out',
+      scrollTrigger: { trigger: '.cta-btn', start: 'top 85%' } }
+  );
 
-/* ================================================================
-   ACTIVE NAV LINK
-   ================================================================ */
-qsa('section[id]').forEach(sec => {
-  ScrollTrigger.create({
-    trigger: sec,
-    start: 'top 55%',
-    end: 'bottom 55%',
-    onEnter:     () => setActiveNav(sec.id),
-    onEnterBack: () => setActiveNav(sec.id)
+  /* Nav active link */
+  qsa('section[id]').forEach(sec => {
+    ScrollTrigger.create({
+      trigger: sec, start: 'top 55%', end: 'bottom 55%',
+      onEnter:     () => setNav(sec.id),
+      onEnterBack: () => setNav(sec.id)
+    });
   });
-});
-function setActiveNav(id) {
+}
+
+function setNav(id) {
   qsa('.nav-link').forEach(l => {
-    const active = l.getAttribute('href') === `#${id}`;
-    l.style.color = active ? 'var(--white)' : '';
+    l.style.color = l.getAttribute('href') === `#${id}` ? 'var(--white)' : '';
   });
 }
 
 /* ================================================================
    MOBILE MENU
    ================================================================ */
-const burger  = qs('#burger');
-const mobMenu = qs('#mob-menu');
-const mobClose= qs('#mob-close');
+const burger   = qs('#burger');
+const mobMenu  = qs('#mob-menu');
+const mobClose = qs('#mob-close');
 
 function openMenu() {
   mobMenu.classList.add('open');
@@ -354,6 +250,7 @@ function closeMenu() {
   burger.setAttribute('aria-expanded', 'false');
   document.body.style.overflow = '';
 }
+
 burger.addEventListener('click', () =>
   mobMenu.classList.contains('open') ? closeMenu() : openMenu()
 );
@@ -366,16 +263,13 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu();
    ================================================================ */
 qsa('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
   });
 });
 
 /* ================================================================
-   CTA BUTTON - subtle 3D tilt
+   CTA BUTTON - tilt 3D
    ================================================================ */
 const ctaBtn = qs('#cta-btn');
 if (ctaBtn) {
@@ -383,11 +277,7 @@ if (ctaBtn) {
     const r = ctaBtn.getBoundingClientRect();
     const x = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
     const y = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
-    gsap.to(ctaBtn, {
-      rotateY: x * 8, rotateX: -y * 8,
-      transformPerspective: 500,
-      duration: 0.25, ease: 'power2.out'
-    });
+    gsap.to(ctaBtn, { rotateY: x * 8, rotateX: -y * 8, transformPerspective: 500, duration: 0.25, ease: 'power2.out' });
   });
   ctaBtn.addEventListener('mouseleave', () => {
     gsap.to(ctaBtn, { rotateY: 0, rotateX: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
