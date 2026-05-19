@@ -168,14 +168,14 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 }
 
 .typewriter {
-  overflow: hidden;
   white-space: nowrap;
-  width: 0;
   display: inline-block;
   vertical-align: bottom;
+  /* clip-path instead of width:0 → layout never shifts */
+  clip-path: inset(0 100% 0 0);
 }
 
-@keyframes typing { to { width: 100%; } }
+@keyframes typing { to { clip-path: inset(0 0% 0 0); } }
 @keyframes tw-blink { 50% { opacity: 0; } }
 
 /* Nav left hidden at start — JS reveals via typewriter */

@@ -118,6 +118,7 @@
 
 
 /* ── CSS Typewriter trigger ───────────────────────────────────── */
+/* Uses clip-path animation — element keeps natural width (no layout shift) */
 function triggerTypewriter(twEl, charsPerSec, onDone) {
   const charCount = twEl.textContent.length;
   if (charCount === 0) { if (onDone) onDone(); return; }
@@ -131,42 +132,6 @@ function triggerTypewriter(twEl, charsPerSec, onDone) {
     if (container) container.classList.add('done');
     if (onDone) onDone();
   }, duration * 1000 + 60);
-}
-
-
-/* ── CSS Typewriter loop (type → pause → reset → repeat) ────────── */
-function loopTypewriter(twEl, charsPerSec) {
-  const container = twEl.closest('.typewriter-container');
-  if (container) container.style.opacity = '1';
-
-  function cycle() {
-    const charCount = twEl.textContent.length;
-    const typeDuration = charCount / charsPerSec; /* ~0.85s for 19 chars */
-
-    /* show cursor while typing */
-    if (container) container.classList.remove('done');
-
-    twEl.style.animation = 'none';
-    twEl.style.width = '0';
-
-    /* force reflow so CSS picks up the reset */
-    void twEl.offsetWidth;
-
-    twEl.style.animation = `typing ${typeDuration}s steps(${charCount}, end) forwards`;
-
-    /* after fully typed: pause 2.5s, then wipe and loop */
-    setTimeout(() => {
-      if (container) container.classList.add('done'); /* hide cursor during pause */
-      setTimeout(() => {
-        twEl.style.animation = 'none';
-        twEl.style.width = '0';
-        void twEl.offsetWidth;
-        cycle();
-      }, 2500);
-    }, typeDuration * 1000 + 60);
-  }
-
-  cycle();
 }
 
 /* ── Scramble text ────────────────────────────────────────────── */
@@ -222,7 +187,7 @@ function revealPage() {
   const brandTw = document.getElementById('brand-tw');
   if (brandTw) {
     const container = brandTw.closest('.typewriter-container');
-    brandTw.style.width = '100%';
+    brandTw.style.clipPath = 'inset(0 0% 0 0)'; /* full visible for scramble */
     if (container) { container.style.opacity = '1'; container.classList.add('done'); }
     scramble(brandTw, 'HULYAZORLU_PAR', { delay: 0, duration: 650 });
   }
