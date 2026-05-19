@@ -129,22 +129,22 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: rgba(10,10,10,0.5);
-  transition: color 0.2s;
+  color: var(--fg);
+  transition: opacity 0.2s;
 }
-.nav_lk:hover { color: var(--fg); }
+.nav_lk:hover { opacity: 0.5; }
 
 .nav_cta {
   font-family: 'Courier Prime', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--bg);
-  background: var(--fg);
-  padding: 0.65rem 1.5rem;
+  color: var(--fg);
+  background: none;
+  padding: 0;
   transition: opacity 0.2s;
 }
-.nav_cta:hover { opacity: 0.75; }
+.nav_cta:hover { opacity: 0.5; }
 
 /* Nav items — cachés au départ, animés par JS après loader */
 .nav_left {
