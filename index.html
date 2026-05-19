@@ -5,91 +5,108 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Hulya Zorlu — UI/UX Designer basée à Paris." />
   <title>Hulya Zorlu — UI/UX Designer</title>
- 
-  <!-- Neue Montreal -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Special Elite (typewriter) -->
-  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet" />
-  <!-- Neue Montreal via Bunny Fonts (open source, no tracking) -->
-  <link href="https://fonts.bunny.net/css?family=neue-montreal:400,500,700&display=swap" rel="stylesheet" />
- 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
- 
+
+  <!-- BACKGROUND GRID -->
+  <div class="Mbg" aria-hidden="true">
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+  </div>
+
   <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="nav_left">
-      <span class="nav_brand sp-elite">HULYAZORLU_PAR</span>
+      <span class="nav_brand">HULYAZORLU_PAR</span>
       <span class="nav_sep"></span>
-      <span class="nav_clock sp-elite" id="clock"></span>
+      <span class="nav_clock" id="clock"></span>
     </div>
     <div class="nav_right">
-      <a href="#projets"     class="nav_lk">Projets</a>
-      <a href="#about"       class="nav_lk">À propos</a>
-      <a href="#parcours"    class="nav_lk">Parcours</a>
-      <a href="#competences" class="nav_lk">Compétences</a>
-      <a href="#contact"     class="nav_lk">Contact</a>
+      <a href="#" class="nav_lk">INDEX</a>
+      <a href="#about" class="nav_lk">ABOUT</a>
+      <a href="#projets" class="nav_lk">PLAYGROUND</a>
+      <a href="#contact" class="nav_cta">LETS TALK</a>
     </div>
-    <!-- burger mobile -->
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
       <span></span><span></span>
     </button>
   </nav>
- 
+
   <!-- MOBILE MENU -->
   <div class="mob-menu" id="mob-menu" aria-hidden="true">
     <button class="mob-close" id="mob-close" aria-label="Fermer">✕</button>
     <nav class="mob-nav">
-      <a href="#projets"     class="mob-link sp-elite">Projets</a>
-      <a href="#about"       class="mob-link sp-elite">À propos</a>
-      <a href="#parcours"    class="mob-link sp-elite">Parcours</a>
-      <a href="#competences" class="mob-link sp-elite">Compétences</a>
-      <a href="#contact"     class="mob-link sp-elite">Contact</a>
+      <a href="#" class="mob-link">INDEX</a>
+      <a href="#about" class="mob-link">ABOUT</a>
+      <a href="#projets" class="mob-link">PLAYGROUND</a>
+      <a href="#contact" class="mob-link">LETS TALK</a>
     </nav>
+    <div class="mob-footer">
+      <a href="https://www.instagram.com/hueliyaz/" target="_blank" rel="noopener">INSTAGRAM</a>
+      <a href="https://www.linkedin.com/in/hulya-zorlu/" target="_blank" rel="noopener">LINKEDIN</a>
+      <a href="#" class="read-cv-lk">READ.CV</a>
+    </div>
   </div>
- 
+
   <!-- HERO -->
   <section class="hero" id="hero">
- 
-    <!-- 12-col grid lines (background) -->
-    <div class="grid-bg" aria-hidden="true">
-      <div class="grid-col"></div><div class="grid-col"></div>
-      <div class="grid-col"></div><div class="grid-col"></div>
-      <div class="grid-col"></div><div class="grid-col"></div>
-      <div class="grid-col"></div><div class="grid-col"></div>
-      <div class="grid-col"></div><div class="grid-col"></div>
-      <div class="grid-col"></div><div class="grid-col"></div>
+
+    <!-- TITLE + SUBTITLE -->
+    <div class="hero_cnt">
+      <h2 class="cnt_tt">
+        <div class="Atitle">
+          <div class="ttj Oiel" id="title-hulya">
+            <div class="word" style="display:inline-block">
+              <div class="char" style="display:inline-block">H</div><div class="char" style="display:inline-block">u</div><div class="char" style="display:inline-block">l</div><div class="char" style="display:inline-block">y</div><div class="char" style="display:inline-block">a</div>
+            </div>
+          </div>
+        </div>
+        <div class="Atitle">
+          <div class="ttj Oiel" id="title-zorlu">
+            <div class="word" style="display:inline-block">
+              <div class="char" style="display:inline-block">Z</div><div class="char" style="display:inline-block">o</div><div class="char" style="display:inline-block">r</div><div class="char" style="display:inline-block">l</div><div class="char" style="display:inline-block">u</div>
+            </div>
+          </div>
+        </div>
+      </h2>
+
+      <div class="cnt_bt">
+        <h3 class="tt3">UI/UX Designer basée à Paris</h3>
+        <h4 class="Awrite" id="portfolio-txt">PORTFOLIO_26</h4>
+      </div>
     </div>
- 
-    <!-- TITLE — colonnes 7-11 -->
-    <div class="hero_title_wrap">
-      <h1 class="hero_title">Hulya<br>Zorlu</h1>
-      <p class="hero_sub">UI/UX Designer basée à Paris</p>
-      <p class="hero_port sp-elite">PORTFOLIO_26</p>
+
+    <!-- SCROLL TO EXPLORE -->
+    <div class="cnt_sc">
+      <h4 class="Awrite" id="scroll-txt">[scroll to explore]</h4>
     </div>
- 
-    <!-- SCROLL TO EXPLORE — bas milieu -->
-    <div class="hero_scroll" id="hero-scroll" aria-hidden="true">
-      <span class="sp-elite scroll_txt" id="scroll-txt"></span>
-    </div>
- 
-    <!-- SOCIALS — bas droite -->
+
+    <!-- SOCIALS -->
     <div class="hero_socials">
-      <a href="https://www.linkedin.com/in/hulya-zorlu/" target="_blank" rel="noopener" class="social_lk sp-elite">
-        LINKEDIN <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
-      </a>
-      <a href="https://www.instagram.com/hueliyaz/" target="_blank" rel="noopener" class="social_lk sp-elite">
+      <a href="https://www.instagram.com/hueliyaz/" target="_blank" rel="noopener" class="social_lk">
         INSTAGRAM <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
       </a>
-      <a href="#" class="social_lk sp-elite read-cv-lk">
+      <a href="https://www.linkedin.com/in/hulya-zorlu/" target="_blank" rel="noopener" class="social_lk">
+        LINKEDIN <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
+      </a>
+      <a href="#" class="social_lk read-cv-lk">
         READ.CV <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
       </a>
     </div>
- 
+
   </section>
- 
+
   <script src="main.js"></script>
 </body>
 </html>
