@@ -326,7 +326,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 /* ── TITLE + SUBTITLE BLOCK ────────────────── right half ─────── */
 .hero_cnt {
   position: absolute;
-  left: calc(50% + 2rem);
+  left: 50%;
   top: 50%;
   transform: translateY(-46%);
   width: 47vw;
@@ -368,10 +368,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 }
 
 /* ── SUBTITLE ─────────────────────────────────────────────────── */
-.cnt_bt {
-  margin-top: 2.8rem;
-  padding-left: 3rem; /* slight offset — subtitle column beside title */
-}
+.cnt_bt { margin-top: 2.8rem; }
 
 .tt3 {
   font-family: montrealbook;
