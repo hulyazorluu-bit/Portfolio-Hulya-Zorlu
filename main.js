@@ -74,10 +74,10 @@ function scramble(el, finalText, { delay = 0, duration = 1200, loop = false } = 
 
 (function initScramble() {
   const portEl = document.getElementById('portfolio-txt');
-  if (portEl) scramble(portEl, 'PORTFOLIO_26', { delay: 600, duration: 1000 });
+  if (portEl) scramble(portEl, 'PORTFOLIO_26', { delay: 800, duration: 1800 });
 
   const scrollEl = document.getElementById('scroll-txt');
-  if (scrollEl) scramble(scrollEl, '[scroll to explore]', { delay: 1000, duration: 1400, loop: true });
+  if (scrollEl) scramble(scrollEl, '[scroll to explore]', { delay: 1200, duration: 2400, loop: true });
 })();
 
 

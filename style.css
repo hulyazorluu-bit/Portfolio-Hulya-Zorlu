@@ -14,6 +14,11 @@
   font-style: normal;
 }
 
+/* ── Typewriter font (Courier Prime = Type Machine style) ─────── */
+/* Quand tu télécharges TypeMachine.woff2 depuis dafont → assets/fonts/
+   et tu remplaces 'Courier Prime' par typemachine ci-dessous */
+.tm { font-family: 'Courier Prime', 'Courier New', monospace; }
+
 /* ── CSS Variables ────────────────────────────────────────────── */
 :root {
   --ck_accent: #fff;
@@ -88,7 +93,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 }
 
 .nav_brand {
-  font-family: montrealbook;
+  font-family: 'Courier Prime', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -102,7 +107,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 }
 
 .nav_clock {
-  font-family: montrealbook;
+  font-family: 'Courier Prime', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -116,7 +121,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 }
 
 .nav_lk {
-  font-family: montrealbook;
+  font-family: 'Courier Prime', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -126,7 +131,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 .nav_lk:hover { color: var(--fg); }
 
 .nav_cta {
-  font-family: montrealbook;
+  font-family: 'Courier Prime', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -240,21 +245,21 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 
 .ttj {
   display: block;
-  overflow: hidden;
+  /* pas de overflow:hidden — évite que le Y soit coupé */
 }
 
 .ttj .word { display: inline-block; }
 
-/* Each char starts hidden / shifted down */
+/* Chars: opacity seule avant animation (pas de translateY qui clipe) */
 .ttj .char {
   display: inline-block;
   opacity: 0;
-  transform: translateY(1.1em);
-  transition: opacity 0.65s cubic-bezier(0.25,0.46,0.45,0.94),
-              transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94);
+  transform: translateY(0.3em);
+  transition: opacity 0.75s cubic-bezier(0.25,0.46,0.45,0.94),
+              transform 0.75s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 
-/* JS adds .act → chars animate in */
+/* JS adds .act → chars apparaissent */
 .ttj.act .char {
   opacity: 1;
   transform: translateY(0);
@@ -273,7 +278,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 }
 
 .Awrite {
-  font-family: montrealbook;
+  font-family: 'Courier Prime', 'Courier New', monospace;
   font-weight: 400;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
@@ -283,15 +288,17 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   margin-top: 0.7rem;
 }
 
-/* ── SCROLL TO EXPLORE — bottom left ─────────────────────────── */
+/* ── SCROLL TO EXPLORE — bottom center ───────────────────────── */
 .cnt_sc {
   position: absolute;
   bottom: 3.6rem;
-  left: 2.4rem;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 2;
+  white-space: nowrap;
 }
 .cnt_sc .Awrite {
-  color: rgba(10,10,10,0.45);
+  color: var(--fg);
   margin-top: 0;
 }
 
@@ -306,7 +313,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 }
 
 .social_lk {
-  font-family: montrealbook;
+  font-family: 'Courier Prime', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
