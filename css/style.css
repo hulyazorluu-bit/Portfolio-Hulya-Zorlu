@@ -1,8 +1,33 @@
 /* =============================================================
-   HULYA ZORLU — PORTFOLIO v19
-   Pixel-perfect rebuild d'après evasanchez.info
-   Inter · #F8F6F2 cream · #000 black
+   HULYA ZORLU — PORTFOLIO v20
+   NeueMontreal (local) · #F8F6F2 cream · #000 black
    ============================================================= */
+
+/* ── NEUE MONTREAL — @font-face local ── */
+@font-face {
+  font-family: 'NeueMontreal';
+  src: url('../assets/fonts/NeueMontreal-Regular.woff2') format('woff2'),
+       url('../assets/fonts/NeueMontreal-Regular.woff')  format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'NeueMontreal';
+  src: url('../assets/fonts/NeueMontreal-Medium.woff2') format('woff2'),
+       url('../assets/fonts/NeueMontreal-Medium.woff')  format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'NeueMontreal';
+  src: url('../assets/fonts/NeueMontreal-Bold.woff2') format('woff2'),
+       url('../assets/fonts/NeueMontreal-Bold.woff')  format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* ── DESIGN TOKENS ── */
 :root {
@@ -10,7 +35,7 @@
   --black:  #000000;
   --white:  #FFFFFF;
   --gray:   #8A8A8A;
-  --fi:     'Inter', sans-serif;
+  --fi:     'NeueMontreal', sans-serif;
   --fm:     'Space Mono', monospace;
   --ease:   cubic-bezier(0.55, 0, 0.1, 1);
 
