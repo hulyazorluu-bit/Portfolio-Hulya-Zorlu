@@ -175,10 +175,18 @@ function scramble(el, finalText, { delay = 0, duration = 1200 } = {}) {
 function revealPage() {
   const SPEED = 22; /* chars/sec — snappy but readable */
 
-  /* 1 — Nav right: all items simultaneously */
-  document.querySelectorAll('.nav_right .typewriter').forEach(twEl => {
+  /* 1 — Nav right: typewriter links simultaneously */
+  document.querySelectorAll('.nav_lk .typewriter').forEach(twEl => {
     triggerTypewriter(twEl, SPEED, null);
   });
+
+  /* LETS TALK: fade in + sand scramble simultaneously */
+  const cta = document.querySelector('.nav_cta');
+  const ctaText = document.getElementById('cta-text');
+  if (cta && ctaText) {
+    cta.style.opacity = '1';
+    scramble(ctaText, 'LETS TALK', { delay: 0, duration: 700 });
+  }
 
   /* 2 — Nav left: brand scramble + clock simultaneously with nav right */
   const navLeft = document.querySelector('.nav_left');
