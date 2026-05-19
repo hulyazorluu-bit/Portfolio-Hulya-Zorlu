@@ -11,8 +11,7 @@
   let triggered = false;
 
   function getTimeString() {
-    const parts = new Intl.DateTimeFormat('fr', {
-      timeZone: 'Europe/Paris',
+    const parts = new Intl.DateTimeFormat(undefined, {
       hour: '2-digit',
       minute: '2-digit',
       hour12: true,
