@@ -1,14 +1,16 @@
 /* =============================================================
-   HULYA ZORLU — Portfolio v22
-   Clock · Title char reveal · Scramble text · Mobile menu
+   HULYA ZORLU — Portfolio v34
+   Clock · Title char reveal · CSS Typewriter · Mobile menu
    ============================================================= */
 
 /* ── Clock — Paris time ──────────────────────────────────────── */
 (function initClock() {
-  const el = document.getElementById('clock');
-  if (!el) return;
+  const twEl = document.getElementById('clock-tw');
+  if (!twEl) return;
 
-  function tick() {
+  let triggered = false;
+
+  function getTimeString() {
     const parts = new Intl.DateTimeFormat('fr', {
       timeZone: 'Europe/Paris',
       hour: '2-digit',
@@ -19,32 +21,39 @@
     const h  = parts.find(p => p.type === 'hour')?.value   || '00';
     const m  = parts.find(p => p.type === 'minute')?.value || '00';
     const dp = parts.find(p => p.type === 'dayPeriod')?.value || '';
-    el.textContent = `${h}:${m} ${dp.toUpperCase()}`;
+    return `${h}:${m} ${dp.toUpperCase()}`;
   }
 
-  tick();
+  /* Called by revealPage once nav-left becomes visible */
+  window.triggerClockTypewriter = function() {
+    if (triggered) return;
+    triggered = true;
+    const timeStr = getTimeString();
+    twEl.textContent = timeStr;
+    triggerTypewriter(twEl, 13, null);
+  };
+
+  /* Keep clock live after initial reveal */
+  function tick() {
+    if (triggered) twEl.textContent = getTimeString();
+  }
   const now = new Date();
   const msToNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
   setTimeout(() => { tick(); setInterval(tick, 60000); }, msToNextMinute);
 })();
 
 
-/* ── Loader 000 → 100 + typewriter texte ─────────────────────── */
+/* ── Loader 000 → 042 + typewriter text ──────────────────────── */
 (function initLoader() {
   const loader  = document.getElementById('loader');
   const countEl = document.getElementById('loader-count');
   if (!loader || !countEl) { revealPage(); return; }
 
-  /* ── Typewriter sur les 2 lignes du bas ── */
   const line1El = document.getElementById('loader-line1');
   const line2El = document.getElementById('loader-line2');
   const TEXT1   = 'Hulya Zorlu';
   const TEXT2   = 'UI_UX_Designer_Portfolio';
 
-  /* Durée totale : 2200ms → compteur atteint 042 à ~2200ms
-     Line1 : 11 chars × 58ms = 638ms (finie à 638ms)
-     Gap   : 80ms
-     Line2 : 24 chars × 61ms = 1464ms (démarre à 718ms, finie à 2182ms) ✓ */
   function typeWriter(el, text, charDelay, startDelay) {
     if (!el) return;
     let i = 0;
@@ -57,7 +66,6 @@
   typeWriter(line1El, TEXT1, 58, 0);
   typeWriter(line2El, TEXT2, 61, 718);
 
-  /* ── Compteur 000 → 042 ── */
   let count = 0;
   const maxCount = 42;
   const duration = 2200;
@@ -82,106 +90,29 @@
   }, tickMs);
 })();
 
-/* ── Typewriter : élément texte simple ───────────────────────── */
-function typewriterEl(el, text, charDelay, onDone) {
-  el.textContent = '';
-  el.style.opacity = '1';
-  const cursor = document.createElement('span');
-  cursor.className = 'tw-cursor';
-  cursor.textContent = '|';
-  el.appendChild(cursor);
-  let i = 0;
-  (function type() {
-    el.insertBefore(document.createTextNode(text[i]), cursor);
-    i++;
-    if (i < text.length) setTimeout(type, charDelay);
-    else { cursor.remove(); if (onDone) onDone(); }
-  })();
-}
 
-/* ── Typewriter : lien social avec SVG ───────────────────────── */
-function typewriterSocial(el, charDelay, onDone) {
-  const svg = el.querySelector('svg');
-  let text = '';
-  el.childNodes.forEach(n => { if (n.nodeType === Node.TEXT_NODE) text += n.textContent; });
-  text = text.trim();
-  while (el.firstChild) el.removeChild(el.firstChild);
-  el.style.opacity = '1';
-  const cursor = document.createElement('span');
-  cursor.className = 'tw-cursor';
-  cursor.textContent = '|';
-  el.appendChild(cursor);
-  let i = 0;
-  (function type() {
-    el.insertBefore(document.createTextNode(text[i]), cursor);
-    i++;
-    if (i < text.length) {
-      setTimeout(type, charDelay);
-    } else {
-      cursor.remove();
-      el.appendChild(document.createTextNode(' '));
-      if (svg) el.appendChild(svg);
-      if (onDone) onDone();
-    }
-  })();
-}
+/* ── CSS Typewriter trigger ───────────────────────────────────── */
+/* charsPerSec ≈ 13 = comfortable reading speed */
+function triggerTypewriter(twEl, charsPerSec, onDone) {
+  const charCount = twEl.textContent.length;
+  if (charCount === 0) { if (onDone) onDone(); return; }
+  const duration = charCount / charsPerSec;
+  twEl.style.animation = `typing ${duration}s steps(${charCount}, end) forwards`;
 
-/* ── Reveal page après loader ────────────────────────────────── */
-function revealPage() {
+  const container = twEl.closest('.typewriter-container');
+  if (container) container.style.opacity = '1';
 
-  /* 1 — Nav droite : typewriter gauche → droite (Projects en premier) */
-  const navItems = [...document.querySelectorAll('.nav_right .nav_lk, .nav_right .nav_cta')];
-  const navTexts = navItems.map(el => el.textContent.trim());
-  navItems.forEach(el => { el.textContent = ''; });
-
-  let navIdx = 0;
-  function typeNextNav() {
-    if (navIdx >= navItems.length) { setTimeout(revealNavLeft, 80); return; }
-    const el = navItems[navIdx];
-    const text = navTexts[navIdx++];
-    typewriterEl(el, text, 55, typeNextNav);
-  }
-  typeNextNav();
-
-  /* 2 — Nav gauche : scramble "HULYAZORLU_PAR" + clock apparaît */
-  function revealNavLeft() {
-    const navLeft = document.querySelector('.nav_left');
-    if (navLeft) navLeft.style.opacity = '1';
-    const brand = document.querySelector('.nav_brand');
-    if (brand) scramble(brand, 'HULYAZORLU_PAR', { delay: 0, duration: 900 });
-    const clock = document.querySelector('.nav_clock');
-    if (clock) clock.style.opacity = '1';
-  }
-
-  /* 3 — Titre chars */
-  document.querySelectorAll('.ttj').forEach((row, rowIdx) => {
-    row.querySelectorAll('.char').forEach((ch, charIdx) => {
-      ch.style.transitionDelay = `${rowIdx * 150 + charIdx * 55}ms`;
-    });
-    setTimeout(() => row.classList.add('act'), 100 + rowIdx * 150);
-  });
-
-  /* 4 — PORTFOLIO_26 + scroll */
-  const portEl = document.getElementById('portfolio-txt');
-  if (portEl) scramble(portEl, 'PORTFOLIO_26', { delay: 1400, duration: 1800 });
-  const scrollEl = document.getElementById('scroll-txt');
-  if (scrollEl) scramble(scrollEl, '[scroll to explore]', { delay: 1800, duration: 2400, loop: true });
-
-  /* 5 — Socials : typewriter séquentiel après 500ms */
-  const socials = [...document.querySelectorAll('.social_lk')];
-  let socIdx = 0;
-  function typeNextSocial() {
-    if (socIdx >= socials.length) return;
-    typewriterSocial(socials[socIdx++], 60, typeNextSocial);
-  }
-  setTimeout(typeNextSocial, 500);
+  setTimeout(() => {
+    if (container) container.classList.add('done');
+    if (onDone) onDone();
+  }, duration * 1000 + 60);
 }
 
 
-/* ── Scramble text (Eva Sánchez Awrite style) ────────────────── */
+/* ── Scramble text ────────────────────────────────────────────── */
 const GLYPHS = '&$*@)]}=|%·(){+/9}[·@$)';
 
-function scramble(el, finalText, { delay = 0, duration = 1200, loop = false } = {}) {
+function scramble(el, finalText, { delay = 0, duration = 1200 } = {}) {
   const chars = finalText.split('');
   const totalFrames = Math.ceil(duration / 40);
   let frame = 0;
@@ -199,12 +130,98 @@ function scramble(el, finalText, { delay = 0, duration = 1200, loop = false } = 
       requestAnimationFrame(render);
     } else {
       el.textContent = finalText;
-      if (loop) setTimeout(() => { frame = 0; scramble(el, finalText, { delay: 0, duration, loop }); }, 4000);
     }
   }
 
   setTimeout(() => requestAnimationFrame(render), delay);
 }
+
+
+/* ── Reveal page after loader ─────────────────────────────────── */
+function revealPage() {
+
+  /* 1 — Nav right: typewriter sequentially left → right */
+  const navTwEls = [...document.querySelectorAll('.nav_right .typewriter')];
+  let navIdx = 0;
+
+  function typeNextNav() {
+    if (navIdx >= navTwEls.length) {
+      /* all nav-right done → reveal nav-left */
+      setTimeout(revealNavLeft, 120);
+      return;
+    }
+    const twEl = navTwEls[navIdx++];
+    const container = twEl.closest('.typewriter-container');
+    if (container) container.style.opacity = '1';
+    triggerTypewriter(twEl, 13, typeNextNav);
+  }
+  typeNextNav();
+
+  /* 2 — Nav left: brand scramble + clock typewriter simultaneously */
+  function revealNavLeft() {
+    const navLeft = document.querySelector('.nav_left');
+    if (navLeft) navLeft.style.opacity = '1';
+
+    /* brand: scramble random chars → HULYAZORLU_PAR */
+    const brandTw = document.getElementById('brand-tw');
+    if (brandTw) {
+      const container = brandTw.closest('.typewriter-container');
+      /* show full width immediately — scramble handles character display */
+      brandTw.style.width = '100%';
+      if (container) { container.style.opacity = '1'; container.classList.add('done'); }
+      scramble(brandTw, 'HULYAZORLU_PAR', { delay: 0, duration: 900 });
+    }
+
+    /* clock: typewriter */
+    if (window.triggerClockTypewriter) {
+      const clockContainer = document.getElementById('clock-tw-container');
+      if (clockContainer) clockContainer.style.opacity = '1';
+      window.triggerClockTypewriter();
+    }
+  }
+
+  /* 3 — Title chars reveal */
+  document.querySelectorAll('.ttj').forEach((row, rowIdx) => {
+    row.querySelectorAll('.char').forEach((ch, charIdx) => {
+      ch.style.transitionDelay = `${rowIdx * 150 + charIdx * 55}ms`;
+    });
+    setTimeout(() => row.classList.add('act'), 100 + rowIdx * 150);
+  });
+
+  /* 4 — PORTFOLIO_26, scroll, socials — appear together ~1.8s after start */
+  setTimeout(() => {
+    /* portfolio */
+    const portTw = document.querySelector('#portfolio-txt .typewriter');
+    if (portTw) {
+      const c = portTw.closest('.typewriter-container');
+      if (c) c.style.opacity = '1';
+      triggerTypewriter(portTw, 13, null);
+    }
+
+    /* scroll */
+    const scrollTw = document.querySelector('#scroll-txt .typewriter');
+    if (scrollTw) {
+      const c = scrollTw.closest('.typewriter-container');
+      if (c) c.style.opacity = '1';
+      triggerTypewriter(scrollTw, 13, null);
+    }
+
+    /* socials: typewriter sequentially */
+    const socialTwEls = [...document.querySelectorAll('.hero_socials .typewriter')];
+    let socIdx = 0;
+    function typeNextSocial() {
+      if (socIdx >= socialTwEls.length) return;
+      const twEl = socialTwEls[socIdx++];
+      const socialLink = twEl.closest('.social_lk');
+      if (socialLink) socialLink.style.opacity = '1';
+      const c = twEl.closest('.typewriter-container');
+      if (c) c.style.opacity = '1';
+      triggerTypewriter(twEl, 13, typeNextSocial);
+    }
+    typeNextSocial();
+  }, 1800);
+}
+
 
 /* ── Mobile menu ─────────────────────────────────────────────── */
 (function initMobileMenu() {
