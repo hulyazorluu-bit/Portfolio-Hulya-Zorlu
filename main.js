@@ -29,16 +29,39 @@
 })();
 
 
-/* ── Loader 000 → 100 ────────────────────────────────────────── */
+/* ── Loader 000 → 100 + typewriter texte ─────────────────────── */
 (function initLoader() {
-  const loader   = document.getElementById('loader');
-  const countEl  = document.getElementById('loader-count');
+  const loader  = document.getElementById('loader');
+  const countEl = document.getElementById('loader-count');
   if (!loader || !countEl) { revealPage(); return; }
 
+  /* ── Typewriter sur les 2 lignes du bas ── */
+  const line1El = document.getElementById('loader-line1');
+  const line2El = document.getElementById('loader-line2');
+  const TEXT1   = 'Hulya Zorlu';
+  const TEXT2   = 'UI_UX_Designer_Portfolio';
+
+  /* Durée totale loader : 2200ms → 099 atteint à ~2178ms
+     Line1 : 11 chars × 58ms = 638ms  (fini à 638ms)
+     Gap   : 80ms
+     Line2 : 24 chars × 60ms = 1440ms (fini à 2158ms) ✓ avant 2178ms */
+  function typeWriter(el, text, charDelay, startDelay) {
+    if (!el) return;
+    let i = 0;
+    setTimeout(function type() {
+      el.textContent = text.slice(0, ++i);
+      if (i < text.length) setTimeout(type, charDelay);
+    }, startDelay);
+  }
+
+  typeWriter(line1El, TEXT1, 58,  0);
+  typeWriter(line2El, TEXT2, 60,  638 + 80);
+
+  /* ── Compteur ── */
   let count = 0;
-  const duration = 2000;   /* durée totale en ms */
-  const tick     = 30;     /* intervalle ms */
-  const steps    = duration / tick;
+  const duration = 2200;
+  const tickMs   = 30;
+  const steps    = duration / tickMs;
   const inc      = 100 / steps;
 
   const timer = setInterval(() => {
@@ -53,9 +76,9 @@
           loader.style.display = 'none';
           revealPage();
         }, 700);
-      }, 150);
+      }, 200);
     }
-  }, tick);
+  }, tickMs);
 })();
 
 /* ── Reveal page après loader ────────────────────────────────── */
