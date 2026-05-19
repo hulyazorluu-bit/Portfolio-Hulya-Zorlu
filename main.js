@@ -224,7 +224,7 @@ function revealPage() {
   const scrollEl = document.getElementById('scroll-txt');
 
   setTimeout(() => {
-    if (portTw) triggerTypewriter(portTw, 4, null); /* 12 chars / 4 = 3s */
+    if (portTw) triggerTypewriter(portTw, SPEED, null);
 
     if (scrollEl) {
       scrollEl.style.opacity = '1';
