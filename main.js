@@ -146,7 +146,7 @@ function loopTypewriter(twEl, charsPerSec) {
 /* ── Scramble text ────────────────────────────────────────────── */
 const GLYPHS = '&$*@)]}=|%·(){+/9}[·@$)';
 
-function scramble(el, finalText, { delay = 0, duration = 1200 } = {}) {
+function scramble(el, finalText, { delay = 0, duration = 1200, loop = false } = {}) {
   const chars = finalText.split('');
   const totalFrames = Math.ceil(duration / 40);
   let frame = 0;
@@ -164,6 +164,7 @@ function scramble(el, finalText, { delay = 0, duration = 1200 } = {}) {
       requestAnimationFrame(render);
     } else {
       el.textContent = finalText;
+      if (loop) setTimeout(() => { frame = 0; scramble(el, finalText, { delay: 0, duration, loop }); }, 4000);
     }
   }
 
@@ -231,8 +232,11 @@ function revealPage() {
     const portTw = document.querySelector('#portfolio-txt .typewriter');
     if (portTw) triggerTypewriter(portTw, SPEED, null);
 
-    const scrollTw = document.querySelector('#scroll-txt .typewriter');
-    if (scrollTw) loopTypewriter(scrollTw, SPEED);
+    const scrollEl = document.getElementById('scroll-txt');
+    if (scrollEl) {
+      scrollEl.style.opacity = '1';
+      scramble(scrollEl, '[scroll to explore]', { delay: 0, duration: 2400, loop: true });
+    }
   }, 1500);
 }
 
