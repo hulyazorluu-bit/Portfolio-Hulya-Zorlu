@@ -224,11 +224,11 @@ function revealPage() {
   const scrollEl = document.getElementById('scroll-txt');
 
   setTimeout(() => {
-    if (portTw) triggerTypewriter(portTw, SPEED, null);
+    if (portTw) triggerTypewriter(portTw, 4, null); /* 12 chars / 4 = 3s */
 
     if (scrollEl) {
       scrollEl.style.opacity = '1';
-      scramble(scrollEl, '[scroll to explore]', { duration: 4200, loop: true, loopPause: 4000 });
+      scramble(scrollEl, '[scroll to explore]', { duration: 3000, loop: true, loopPause: 4000 });
     }
   }, 1400);
 }
