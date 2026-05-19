@@ -236,7 +236,7 @@ function revealPage() {
         setTimeout(() => {
           scrollEl.style.transition = '';
           scrollEl.style.filter = '';
-          scramble(scrollEl, '[scroll to explore]', { duration: 1400, loop: true, loopPause: 2200 });
+          scramble(scrollEl, '[scroll to explore]', { duration: 2000, loop: true, loopPause: 3800 });
         }, 400);
       }));
     }
