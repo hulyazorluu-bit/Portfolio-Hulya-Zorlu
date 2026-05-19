@@ -43,7 +43,7 @@
 })();
 
 
-/* ── Loader 000 → 042 + typewriter text ──────────────────────── */
+/* ── Loader — progress réel selon navigateur / connexion ─────── */
 (function initLoader() {
   const loader  = document.getElementById('loader');
   const countEl = document.getElementById('loader-count');
@@ -62,32 +62,73 @@
       if (i < text.length) setTimeout(type, charDelay);
     }, startDelay);
   }
-
   typeWriter(line1El, TEXT1, 58, 0);
   typeWriter(line2El, TEXT2, 61, 718);
 
-  let count = 0;
-  const maxCount = 42;
-  const duration = 2200;
-  const tickMs   = 30;
-  const steps    = duration / tickMs;
-  const inc      = maxCount / steps;
+  const START    = Date.now();
+  const MIN_MS   = 1400; /* affichage minimum même si tout est déjà en cache */
+  let displayed  = 0;
+  let pageLoaded = false;
+  let closed     = false;
 
-  const timer = setInterval(() => {
-    count = Math.min(count + inc, maxCount);
-    countEl.textContent = String(Math.floor(count)).padStart(3, '0');
-
-    if (count >= maxCount) {
-      clearInterval(timer);
-      setTimeout(() => {
-        loader.style.opacity = '0';
-        setTimeout(() => {
-          loader.style.display = 'none';
-          revealPage();
-        }, 700);
-      }, 200);
+  function setDisplay(n) {
+    n = Math.min(Math.floor(n), 100);
+    if (n > displayed) {
+      displayed = n;
+      countEl.textContent = String(displayed).padStart(3, '0');
     }
-  }, tickMs);
+  }
+
+  /* Progression basée sur les ressources réellement chargées */
+  function resourceProgress() {
+    const entries = performance.getEntriesByType('resource');
+    if (!entries.length) return 0;
+    const done = entries.filter(e => e.responseEnd > 0).length;
+    return (done / entries.length) * 88; /* jusqu'à 88 % via ressources */
+  }
+
+  /* Observer les nouvelles ressources en temps réel */
+  if (window.PerformanceObserver) {
+    try {
+      new PerformanceObserver(() => setDisplay(resourceProgress()))
+        .observe({ entryTypes: ['resource'] });
+    } catch (_) {}
+  }
+
+  /* Tick léger pour maintenir le progrès à jour */
+  const pulse = setInterval(() => {
+    setDisplay(resourceProgress());
+    if (pageLoaded && Date.now() - START >= MIN_MS) {
+      clearInterval(pulse);
+      finalize();
+    }
+  }, 80);
+
+  /* Quand tout est chargé : sauter jusqu'à 100 puis fermer */
+  function finalize() {
+    if (closed) return;
+    const jump = setInterval(() => {
+      /* sauts irréguliers : connexion rapide → gros sauts */
+      setDisplay(displayed + Math.ceil(Math.random() * 9 + 2));
+      if (displayed >= 100) {
+        clearInterval(jump);
+        closed = true;
+        setTimeout(() => {
+          loader.style.opacity = '0';
+          setTimeout(() => { loader.style.display = 'none'; revealPage(); }, 700);
+        }, 150);
+      }
+    }, 35);
+  }
+
+  window.addEventListener('load', () => {
+    pageLoaded = true;
+    setDisplay(resourceProgress());
+    if (Date.now() - START >= MIN_MS) { clearInterval(pulse); finalize(); }
+  });
+
+  /* Fallback si load ne se déclenche pas dans les 8s */
+  setTimeout(() => { if (!closed) { pageLoaded = true; clearInterval(pulse); finalize(); } }, 8000);
 })();
 
 
