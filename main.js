@@ -108,6 +108,41 @@ function triggerTypewriter(twEl, charsPerSec, onDone) {
 }
 
 
+/* ── CSS Typewriter loop (type → pause → reset → repeat) ────────── */
+function loopTypewriter(twEl, charsPerSec) {
+  const container = twEl.closest('.typewriter-container');
+  if (container) container.style.opacity = '1';
+
+  function cycle() {
+    const charCount = twEl.textContent.length;
+    const typeDuration = charCount / charsPerSec; /* ~0.85s for 19 chars */
+
+    /* show cursor while typing */
+    if (container) container.classList.remove('done');
+
+    twEl.style.animation = 'none';
+    twEl.style.width = '0';
+
+    /* force reflow so CSS picks up the reset */
+    void twEl.offsetWidth;
+
+    twEl.style.animation = `typing ${typeDuration}s steps(${charCount}, end) forwards`;
+
+    /* after fully typed: pause 2.5s, then wipe and loop */
+    setTimeout(() => {
+      if (container) container.classList.add('done'); /* hide cursor during pause */
+      setTimeout(() => {
+        twEl.style.animation = 'none';
+        twEl.style.width = '0';
+        void twEl.offsetWidth;
+        cycle();
+      }, 2500);
+    }, typeDuration * 1000 + 60);
+  }
+
+  cycle();
+}
+
 /* ── Scramble text ────────────────────────────────────────────── */
 const GLYPHS = '&$*@)]}=|%·(){+/9}[·@$)';
 
@@ -189,7 +224,7 @@ function revealPage() {
     if (portTw) triggerTypewriter(portTw, SPEED, null);
 
     const scrollTw = document.querySelector('#scroll-txt .typewriter');
-    if (scrollTw) triggerTypewriter(scrollTw, SPEED, null);
+    if (scrollTw) loopTypewriter(scrollTw, SPEED);
   }, 1500);
 }
 
