@@ -41,10 +41,10 @@
   const TEXT1   = 'Hulya Zorlu';
   const TEXT2   = 'UI_UX_Designer_Portfolio';
 
-  /* Durée totale loader : 2200ms → 099 atteint à ~2178ms
-     Line1 : 11 chars × 58ms = 638ms  (fini à 638ms)
+  /* Durée totale : 2200ms → compteur atteint 042 à ~2200ms
+     Line1 : 11 chars × 58ms = 638ms (finie à 638ms)
      Gap   : 80ms
-     Line2 : 24 chars × 60ms = 1440ms (fini à 2158ms) ✓ avant 2178ms */
+     Line2 : 24 chars × 61ms = 1464ms (démarre à 718ms, finie à 2182ms) ✓ */
   function typeWriter(el, text, charDelay, startDelay) {
     if (!el) return;
     let i = 0;
@@ -54,21 +54,22 @@
     }, startDelay);
   }
 
-  typeWriter(line1El, TEXT1, 58,  0);
-  typeWriter(line2El, TEXT2, 60,  638 + 80);
+  typeWriter(line1El, TEXT1, 58, 0);
+  typeWriter(line2El, TEXT2, 61, 718);
 
-  /* ── Compteur ── */
+  /* ── Compteur 000 → 042 ── */
   let count = 0;
+  const maxCount = 42;
   const duration = 2200;
   const tickMs   = 30;
   const steps    = duration / tickMs;
-  const inc      = 100 / steps;
+  const inc      = maxCount / steps;
 
   const timer = setInterval(() => {
-    count = Math.min(count + inc, 100);
+    count = Math.min(count + inc, maxCount);
     countEl.textContent = String(Math.floor(count)).padStart(3, '0');
 
-    if (count >= 100) {
+    if (count >= maxCount) {
       clearInterval(timer);
       setTimeout(() => {
         loader.style.opacity = '0';

@@ -55,36 +55,32 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   z-index: 0;
 }
 
-/* Double tiret vertical : 2 lignes séparées de 3px, pointillés 5px/8px */
+/* Double tiret vertical : 2 lignes séparées de 6px, tirets 9px/18px */
 .Mbg_col {
   display: flex;
   flex-direction: column;
   background-image:
-    repeating-linear-gradient(to bottom, rgba(10,10,10,0.13) 0, rgba(10,10,10,0.13) 5px, transparent 5px, transparent 13px),
-    repeating-linear-gradient(to bottom, rgba(10,10,10,0.13) 0, rgba(10,10,10,0.13) 5px, transparent 5px, transparent 13px);
-  background-size: 1px 13px, 1px 13px;
-  background-position: right 0px top 0, right 3px top 0;
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.13) 0, rgba(10,10,10,0.13) 9px, transparent 9px, transparent 18px),
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.13) 0, rgba(10,10,10,0.13) 9px, transparent 9px, transparent 18px);
+  background-size: 1px 18px, 1px 18px;
+  background-position: right 0px top 0, right 6px top 0;
   background-repeat: repeat-y, repeat-y;
 }
 
-/* Première colonne : ajoute aussi les 2 tirets sur la gauche */
+/* Première colonne : 2 tirets à gauche aussi */
 .Mbg_col:first-child {
   background-image:
-    repeating-linear-gradient(to bottom, rgba(10,10,10,0.13) 0, rgba(10,10,10,0.13) 5px, transparent 5px, transparent 13px),
-    repeating-linear-gradient(to bottom, rgba(10,10,10,0.13) 0, rgba(10,10,10,0.13) 5px, transparent 5px, transparent 13px),
-    repeating-linear-gradient(to bottom, rgba(10,10,10,0.13) 0, rgba(10,10,10,0.13) 5px, transparent 5px, transparent 13px),
-    repeating-linear-gradient(to bottom, rgba(10,10,10,0.13) 0, rgba(10,10,10,0.13) 5px, transparent 5px, transparent 13px);
-  background-size: 1px 13px, 1px 13px, 1px 13px, 1px 13px;
-  background-position: right 0px top 0, right 3px top 0, left 0px top 0, left 3px top 0;
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.13) 0, rgba(10,10,10,0.13) 9px, transparent 9px, transparent 18px),
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.13) 0, rgba(10,10,10,0.13) 9px, transparent 9px, transparent 18px),
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.13) 0, rgba(10,10,10,0.13) 9px, transparent 9px, transparent 18px),
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.13) 0, rgba(10,10,10,0.13) 9px, transparent 9px, transparent 18px);
+  background-size: 1px 18px, 1px 18px, 1px 18px, 1px 18px;
+  background-position: right 0px top 0, right 6px top 0, left 0px top 0, left 6px top 0;
   background-repeat: repeat-y, repeat-y, repeat-y, repeat-y;
 }
 
-/* Tick horizontal en haut — aligné avec la nav (4.8rem) */
-.Mbg_col_el-1 {
-  height: 4.8rem;
-  border-bottom: 1px dashed rgba(10,10,10,0.13);
-  flex-shrink: 0;
-}
+/* Tick horizontal supprimé — plus de trait dans la nav */
+.Mbg_col_el-1 { height: 0; flex-shrink: 0; }
 
 .Mbg_col_el-2 { flex: 1; }
 
