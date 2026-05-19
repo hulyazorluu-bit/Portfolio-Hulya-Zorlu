@@ -3,49 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hulya Zorlu - UI/UX Designer basée à Paris. Recherche utilisateur, wireframing, prototypage haute fidélité." />
+  <meta name="description" content="Hulya Zorlu — UI/UX Designer basée à Paris. Design d'interface, typographie, expériences digitales." />
   <meta name="author" content="Hulya Zorlu" />
-  <meta name="theme-color" content="#F0EDE8" />
-  <title>Hulya Zorlu - UI/UX Designer</title>
+  <title>Hulya Zorlu — UI/UX Designer</title>
   <link rel="icon" type="image/png" href="logo avatar hulya.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Space+Mono&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=17" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@300;400;700&family=Space+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
   <!-- LOADER -->
-  <div id="loader" role="status" aria-label="Chargement">
+  <div id="loader">
     <div id="loader-counter">000</div>
     <div id="loader-info">
       <p id="loader-name">HULYA ZORLU</p>
-      <p id="loader-sub">UI/UX DESIGNER_PORT;<span class="blink-cur"></span></p>
+      <p id="loader-sub">UI/UX DESIGNER — PARIS</p>
     </div>
   </div>
 
-  <!-- VERTICAL GRID -->
-  <div id="grid-overlay" aria-hidden="true">
-    <div class="gl"></div><div class="gl"></div><div class="gl"></div>
-    <div class="gl"></div><div class="gl"></div><div class="gl"></div>
-    <div class="gl"></div><div class="gl"></div>
+  <!-- BACKGROUND COLUMNS -->
+  <div class="Mbg" aria-hidden="true">
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
   </div>
 
   <!-- NAV -->
-  <nav id="nav" role="navigation">
-    <div class="nav-left">
-      <a href="#hero" class="nav-brand">HULYA_ZORLU_PAR</a>
-      <span id="clock" class="nav-clock">00:00</span>
+  <nav class="nav" role="navigation">
+    <div class="nav_blur" aria-hidden="true"><div></div><div></div><div></div><div></div></div>
+    <div class="nav_top">
+
+      <div class="nav_left">
+        <a class="nav_logo Awrite" href="#hero" aria-label="Hulya Zorlu — Accueil">
+          HULYA<span style="opacity:.3;margin:0 3px">_</span>ZORLU
+        </a>
+        <div class="sep" aria-hidden="true"></div>
+        <div class="nav_clock" aria-label="Heure de Paris">
+          <span class="nav_clock_p">PAR</span>&nbsp;
+          <span id="clock-h">00</span><span>:</span><span id="clock-m">00</span>
+        </div>
+      </div>
+
+      <div class="nav_right">
+        <div class="nav_right_ops">
+          <a class="Awrite" href="#projects">INDEX</a>
+          <a class="Awrite" href="#about">ABOUT</a>
+          <a class="Awrite" href="#contact">CONTACT</a>
+        </div>
+        <a class="nav_cta Awrite" href="mailto:zorluu.hulya@gmail.com">LET'S TALK</a>
+      </div>
+
+      <button id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
     </div>
-    <ul class="nav-links">
-      <li><a href="#hero"     class="nav-link">INDEX</a></li>
-      <li><a href="#projects" class="nav-link">PROJETS</a></li>
-      <li><a href="#about"    class="nav-link">ABOUT</a></li>
-    </ul>
-    <a href="#contact" class="nav-cta">PARLONS</a>
-    <button id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
-      <span></span><span></span>
-    </button>
   </nav>
 
   <!-- MOBILE MENU -->
@@ -54,233 +77,187 @@
       <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" viewBox="0 0 24 24"><path d="M3 3l18 18M21 3L3 21"/></svg>
     </button>
     <ul>
-      <li><a href="#hero"        class="mob-link">INDEX</a></li>
-      <li><a href="#projects"    class="mob-link">PROJETS</a></li>
-      <li><a href="#about"       class="mob-link">ABOUT</a></li>
-      <li><a href="#experience"  class="mob-link">EXPÉRIENCE</a></li>
-      <li><a href="#competences" class="mob-link">COMPÉTENCES</a></li>
-      <li><a href="#contact"     class="mob-link">CONTACT</a></li>
+      <li><a href="#hero"     class="mob-link">Index</a></li>
+      <li><a href="#projects" class="mob-link">Projets</a></li>
+      <li><a href="#about"    class="mob-link">About</a></li>
+      <li><a href="#contact"  class="mob-link">Contact</a></li>
     </ul>
   </div>
 
-  <main>
+  <!-- CONTENT -->
+  <div id="content">
+    <main class="home">
 
-    <!-- HERO -->
-    <section id="hero" class="s-hero">
-      <div class="hero-void" aria-hidden="true"></div>
+      <!-- HERO -->
+      <section class="home_hero" id="hero">
+        <div class="cnt">
 
-      <div class="hero-content">
-        <div class="hero-name">
-          <div class="hero-line-wrap">
-            <div class="hero-line-inner">
-              <span id="wave-hulya" class="wave-text">Hulya</span>
+          <div class="cnt_hold">
+            <h1 class="cnt_tt">
+              <div class="Atitle">
+                <div class="ttj" id="hero-hulya">Hulya</div>
+              </div>
+              <div class="Atitle">
+                <div class="ttj" id="hero-zorlu">Zorlu</div>
+              </div>
+            </h1>
+            <div class="cnt_bt">
+              <h3 id="hero-role">UI/UX Designer<br>Basée à Paris</h3>
+              <h4 id="hero-label">PORTFOLIO_26/26</h4>
             </div>
           </div>
-          <div class="hero-line-wrap">
-            <div class="hero-line-inner">
-              <span id="wave-zorlu" class="wave-text">Zorlu</span>
-            </div>
+
+          <div class="cnt_sc">
+            <h4 id="scroll-text">[scroll to explore]</h4>
           </div>
-        </div>
 
-        <div class="hero-meta">
-          <span class="hero-role">UI/UX Designer</span>
-          <span class="hero-city">Basée à Paris</span>
-        </div>
-
-        <p class="hero-label">PORTFOLIO_26/26</p>
-      </div>
-
-      <!-- Bottom bar: typewriter left, links right -->
-      <div class="hero-bar">
-        <div id="typewriter-wrap">
-          <span id="typewriter-out"></span>
-        </div>
-        <div class="hero-ext-links">
-          <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" class="hero-ext">LINKEDIN <span class="arr">↗</span></a>
-          <a href="mailto:zorluu.hulya@gmail.com" class="hero-ext">EMAIL <span class="arr">↗</span></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJETS -->
-    <section id="projects" class="s-projects">
-      <div class="container">
-        <div class="proj-header">
-          <h2 class="proj-h2">Projets Sélectionnés</h2>
-          <span class="proj-count">[003]</span>
-        </div>
-
-        <div class="proj-grid">
-
-          <!-- Projet 1 -->
-          <article class="proj-card proj-card--1">
-            <a href="#" class="proj-img-wrap" tabindex="-1" aria-hidden="true">
-              <img src="assets/tamino.png" alt="Album Website" loading="lazy" />
+          <div class="cnt_lk" id="hero-links">
+            <a class="Awrite" href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" aria-label="LinkedIn">
+              LinkedIn
+              <i class="arr-svg" aria-hidden="true"><svg viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="currentColor"/></svg></i>
             </a>
-            <div class="proj-info">
-              <a href="#" class="proj-label-link">
-                <span class="proj-num">001_</span>
-                <span class="proj-name">ALBUM WEBSITE</span>
-                <span class="proj-tags">Web Design, Développement</span>
-                <span class="proj-arrow">↗</span>
-              </a>
-            </div>
-          </article>
-
-          <!-- Projet 2 -->
-          <article class="proj-card proj-card--2">
-            <a href="#" class="proj-img-wrap" tabindex="-1" aria-hidden="true">
-              <img src="assets/Hand and Iphone 16 Pro.jpg" alt="Wevent" loading="lazy" />
+            <a class="Awrite" href="mailto:zorluu.hulya@gmail.com" aria-label="Email">
+              Email
+              <i class="arr-svg" aria-hidden="true"><svg viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="currentColor"/></svg></i>
             </a>
-            <div class="proj-info">
-              <a href="#" class="proj-label-link">
-                <span class="proj-num">002_</span>
-                <span class="proj-name">WEVENT</span>
-                <span class="proj-tags">Prototypage, UI/UX Design</span>
-                <span class="proj-arrow">↗</span>
-              </a>
-            </div>
-          </article>
-
-          <!-- Projet 3 -->
-          <article class="proj-card proj-card--3">
-            <a href="#" class="proj-img-wrap" tabindex="-1" aria-hidden="true">
-              <img src="assets/mockupDeezerAPI.jpg" alt="Deezer API" loading="lazy" />
+            <a class="Awrite" href="https://github.com/hulyazorluu-bit" target="_blank" rel="noopener" aria-label="GitHub">
+              GitHub
+              <i class="arr-svg" aria-hidden="true"><svg viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="currentColor"/></svg></i>
             </a>
-            <div class="proj-info">
-              <a href="#" class="proj-label-link">
-                <span class="proj-num">003_</span>
-                <span class="proj-name">DEEZER API</span>
-                <span class="proj-tags">HTML/CSS, JavaScript</span>
-                <span class="proj-arrow">↗</span>
-              </a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- FEATURED WORKS -->
+      <section class="home_prjs" id="projects">
+        <div class="cnt">
+
+          <div class="cnt_t">
+            <div class="Atitle">
+              <h2 class="ttj" id="feat-title">Featured works</h2>
             </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- BRIDGE cream → black -->
-    <div class="bridge" aria-hidden="true"></div>
-
-    <!-- ABOUT -->
-    <section id="about" class="s-about">
-      <div class="container">
-        <p class="sec-label">[ABOUT]</p>
-        <div class="about-grid">
-          <div class="about-left">
-            <h2 class="about-headline">
-              <span class="about-line">Designer UI/UX,</span>
-              <span class="about-line">aussi Créative</span>
-              <span class="about-line">& Curieuse.</span>
-            </h2>
-          </div>
-          <div class="about-right">
-            <p class="about-bio">
-              PASSIONNÉE PAR LE DESIGN D'INTERFACE, LA TYPOGRAPHIE ET LES EXPÉRIENCES DIGITALES IMMERSIVES. SPÉCIALISÉE DANS LA CRÉATION DE PARCOURS UTILISATEURS INTUITIFS ET MÉMORABLES.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience" class="s-experience">
-      <div class="container">
-        <p class="sec-label">[EXPÉRIENCE]</p>
-        <div class="exp-list">
-
-          <div class="exp-entry">
-            <span class="exp-year">2026</span>
-            <h4 class="exp-title">La Toile Emlyon</h4>
-            <span class="exp-role">Certificat Web Design et Développement</span>
+            <h3>[003]</h3>
           </div>
 
-          <div class="exp-entry">
-            <span class="exp-year">2024–2025</span>
-            <h4 class="exp-title">M2i Formation</h4>
-            <span class="exp-role">Testeur de Logiciel</span>
+          <div class="cnt_ft">
+
+            <a class="cnt_prj cnt_prj-0" href="#" aria-label="Album Website">
+              <div class="cnt_prj_im">
+                <img src="assets/tamino.png" alt="Album Website — Hulya Zorlu" loading="lazy" />
+              </div>
+              <div class="cnt_prj_t">
+                <h3>
+                  <span class="num">001_</span>Album Website
+                  <span style="opacity:.35;margin-left:auto;font-size:10px">Web Design, Dev</span>
+                </h3>
+              </div>
+            </a>
+
+            <a class="cnt_prj cnt_prj-1" href="#" aria-label="Wevent">
+              <div class="cnt_prj_im">
+                <img src="assets/Hand and Iphone 16 Pro.jpg" alt="Wevent — Hulya Zorlu" loading="lazy" />
+              </div>
+              <div class="cnt_prj_t">
+                <h3>
+                  <span class="num">002_</span>Wevent
+                  <span style="opacity:.35;margin-left:auto;font-size:10px">Prototypage, UI/UX</span>
+                </h3>
+              </div>
+            </a>
+
           </div>
 
-          <div class="exp-entry">
-            <span class="exp-year">2023–2024</span>
-            <h4 class="exp-title">TANKE</h4>
-            <span class="exp-role">Chef de Projet UX Research</span>
-          </div>
+          <div class="cnt_st">
 
-          <div class="exp-entry">
-            <span class="exp-year">2024</span>
-            <h4 class="exp-title">Olympic Broadcasting Services</h4>
-            <span class="exp-role">Liaison Officer JO 2024</span>
-          </div>
+            <a class="cnt_prj cnt_prj-2" href="#" aria-label="Deezer API">
+              <div class="cnt_prj_im" style="aspect-ratio:16/7">
+                <img src="assets/mockupDeezerAPI.jpg" alt="Deezer API — Hulya Zorlu" loading="lazy" />
+              </div>
+              <div class="cnt_prj_t">
+                <h3>
+                  <span class="num">003_</span>Deezer API
+                  <span style="opacity:.35;margin-left:auto;font-size:10px">HTML/CSS, JavaScript</span>
+                </h3>
+              </div>
+            </a>
 
-          <div class="exp-entry">
-            <span class="exp-year">2022</span>
-            <h4 class="exp-title">AustralieGAD</h4>
-            <span class="exp-role">Assistante Planner Stratégique</span>
+            <div class="cnt_btn">
+              <a class="Awrite" href="#contact" aria-label="Voir tous les projets">See index</a>
+            </div>
+
           </div>
 
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- COMPETENCES -->
-    <section id="competences" class="s-competences">
-      <div class="container">
-        <p class="sec-label">[COMPÉTENCES]</p>
-        <p class="skills-text">
-          Figma <span class="sk-sep">—</span>
-          HTML <span class="sk-sep">—</span>
-          CSS <span class="sk-sep">—</span>
-          JavaScript <span class="sk-sep">—</span>
-          SQL <span class="sk-sep">—</span>
-          Python <span class="sk-sep">—</span>
-          Power BI <span class="sk-sep">—</span>
-          Selenium <span class="sk-sep">—</span>
-          Cypress <span class="sk-sep">—</span>
-          Postman <span class="sk-sep">—</span>
-          Jira <span class="sk-sep">—</span>
-          Agile <span class="sk-sep">—</span>
-          Google Analytics
-        </p>
-        <div class="lang-badges">
-          <span class="lang-pill">Français C2</span>
-          <span class="lang-pill">Turc C2</span>
-          <span class="lang-pill">Anglais C1</span>
-        </div>
-      </div>
-    </section>
+      <!-- ABOUT -->
+      <section class="home_about" id="about">
+        <div class="cnt">
 
-    <!-- CONTACT -->
-    <section id="contact" class="s-contact">
-      <div class="container">
-        <p class="sec-label">[CONTACT]</p>
-        <h2 class="contact-title">
-          <span class="contact-line" id="wave-trav">Travaillons</span>
-          <span class="contact-line" id="wave-ens">ensemble.</span>
-        </h2>
-        <div class="contact-links">
-          <div class="contact-col">
-            <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" class="clink">LINKEDIN <span class="arr">↗</span></a>
-            <a href="mailto:zorluu.hulya@gmail.com" class="clink">EMAIL <span class="arr">↗</span></a>
+          <div class="cnt_tp" id="about-tp">
+            <h2>Designer UI/UX,<br>aussi Créative<br>&amp; Curieuse.</h2>
           </div>
-          <div class="contact-col">
-            <a href="#" class="clink">GITHUB <span class="arr">↗</span></a>
+
+          <div class="cnt_bp">
+            <div class="cnt_x">
+              <div class="Atext">
+                <p id="about-bio">
+                  PASSIONNÉE PAR LE DESIGN D'INTERFACE, LA TYPOGRAPHIE, ET LES DOMAINES DYNAMIQUES DU MOTION ET DES ANIMATIONS WEB. SPÉCIALISÉE DANS LA TRADUCTION DE MARQUES EN EXPÉRIENCES UTILISATEURS DIGITALES UNIQUES ET IMMERSIVES.
+                </p>
+              </div>
+              <a class="linkXS" href="#contact">En savoir plus</a>
+            </div>
+
+            <a class="cnt_im" id="about-img" href="#contact" aria-label="Portrait Hulya Zorlu">
+              <img src="assets/hulya.png" alt="Hulya Zorlu — UI/UX Designer" />
+            </a>
           </div>
+
         </div>
-      </div>
-      <footer class="site-footer">
-        <span>DESIGNED BY_HULYA ZORLU</span>
-        <span>@HULYAZORLU — ALL RIGHTS RESERVED</span>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer" id="contact">
+
+        <div class="footer_cm">
+          <a href="mailto:zorluu.hulya@gmail.com" aria-label="Envoyer un email">Get in touch</a>
+        </div>
+
+        <div class="cnt">
+          <div class="cnt_lk">
+            <a class="Awrite" href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener">
+              LinkedIn
+              <i class="arr-svg"><svg viewBox="0 0 7 7" fill="none"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="white"/></svg></i>
+            </a>
+            <a class="Awrite" href="https://github.com/hulyazorluu-bit" target="_blank" rel="noopener">
+              GitHub
+              <i class="arr-svg"><svg viewBox="0 0 7 7" fill="none"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="white"/></svg></i>
+            </a>
+            <a class="Awrite" href="mailto:zorluu.hulya@gmail.com">
+              Email
+              <i class="arr-svg"><svg viewBox="0 0 7 7" fill="none"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="white"/></svg></i>
+            </a>
+          </div>
+
+          <div class="cnt_cr">
+            <div>Designed by_ <span style="color:rgba(255,255,255,0.55)">HULYA ZORLU</span></div>
+            <div>CSS KILLER — PARIS</div>
+          </div>
+
+          <div class="cnt_cp">© 2026 all rights reserved</div>
+        </div>
+
       </footer>
-    </section>
 
-  </main>
+    </main>
+  </div>
+
+  <!-- CURSOR -->
+  <div class="mouse" id="cursor" aria-hidden="true"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="js/main.js?v=17"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
