@@ -227,18 +227,8 @@ function revealPage() {
     if (portTw) triggerTypewriter(portTw, SPEED, null);
 
     if (scrollEl) {
-      /* blur → net rapidement, puis scramble en boucle */
-      scrollEl.style.filter = 'blur(8px)';
       scrollEl.style.opacity = '1';
-      scrollEl.style.transition = 'filter 0.4s ease-out';
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        scrollEl.style.filter = 'blur(0px)';
-        setTimeout(() => {
-          scrollEl.style.transition = '';
-          scrollEl.style.filter = '';
-          scramble(scrollEl, '[scroll to explore]', { duration: 2000, loop: true, loopPause: 3800 });
-        }, 400);
-      }));
+      scramble(scrollEl, '[scroll to explore]', { duration: 4200, loop: true, loopPause: 4000 });
     }
   }, 1400);
 }
