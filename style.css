@@ -1,0 +1,296 @@
+/* =============================================================
+   HULYA ZORLU — PORTFOLIO v21
+   Neue Montreal · Special Elite · Eva Sánchez style
+   Cream #F0EEE9 · Black #0A0A0A
+   ============================================================= */
+ 
+/* ── Reset ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+html {
+  font-size: 10px;
+  scroll-behavior: smooth;
+}
+ 
+body {
+  font-family: 'neue-montreal', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+  background: #F0EEE9;
+  color: #0A0A0A;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+ 
+a { text-decoration: none; color: inherit; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+button { background: none; border: none; cursor: pointer; padding: 0; }
+ 
+/* ── Utility ─────────────────────────────────────────────────── */
+.sp-elite { font-family: 'Special Elite', monospace; }
+ 
+/* ── NAV ─────────────────────────────────────────────────────── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3.2rem;
+  height: 5rem;
+  /* subtle transparent background */
+  background: rgba(240, 238, 233, 0.0);
+}
+ 
+.nav_left {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+ 
+.nav_brand {
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  color: #888;
+  text-transform: uppercase;
+}
+ 
+.nav_sep {
+  width: 1px;
+  height: 1.4rem;
+  background: rgba(10,10,10,0.2);
+}
+ 
+.nav_clock {
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: #999;
+  text-transform: uppercase;
+}
+ 
+.nav_right {
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+}
+ 
+.nav_lk {
+  font-family: 'neue-montreal', sans-serif;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  color: rgba(10,10,10,0.55);
+  transition: color 0.2s;
+}
+.nav_lk:hover { color: #0A0A0A; }
+ 
+/* ── BURGER ───────────────────────────────────────────────────── */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 24px;
+}
+.burger span {
+  display: block;
+  height: 1.5px;
+  background: #0A0A0A;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.burger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+.burger.open span:nth-child(2) { opacity: 0; }
+ 
+/* ── MOBILE MENU ──────────────────────────────────────────────── */
+.mob-menu {
+  position: fixed;
+  inset: 0;
+  background: #0A0A0A;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 3.2rem 4rem;
+  transform: translateY(-100%);
+  transition: transform 0.5s cubic-bezier(0.77,0,0.175,1);
+}
+.mob-menu.open { transform: translateY(0); }
+ 
+.mob-close {
+  position: absolute;
+  top: 2rem; right: 2.4rem;
+  font-size: 2rem;
+  color: #F0EEE9;
+}
+ 
+.mob-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+ 
+.mob-link {
+  font-size: 3.2rem;
+  color: #F0EEE9;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+ 
+/* ── HERO ────────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 600px;
+  background: #F0EEE9;
+  overflow: hidden;
+}
+ 
+/* ── 12-col grid lines ────────────────────────────────────────── */
+.grid-bg {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  pointer-events: none;
+  z-index: 0;
+}
+ 
+.grid-col {
+  border-right: 1px solid rgba(10,10,10,0.07);
+}
+.grid-col:first-child {
+  border-left: 1px solid rgba(10,10,10,0.07);
+}
+ 
+/* ── TITLE BLOCK — colonnes 7 à 11 ──────────────────────────── */
+/* 12 colonnes = 100% → col 7 débute à (6/12)*100 = 50% */
+.hero_title_wrap {
+  position: absolute;
+  /* aligner sur col 7: gauche = 6 colonnes = 50vw */
+  left: 50%;
+  /* largeur = 5 colonnes = 41.6vw, avec un peu de marge droite */
+  width: 44vw;
+  /* centrage vertical légèrement sous le milieu comme Eva */
+  top: 50%;
+  transform: translateY(-46%);
+  z-index: 2;
+}
+ 
+.hero_title {
+  font-family: 'neue-montreal', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(6.5rem, 9.5vw, 13rem);
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  color: #0A0A0A;
+  /* pas d'animation — statique */
+}
+ 
+.hero_sub {
+  font-family: 'neue-montreal', sans-serif;
+  font-weight: 400;
+  font-size: 1.55rem;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  color: #0A0A0A;
+  margin-top: 2.8rem;
+}
+ 
+.hero_port {
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  color: rgba(10,10,10,0.45);
+  text-transform: uppercase;
+  margin-top: 0.8rem;
+}
+ 
+/* ── SCROLL TO EXPLORE — bas milieu ──────────────────────────── */
+.hero_scroll {
+  position: absolute;
+  bottom: 3.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+ 
+.scroll_txt {
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: #555;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+ 
+/* curseur carré dans le texte scroll */
+.scroll_cursor {
+  display: inline-block;
+  width: 0.75em;
+  height: 0.85em;
+  background: #0A0A0A;
+  vertical-align: middle;
+  margin-left: 1px;
+}
+ 
+/* ── SOCIALS — bas droite ─────────────────────────────────────── */
+.hero_socials {
+  position: absolute;
+  bottom: 3.2rem;
+  right: 3.2rem;
+  display: flex;
+  gap: 2.8rem;
+  z-index: 2;
+}
+ 
+.social_lk {
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  color: #888;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s;
+}
+.social_lk:hover { color: #0A0A0A; }
+.social_lk svg {
+  width: 0.55rem;
+  height: 0.55rem;
+  color: #0A0A0A; /* flèche noire */
+}
+ 
+/* ── RESPONSIVE ───────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .nav_right { display: none; }
+  .burger { display: flex; }
+ 
+  .hero_title_wrap {
+    left: 3.2rem;
+    width: calc(100% - 6.4rem);
+    top: 50%;
+    transform: translateY(-46%);
+  }
+ 
+  .hero_title {
+    font-size: clamp(5rem, 14vw, 9rem);
+  }
+ 
+  .hero_socials {
+    gap: 1.6rem;
+    right: 1.6rem;
+  }
+}
+ 
+@media (max-width: 600px) {
+  .hero_title {
+    font-size: clamp(4.5rem, 15vw, 7rem);
+  }
+ 
+  .hero_socials {
+    flex-direction: column;
+    gap: 1rem;
+    bottom: 5rem;
+  }
+ 
+  .hero_scroll {
+    bottom: 2rem;
+  }
+}

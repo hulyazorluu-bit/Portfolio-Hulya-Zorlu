@@ -3,231 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hulya Zorlu — UI/UX Designer basée à Paris. Recherche utilisateur, wireframing, prototypage haute fidélité." />
+  <meta name="description" content="Hulya Zorlu — UI/UX Designer basée à Paris." />
   <title>Hulya Zorlu — UI/UX Designer</title>
+ 
+  <!-- Neue Montreal -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Special+Elite&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <!-- Special Elite (typewriter) -->
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet" />
+  <!-- Neue Montreal via Bunny Fonts (open source, no tracking) -->
+  <link href="https://fonts.bunny.net/css?family=neue-montreal:400,500,700&display=swap" rel="stylesheet" />
+ 
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <!-- LOADER -->
-  <div id="loader">
-    <div id="loader-count">000</div>
-    <div id="loader-info">
-      <span class="sp-elite">HULYA ZORLU</span>
-      <span class="sp-elite">UI/UX DESIGNER_PORT;<span class="blink-cur"></span></span>
-    </div>
-  </div>
-
+ 
   <!-- NAV -->
   <nav class="nav" id="nav">
-    <div class="nav_blur"></div>
-    <div class="nav_top c-vw">
-      <div class="nav_left">
-        <a href="#" class="nav_logo">HULYA_PAR</a>
-        <div class="nav_sep"></div>
-        <div class="nav_clock sp-elite">_PAR <span id="clock-h">00</span>:<span id="clock-m">00</span></div>
-      </div>
-      <div class="nav_right">
-        <div class="nav_links">
-          <a href="#works" class="nav_lk sp-elite">INDEX</a>
-          <a href="#about" class="nav_lk sp-elite">ABOUT</a>
-          <a href="#contact" class="nav_lk sp-elite">CONTACT</a>
-        </div>
-        <a href="mailto:zorluu.hulya@gmail.com" class="nav_cta sp-elite">PARLONS</a>
-      </div>
-      <button id="burger" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span>
-      </button>
+    <div class="nav_left">
+      <span class="nav_brand sp-elite">HULYAZORLU_PAR</span>
+      <span class="nav_sep"></span>
+      <span class="nav_clock sp-elite" id="clock"></span>
     </div>
+    <div class="nav_right">
+      <a href="#projets"     class="nav_lk">Projets</a>
+      <a href="#about"       class="nav_lk">À propos</a>
+      <a href="#parcours"    class="nav_lk">Parcours</a>
+      <a href="#competences" class="nav_lk">Compétences</a>
+      <a href="#contact"     class="nav_lk">Contact</a>
+    </div>
+    <!-- burger mobile -->
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
   </nav>
-
+ 
   <!-- MOBILE MENU -->
-  <div id="mob-menu" aria-hidden="true">
-    <button id="mob-close" aria-label="Fermer">✕</button>
+  <div class="mob-menu" id="mob-menu" aria-hidden="true">
+    <button class="mob-close" id="mob-close" aria-label="Fermer">✕</button>
     <nav class="mob-nav">
-      <a href="#works"   class="mob-link sp-elite">INDEX</a>
-      <a href="#about"   class="mob-link sp-elite">ABOUT</a>
-      <a href="#contact" class="mob-link sp-elite">CONTACT</a>
+      <a href="#projets"     class="mob-link sp-elite">Projets</a>
+      <a href="#about"       class="mob-link sp-elite">À propos</a>
+      <a href="#parcours"    class="mob-link sp-elite">Parcours</a>
+      <a href="#competences" class="mob-link sp-elite">Compétences</a>
+      <a href="#contact"     class="mob-link sp-elite">Contact</a>
     </nav>
-    <div class="mob-footer">
-      <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" class="sp-elite">LINKEDIN <svg viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="currentColor"/></svg></a>
-      <a href="mailto:zorluu.hulya@gmail.com" class="sp-elite">EMAIL <svg viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="currentColor"/></svg></a>
-    </div>
   </div>
-
-  <main class="main">
-
-    <!-- ═══════ HERO ═══════ -->
-    <section class="home_hero" id="hero">
-      <div class="c-vw hero_cnt">
-        <div class="hero_hold" id="hero-hold">
-          <h1 class="hero_tt">Hulya<br>Zorlu</h1>
-          <div class="hero_bt">
-            <p class="tt3 sp-elite">UI/UX Designer /<br>Basée à Paris</p>
-          </div>
-        </div>
-        <div class="hero_sc sp-elite" id="hero-sc">[SCROLL TO EXPLORE</div>
-        <div class="hero_lk" id="hero-lk">
-          <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" class="sp-elite">LINKEDIN <svg viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="currentColor"/></svg></a>
-          <a href="mailto:zorluu.hulya@gmail.com" class="sp-elite">EMAIL <svg viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="currentColor"/></svg></a>
-          <a href="#" target="_blank" rel="noopener" class="sp-elite">READ.CV <svg viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="currentColor"/></svg></a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════ WORKS ═══════ -->
-    <section class="home_prjs" id="works">
-      <div class="c-vw">
-        <div class="prjs_title">
-          <h2 class="tt1">Featured works</h2>
-          <span class="prjs_count sp-elite">[003]</span>
-        </div>
-
-        <!-- Row 1: 2 projects side by side -->
-        <div class="prjs_ft">
-          <a href="#" class="prj prj_0">
-            <div class="prj_img_wrap">
-              <div class="prj_img_clip">
-                <img src="assets/tamino.png" alt="Album Website" loading="lazy" />
-              </div>
-            </div>
-            <div class="prj_meta">
-              <span class="prj_num sp-elite">001_</span>
-              <span class="prj_name">ALBUM WEBSITE</span>
-              <svg class="prj_arr" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="currentColor"/></svg>
-            </div>
-          </a>
-
-          <a href="#" class="prj prj_1">
-            <div class="prj_img_wrap">
-              <div class="prj_img_clip">
-                <img src="assets/Hand and Iphone 16 Pro.jpg" alt="Wevent" loading="lazy" />
-              </div>
-            </div>
-            <div class="prj_meta">
-              <span class="prj_num sp-elite">002_</span>
-              <span class="prj_name">WEVENT</span>
-              <svg class="prj_arr" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="currentColor"/></svg>
-            </div>
-          </a>
-        </div>
-
-        <!-- Row 2: offset single project -->
-        <div class="prjs_st">
-          <a href="#" class="prj prj_2">
-            <div class="prj_img_wrap">
-              <div class="prj_img_clip">
-                <img src="assets/mockupDeezerAPI.jpg" alt="Deezer API" loading="lazy" />
-              </div>
-            </div>
-            <div class="prj_meta">
-              <span class="prj_num sp-elite">003_</span>
-              <span class="prj_name">DEEZER API</span>
-              <svg class="prj_arr" viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="currentColor"/></svg>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════ ABOUT ═══════ -->
-    <section class="home_about" id="about">
-      <div class="c-vw">
-        <!-- Big title -->
-        <div class="about_tp" id="about-tp">
-          <h2 class="tt1 about_tt">
-            <span class="about_line">Designer UI/UX,</span>
-            <span class="about_line">aussi Créative</span>
-            <span class="about_line">&amp; Curieuse.</span>
-          </h2>
-        </div>
-
-        <!-- Bio -->
-        <div class="about_bp">
-          <div class="about_bio" id="about-bio">
-            <p>PASSIONNÉE PAR LE DESIGN D'INTERFACE, LA TYPOGRAPHIE ET LES EXPÉRIENCES DIGITALES IMMERSIVES. SPÉCIALISÉE DANS LA CRÉATION DE PARCOURS UTILISATEURS INTUITIFS ET MÉMORABLES.</p>
-            <p>MON APPROCHE COMBINE RECHERCHE UTILISATEUR RIGOUREUSE ET SENSIBILITÉ ESTHÉTIQUE POUR CONCEVOIR DES PRODUITS QUI PARLENT VRAIMENT AUX GENS.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Experience rows -->
-      <div class="about_exp c-vw" id="about-exp">
-        <div class="exp_row">
-          <span class="exp_yr sp-elite">2026</span>
-          <span class="exp_name">La Toile — Emlyon</span>
-          <span class="exp_role sp-elite">Web Design &amp; Développement</span>
-        </div>
-        <div class="exp_row">
-          <span class="exp_yr sp-elite">2024–25</span>
-          <span class="exp_name">M2i Formation</span>
-          <span class="exp_role sp-elite">Testeur de Logiciel</span>
-        </div>
-        <div class="exp_row">
-          <span class="exp_yr sp-elite">2023–24</span>
-          <span class="exp_name">TANKE</span>
-          <span class="exp_role sp-elite">Chef de Projet UX Research</span>
-        </div>
-        <div class="exp_row">
-          <span class="exp_yr sp-elite">2024</span>
-          <span class="exp_name">JO Paris 2024 — OBS</span>
-          <span class="exp_role sp-elite">Liaison Officer</span>
-        </div>
-        <div class="exp_row">
-          <span class="exp_yr sp-elite">2022</span>
-          <span class="exp_name">AustralieGAD</span>
-          <span class="exp_role sp-elite">Assistante Planner Stratégique</span>
-        </div>
-      </div>
-
-      <!-- Skills -->
-      <div class="about_skills c-vw" id="about-skills">
-        <div class="skills_list sp-elite">
-          Figma - HTML - CSS - JavaScript - SQL - Python - Power BI - Selenium - Cypress - Postman - Jira - Agile - Google Analytics
-        </div>
-        <div class="lang_row">
-          <span class="lang_pill sp-elite">Français C2</span>
-          <span class="lang_pill sp-elite">Turc C2</span>
-          <span class="lang_pill sp-elite">Anglais C1</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════ FOOTER / CONTACT ═══════ -->
-    <footer class="footer" id="contact">
-      <div class="footer_cm c-vw">
-        <a href="mailto:zorluu.hulya@gmail.com" class="footer_title" id="footer-title" aria-label="Envoyer un email">
-          Travaillons<br>ensemble.
-        </a>
-      </div>
-
-      <div class="c-vw footer_cnt">
-        <div class="footer_lk" id="footer-lk">
-          <div class="footer_col">
-            <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" class="sp-elite">LINKEDIN <svg viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="currentColor"/></svg></a>
-            <a href="mailto:zorluu.hulya@gmail.com" class="sp-elite">EMAIL <svg viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="currentColor"/></svg></a>
-            <a href="#" target="_blank" rel="noopener" class="sp-elite">READ.CV <svg viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="currentColor"/></svg></a>
-          </div>
-          <div class="footer_col">
-            <a href="#" target="_blank" rel="noopener" class="sp-elite">GITHUB <svg viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="currentColor"/></svg></a>
-            <a href="#" target="_blank" rel="noopener" class="sp-elite">BEHANCE <svg viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.49194 3.516H5.67594L5.67594 2.052L5.74794 1.272L5.71194 1.26L4.94394 2.124L0.911938 6.156L0.335937 5.58L4.36794 1.548L5.23194 0.78L5.21994 0.743999L4.43994 0.816L2.97594 0.816V0L6.49194 0L6.49194 3.516Z" fill="currentColor"/></svg></a>
-          </div>
-        </div>
-
-        <div class="footer_cr" id="footer-cr">
-          <span class="sp-elite">DESIGNED &amp; BUILT BY_ <a href="#">HULYA ZORLU</a></span>
-          <span class="sp-elite">©2026_ALL RIGHTS RESERVED</span>
-        </div>
-      </div>
-    </footer>
-
-  </main>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="js/main.js"></script>
+ 
+  <!-- HERO -->
+  <section class="hero" id="hero">
+ 
+    <!-- 12-col grid lines (background) -->
+    <div class="grid-bg" aria-hidden="true">
+      <div class="grid-col"></div><div class="grid-col"></div>
+      <div class="grid-col"></div><div class="grid-col"></div>
+      <div class="grid-col"></div><div class="grid-col"></div>
+      <div class="grid-col"></div><div class="grid-col"></div>
+      <div class="grid-col"></div><div class="grid-col"></div>
+      <div class="grid-col"></div><div class="grid-col"></div>
+    </div>
+ 
+    <!-- TITLE — colonnes 7-11 -->
+    <div class="hero_title_wrap">
+      <h1 class="hero_title">Hulya<br>Zorlu</h1>
+      <p class="hero_sub">UI/UX Designer basée à Paris</p>
+      <p class="hero_port sp-elite">PORTFOLIO_26</p>
+    </div>
+ 
+    <!-- SCROLL TO EXPLORE — bas milieu -->
+    <div class="hero_scroll" id="hero-scroll" aria-hidden="true">
+      <span class="sp-elite scroll_txt" id="scroll-txt"></span>
+    </div>
+ 
+    <!-- SOCIALS — bas droite -->
+    <div class="hero_socials">
+      <a href="https://www.linkedin.com/in/hulya-zorlu/" target="_blank" rel="noopener" class="social_lk sp-elite">
+        LINKEDIN <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
+      </a>
+      <a href="https://www.instagram.com/hueliyaz/" target="_blank" rel="noopener" class="social_lk sp-elite">
+        INSTAGRAM <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
+      </a>
+      <a href="#" class="social_lk sp-elite read-cv-lk">
+        READ.CV <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
+      </a>
+    </div>
+ 
+  </section>
+ 
+  <script src="main.js"></script>
 </body>
 </html>
