@@ -136,6 +136,27 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 }
 .nav_cta:hover { opacity: 0.75; }
 
+/* Nav items — cachés au départ, animés par JS après loader */
+.nav_left {
+  opacity: 0;
+  transform: translateX(-14px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.nav_left.nav-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.nav_lk, .nav_cta {
+  opacity: 0;
+  transform: translateX(14px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.nav_lk.nav-in, .nav_cta.nav-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* ── BURGER ───────────────────────────────────────────────────── */
 .burger {
   display: none;

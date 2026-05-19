@@ -60,20 +60,36 @@
 
 /* ── Reveal page après loader ────────────────────────────────── */
 function revealPage() {
-  /* Title char reveal */
+
+  /* 1 — Nav : droite → gauche
+     On récupère les items de droite (CTA en premier) puis les links en ordre inverse */
+  const navRight = document.querySelectorAll('.nav_right .nav_lk, .nav_right .nav_cta');
+  const navLeft  = document.querySelector('.nav_left');
+
+  /* Les items de droite apparaissent de droite à gauche (CTA, Skills, Experience, About, Projects) */
+  const rightItems = Array.from(navRight).reverse(); /* inverse = du plus à droite au plus à gauche */
+  rightItems.forEach((el, i) => {
+    setTimeout(() => el.classList.add('nav-in'), i * 80);
+  });
+
+  /* Nav gauche apparaît après les liens de droite */
+  const navLeftDelay = rightItems.length * 80 + 80;
+  setTimeout(() => { if (navLeft) navLeft.classList.add('nav-in'); }, navLeftDelay);
+
+  /* 2 — Titre : commence avec la nav */
   document.querySelectorAll('.ttj').forEach((row, rowIdx) => {
     row.querySelectorAll('.char').forEach((ch, charIdx) => {
       ch.style.transitionDelay = `${rowIdx * 150 + charIdx * 55}ms`;
     });
-    setTimeout(() => row.classList.add('act'), 80 + rowIdx * 150);
+    setTimeout(() => row.classList.add('act'), 100 + rowIdx * 150);
   });
 
-  /* Scramble textes */
+  /* 3 — PORTFOLIO_26 et scroll : apparaissent après le titre */
   const portEl = document.getElementById('portfolio-txt');
-  if (portEl) scramble(portEl, 'PORTFOLIO_26', { delay: 200, duration: 1800 });
+  if (portEl) scramble(portEl, 'PORTFOLIO_26', { delay: 1400, duration: 1800 });
 
   const scrollEl = document.getElementById('scroll-txt');
-  if (scrollEl) scramble(scrollEl, '[scroll to explore]', { delay: 500, duration: 2400, loop: true });
+  if (scrollEl) scramble(scrollEl, '[scroll to explore]', { delay: 1800, duration: 2400, loop: true });
 }
 
 
