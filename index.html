@@ -3,24 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hulya Zorlu - UI/UX Designer basée à Paris. Recherche utilisateur, wireframing, prototypage haute fidélité." />
+  <meta name="description" content="Hulya Zorlu — UI/UX Designer basée à Paris. Recherche utilisateur, wireframing, prototypage haute fidélité." />
   <meta name="author" content="Hulya Zorlu" />
-  <meta name="theme-color" content="#F0EDE8" />
-  <title>Hulya Zorlu - UI/UX Designer</title>
+  <meta name="theme-color" content="#F8F6F2" />
+  <title>Hulya Zorlu — UI/UX Designer</title>
   <link rel="icon" type="image/png" href="logo avatar hulya.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=Space+Mono&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css?v=17" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
   <!-- LOADER -->
   <div id="loader" role="status" aria-label="Chargement">
+    <div id="loader-bar"></div>
     <div id="loader-counter">000</div>
     <div id="loader-info">
-      <p id="loader-name">HULYA ZORLU</p>
-      <p id="loader-sub">UI/UX DESIGNER_PORT;<span class="blink-cur"></span></p>
+      <span id="loader-name">HULYA ZORLU</span>
+      <span id="loader-sub">UI/UX DESIGNER_PORT;<span class="blink-cur"></span></span>
     </div>
   </div>
 
@@ -32,15 +37,15 @@
   </div>
 
   <!-- NAV -->
-  <nav id="nav" role="navigation">
+  <nav id="nav" role="navigation" aria-label="Navigation principale">
     <div class="nav-left">
-      <a href="#hero" class="nav-brand">HULYA_ZORLU_PAR</a>
+      <a href="#hero" class="nav-brand">HZ_PARIS</a>
       <span id="clock" class="nav-clock">00:00</span>
     </div>
-    <ul class="nav-links">
-      <li><a href="#hero"     class="nav-link">INDEX</a></li>
-      <li><a href="#projects" class="nav-link">PROJETS</a></li>
-      <li><a href="#about"    class="nav-link">ABOUT</a></li>
+    <ul class="nav-links" role="list">
+      <li><a href="#works"   class="nav-link" data-text="INDEX">INDEX</a></li>
+      <li><a href="#works"   class="nav-link" data-text="PROJETS">PROJETS</a></li>
+      <li><a href="#about"   class="nav-link" data-text="ABOUT">ABOUT</a></li>
     </ul>
     <a href="#contact" class="nav-cta">PARLONS</a>
     <button id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
@@ -49,53 +54,41 @@
   </nav>
 
   <!-- MOBILE MENU -->
-  <div id="mob-menu" aria-hidden="true">
+  <div id="mob-menu" aria-hidden="true" role="dialog" aria-label="Menu mobile">
     <button id="mob-close" aria-label="Fermer le menu">
-      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" viewBox="0 0 24 24"><path d="M3 3l18 18M21 3L3 21"/></svg>
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l18 18M21 3L3 21"/></svg>
     </button>
-    <ul>
+    <ul role="list">
       <li><a href="#hero"        class="mob-link">INDEX</a></li>
-      <li><a href="#projects"    class="mob-link">PROJETS</a></li>
+      <li><a href="#works"       class="mob-link">PROJETS</a></li>
       <li><a href="#about"       class="mob-link">ABOUT</a></li>
       <li><a href="#experience"  class="mob-link">EXPÉRIENCE</a></li>
-      <li><a href="#competences" class="mob-link">COMPÉTENCES</a></li>
+      <li><a href="#skills"      class="mob-link">COMPÉTENCES</a></li>
       <li><a href="#contact"     class="mob-link">CONTACT</a></li>
     </ul>
+    <div class="mob-footer">
+      <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener">LINKEDIN ↗</a>
+      <a href="mailto:zorluu.hulya@gmail.com">EMAIL ↗</a>
+    </div>
   </div>
 
   <main>
 
-    <!-- HERO -->
+    <!-- ── HERO ── -->
     <section id="hero" class="s-hero">
       <div class="hero-void" aria-hidden="true"></div>
 
       <div class="hero-content">
-        <div class="hero-name">
-          <div class="hero-line-wrap">
-            <div class="hero-line-inner">
-              <span id="wave-hulya" class="wave-text">Hulya</span>
-            </div>
-          </div>
-          <div class="hero-line-wrap">
-            <div class="hero-line-inner">
-              <span id="wave-zorlu" class="wave-text">Zorlu</span>
-            </div>
-          </div>
+        <p class="hero-eyebrow">UI/UX DESIGNER — PARIS, FR</p>
+        <div class="hero-name" aria-label="Hulya Zorlu">
+          <div class="hero-line-wrap"><div class="hero-line-inner"><span class="wave-text" id="wave-hulya">Hulya</span></div></div>
+          <div class="hero-line-wrap"><div class="hero-line-inner"><span class="wave-text" id="wave-zorlu">Zorlu</span></div></div>
         </div>
-
-        <div class="hero-meta">
-          <span class="hero-role">UI/UX Designer</span>
-          <span class="hero-city">Basée à Paris</span>
-        </div>
-
-        <p class="hero-label">PORTFOLIO_26/26</p>
+        <p class="hero-label">PORTFOLIO_2026</p>
       </div>
 
-      <!-- Bottom bar: typewriter left, links right -->
       <div class="hero-bar">
-        <div id="typewriter-wrap">
-          <span id="typewriter-out"></span>
-        </div>
+        <div id="typewriter-wrap"><span id="typewriter-out"></span></div>
         <div class="hero-ext-links">
           <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" class="hero-ext">LINKEDIN <span class="arr">↗</span></a>
           <a href="mailto:zorluu.hulya@gmail.com" class="hero-ext">EMAIL <span class="arr">↗</span></a>
@@ -103,177 +96,251 @@
       </div>
     </section>
 
-    <!-- PROJETS -->
-    <section id="projects" class="s-projects">
+    <!-- ── MARQUEE ── -->
+    <div class="marquee-wrap" aria-hidden="true">
+      <div class="marquee-track">
+        <span>UI/UX DESIGN</span><span class="mk-sep">✦</span>
+        <span>PROTOTYPAGE</span><span class="mk-sep">✦</span>
+        <span>RECHERCHE UTILISATEUR</span><span class="mk-sep">✦</span>
+        <span>WEB DESIGN</span><span class="mk-sep">✦</span>
+        <span>FIGMA</span><span class="mk-sep">✦</span>
+        <span>DÉVELOPPEMENT FRONT</span><span class="mk-sep">✦</span>
+        <span>DESIGN SYSTÈME</span><span class="mk-sep">✦</span>
+        <span>ACCESSIBILITÉ</span><span class="mk-sep">✦</span>
+        <!-- duplicate for loop -->
+        <span>UI/UX DESIGN</span><span class="mk-sep">✦</span>
+        <span>PROTOTYPAGE</span><span class="mk-sep">✦</span>
+        <span>RECHERCHE UTILISATEUR</span><span class="mk-sep">✦</span>
+        <span>WEB DESIGN</span><span class="mk-sep">✦</span>
+        <span>FIGMA</span><span class="mk-sep">✦</span>
+        <span>DÉVELOPPEMENT FRONT</span><span class="mk-sep">✦</span>
+        <span>DESIGN SYSTÈME</span><span class="mk-sep">✦</span>
+        <span>ACCESSIBILITÉ</span><span class="mk-sep">✦</span>
+      </div>
+    </div>
+
+    <!-- ── SELECTED WORKS ── -->
+    <section id="works" class="s-works">
       <div class="container">
-        <div class="proj-header">
-          <h2 class="proj-h2">Projets Sélectionnés</h2>
-          <span class="proj-count">[003]</span>
+        <div class="works-header">
+          <h2 class="works-h2">Projets <em>Sélectionnés</em></h2>
+          <span class="works-count">[003]</span>
         </div>
 
-        <div class="proj-grid">
+        <ol class="works-list" role="list">
 
-          <!-- Projet 1 -->
-          <article class="proj-card proj-card--1">
-            <a href="#" class="proj-img-wrap" tabindex="-1" aria-hidden="true">
-              <img src="assets/tamino.png" alt="Album Website" loading="lazy" />
+          <!-- Projet 01 -->
+          <li class="work-item" data-index="01">
+            <a href="#" class="work-link">
+              <div class="work-preview" aria-hidden="true">
+                <img src="assets/tamino.png" alt="" loading="lazy" />
+              </div>
+              <span class="work-num">01</span>
+              <div class="work-center">
+                <span class="work-title">Album Website</span>
+                <span class="work-tags">Web Design — Développement</span>
+              </div>
+              <span class="work-year">2024</span>
+              <span class="work-arrow">↗</span>
             </a>
-            <div class="proj-info">
-              <a href="#" class="proj-label-link">
-                <span class="proj-num">001_</span>
-                <span class="proj-name">ALBUM WEBSITE</span>
-                <span class="proj-tags">Web Design, Développement</span>
-                <span class="proj-arrow">↗</span>
-              </a>
-            </div>
-          </article>
+          </li>
 
-          <!-- Projet 2 -->
-          <article class="proj-card proj-card--2">
-            <a href="#" class="proj-img-wrap" tabindex="-1" aria-hidden="true">
-              <img src="assets/Hand and Iphone 16 Pro.jpg" alt="Wevent" loading="lazy" />
+          <!-- Projet 02 -->
+          <li class="work-item" data-index="02">
+            <a href="#" class="work-link">
+              <div class="work-preview" aria-hidden="true">
+                <img src="assets/Hand and Iphone 16 Pro.jpg" alt="" loading="lazy" />
+              </div>
+              <span class="work-num">02</span>
+              <div class="work-center">
+                <span class="work-title">Wevent</span>
+                <span class="work-tags">Prototypage — UI/UX Design</span>
+              </div>
+              <span class="work-year">2024</span>
+              <span class="work-arrow">↗</span>
             </a>
-            <div class="proj-info">
-              <a href="#" class="proj-label-link">
-                <span class="proj-num">002_</span>
-                <span class="proj-name">WEVENT</span>
-                <span class="proj-tags">Prototypage, UI/UX Design</span>
-                <span class="proj-arrow">↗</span>
-              </a>
-            </div>
-          </article>
+          </li>
 
-          <!-- Projet 3 -->
-          <article class="proj-card proj-card--3">
-            <a href="#" class="proj-img-wrap" tabindex="-1" aria-hidden="true">
-              <img src="assets/mockupDeezerAPI.jpg" alt="Deezer API" loading="lazy" />
+          <!-- Projet 03 -->
+          <li class="work-item" data-index="03">
+            <a href="#" class="work-link">
+              <div class="work-preview" aria-hidden="true">
+                <img src="assets/mockupDeezerAPI.jpg" alt="" loading="lazy" />
+              </div>
+              <span class="work-num">03</span>
+              <div class="work-center">
+                <span class="work-title">Deezer API</span>
+                <span class="work-tags">HTML/CSS — JavaScript</span>
+              </div>
+              <span class="work-year">2023</span>
+              <span class="work-arrow">↗</span>
             </a>
-            <div class="proj-info">
-              <a href="#" class="proj-label-link">
-                <span class="proj-num">003_</span>
-                <span class="proj-name">DEEZER API</span>
-                <span class="proj-tags">HTML/CSS, JavaScript</span>
-                <span class="proj-arrow">↗</span>
-              </a>
-            </div>
-          </article>
+          </li>
 
-        </div>
+        </ol>
       </div>
     </section>
 
-    <!-- BRIDGE cream → black -->
+    <!-- ── BRIDGE ── -->
     <div class="bridge" aria-hidden="true"></div>
 
-    <!-- ABOUT -->
+    <!-- ── ABOUT ── -->
     <section id="about" class="s-about">
       <div class="container">
-        <p class="sec-label">[ABOUT]</p>
+        <p class="sec-label">[ABOUT_ME]</p>
         <div class="about-grid">
-          <div class="about-left">
+
+          <div class="about-photo-col">
+            <div class="about-photo" aria-label="Photo de Hulya Zorlu">
+              <img src="logo avatar hulya.png" alt="Hulya Zorlu" loading="lazy" />
+            </div>
+            <div class="about-photo-meta">
+              <span>HULYA ZORLU</span>
+              <span>UI/UX DESIGNER</span>
+              <span>PARIS, FRANCE</span>
+            </div>
+          </div>
+
+          <div class="about-text-col">
             <h2 class="about-headline">
               <span class="about-line">Designer UI/UX,</span>
               <span class="about-line">aussi Créative</span>
-              <span class="about-line">& Curieuse.</span>
+              <span class="about-line">&amp; Curieuse.</span>
             </h2>
-          </div>
-          <div class="about-right">
             <p class="about-bio">
               PASSIONNÉE PAR LE DESIGN D'INTERFACE, LA TYPOGRAPHIE ET LES EXPÉRIENCES DIGITALES IMMERSIVES. SPÉCIALISÉE DANS LA CRÉATION DE PARCOURS UTILISATEURS INTUITIFS ET MÉMORABLES.
             </p>
+            <p class="about-bio about-bio--2">
+              MON APPROCHE COMBINE RECHERCHE UTILISATEUR RIGOUREUSE ET SENSIBILITÉ ESTHÉTIQUE POUR CONCEVOIR DES PRODUITS QUI PARLENT VRAIMENT AUX GENS.
+            </p>
+            <a href="mailto:zorluu.hulya@gmail.com" class="about-cta">TRAVAILLER ENSEMBLE <span class="arr">↗</span></a>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- EXPERIENCE -->
+    <!-- ── EXPERIENCE ── -->
     <section id="experience" class="s-experience">
       <div class="container">
         <p class="sec-label">[EXPÉRIENCE]</p>
-        <div class="exp-list">
+        <ol class="exp-list" role="list">
 
-          <div class="exp-entry">
+          <li class="exp-entry">
             <span class="exp-year">2026</span>
-            <h4 class="exp-title">La Toile Emlyon</h4>
-            <span class="exp-role">Certificat Web Design et Développement</span>
-          </div>
+            <h3 class="exp-title">La Toile — Emlyon</h3>
+            <span class="exp-role">Certificat Web Design &amp; Développement</span>
+            <span class="exp-dot" aria-hidden="true"></span>
+          </li>
 
-          <div class="exp-entry">
+          <li class="exp-entry">
             <span class="exp-year">2024–2025</span>
-            <h4 class="exp-title">M2i Formation</h4>
+            <h3 class="exp-title">M2i Formation</h3>
             <span class="exp-role">Testeur de Logiciel</span>
-          </div>
+            <span class="exp-dot" aria-hidden="true"></span>
+          </li>
 
-          <div class="exp-entry">
+          <li class="exp-entry">
             <span class="exp-year">2023–2024</span>
-            <h4 class="exp-title">TANKE</h4>
+            <h3 class="exp-title">TANKE</h3>
             <span class="exp-role">Chef de Projet UX Research</span>
-          </div>
+            <span class="exp-dot" aria-hidden="true"></span>
+          </li>
 
-          <div class="exp-entry">
+          <li class="exp-entry">
             <span class="exp-year">2024</span>
-            <h4 class="exp-title">Olympic Broadcasting Services</h4>
-            <span class="exp-role">Liaison Officer JO 2024</span>
-          </div>
+            <h3 class="exp-title">Olympic Broadcasting Services</h3>
+            <span class="exp-role">Liaison Officer — JO Paris 2024</span>
+            <span class="exp-dot" aria-hidden="true"></span>
+          </li>
 
-          <div class="exp-entry">
+          <li class="exp-entry">
             <span class="exp-year">2022</span>
-            <h4 class="exp-title">AustralieGAD</h4>
+            <h3 class="exp-title">AustralieGAD</h3>
             <span class="exp-role">Assistante Planner Stratégique</span>
-          </div>
+            <span class="exp-dot" aria-hidden="true"></span>
+          </li>
 
-        </div>
+        </ol>
       </div>
     </section>
 
-    <!-- COMPETENCES -->
-    <section id="competences" class="s-competences">
+    <!-- ── SKILLS ── -->
+    <section id="skills" class="s-skills">
       <div class="container">
         <p class="sec-label">[COMPÉTENCES]</p>
-        <p class="skills-text">
-          Figma <span class="sk-sep">—</span>
-          HTML <span class="sk-sep">—</span>
-          CSS <span class="sk-sep">—</span>
-          JavaScript <span class="sk-sep">—</span>
-          SQL <span class="sk-sep">—</span>
-          Python <span class="sk-sep">—</span>
-          Power BI <span class="sk-sep">—</span>
-          Selenium <span class="sk-sep">—</span>
-          Cypress <span class="sk-sep">—</span>
-          Postman <span class="sk-sep">—</span>
-          Jira <span class="sk-sep">—</span>
-          Agile <span class="sk-sep">—</span>
-          Google Analytics
-        </p>
-        <div class="lang-badges">
-          <span class="lang-pill">Français C2</span>
-          <span class="lang-pill">Turc C2</span>
-          <span class="lang-pill">Anglais C1</span>
+        <div class="skills-grid">
+          <div class="skills-col">
+            <h3 class="skills-col-title">Design</h3>
+            <ul class="skills-list" role="list">
+              <li>Figma</li>
+              <li>UI Design</li>
+              <li>UX Research</li>
+              <li>Prototypage</li>
+              <li>Design Système</li>
+              <li>Wireframing</li>
+            </ul>
+          </div>
+          <div class="skills-col">
+            <h3 class="skills-col-title">Développement</h3>
+            <ul class="skills-list" role="list">
+              <li>HTML / CSS</li>
+              <li>JavaScript</li>
+              <li>Python</li>
+              <li>SQL</li>
+              <li>Power BI</li>
+              <li>Google Analytics</li>
+            </ul>
+          </div>
+          <div class="skills-col">
+            <h3 class="skills-col-title">QA / Outils</h3>
+            <ul class="skills-list" role="list">
+              <li>Selenium</li>
+              <li>Cypress</li>
+              <li>Postman</li>
+              <li>Jira</li>
+              <li>Agile / Scrum</li>
+              <li>Git</li>
+            </ul>
+          </div>
+        </div>
+        <div class="lang-row">
+          <span class="lang-pill">🇫🇷 Français C2</span>
+          <span class="lang-pill">🇹🇷 Turc C2</span>
+          <span class="lang-pill">🇬🇧 Anglais C1</span>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- ── CONTACT ── -->
     <section id="contact" class="s-contact">
       <div class="container">
         <p class="sec-label">[CONTACT]</p>
         <h2 class="contact-title">
-          <span class="contact-line" id="wave-trav">Travaillons</span>
-          <span class="contact-line" id="wave-ens">ensemble.</span>
+          <span class="contact-line wave-text" id="wave-trav">Travaillons</span>
+          <span class="contact-line wave-text" id="wave-ens">ensemble.</span>
         </h2>
-        <div class="contact-links">
+        <div class="contact-grid">
           <div class="contact-col">
+            <p class="contact-col-label">RÉSEAUX</p>
             <a href="https://linkedin.com/in/hulya-zorlu" target="_blank" rel="noopener" class="clink">LINKEDIN <span class="arr">↗</span></a>
-            <a href="mailto:zorluu.hulya@gmail.com" class="clink">EMAIL <span class="arr">↗</span></a>
+            <a href="https://github.com" target="_blank" rel="noopener" class="clink">GITHUB <span class="arr">↗</span></a>
           </div>
           <div class="contact-col">
-            <a href="#" class="clink">GITHUB <span class="arr">↗</span></a>
+            <p class="contact-col-label">ÉCRIVEZ-MOI</p>
+            <a href="mailto:zorluu.hulya@gmail.com" class="clink">zorluu.hulya@gmail.com <span class="arr">↗</span></a>
+          </div>
+          <div class="contact-col">
+            <p class="contact-col-label">BASÉE À</p>
+            <span class="contact-info">Paris, France</span>
+            <span class="contact-info">Disponible — Freelance &amp; CDI</span>
           </div>
         </div>
       </div>
+
       <footer class="site-footer">
-        <span>DESIGNED BY_HULYA ZORLU</span>
-        <span>@HULYAZORLU — ALL RIGHTS RESERVED</span>
+        <span>DESIGNED &amp; BUILT BY HULYA ZORLU</span>
+        <span>© 2026 — ALL RIGHTS RESERVED</span>
       </footer>
     </section>
 
@@ -281,6 +348,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-  <script src="js/main.js?v=17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
