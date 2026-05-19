@@ -29,7 +29,9 @@
     if (triggered) return;
     triggered = true;
     const timeStr = getTimeString();
-    twEl.textContent = timeStr;
+    twEl.textContent = timeStr; /* same length as placeholder — no layout shift */
+    twEl.style.clipPath = 'inset(0 100% 0 0)'; /* reset clip before animation */
+    void twEl.offsetWidth;
     triggerTypewriter(twEl, 13, null);
   };
 
