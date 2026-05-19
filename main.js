@@ -230,7 +230,7 @@ function revealPage() {
       scrollEl.style.opacity = '1';
       scramble(scrollEl, '[scroll to explore]', { duration: 2000, loop: true, loopPause: 4000 });
     }
-  }, 1400);
+  }, 3400);
 }
 
 
