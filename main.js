@@ -29,19 +29,52 @@
 })();
 
 
-/* ── Title char reveal ───────────────────────────────────────── */
-(function initTitleReveal() {
-  const rows = document.querySelectorAll('.ttj');
-  rows.forEach((row, rowIdx) => {
-    const chars = row.querySelectorAll('.char');
-    chars.forEach((ch, charIdx) => {
-      /* stagger: each row starts 150ms after previous, each char 55ms apart */
+/* ── Loader 000 → 100 ────────────────────────────────────────── */
+(function initLoader() {
+  const loader   = document.getElementById('loader');
+  const countEl  = document.getElementById('loader-count');
+  if (!loader || !countEl) { revealPage(); return; }
+
+  let count = 0;
+  const duration = 2000;   /* durée totale en ms */
+  const tick     = 30;     /* intervalle ms */
+  const steps    = duration / tick;
+  const inc      = 100 / steps;
+
+  const timer = setInterval(() => {
+    count = Math.min(count + inc, 100);
+    countEl.textContent = String(Math.floor(count)).padStart(3, '0');
+
+    if (count >= 100) {
+      clearInterval(timer);
+      setTimeout(() => {
+        loader.style.opacity = '0';
+        setTimeout(() => {
+          loader.style.display = 'none';
+          revealPage();
+        }, 700);
+      }, 150);
+    }
+  }, tick);
+})();
+
+/* ── Reveal page après loader ────────────────────────────────── */
+function revealPage() {
+  /* Title char reveal */
+  document.querySelectorAll('.ttj').forEach((row, rowIdx) => {
+    row.querySelectorAll('.char').forEach((ch, charIdx) => {
       ch.style.transitionDelay = `${rowIdx * 150 + charIdx * 55}ms`;
     });
-    /* trigger slightly after delay so transition fires */
     setTimeout(() => row.classList.add('act'), 80 + rowIdx * 150);
   });
-})();
+
+  /* Scramble textes */
+  const portEl = document.getElementById('portfolio-txt');
+  if (portEl) scramble(portEl, 'PORTFOLIO_26', { delay: 200, duration: 1800 });
+
+  const scrollEl = document.getElementById('scroll-txt');
+  if (scrollEl) scramble(scrollEl, '[scroll to explore]', { delay: 500, duration: 2400, loop: true });
+}
 
 
 /* ── Scramble text (Eva Sánchez Awrite style) ────────────────── */
@@ -71,15 +104,6 @@ function scramble(el, finalText, { delay = 0, duration = 1200, loop = false } = 
 
   setTimeout(() => requestAnimationFrame(render), delay);
 }
-
-(function initScramble() {
-  const portEl = document.getElementById('portfolio-txt');
-  if (portEl) scramble(portEl, 'PORTFOLIO_26', { delay: 800, duration: 1800 });
-
-  const scrollEl = document.getElementById('scroll-txt');
-  if (scrollEl) scramble(scrollEl, '[scroll to explore]', { delay: 1200, duration: 2400, loop: true });
-})();
-
 
 /* ── Mobile menu ─────────────────────────────────────────────── */
 (function initMobileMenu() {

@@ -205,13 +205,51 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   text-transform: uppercase;
 }
 
+/* ── LOADER ───────────────────────────────────────────────────── */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #0A0A0A;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.7s ease;
+}
+
+#loader-count {
+  font-family: montrealbook, 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  font-size: clamp(10rem, 22vw, 26rem);
+  color: #F0EEE9;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  user-select: none;
+}
+
+#loader-info {
+  position: absolute;
+  bottom: 3.2rem;
+  left: 3.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+#loader-info span {
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(240,238,233,0.65);
+}
+
 /* ── HERO ─────────────────────────────────────────────────────── */
 .hero {
   position: relative;
   width: 100%;
   height: 100svh;
   min-height: 600px;
-  background: var(--bg);
+  /* pas de background : le body cream + la grille Mbg sont visibles */
   overflow: hidden;
 }
 
