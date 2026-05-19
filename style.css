@@ -195,6 +195,13 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 #portfolio-txt .typewriter-container,
 #scroll-txt .typewriter-container { opacity: 0; }
 
+/* Subtitle dissolve */
+.tt3 {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.tt3.visible { opacity: 1; }
+
 /* ── BURGER ───────────────────────────────────────────────────── */
 .burger {
   display: none;

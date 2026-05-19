@@ -92,7 +92,6 @@
 
 
 /* ── CSS Typewriter trigger ───────────────────────────────────── */
-/* charsPerSec ≈ 13 = comfortable reading speed */
 function triggerTypewriter(twEl, charsPerSec, onDone) {
   const charCount = twEl.textContent.length;
   if (charCount === 0) { if (onDone) onDone(); return; }
@@ -139,48 +138,40 @@ function scramble(el, finalText, { delay = 0, duration = 1200 } = {}) {
 
 /* ── Reveal page after loader ─────────────────────────────────── */
 function revealPage() {
+  const SPEED = 22; /* chars/sec — snappy but readable */
 
-  /* 1 — Nav right: typewriter sequentially left → right */
-  const navTwEls = [...document.querySelectorAll('.nav_right .typewriter')];
-  let navIdx = 0;
+  /* 1 — Nav right: all items simultaneously */
+  document.querySelectorAll('.nav_right .typewriter').forEach(twEl => {
+    triggerTypewriter(twEl, SPEED, null);
+  });
 
-  function typeNextNav() {
-    if (navIdx >= navTwEls.length) {
-      /* all nav-right done → reveal nav-left */
-      setTimeout(revealNavLeft, 120);
-      return;
-    }
-    const twEl = navTwEls[navIdx++];
-    const container = twEl.closest('.typewriter-container');
-    if (container) container.style.opacity = '1';
-    triggerTypewriter(twEl, 13, typeNextNav);
-  }
-  typeNextNav();
+  /* 2 — Nav left: brand scramble + clock simultaneously with nav right */
+  const navLeft = document.querySelector('.nav_left');
+  if (navLeft) navLeft.style.opacity = '1';
 
-  /* 2 — Nav left: brand scramble + clock typewriter simultaneously */
-  function revealNavLeft() {
-    const navLeft = document.querySelector('.nav_left');
-    if (navLeft) navLeft.style.opacity = '1';
-
-    /* brand: scramble random chars → HULYAZORLU_PAR */
-    const brandTw = document.getElementById('brand-tw');
-    if (brandTw) {
-      const container = brandTw.closest('.typewriter-container');
-      /* show full width immediately — scramble handles character display */
-      brandTw.style.width = '100%';
-      if (container) { container.style.opacity = '1'; container.classList.add('done'); }
-      scramble(brandTw, 'HULYAZORLU_PAR', { delay: 0, duration: 900 });
-    }
-
-    /* clock: typewriter */
-    if (window.triggerClockTypewriter) {
-      const clockContainer = document.getElementById('clock-tw-container');
-      if (clockContainer) clockContainer.style.opacity = '1';
-      window.triggerClockTypewriter();
-    }
+  const brandTw = document.getElementById('brand-tw');
+  if (brandTw) {
+    const container = brandTw.closest('.typewriter-container');
+    brandTw.style.width = '100%';
+    if (container) { container.style.opacity = '1'; container.classList.add('done'); }
+    scramble(brandTw, 'HULYAZORLU_PAR', { delay: 0, duration: 650 });
   }
 
-  /* 3 — Title chars reveal */
+  if (window.triggerClockTypewriter) {
+    const clockContainer = document.getElementById('clock-tw-container');
+    if (clockContainer) clockContainer.style.opacity = '1';
+    window.triggerClockTypewriter();
+  }
+
+  /* 3 — Socials: all simultaneously with nav */
+  document.querySelectorAll('.hero_socials .social_lk').forEach(link => {
+    link.style.opacity = '1';
+  });
+  document.querySelectorAll('.hero_socials .typewriter').forEach(twEl => {
+    triggerTypewriter(twEl, SPEED, null);
+  });
+
+  /* 4 — Title chars (unchanged) */
   document.querySelectorAll('.ttj').forEach((row, rowIdx) => {
     row.querySelectorAll('.char').forEach((ch, charIdx) => {
       ch.style.transitionDelay = `${rowIdx * 150 + charIdx * 55}ms`;
@@ -188,38 +179,18 @@ function revealPage() {
     setTimeout(() => row.classList.add('act'), 100 + rowIdx * 150);
   });
 
-  /* 4 — PORTFOLIO_26, scroll, socials — appear together ~1.8s after start */
+  /* 5 — Subtitle "UI/UX Designer / Based in Paris": dissolve */
+  const tt3 = document.querySelector('.tt3');
+  if (tt3) setTimeout(() => tt3.classList.add('visible'), 300);
+
+  /* 6 — PORTFOLIO_26 + scroll: appear ~1.5s later */
   setTimeout(() => {
-    /* portfolio */
     const portTw = document.querySelector('#portfolio-txt .typewriter');
-    if (portTw) {
-      const c = portTw.closest('.typewriter-container');
-      if (c) c.style.opacity = '1';
-      triggerTypewriter(portTw, 13, null);
-    }
+    if (portTw) triggerTypewriter(portTw, SPEED, null);
 
-    /* scroll */
     const scrollTw = document.querySelector('#scroll-txt .typewriter');
-    if (scrollTw) {
-      const c = scrollTw.closest('.typewriter-container');
-      if (c) c.style.opacity = '1';
-      triggerTypewriter(scrollTw, 13, null);
-    }
-
-    /* socials: typewriter sequentially */
-    const socialTwEls = [...document.querySelectorAll('.hero_socials .typewriter')];
-    let socIdx = 0;
-    function typeNextSocial() {
-      if (socIdx >= socialTwEls.length) return;
-      const twEl = socialTwEls[socIdx++];
-      const socialLink = twEl.closest('.social_lk');
-      if (socialLink) socialLink.style.opacity = '1';
-      const c = twEl.closest('.typewriter-container');
-      if (c) c.style.opacity = '1';
-      triggerTypewriter(twEl, 13, typeNextSocial);
-    }
-    typeNextSocial();
-  }, 1800);
+    if (scrollTw) triggerTypewriter(scrollTw, SPEED, null);
+  }, 1500);
 }
 
 
