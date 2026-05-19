@@ -92,7 +92,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2.4rem;
+  padding: 0 3.2rem;
   height: 4.8rem;
 }
 
@@ -141,12 +141,10 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   text-transform: uppercase;
   color: #F0EEE9;
   background: var(--fg);
-  height: 4.8rem;
   display: inline-flex;
   align-items: center;
   border-radius: 0;
-  padding: 0;
-  margin-right: -2.4rem;
+  padding: 0.55rem 1.1rem;
   opacity: 0;
   transition: opacity 0.6s ease;
 }
@@ -190,8 +188,6 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 /* Portfolio hidden at start */
 #portfolio-txt .typewriter-container { opacity: 0; }
 
-/* Scroll to explore hidden at start (plain element, no typewriter wrapper) */
-#scroll-txt { opacity: 0; }
 
 /* Subtitle dissolve */
 .tt3 {

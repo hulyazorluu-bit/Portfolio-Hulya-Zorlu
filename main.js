@@ -227,17 +227,12 @@ function revealPage() {
   const tt3 = document.querySelector('.tt3');
   if (tt3) setTimeout(() => tt3.classList.add('visible'), 300);
 
-  /* 6 — PORTFOLIO_26 + scroll: appear ~1.5s later */
-  setTimeout(() => {
-    const portTw = document.querySelector('#portfolio-txt .typewriter');
-    if (portTw) triggerTypewriter(portTw, SPEED, null);
+  /* 6 — PORTFOLIO_26 + scroll: delay built into scramble call (v26 style) */
+  const portTw = document.querySelector('#portfolio-txt .typewriter');
+  if (portTw) setTimeout(() => triggerTypewriter(portTw, SPEED, null), 1400);
 
-    const scrollEl = document.getElementById('scroll-txt');
-    if (scrollEl) {
-      scrollEl.style.opacity = '1';
-      scramble(scrollEl, '[scroll to explore]', { delay: 0, duration: 2400, loop: true });
-    }
-  }, 1500);
+  const scrollEl = document.getElementById('scroll-txt');
+  if (scrollEl) scramble(scrollEl, '[scroll to explore]', { delay: 1800, duration: 2400, loop: true });
 }
 
 
