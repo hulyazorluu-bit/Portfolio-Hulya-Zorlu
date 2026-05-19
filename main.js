@@ -219,12 +219,28 @@ function revealPage() {
   const tt3 = document.querySelector('.tt3');
   if (tt3) setTimeout(() => tt3.classList.add('visible'), 300);
 
-  /* 6 — PORTFOLIO_26 + scroll: delay built into scramble call (v26 style) */
+  /* 6 — PORTFOLIO_26 + scroll: même timing */
   const portTw = document.querySelector('#portfolio-txt .typewriter');
-  if (portTw) setTimeout(() => triggerTypewriter(portTw, SPEED, null), 1400);
-
   const scrollEl = document.getElementById('scroll-txt');
-  if (scrollEl) scramble(scrollEl, '[scroll to explore]', { delay: 1800, duration: 1400, loop: true, loopPause: 2200 });
+
+  setTimeout(() => {
+    if (portTw) triggerTypewriter(portTw, SPEED, null);
+
+    if (scrollEl) {
+      /* blur → net rapidement, puis scramble en boucle */
+      scrollEl.style.filter = 'blur(8px)';
+      scrollEl.style.opacity = '1';
+      scrollEl.style.transition = 'filter 0.4s ease-out';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        scrollEl.style.filter = 'blur(0px)';
+        setTimeout(() => {
+          scrollEl.style.transition = '';
+          scrollEl.style.filter = '';
+          scramble(scrollEl, '[scroll to explore]', { duration: 1400, loop: true, loopPause: 2200 });
+        }, 400);
+      }));
+    }
+  }, 1400);
 }
 
 

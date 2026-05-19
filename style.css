@@ -192,6 +192,8 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 #portfolio-txt .typewriter-container { opacity: 0; }
 
 
+#scroll-txt { opacity: 0; }
+
 /* Subtitle dissolve */
 .tt3 {
   opacity: 0;
