@@ -137,7 +137,7 @@ function triggerTypewriter(twEl, charsPerSec, onDone) {
 /* ── Scramble text ────────────────────────────────────────────── */
 const GLYPHS = '&$*@)]}=|%·(){+/9}[·@$)';
 
-function scramble(el, finalText, { delay = 0, duration = 1200, loop = false } = {}) {
+function scramble(el, finalText, { delay = 0, duration = 1200, loop = false, loopPause = 4000 } = {}) {
   const chars = finalText.split('');
   const totalFrames = Math.ceil(duration / 40);
   let frame = 0;
@@ -155,7 +155,7 @@ function scramble(el, finalText, { delay = 0, duration = 1200, loop = false } = 
       requestAnimationFrame(render);
     } else {
       el.textContent = finalText;
-      if (loop) setTimeout(() => { frame = 0; scramble(el, finalText, { delay: 0, duration, loop }); }, 4000);
+      if (loop) setTimeout(() => { frame = 0; scramble(el, finalText, { delay: 0, duration, loop, loopPause }); }, loopPause);
     }
   }
 
@@ -223,7 +223,7 @@ function revealPage() {
   if (portTw) setTimeout(() => triggerTypewriter(portTw, SPEED, null), 1400);
 
   const scrollEl = document.getElementById('scroll-txt');
-  if (scrollEl) scramble(scrollEl, '[scroll to explore]', { delay: 1800, duration: 2400, loop: true });
+  if (scrollEl) scramble(scrollEl, '[scroll to explore]', { delay: 1800, duration: 1400, loop: true, loopPause: 2200 });
 }
 
 
