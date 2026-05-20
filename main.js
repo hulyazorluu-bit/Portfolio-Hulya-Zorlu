@@ -274,9 +274,9 @@ function revealPage() {
 
     if (scrollEl) {
       scrollEl.style.opacity = '1';
-      scramble(scrollEl, '[scroll to explore]', { duration: 2600, loop: true, loopPause: 2800 });
+      scramble(scrollEl, '[scroll to explore]', { duration: 2600, loop: true, loopPause: 3400 });
     }
-  }, 1400);
+  }, 900);
 }
 
 
