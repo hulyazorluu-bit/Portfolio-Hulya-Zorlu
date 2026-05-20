@@ -495,8 +495,9 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 
 .works_grid {
   display: grid;
-  grid-template-columns: 5fr 7fr;
-  gap: 1rem;
+  grid-template-columns: 3fr 7fr;
+  column-gap: 7rem;
+  row-gap: 1rem;
   align-items: start;
 }
 
