@@ -1,6 +1,6 @@
 /* =============================================================
-   HULYA ZORLU — Portfolio v35
-   Clock · Char reveal (.cn/.cf) · CSS Typewriter (clock+portfolio)
+   HULYA ZORLU — Portfolio v36
+   Clock · Char reveal (nav/socials) · Smooth title · Scramble scroll
    Mobile menu
    ============================================================= */
 
@@ -9,19 +9,6 @@ const FAKE_CHARS = '##·$%&/=€|()@+09*+]}{[';
 function rndFake() {
   return FAKE_CHARS[Math.floor(Math.random() * FAKE_CHARS.length)];
 }
-
-/* ── Init title chars early — prevent text flash during loader ── */
-(function initTitleChars() {
-  document.querySelectorAll('.ttj .char').forEach(charEl => {
-    const letter = charEl.textContent;
-    if (!letter.trim()) return;
-    charEl.innerHTML = '';
-    const cn = document.createElement('span'); cn.className = 'cn'; cn.textContent = letter;
-    const cf = document.createElement('span'); cf.className = 'cf';
-    cf.setAttribute('aria-hidden', 'true'); cf.textContent = rndFake();
-    charEl.appendChild(cn); charEl.appendChild(cf);
-  });
-})();
 
 
 /* ── Clock — visitor's local time ────────────────────────────── */
@@ -132,7 +119,7 @@ function rndFake() {
 })();
 
 
-/* ── CSS Typewriter — for clock + PORTFOLIO_26 only ──────────── */
+/* ── CSS Typewriter — clock + PORTFOLIO_26 ────────────────────── */
 function triggerTypewriter(twEl, charsPerSec, onDone) {
   const charCount = twEl.textContent.length;
   if (charCount === 0) { if (onDone) onDone(); return; }
@@ -149,16 +136,44 @@ function triggerTypewriter(twEl, charsPerSec, onDone) {
 }
 
 
-/* ── Char animation (.cn / .cf) ───────────────────────────────── */
+/* ── Scramble — scroll to explore ────────────────────────────── */
+const GLYPHS = '&$*@)]}=|%·(){+/9}[·@$)';
 
-/* Split element text into .cw > (.cn + .cf) spans, return array of .cw */
+function scramble(el, finalText, { delay = 0, duration = 1200, loop = false, loopPause = 4000 } = {}) {
+  const chars = finalText.split('');
+  const totalFrames = Math.ceil(duration / 40);
+  let frame = 0;
+
+  function render() {
+    const progress = frame / totalFrames;
+    el.textContent = chars.map((ch, i) =>
+      progress > i / chars.length
+        ? ch
+        : GLYPHS[Math.floor(Math.random() * GLYPHS.length)]
+    ).join('');
+
+    frame++;
+    if (frame <= totalFrames) {
+      requestAnimationFrame(render);
+    } else {
+      el.textContent = finalText;
+      if (loop) setTimeout(() => { frame = 0; scramble(el, finalText, { delay: 0, duration, loop, loopPause }); }, loopPause);
+    }
+  }
+
+  setTimeout(() => requestAnimationFrame(render), delay);
+}
+
+
+/* ── Char animation (.cn / .cf) — nav + socials ───────────────── */
+
 function splitChars(el) {
   const text = el.textContent;
   el.innerHTML = '';
   const charEls = [];
   for (const ch of text) {
     if (ch === ' ') {
-      el.appendChild(document.createTextNode(' '));
+      el.appendChild(document.createTextNode(' '));
     } else {
       const cw = document.createElement('span');
       cw.className = 'cw';
@@ -178,49 +193,31 @@ function splitChars(el) {
   return charEls;
 }
 
-/* Stagger .done on an array of .cw/.char elements */
-function revealChars(charEls, { stagger = 50, onDone } = {}) {
+function revealChars(charEls, { stagger = 30, onDone } = {}) {
   charEls.forEach((cw, i) => {
     setTimeout(() => cw.classList.add('done'), i * stagger);
   });
   if (onDone && charEls.length > 0) {
-    setTimeout(onDone, (charEls.length - 1) * stagger + 400);
+    setTimeout(onDone, (charEls.length - 1) * stagger + 300);
   } else if (onDone) {
     onDone();
   }
 }
 
-/* Split and reveal a .typewriter span via char animation */
-function charReveal(twEl, { stagger = 50, onDone } = {}) {
+function charReveal(twEl, { stagger = 30, onDone } = {}) {
   const container = twEl.closest('.typewriter-container');
   if (container) {
     container.style.opacity = '1';
-    container.classList.add('done'); /* suppress blinking cursor */
+    container.classList.add('done');
   }
   const charEls = splitChars(twEl);
   revealChars(charEls, { stagger, onDone });
 }
 
-/* One-shot char reveal for scroll to explore — cursor stays blinking after */
-function scrollReveal(el, text, { stagger = 50 } = {}) {
-  el.textContent = text;
-  const charEls = splitChars(el);
-  revealChars(charEls, {
-    stagger,
-    onDone: () => {
-      const cursor = document.createElement('span');
-      cursor.className = 'tw-cursor';
-      cursor.setAttribute('aria-hidden', 'true');
-      cursor.textContent = '|';
-      el.appendChild(cursor);
-    },
-  });
-}
-
 
 /* ── Reveal page after loader ─────────────────────────────────── */
 function revealPage() {
-  const STAGGER = 50;
+  const STAGGER = 28;
 
   /* 1 — Nav right: char reveal simultaneously */
   document.querySelectorAll('.nav_lk .typewriter').forEach(twEl => {
@@ -241,7 +238,7 @@ function revealPage() {
   if (navLeft) navLeft.style.opacity = '1';
 
   const brandTw = document.getElementById('brand-tw');
-  if (brandTw) charReveal(brandTw, { stagger: 40 });
+  if (brandTw) charReveal(brandTw, { stagger: 28 });
 
   if (window.triggerClockTypewriter) {
     const clockContainer = document.getElementById('clock-tw-container');
@@ -257,16 +254,16 @@ function revealPage() {
     charReveal(twEl, { stagger: STAGGER });
   });
 
-  /* 4 — Title chars: stagger .done row by row */
+  /* 4 — Title: smooth opacity stagger, no fake chars */
   document.querySelectorAll('.ttj').forEach((row, rowIdx) => {
     row.querySelectorAll('.char').forEach((ch, charIdx) => {
-      setTimeout(() => ch.classList.add('done'), rowIdx * 150 + charIdx * 55);
+      setTimeout(() => ch.classList.add('act'), rowIdx * 160 + charIdx * 60);
     });
   });
 
   /* 5 — Subtitle: dissolve */
   const tt3 = document.querySelector('.tt3');
-  if (tt3) setTimeout(() => tt3.classList.add('visible'), 300);
+  if (tt3) setTimeout(() => tt3.classList.add('visible'), 350);
 
   /* 6 — PORTFOLIO_26 + scroll after 1400ms */
   const portTw = document.querySelector('#portfolio-txt .typewriter');
@@ -277,7 +274,7 @@ function revealPage() {
 
     if (scrollEl) {
       scrollEl.style.opacity = '1';
-      scrollReveal(scrollEl, '[scroll to explore]', { stagger: 45 });
+      scramble(scrollEl, '[scroll to explore]', { duration: 2600, loop: true, loopPause: 2000 });
     }
   }, 1400);
 }

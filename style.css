@@ -200,7 +200,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   display: inline-block;
   opacity: 0;
   transform: translateX(0.06em);
-  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .cf {
@@ -208,21 +208,22 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   left: 0; top: 0;
   transform-origin: left center;
   white-space: nowrap;
-  opacity: 0.28;
-  transition: transform 0.16s ease, opacity 0.16s ease;
+  opacity: 0.22;
+  transition: transform 0.11s ease, opacity 0.11s ease;
 }
 
-.char.done .cn,
 .cw.done .cn { opacity: 1; transform: translateX(0); }
-
-.char.done .cf,
 .cw.done .cf { transform: scaleX(0); opacity: 0; }
 
-/* Blinking cursor kept after scroll-txt reveal */
-.tw-cursor {
-  animation: tw-blink 0.55s step-end infinite;
-  margin-left: 1px;
+/* Title chars — smooth opacity stagger, no fake chars */
+.ttj .char {
+  display: inline-block;
+  position: relative;
+  vertical-align: bottom;
+  opacity: 0;
+  transition: opacity 0.55s ease;
 }
+.ttj .char.act { opacity: 1; }
 
 /* Nav left hidden at start — JS reveals via typewriter */
 .nav_left { opacity: 0; }
