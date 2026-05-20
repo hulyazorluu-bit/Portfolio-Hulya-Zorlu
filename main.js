@@ -180,7 +180,7 @@ function scrollTicker(el, text, { charDelay = 45, pause = 2000 } = {}) {
     }
   }
 
-  setTimeout(next, 1800);
+  setTimeout(next, 1000);
 }
 
 
