@@ -201,13 +201,19 @@ function charReveal(twEl, { stagger = 50, onDone } = {}) {
   revealChars(charEls, { stagger, onDone });
 }
 
-/* Loop char reveal for scroll to explore */
-function loopCharReveal(el, text, { stagger = 50, pause = 2000 } = {}) {
+/* One-shot char reveal for scroll to explore — cursor stays blinking after */
+function scrollReveal(el, text, { stagger = 50 } = {}) {
   el.textContent = text;
   const charEls = splitChars(el);
   revealChars(charEls, {
     stagger,
-    onDone: () => setTimeout(() => loopCharReveal(el, text, { stagger, pause }), pause),
+    onDone: () => {
+      const cursor = document.createElement('span');
+      cursor.className = 'tw-cursor';
+      cursor.setAttribute('aria-hidden', 'true');
+      cursor.textContent = '|';
+      el.appendChild(cursor);
+    },
   });
 }
 
@@ -271,7 +277,7 @@ function revealPage() {
 
     if (scrollEl) {
       scrollEl.style.opacity = '1';
-      loopCharReveal(scrollEl, '[scroll to explore]', { stagger: 45, pause: 2000 });
+      scrollReveal(scrollEl, '[scroll to explore]', { stagger: 45 });
     }
   }, 1400);
 }
