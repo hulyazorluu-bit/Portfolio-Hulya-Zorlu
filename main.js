@@ -328,34 +328,6 @@ function revealPage() {
 })();
 
 
-/* ── Section transition overlay ──────────────────────────────── */
-(function initSectionTransition() {
-  const overlay = document.getElementById('section-transition');
-  const trigger = document.getElementById('about');
-  if (!overlay || !trigger) return;
-
-  const KF_IN  = [{ transform: 'translateY(-100%)', opacity: 0 }, { transform: 'translateY(0%)', opacity: 1 }];
-  const KF_OUT = [{ transform: 'translateY(0%)', opacity: 1 }, { transform: 'translateY(-100%)', opacity: 0 }];
-  const OPTS_IN  = { duration: 1100, easing: 'cubic-bezier(0.76, 0, 0.24, 1)', fill: 'forwards' };
-  const OPTS_OUT = { duration: 800,  easing: 'cubic-bezier(0.76, 0, 0.24, 1)', fill: 'forwards' };
-
-  let currentAnim = null;
-
-  function play(kf, opts) {
-    if (currentAnim) currentAnim.cancel();
-    currentAnim = overlay.animate(kf, opts);
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      /* ignore initial below-fold state */
-      if (!entry.isIntersecting && entry.boundingClientRect.top > 0) return;
-      play(entry.isIntersecting ? KF_IN : KF_OUT, entry.isIntersecting ? OPTS_IN : OPTS_OUT);
-    });
-  }, { threshold: 0.12 });
-
-  observer.observe(trigger);
-})();
 
 
 /* ── SEE MORE cursor ─────────────────────────────────────────── */
