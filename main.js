@@ -1,9 +1,30 @@
 /* =============================================================
-   HULYA ZORLU — Portfolio v34
-   Clock · Title char reveal · CSS Typewriter · Mobile menu
+   HULYA ZORLU — Portfolio v35
+   Clock · Char reveal (.cn/.cf) · CSS Typewriter (clock+portfolio)
+   Mobile menu
    ============================================================= */
 
-/* ── Clock — Paris time ──────────────────────────────────────── */
+/* ── Char animation constants ─────────────────────────────────── */
+const FAKE_CHARS = '##·$%&/=€|()@+09*+]}{[';
+function rndFake() {
+  return FAKE_CHARS[Math.floor(Math.random() * FAKE_CHARS.length)];
+}
+
+/* ── Init title chars early — prevent text flash during loader ── */
+(function initTitleChars() {
+  document.querySelectorAll('.ttj .char').forEach(charEl => {
+    const letter = charEl.textContent;
+    if (!letter.trim()) return;
+    charEl.innerHTML = '';
+    const cn = document.createElement('span'); cn.className = 'cn'; cn.textContent = letter;
+    const cf = document.createElement('span'); cf.className = 'cf';
+    cf.setAttribute('aria-hidden', 'true'); cf.textContent = rndFake();
+    charEl.appendChild(cn); charEl.appendChild(cf);
+  });
+})();
+
+
+/* ── Clock — visitor's local time ────────────────────────────── */
 (function initClock() {
   const twEl = document.getElementById('clock-tw');
   if (!twEl) return;
@@ -23,18 +44,16 @@
     return `${h}:${m} ${dp.toUpperCase()}`;
   }
 
-  /* Called by revealPage once nav-left becomes visible */
   window.triggerClockTypewriter = function() {
     if (triggered) return;
     triggered = true;
     const timeStr = getTimeString();
-    twEl.textContent = timeStr; /* same length as placeholder — no layout shift */
-    twEl.style.clipPath = 'inset(0 100% 0 0)'; /* reset clip before animation */
+    twEl.textContent = timeStr;
+    twEl.style.clipPath = 'inset(0 100% 0 0)';
     void twEl.offsetWidth;
     triggerTypewriter(twEl, 13, null);
   };
 
-  /* Keep clock live after initial reveal */
   function tick() {
     if (triggered) twEl.textContent = getTimeString();
   }
@@ -44,7 +63,7 @@
 })();
 
 
-/* ── Loader — progress réel selon navigateur / connexion ─────── */
+/* ── Loader ───────────────────────────────────────────────────── */
 (function initLoader() {
   const loader  = document.getElementById('loader');
   const countEl = document.getElementById('loader-count');
@@ -79,19 +98,15 @@
     }
   }
 
-  /* Vitesse de base selon la connexion détectée */
   const connType = navigator.connection?.effectiveType || '4g';
   const pctPerSec = connType === '4g' ? 38 : connType === '3g' ? 22 : 14;
 
-  /* Compteur progressif depuis 000 — toujours */
   const baseline = setInterval(() => {
     const elapsed = (Date.now() - START) / 1000;
-    /* progression naturelle avec petite irrégularité */
     const jitter = (Math.random() - 0.5) * 4;
-    setDisplay(Math.min(elapsed * pctPerSec + jitter, 72)); /* plafond 72 avant load */
+    setDisplay(Math.min(elapsed * pctPerSec + jitter, 72));
   }, 60);
 
-  /* Quand tout est chargé : sauts irréguliers vers 100 */
   function finalize() {
     if (closed) return;
     clearInterval(baseline);
@@ -113,13 +128,11 @@
     else { setTimeout(finalize, MIN_MS - (Date.now() - START)); }
   });
 
-  /* Fallback 8s */
   setTimeout(() => { if (!closed) finalize(); }, 8000);
 })();
 
 
-/* ── CSS Typewriter trigger ───────────────────────────────────── */
-/* Uses clip-path animation — element keeps natural width (no layout shift) */
+/* ── CSS Typewriter — for clock + PORTFOLIO_26 only ──────────── */
 function triggerTypewriter(twEl, charsPerSec, onDone) {
   const charCount = twEl.textContent.length;
   if (charCount === 0) { if (onDone) onDone(); return; }
@@ -135,63 +148,94 @@ function triggerTypewriter(twEl, charsPerSec, onDone) {
   }, duration * 1000 + 60);
 }
 
-/* ── Scramble text ────────────────────────────────────────────── */
-const GLYPHS = '&$*@)]}=|%·(){+/9}[·@$)';
 
-function scramble(el, finalText, { delay = 0, duration = 1200, loop = false, loopPause = 4000 } = {}) {
-  const chars = finalText.split('');
-  const totalFrames = Math.ceil(duration / 40);
-  let frame = 0;
+/* ── Char animation (.cn / .cf) ───────────────────────────────── */
 
-  function render() {
-    const progress = frame / totalFrames;
-    el.textContent = chars.map((ch, i) =>
-      progress > i / chars.length
-        ? ch
-        : GLYPHS[Math.floor(Math.random() * GLYPHS.length)]
-    ).join('');
-
-    frame++;
-    if (frame <= totalFrames) {
-      requestAnimationFrame(render);
+/* Split element text into .cw > (.cn + .cf) spans, return array of .cw */
+function splitChars(el) {
+  const text = el.textContent;
+  el.innerHTML = '';
+  const charEls = [];
+  for (const ch of text) {
+    if (ch === ' ') {
+      el.appendChild(document.createTextNode(' '));
     } else {
-      el.textContent = finalText;
-      if (loop) setTimeout(() => { frame = 0; scramble(el, finalText, { delay: 0, duration, loop, loopPause }); }, loopPause);
+      const cw = document.createElement('span');
+      cw.className = 'cw';
+      const cn = document.createElement('span');
+      cn.className = 'cn';
+      cn.textContent = ch;
+      const cf = document.createElement('span');
+      cf.className = 'cf';
+      cf.setAttribute('aria-hidden', 'true');
+      cf.textContent = rndFake();
+      cw.appendChild(cn);
+      cw.appendChild(cf);
+      el.appendChild(cw);
+      charEls.push(cw);
     }
   }
+  return charEls;
+}
 
-  setTimeout(() => requestAnimationFrame(render), delay);
+/* Stagger .done on an array of .cw/.char elements */
+function revealChars(charEls, { stagger = 50, onDone } = {}) {
+  charEls.forEach((cw, i) => {
+    setTimeout(() => cw.classList.add('done'), i * stagger);
+  });
+  if (onDone && charEls.length > 0) {
+    setTimeout(onDone, (charEls.length - 1) * stagger + 400);
+  } else if (onDone) {
+    onDone();
+  }
+}
+
+/* Split and reveal a .typewriter span via char animation */
+function charReveal(twEl, { stagger = 50, onDone } = {}) {
+  const container = twEl.closest('.typewriter-container');
+  if (container) {
+    container.style.opacity = '1';
+    container.classList.add('done'); /* suppress blinking cursor */
+  }
+  const charEls = splitChars(twEl);
+  revealChars(charEls, { stagger, onDone });
+}
+
+/* Loop char reveal for scroll to explore */
+function loopCharReveal(el, text, { stagger = 50, pause = 2000 } = {}) {
+  el.textContent = text;
+  const charEls = splitChars(el);
+  revealChars(charEls, {
+    stagger,
+    onDone: () => setTimeout(() => loopCharReveal(el, text, { stagger, pause }), pause),
+  });
 }
 
 
 /* ── Reveal page after loader ─────────────────────────────────── */
 function revealPage() {
-  const SPEED = 22; /* chars/sec — snappy but readable */
+  const STAGGER = 50;
 
-  /* 1 — Nav right: typewriter links simultaneously */
+  /* 1 — Nav right: char reveal simultaneously */
   document.querySelectorAll('.nav_lk .typewriter').forEach(twEl => {
-    triggerTypewriter(twEl, SPEED, null);
+    charReveal(twEl, { stagger: STAGGER });
   });
 
-  /* LETS TALK: fade in + sand scramble simultaneously */
+  /* LETS TALK: fade in + char reveal */
   const cta = document.querySelector('.nav_cta');
   const ctaText = document.getElementById('cta-text');
   if (cta && ctaText) {
     cta.style.opacity = '1';
-    scramble(ctaText, 'LETS TALK', { delay: 0, duration: 700 });
+    const charEls = splitChars(ctaText);
+    revealChars(charEls, { stagger: STAGGER });
   }
 
-  /* 2 — Nav left: brand scramble + clock simultaneously with nav right */
+  /* 2 — Nav left: brand char reveal + clock typewriter simultaneously */
   const navLeft = document.querySelector('.nav_left');
   if (navLeft) navLeft.style.opacity = '1';
 
   const brandTw = document.getElementById('brand-tw');
-  if (brandTw) {
-    const container = brandTw.closest('.typewriter-container');
-    brandTw.style.clipPath = 'inset(0 0% 0 0)'; /* full visible for scramble */
-    if (container) { container.style.opacity = '1'; container.classList.add('done'); }
-    scramble(brandTw, 'HULYAZORLU_PAR', { delay: 0, duration: 650 });
-  }
+  if (brandTw) charReveal(brandTw, { stagger: 40 });
 
   if (window.triggerClockTypewriter) {
     const clockContainer = document.getElementById('clock-tw-container');
@@ -199,36 +243,35 @@ function revealPage() {
     window.triggerClockTypewriter();
   }
 
-  /* 3 — Socials: all simultaneously with nav */
+  /* 3 — Socials: char reveal simultaneously */
   document.querySelectorAll('.hero_socials .social_lk').forEach(link => {
     link.style.opacity = '1';
   });
   document.querySelectorAll('.hero_socials .typewriter').forEach(twEl => {
-    triggerTypewriter(twEl, SPEED, null);
+    charReveal(twEl, { stagger: STAGGER });
   });
 
-  /* 4 — Title chars (unchanged) */
+  /* 4 — Title chars: stagger .done row by row */
   document.querySelectorAll('.ttj').forEach((row, rowIdx) => {
     row.querySelectorAll('.char').forEach((ch, charIdx) => {
-      ch.style.transitionDelay = `${rowIdx * 150 + charIdx * 55}ms`;
+      setTimeout(() => ch.classList.add('done'), rowIdx * 150 + charIdx * 55);
     });
-    setTimeout(() => row.classList.add('act'), 100 + rowIdx * 150);
   });
 
-  /* 5 — Subtitle "UI/UX Designer / Based in Paris": dissolve */
+  /* 5 — Subtitle: dissolve */
   const tt3 = document.querySelector('.tt3');
   if (tt3) setTimeout(() => tt3.classList.add('visible'), 300);
 
-  /* 6 — PORTFOLIO_26 + scroll: même timing */
+  /* 6 — PORTFOLIO_26 + scroll after 1400ms */
   const portTw = document.querySelector('#portfolio-txt .typewriter');
   const scrollEl = document.getElementById('scroll-txt');
 
   setTimeout(() => {
-    if (portTw) triggerTypewriter(portTw, SPEED, null);
+    if (portTw) triggerTypewriter(portTw, 22, null);
 
     if (scrollEl) {
       scrollEl.style.opacity = '1';
-      scramble(scrollEl, '[scroll to explore]', { duration: 2600, loop: true, loopPause: 2000 });
+      loopCharReveal(scrollEl, '[scroll to explore]', { stagger: 45, pause: 2000 });
     }
   }, 1400);
 }

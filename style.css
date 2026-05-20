@@ -176,12 +176,45 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   white-space: nowrap;
   display: inline-block;
   vertical-align: bottom;
-  /* clip-path instead of width:0 → layout never shifts */
-  clip-path: inset(0 100% 0 0);
 }
+
+/* Only clock + PORTFOLIO_26 still use clip-path typewriter */
+.tw-type { clip-path: inset(0 100% 0 0); }
 
 @keyframes typing { to { clip-path: inset(0 0% 0 0); } }
 @keyframes tw-blink { 50% { opacity: 0; } }
+
+/* ── Char reveal animation (.cn / .cf) ──────────────────────────── */
+.char {
+  display: inline-block;
+  position: relative;
+  vertical-align: bottom;
+}
+
+.cw {
+  display: inline-block;
+  position: relative;
+}
+
+.cn {
+  display: inline-block;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cf {
+  position: absolute;
+  left: 0; top: 0;
+  transform-origin: left center;
+  white-space: nowrap;
+  transition: transform 0.16s ease, opacity 0.16s ease;
+}
+
+.char.done .cn,
+.cw.done .cn { opacity: 1; }
+
+.char.done .cf,
+.cw.done .cf { transform: scaleX(0); opacity: 0; }
 
 /* Nav left hidden at start — JS reveals via typewriter */
 .nav_left { opacity: 0; }
@@ -356,20 +389,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 
 .ttj .word { display: inline-block; }
 
-/* Chars: opacity seule avant animation (pas de translateY qui clipe) */
-.ttj .char {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(0.3em);
-  transition: opacity 0.75s cubic-bezier(0.25,0.46,0.45,0.94),
-              transform 0.75s cubic-bezier(0.25,0.46,0.45,0.94);
-}
-
-/* JS adds .act → chars apparaissent */
-.ttj.act .char {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* .char already defined above — title chars use .char.done via JS */
 
 /* ── SUBTITLE ─────────────────────────────────────────────────── */
 .cnt_bt { margin-top: 2.8rem; }
