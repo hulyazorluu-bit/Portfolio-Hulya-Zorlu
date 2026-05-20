@@ -302,6 +302,32 @@ function revealPage() {
 }
 
 
+/* ── Work labels char reveal on scroll ───────────────────────── */
+(function initWorkLabels() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      observer.unobserve(entry.target);
+
+      const meta = entry.target.querySelector('.work_meta');
+      if (!meta) return;
+      meta.style.opacity = '1';
+
+      ['.work_num', '.work_name'].forEach((sel, i) => {
+        const el = meta.querySelector(sel);
+        if (!el) return;
+        setTimeout(() => {
+          const chars = splitChars(el);
+          revealChars(chars, { stagger: 28 });
+        }, i * 90);
+      });
+    });
+  }, { threshold: 0.35 });
+
+  document.querySelectorAll('.work_item').forEach(item => observer.observe(item));
+})();
+
+
 /* ── SEE MORE cursor ─────────────────────────────────────────── */
 (function initSeeCursor() {
   const cursor = document.getElementById('see-cursor');
