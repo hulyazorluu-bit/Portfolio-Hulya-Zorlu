@@ -160,12 +160,14 @@ function scramble(el, finalText, { delay = 0, duration = 1200 } = {}) {
 }
 
 /* ── Scroll ticker — 1 special char at a time, loops ─────────── */
-function scrollTicker(el, text, { charDelay = 85, pause = 3600 } = {}) {
+function scrollTicker(el, text, { charDelay = 45, pause = 2000 } = {}) {
   const chars = text.split('');
-  let pos = 0;
+  const start = 1;                  /* skip '[' */
+  const end   = chars.length - 2;  /* skip ']' */
+  let pos = start;
 
   function next() {
-    if (pos < chars.length) {
+    if (pos <= end) {
       el.textContent = chars.map((ch, i) =>
         i === pos ? GLYPHS[Math.floor(Math.random() * GLYPHS.length)] : ch
       ).join('');
@@ -173,7 +175,7 @@ function scrollTicker(el, text, { charDelay = 85, pause = 3600 } = {}) {
       setTimeout(next, charDelay);
     } else {
       el.textContent = text;
-      pos = 0;
+      pos = start;
       setTimeout(next, pause);
     }
   }
@@ -294,7 +296,7 @@ function revealPage() {
       const INIT_DUR = 2600;
       scrollEl.style.opacity = '1';
       scramble(scrollEl, SCROLL_TEXT, { duration: INIT_DUR });
-      setTimeout(() => scrollTicker(scrollEl, SCROLL_TEXT, { charDelay: 45, pause: 1800 }), INIT_DUR + 60);
+      setTimeout(() => scrollTicker(scrollEl, SCROLL_TEXT), INIT_DUR + 60);
     }
   }, 900);
 }
