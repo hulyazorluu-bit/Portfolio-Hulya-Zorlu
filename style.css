@@ -461,6 +461,108 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 .social_lk:hover { color: var(--fg); }
 .social_lk svg { width: 0.55rem; height: 0.55rem; }
 
+/* ── FEATURED WORKS ───────────────────────────────────────────── */
+.works {
+  position: relative;
+  z-index: 1;
+  padding: 0 2.4rem 10rem;
+  margin-top: 12rem;
+}
+
+.works_hd {
+  display: flex;
+  align-items: baseline;
+  gap: 1.6rem;
+  margin-bottom: 3.6rem;
+}
+
+.works_title {
+  font-family: montrealbook;
+  font-weight: 400;
+  font-size: clamp(4.5rem, 7.5vw, 10.5rem);
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+  color: var(--fg);
+}
+
+.works_count {
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  color: rgba(10,10,10,0.35);
+  flex-shrink: 0;
+}
+
+.works_grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.work_item {
+  display: block;
+  cursor: none;
+}
+
+/* Third item: back to first column */
+.work_item:nth-child(3) { grid-column: 1; }
+
+.work_thumb {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+.work_item:hover .work_thumb { opacity: 0.88; }
+
+.work_thumb--a { background: #E2E0DA; }
+.work_thumb--b { background: #0A0A0A; }
+.work_thumb--c { background: #CECCC6; }
+
+.work_meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+}
+
+.work_num {
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  color: rgba(10,10,10,0.35);
+  text-transform: uppercase;
+}
+
+.work_name {
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  color: rgba(10,10,10,0.55);
+  text-transform: uppercase;
+}
+
+/* ── SEE MORE cursor ──────────────────────────────────────────── */
+.see-cursor {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9000;
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--fg);
+  padding: 0.55rem 1.1rem;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(18px, 18px);
+  transition: opacity 0.2s ease;
+}
+.see-cursor.visible { opacity: 1; }
+
 /* ── RESPONSIVE ───────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .nav_right { display: none; }
@@ -486,4 +588,8 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   }
 
   .cnt_sc { bottom: 2.4rem; }
+
+  .works_grid { grid-template-columns: 1fr; }
+  .work_item:nth-child(3) { grid-column: auto; }
+  .works_title { font-size: clamp(3.5rem, 12vw, 6rem); }
 }

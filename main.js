@@ -302,6 +302,23 @@ function revealPage() {
 }
 
 
+/* ── SEE MORE cursor ─────────────────────────────────────────── */
+(function initSeeCursor() {
+  const cursor = document.getElementById('see-cursor');
+  if (!cursor) return;
+
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+  });
+
+  document.querySelectorAll('.work_thumb').forEach(thumb => {
+    thumb.addEventListener('mouseenter', () => cursor.classList.add('visible'));
+    thumb.addEventListener('mouseleave', () => cursor.classList.remove('visible'));
+  });
+})();
+
+
 /* ── Mobile menu ─────────────────────────────────────────────── */
 (function initMobileMenu() {
   const burger = document.getElementById('burger');
