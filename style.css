@@ -503,7 +503,6 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 
 .work_item {
   display: block;
-  cursor: none;
 }
 
 /* Third item: back to first column */
