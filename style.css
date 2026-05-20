@@ -94,9 +94,22 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   justify-content: space-between;
   padding: 0 2.4rem;
   height: 4.8rem;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  background: linear-gradient(to bottom, rgba(248,246,242,0.5) 0%, rgba(248,246,242,0) 100%);
+}
+
+/* Gradient blur fades smoothly from top to bottom of nav */
+.nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: linear-gradient(to bottom,
+    rgba(248,246,242,0.72) 0%,
+    rgba(248,246,242,0.38) 55%,
+    rgba(248,246,242,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
 }
 
 
@@ -519,6 +532,15 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 .work_thumb--a { background: #E2E0DA; }
 .work_thumb--b { background: #0A0A0A; }
 .work_thumb--c { background: #CECCC6; }
+
+/* Project 1 — square */
+.work_item:nth-child(1) .work_thumb { aspect-ratio: 1 / 1; }
+
+/* Project 2 — smaller, pushed to the right */
+.work_item:nth-child(2) {
+  justify-self: end;
+  width: 72%;
+}
 
 .work_meta {
   display: flex;
