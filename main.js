@@ -294,7 +294,7 @@ function revealPage() {
       const INIT_DUR = 2600;
       scrollEl.style.opacity = '1';
       scramble(scrollEl, SCROLL_TEXT, { duration: INIT_DUR });
-      setTimeout(() => scrollTicker(scrollEl, SCROLL_TEXT, { charDelay: 85, pause: 3600 }), INIT_DUR + 60);
+      setTimeout(() => scrollTicker(scrollEl, SCROLL_TEXT, { charDelay: 45, pause: 1800 }), INIT_DUR + 60);
     }
   }, 900);
 }
