@@ -558,9 +558,10 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 }
 
 .work_name {
-  font-family: montrealbook, 'Helvetica Neue', sans-serif;
-  font-size: 1.3rem;
-  letter-spacing: -0.01em;
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   color: var(--fg);
 }
 
