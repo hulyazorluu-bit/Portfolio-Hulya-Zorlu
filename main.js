@@ -302,19 +302,20 @@ function revealPage() {
 }
 
 
-/* ── Scroll gradient white→black (projects → about) ─────────── */
-(function initScrollGrad() {
-  const grad   = document.getElementById('scroll-grad');
-  const works  = document.getElementById('projects');
-  const about  = document.getElementById('about');
-  if (!grad || !works || !about) return;
+/* ── Nav adaptive color (light ↔ dark sections) ──────────────── */
+(function initNavColor() {
+  const nav = document.querySelector('.nav');
+  if (!nav) return;
+
+  const darkSections = Array.from(document.querySelectorAll('.section-dark'));
 
   function update() {
-    const wRect = works.getBoundingClientRect();
-    const vh    = window.innerHeight;
-    /* start fading when bottom of works hits 120% viewport, finish at 0% */
-    const progress = Math.max(0, Math.min(1, 1 - wRect.bottom / (vh * 1.1)));
-    grad.style.opacity = progress;
+    const navBottom = nav.getBoundingClientRect().bottom;
+    const onDark = darkSections.some(sec => {
+      const r = sec.getBoundingClientRect();
+      return navBottom > r.top && navBottom < r.bottom;
+    });
+    nav.classList.toggle('nav--on-dark', onDark);
   }
 
   window.addEventListener('scroll', update, { passive: true });

@@ -587,48 +587,53 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 .see-cursor.visible { opacity: 1; }
 
 /* ── SECTION LIGHT / DARK ─────────────────────────────────────── */
-.section-light {
-  position: relative;
-  z-index: 2;
+.section-light { position: relative; z-index: 2; }
+.section-dark  { position: relative; z-index: 1; }
+
+/* ── NAV adaptive color on dark sections ─────────────────────── */
+.nav--on-dark .nav_brand,
+.nav--on-dark .nav_clock { color: rgba(248,246,242,0.55); }
+
+.nav--on-dark .nav_lk { color: rgba(248,246,242,0.8); }
+
+.nav--on-dark .nav_cta {
+  background: #F8F6F2;
+  color: #0A0A0A;
 }
 
-.section-dark {
-  position: relative;
-  z-index: 1;
-}
+.nav--on-dark .burger span { background: #F8F6F2; }
 
-.section-dark::before {
-  content: "";
-  position: absolute;
-  top: -120px;
-  left: 0;
-  width: 100%;
-  height: 160px;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0) 0%,
-    rgba(0,0,0,0.08) 20%,
-    rgba(0,0,0,0.25) 40%,
-    rgba(0,0,0,0.55) 70%,
-    rgba(0,0,0,1) 100%
-  );
-  filter: blur(35px);
-  pointer-events: none;
-  z-index: 3;
+.nav--on-dark::before {
+  background: linear-gradient(to bottom,
+    rgba(0,0,0,0.55) 0%,
+    rgba(0,0,0,0.2) 55%,
+    rgba(0,0,0,0) 100%);
 }
 
 /* ── ABOUT ────────────────────────────────────────────────────── */
 .about {
   position: relative;
-  background: #000;
+  background: #0A0A0A;
   min-height: 100vh;
   padding: 12rem 2.4rem 10rem;
-  z-index: 1;
 }
 
-.about_inner {
-  position: relative;
-  z-index: 2;
+.about_inner { position: relative; }
+
+.about_tag {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 5rem;
+  border-top: 1px solid rgba(248,246,242,0.12);
+  padding-top: 2rem;
+}
+.about_tag_num,
+.about_tag_label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1rem;
+  color: rgba(248,246,242,0.3);
+  letter-spacing: 0.1em;
 }
 
 .about_title {
@@ -638,43 +643,10 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   letter-spacing: -0.03em;
   line-height: 0.95;
   color: #F8F6F2;
-  max-width: 72%;
+  max-width: 80%;
 }
 
-/* ── SCROLL GRADIENT (white→black JS-driven) ─────────────────── */
-#scroll-grad {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(248,246,242,0) 0%, #000 100%);
-  pointer-events: none;
-  z-index: 4;
-  opacity: 0;
-  will-change: opacity;
-}
-
-/* ── ABOUT redesign ───────────────────────────────────────────── */
-.about_tag {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  margin-bottom: 5rem;
-  border-top: 1px solid rgba(248,246,242,0.12);
-  padding-top: 2rem;
-}
-.about_tag_num {
-  font-family: 'Courier Prime', monospace;
-  font-size: 1rem;
-  color: rgba(248,246,242,0.35);
-  letter-spacing: 0.08em;
-}
-.about_tag_label {
-  font-family: 'Courier Prime', monospace;
-  font-size: 1rem;
-  color: rgba(248,246,242,0.35);
-  letter-spacing: 0.12em;
-}
-
-.about_grid {
+.about_cols {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6rem;
@@ -682,40 +654,27 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   align-items: start;
 }
 
-.about_stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem 2rem;
+.about_text {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  line-height: 1.75;
+  color: rgba(248,246,242,0.5);
 }
 
-.about_stat {}
-
-.stat_val {
-  display: block;
-  font-family: montrealbook, sans-serif;
-  font-size: clamp(3.5rem, 5vw, 6.5rem);
-  letter-spacing: -0.04em;
-  line-height: 1;
-  color: #F8F6F2;
+.about_pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-content: start;
 }
-
-.stat_lbl {
-  display: block;
+.about_pills span {
   font-family: 'Courier Prime', monospace;
   font-size: 0.9rem;
   letter-spacing: 0.08em;
-  color: rgba(248,246,242,0.35);
-  margin-top: 0.5rem;
-  text-transform: uppercase;
-}
-
-.about_bio {
-  font-family: 'Courier Prime', monospace;
-  font-size: 1.1rem;
-  letter-spacing: 0.05em;
-  line-height: 1.75;
-  color: rgba(248,246,242,0.5);
-  align-self: center;
+  color: rgba(248,246,242,0.45);
+  border: 1px solid rgba(248,246,242,0.15);
+  padding: 0.5rem 1rem;
 }
 
 .about_location {
@@ -733,7 +692,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 }
 .about_arrow { font-size: 1.4rem; color: rgba(248,246,242,0.2); }
 
-/* ── EXPERIENCE + FORMATION ───────────────────────────────────── */
+/* ── EXPERIENCE + EDUCATION ───────────────────────────────────── */
 .xp {
   padding: 0 2.4rem 10rem;
   margin-top: 0;
@@ -1052,8 +1011,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 /* About responsive */
 @media (max-width: 900px) {
   .about_title { max-width: 100%; }
-  .about_grid { grid-template-columns: 1fr; gap: 3rem; }
-  .about_stats { grid-template-columns: 1fr 1fr; }
+  .about_cols { grid-template-columns: 1fr; gap: 3rem; }
   .xp_row { grid-template-columns: 1fr; gap: 0.4rem; }
   .xp_co { font-size: 1.2rem; }
   .skills_grid { grid-template-columns: 1fr 1fr; }
