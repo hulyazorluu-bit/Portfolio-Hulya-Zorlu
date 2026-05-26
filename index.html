@@ -179,13 +179,270 @@
   <!-- SEE MORE custom cursor -->
   <div class="see-cursor" id="see-cursor" aria-hidden="true">SEE MORE</div>
 
+  <!-- SCROLL GRADIENT OVERLAY (JS-driven white→black) -->
+  <div id="scroll-grad" aria-hidden="true"></div>
+
   <!-- ABOUT -->
   <section class="about section-dark" id="about">
     <div class="about_inner">
-      <h2 class="about_title">UI/UX Designer,<br>also Creative<br>&amp; Inspired</h2>
-      <p class="about_desc">PASSIONATE ABOUT USER EXPERIENCE DESIGN, TYPOGRAPHY AND DIGITAL INTERACTIONS. SPECIALIZED IN CREATING INTUITIVE INTERFACES AND IMMERSIVE DIGITAL EXPERIENCES BASED IN PARIS.</p>
+
+      <div class="about_tag">
+        <span class="about_tag_num">[ 001 ]</span>
+        <span class="about_tag_label">ABOUT</span>
+      </div>
+
+      <h2 class="about_title">UI/UX Designer —<br>Profil hybride,<br>centrée utilisateur.</h2>
+
+      <div class="about_grid">
+        <div class="about_stats">
+          <div class="about_stat">
+            <span class="stat_val">02+</span>
+            <span class="stat_lbl">ANS D'EXPÉRIENCE</span>
+          </div>
+          <div class="about_stat">
+            <span class="stat_val">15%</span>
+            <span class="stat_lbl">TAUX D'INSCRIPTION ↑</span>
+          </div>
+          <div class="about_stat">
+            <span class="stat_val">25%</span>
+            <span class="stat_lbl">TEMPS D'ANALYSE ↓</span>
+          </div>
+          <div class="about_stat">
+            <span class="stat_val">03</span>
+            <span class="stat_lbl">LANGUES</span>
+          </div>
+        </div>
+        <p class="about_bio">PASSIONNÉE PAR LA CRÉATION D'EXPÉRIENCES DIGITALES INTUITIVES ALLIANT ERGONOMIE, ESTHÉTIQUE ET IMPACT BUSINESS. PROFIL HYBRIDE EN DATA ANALYTICS, TESTS LOGICIELS ET DESIGN CENTRÉ UTILISATEUR.</p>
+      </div>
+
+      <div class="about_location">
+        <span>PARIS, FRANCE</span>
+        <span class="about_arrow">↗</span>
+      </div>
+
     </div>
   </section>
+
+  <!-- EXPERIENCE + FORMATION -->
+  <section class="xp section-light" id="experience">
+
+    <div class="xp_hd">
+      <span class="xp_label">[ 002 ]</span>
+      <h2 class="xp_title">Expérience</h2>
+    </div>
+
+    <div class="xp_list">
+
+      <div class="xp_item" data-desc="Analyse des comportements utilisateurs · +15% taux d'inscription · dashboards analytics · méthodologie Agile.">
+        <div class="xp_row">
+          <span class="xp_date">2023 — 2024</span>
+          <span class="xp_co">TANKE</span>
+          <span class="xp_loc">Paris</span>
+          <span class="xp_role">Chef de projet UX Research</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+      <div class="xp_item" data-desc="Études sectorielles et benchmarks · +12% performance campagnes · briefs créatifs · ateliers stratégiques.">
+        <div class="xp_row">
+          <span class="xp_date">2022</span>
+          <span class="xp_co">AUSTRALIEGAD</span>
+          <span class="xp_loc">Paris</span>
+          <span class="xp_role">Assistante Planner Stratégique</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+      <div class="xp_item" data-desc="Gestion des réservations · coordination inter-services · structuration des bases de données clients.">
+        <div class="xp_row">
+          <span class="xp_date">2021 — 2022</span>
+          <span class="xp_co">KAMELYA HOTEL 5★</span>
+          <span class="xp_loc">Antalya</span>
+          <span class="xp_role">Assistante Réservation</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+      <div class="xp_item" data-desc="Organisation d'événements · communication · coordination bénévoles · appui administratif.">
+        <div class="xp_row">
+          <span class="xp_date">2018 — 2020</span>
+          <span class="xp_co">UNICEF</span>
+          <span class="xp_loc">Saint-Étienne</span>
+          <span class="xp_role">Membre Actif</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+    </div>
+
+    <div class="xp_hd xp_hd--form">
+      <span class="xp_label">[ 003 ]</span>
+      <h2 class="xp_title">Formation</h2>
+    </div>
+
+    <div class="xp_list">
+
+      <div class="xp_item" data-desc="HTML · CSS · JavaScript · Figma · Architecture web · API · Bases de données.">
+        <div class="xp_row">
+          <span class="xp_date">2026</span>
+          <span class="xp_co">EMLYON — LA TOILE</span>
+          <span class="xp_loc">Paris</span>
+          <span class="xp_role">Certificat Développement Web</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+      <div class="xp_item" data-desc="Tests manuels & automatisés · Selenium, Cypress · Squash TM · Jira · Postman · Agile & TMAP.">
+        <div class="xp_row">
+          <span class="xp_date">2024 — 2025</span>
+          <span class="xp_co">M2I FORMATION</span>
+          <span class="xp_loc">Paris</span>
+          <span class="xp_role">Testeur Logiciel</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+      <div class="xp_item" data-desc="Big Data · Méthodes Agiles · Scoring prédictif · Data Visualisation · Statistiques décisionnelles.">
+        <div class="xp_row">
+          <span class="xp_date">2022 — 2024</span>
+          <span class="xp_co">INSEEC PARIS</span>
+          <span class="xp_loc">Paris</span>
+          <span class="xp_role">MSc Data Analytics & Marketing</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+      <div class="xp_item" data-desc="Erasmus · Comptabilité financière · Gestion d'entreprise · Microéconomie · Technologies de l'information.">
+        <div class="xp_row">
+          <span class="xp_date">2020 — 2021</span>
+          <span class="xp_co">UNIV. ALGARVE</span>
+          <span class="xp_loc">Faro, Portugal</span>
+          <span class="xp_role">Licence Administration — Erasmus</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+      <div class="xp_item" data-desc="Langues Étrangères Appliquées · Commerce International · Français, Anglais, Turc.">
+        <div class="xp_row">
+          <span class="xp_date">2018 — 2021</span>
+          <span class="xp_co">UNIV. JEAN MONNET</span>
+          <span class="xp_loc">Saint-Étienne</span>
+          <span class="xp_role">Licence LEA Commerce International</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills section-dark" id="skills">
+
+    <div class="skills_hd">
+      <span class="xp_label">[ 004 ]</span>
+      <h2 class="xp_title" style="color:#F8F6F2">Skills</h2>
+    </div>
+
+    <div class="skills_grid">
+
+      <div class="skill_col">
+        <span class="skill_cat">DESIGN &amp; UX</span>
+        <ul class="skill_list">
+          <li class="skill_item">Figma</li>
+          <li class="skill_item">Wireframing</li>
+          <li class="skill_item">Prototypage</li>
+          <li class="skill_item">UX Research</li>
+          <li class="skill_item">User Testing</li>
+        </ul>
+      </div>
+
+      <div class="skill_col">
+        <span class="skill_cat">DEV &amp; TECH</span>
+        <ul class="skill_list">
+          <li class="skill_item">HTML / CSS</li>
+          <li class="skill_item">JavaScript</li>
+          <li class="skill_item">SQL / Python</li>
+          <li class="skill_item">Power BI / Tableau</li>
+          <li class="skill_item">Google Analytics</li>
+        </ul>
+      </div>
+
+      <div class="skill_col">
+        <span class="skill_cat">TESTS &amp; OUTILS</span>
+        <ul class="skill_list">
+          <li class="skill_item">Selenium / Cypress</li>
+          <li class="skill_item">Postman / Appium</li>
+          <li class="skill_item">Jira / Confluence</li>
+          <li class="skill_item">Squash TM</li>
+          <li class="skill_item">Agile / TMAP</li>
+        </ul>
+      </div>
+
+      <div class="skill_col">
+        <span class="skill_cat">LANGUES</span>
+        <ul class="skill_list">
+          <li class="skill_item">Français <span class="skill_lvl">C2</span></li>
+          <li class="skill_item">Anglais <span class="skill_lvl">C1</span></li>
+          <li class="skill_item">Turc <span class="skill_lvl">C2</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="skills_marquee" aria-hidden="true">
+      <div class="marquee_track">
+        <span>FIGMA</span><span>·</span><span>UX RESEARCH</span><span>·</span><span>SQL</span><span>·</span><span>PYTHON</span><span>·</span><span>POWER BI</span><span>·</span><span>SELENIUM</span><span>·</span><span>JAVASCRIPT</span><span>·</span><span>AGILE</span><span>·</span><span>HTML / CSS</span><span>·</span><span>FIGMA</span><span>·</span><span>UX RESEARCH</span><span>·</span><span>SQL</span><span>·</span><span>PYTHON</span><span>·</span><span>POWER BI</span><span>·</span><span>SELENIUM</span><span>·</span><span>JAVASCRIPT</span><span>·</span><span>AGILE</span><span>·</span><span>HTML / CSS</span><span>·</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact section-light" id="contact">
+
+    <div class="contact_hd">
+      <span class="xp_label">[ 005 ]</span>
+    </div>
+
+    <div class="contact_body">
+      <p class="contact_pre">Disponible pour des opportunités</p>
+      <a href="mailto:zorluu.hulya@gmail.com" class="contact_email">
+        ZORLUU.HULYA<br>@GMAIL.COM
+        <span class="contact_email_arr">↗</span>
+      </a>
+    </div>
+
+    <div class="contact_foot">
+      <div class="contact_info">
+        <span>PARIS, FRANCE</span>
+        <span>+33 (0)6 25 96 42 57</span>
+      </div>
+      <div class="contact_socials">
+        <a href="https://www.linkedin.com/in/hulya-zorlu/" target="_blank" rel="noopener">LINKEDIN ↗</a>
+        <a href="https://www.instagram.com/hueliyaz/" target="_blank" rel="noopener">INSTAGRAM ↗</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer section-dark">
+    <div class="footer_inner">
+      <span class="footer_brand">HULYAZORLU_PAR © 2026</span>
+      <a href="#hero" class="footer_top">BACK TO TOP ↑</a>
+      <span class="footer_credit">UI/UX DESIGNER — PARIS</span>
+    </div>
+  </footer>
 
   <script src="main.js"></script>
 </body>

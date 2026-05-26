@@ -302,6 +302,37 @@ function revealPage() {
 }
 
 
+/* ── Scroll gradient white→black (projects → about) ─────────── */
+(function initScrollGrad() {
+  const grad   = document.getElementById('scroll-grad');
+  const works  = document.getElementById('projects');
+  const about  = document.getElementById('about');
+  if (!grad || !works || !about) return;
+
+  function update() {
+    const wRect = works.getBoundingClientRect();
+    const vh    = window.innerHeight;
+    /* start fading when bottom of works hits 120% viewport, finish at 0% */
+    const progress = Math.max(0, Math.min(1, 1 - wRect.bottom / (vh * 1.1)));
+    grad.style.opacity = progress;
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+
+/* ── Experience item description reveal on hover ─────────────── */
+(function initXpReveal() {
+  document.querySelectorAll('.xp_item').forEach(item => {
+    const revealEl = item.querySelector('.xp_reveal');
+    if (!revealEl) return;
+    const desc = item.dataset.desc || '';
+    revealEl.textContent = desc;
+  });
+})();
+
+
 /* ── Work labels char reveal on scroll ───────────────────────── */
 (function initWorkLabels() {
   const observer = new IntersectionObserver((entries) => {
