@@ -632,7 +632,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 .about_tag_label {
   font-family: 'Courier Prime', monospace;
   font-size: 1rem;
-  color: rgba(248,246,242,0.3);
+  color: rgba(248,246,242,0.5);
   letter-spacing: 0.1em;
 }
 
@@ -654,27 +654,44 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   align-items: start;
 }
 
-.about_text {
-  font-family: 'Courier Prime', monospace;
-  font-size: 1.15rem;
-  letter-spacing: 0.04em;
-  line-height: 1.75;
-  color: rgba(248,246,242,0.5);
+.about_bio_block {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
 }
 
-.about_pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  align-content: start;
-}
-.about_pills span {
+.about_text {
   font-family: 'Courier Prime', monospace;
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  color: rgba(248,246,242,0.45);
-  border: 1px solid rgba(248,246,242,0.15);
-  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  line-height: 1.8;
+  color: rgba(248,246,242,0.85);
+}
+
+.about_skills {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  border-left: 1px solid rgba(248,246,242,0.12);
+  padding-left: 3rem;
+}
+
+.about_skill_col { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.about_skill_hd {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: rgba(248,246,242,0.4);
+  text-transform: uppercase;
+}
+
+.about_skill_list {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  line-height: 1.6;
+  color: #F8F6F2;
 }
 
 .about_location {
@@ -687,7 +704,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   font-family: 'Courier Prime', monospace;
   font-size: 1rem;
   letter-spacing: 0.08em;
-  color: rgba(248,246,242,0.3);
+  color: rgba(248,246,242,0.55);
   text-transform: uppercase;
 }
 .about_arrow { font-size: 1.4rem; color: rgba(248,246,242,0.2); }
