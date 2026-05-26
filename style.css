@@ -578,7 +578,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   text-transform: uppercase;
   color: var(--bg);
   background: var(--fg);
-  padding: 0.55rem 1.1rem;
+  padding: 0;
   white-space: nowrap;
   opacity: 0;
   transform: translate(18px, 18px);
@@ -589,6 +589,17 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 /* ── SECTION LIGHT / DARK ─────────────────────────────────────── */
 .section-light { position: relative; z-index: 2; }
 .section-dark  { position: relative; z-index: 1; }
+
+/* Grid columns visible on dark sections */
+.section-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: linear-gradient(90deg, rgba(248,246,242,0.055) 1px, transparent 1px);
+  background-size: 8.3333% 100%;
+}
 
 /* ── ABOUT ────────────────────────────────────────────────────── */
 .about {
@@ -615,7 +626,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 .about_tag_label {
   font-family: 'Courier Prime', monospace;
   font-size: 1rem;
-  color: rgba(248,246,242,0.4);
+  color: rgba(248,246,242,0.55);
   letter-spacing: 0.1em;
 }
 
@@ -631,16 +642,15 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 
 .about_desc {
   position: absolute;
-  right: 0;
+  right: 12%;
   top: 50%;
   transform: translateY(-50%);
-  width: clamp(22rem, 30vw, 36rem);
+  width: clamp(22rem, 32vw, 38rem);
   font-family: 'Courier Prime', monospace;
-  font-size: 0.88rem;
-  letter-spacing: 0.07em;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
   line-height: 1.85;
-  color: rgba(248,246,242,0.5);
-  text-transform: uppercase;
+  color: rgba(248,246,242,0.72);
 }
 
 .about_more {
@@ -650,16 +660,16 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   font-family: 'Courier Prime', monospace;
   font-size: 0.88rem;
   letter-spacing: 0.1em;
-  color: rgba(248,246,242,0.45);
+  color: rgba(248,246,242,0.65);
   text-decoration: none;
   text-transform: uppercase;
-  border-bottom: 1px solid rgba(248,246,242,0.2);
+  border-bottom: 1px solid rgba(248,246,242,0.3);
   padding-bottom: 2px;
   transition: color 0.2s, border-color 0.2s;
 }
 .about_more:hover {
   color: #F8F6F2;
-  border-color: rgba(248,246,242,0.6);
+  border-color: rgba(248,246,242,0.7);
 }
 
 /* ── EXPERIENCE + EDUCATION ───────────────────────────────────── */
@@ -698,12 +708,13 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 }
 
 .xp_title {
-  font-family: montrealbook, sans-serif;
+  font-family: 'Courier Prime', monospace;
   font-weight: 400;
-  font-size: clamp(3.5rem, 6vw, 8rem);
-  letter-spacing: -0.03em;
-  line-height: 0.92;
-  color: var(--fg);
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: rgba(10,10,10,0.55);
   margin-bottom: 0;
 }
 
