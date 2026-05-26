@@ -671,20 +671,34 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 .about_skills {
   display: flex;
   flex-direction: column;
-  gap: 2.4rem;
-  border-left: 1px solid rgba(248,246,242,0.12);
-  padding-left: 3rem;
+  gap: 1rem;
 }
 
-.about_skill_col { display: flex; flex-direction: column; gap: 0.6rem; }
+.about_skill_col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.4rem 1.8rem;
+  border: 1px solid rgba(248,246,242,0.12);
+  border-radius: 3px;
+  transition: border-color 0.25s, background 0.25s, transform 0.25s;
+  cursor: default;
+}
+.about_skill_col:hover {
+  border-color: rgba(248,246,242,0.35);
+  background: rgba(248,246,242,0.04);
+  transform: translateX(6px);
+}
 
 .about_skill_hd {
   font-family: 'Courier Prime', monospace;
-  font-size: 0.85rem;
-  letter-spacing: 0.12em;
-  color: rgba(248,246,242,0.4);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  color: rgba(248,246,242,0.38);
   text-transform: uppercase;
+  transition: color 0.25s;
 }
+.about_skill_col:hover .about_skill_hd { color: rgba(248,246,242,0.65); }
 
 .about_skill_list {
   font-family: 'Courier Prime', monospace;
@@ -724,6 +738,18 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   margin-bottom: 0;
 }
 .xp_hd--form { margin-top: 6rem; }
+
+.xp_sub_hd {
+  padding: 1.4rem 0 0.4rem;
+  margin-top: 2rem;
+}
+.xp_sub_label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(10,10,10,0.35);
+}
 
 .xp_label {
   font-family: 'Courier Prime', monospace;
@@ -778,6 +804,12 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 }
 .xp_item:hover .xp_date { color: rgba(248,246,242,0.4); }
 
+.xp_co_wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
 .xp_co {
   font-family: montrealbook, sans-serif;
   font-size: 1.35rem;
@@ -786,6 +818,15 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   transition: color 0.25s;
 }
 .xp_item:hover .xp_co { color: var(--bg); }
+
+.xp_type {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: rgba(10,10,10,0.35);
+  transition: color 0.25s;
+}
+.xp_item:hover .xp_type { color: rgba(248,246,242,0.4); }
 
 .xp_loc {
   font-family: 'Courier Prime', monospace;
@@ -867,7 +908,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   font-family: 'Courier Prime', monospace;
   font-size: 0.9rem;
   letter-spacing: 0.12em;
-  color: rgba(248,246,242,0.3);
+  color: rgba(248,246,242,0.7);
   margin-bottom: 2rem;
 }
 
