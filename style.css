@@ -590,41 +590,24 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 .section-light { position: relative; z-index: 2; }
 .section-dark  { position: relative; z-index: 1; }
 
-/* ── NAV adaptive color on dark sections ─────────────────────── */
-.nav--on-dark .nav_brand,
-.nav--on-dark .nav_clock { color: rgba(248,246,242,0.55); }
-
-.nav--on-dark .nav_lk { color: rgba(248,246,242,0.8); }
-
-.nav--on-dark .nav_cta {
-  background: #F8F6F2;
-  color: #0A0A0A;
-}
-
-.nav--on-dark .burger span { background: #F8F6F2; }
-
-.nav--on-dark::before {
-  background: linear-gradient(to bottom,
-    rgba(0,0,0,0.55) 0%,
-    rgba(0,0,0,0.2) 55%,
-    rgba(0,0,0,0) 100%);
-}
-
 /* ── ABOUT ────────────────────────────────────────────────────── */
 .about {
   position: relative;
   background: #0A0A0A;
   min-height: 100vh;
-  padding: 12rem 2.4rem 10rem;
+  padding: 10rem 2.4rem 8rem;
 }
 
-.about_inner { position: relative; }
+.about_inner {
+  position: relative;
+  min-height: calc(100vh - 18rem);
+}
 
 .about_tag {
   display: flex;
   align-items: center;
   gap: 1.2rem;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
   border-top: 1px solid rgba(248,246,242,0.12);
   padding-top: 2rem;
 }
@@ -632,7 +615,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 .about_tag_label {
   font-family: 'Courier Prime', monospace;
   font-size: 1rem;
-  color: rgba(248,246,242,0.5);
+  color: rgba(248,246,242,0.4);
   letter-spacing: 0.1em;
 }
 
@@ -643,85 +626,41 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   letter-spacing: -0.03em;
   line-height: 0.95;
   color: #F8F6F2;
-  max-width: 80%;
+  max-width: 65%;
 }
 
-.about_cols {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  margin-top: 5rem;
-  align-items: start;
-}
-
-.about_bio_block {
-  display: flex;
-  flex-direction: column;
-  gap: 1.8rem;
-}
-
-.about_text {
+.about_desc {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(22rem, 30vw, 36rem);
   font-family: 'Courier Prime', monospace;
-  font-size: 1.1rem;
-  letter-spacing: 0.02em;
-  line-height: 1.8;
-  color: rgba(248,246,242,0.85);
-}
-
-.about_skills {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.about_skill_col {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 1.4rem 1.8rem;
-  border: 1px solid rgba(248,246,242,0.12);
-  border-radius: 3px;
-  transition: border-color 0.25s, background 0.25s, transform 0.25s;
-  cursor: default;
-}
-.about_skill_col:hover {
-  border-color: rgba(248,246,242,0.35);
-  background: rgba(248,246,242,0.04);
-  transform: translateX(6px);
-}
-
-.about_skill_hd {
-  font-family: 'Courier Prime', monospace;
-  font-size: 0.8rem;
-  letter-spacing: 0.14em;
-  color: rgba(248,246,242,0.38);
+  font-size: 0.88rem;
+  letter-spacing: 0.07em;
+  line-height: 1.85;
+  color: rgba(248,246,242,0.5);
   text-transform: uppercase;
-  transition: color 0.25s;
 }
-.about_skill_col:hover .about_skill_hd { color: rgba(248,246,242,0.65); }
 
-.about_skill_list {
+.about_more {
+  position: absolute;
+  bottom: 0;
+  right: 0;
   font-family: 'Courier Prime', monospace;
-  font-size: 1rem;
-  letter-spacing: 0.02em;
-  line-height: 1.6;
+  font-size: 0.88rem;
+  letter-spacing: 0.1em;
+  color: rgba(248,246,242,0.45);
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(248,246,242,0.2);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.about_more:hover {
   color: #F8F6F2;
+  border-color: rgba(248,246,242,0.6);
 }
-
-.about_location {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-top: 6rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(248,246,242,0.12);
-  font-family: 'Courier Prime', monospace;
-  font-size: 1rem;
-  letter-spacing: 0.08em;
-  color: rgba(248,246,242,0.55);
-  text-transform: uppercase;
-}
-.about_arrow { font-size: 1.4rem; color: rgba(248,246,242,0.2); }
 
 /* ── EXPERIENCE + EDUCATION ───────────────────────────────────── */
 .xp {

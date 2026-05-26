@@ -302,27 +302,6 @@ function revealPage() {
 }
 
 
-/* ── Nav adaptive color (light ↔ dark sections) ──────────────── */
-(function initNavColor() {
-  const nav = document.querySelector('.nav');
-  if (!nav) return;
-
-  const darkSections = Array.from(document.querySelectorAll('.section-dark'));
-
-  function update() {
-    const navBottom = nav.getBoundingClientRect().bottom;
-    const onDark = darkSections.some(sec => {
-      const r = sec.getBoundingClientRect();
-      return navBottom > r.top && navBottom < r.bottom;
-    });
-    nav.classList.toggle('nav--on-dark', onDark);
-  }
-
-  window.addEventListener('scroll', update, { passive: true });
-  update();
-})();
-
-
 /* ── Experience item description reveal on hover ─────────────── */
 (function initXpReveal() {
   document.querySelectorAll('.xp_item').forEach(item => {
