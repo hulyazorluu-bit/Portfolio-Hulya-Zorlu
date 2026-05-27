@@ -1,34 +1,90 @@
 /* =============================================================
-   HULYA ZORLU — PORTFOLIO v21
-   Neue Montreal · Special Elite · Eva Sánchez style
-   Cream #F0EEE9 · Black #0A0A0A
+   HULYA ZORLU — Portfolio v22
+   montrealbook (NeueMontreal Regular) — Eva Sánchez style
+   Cream #F8F6F2 · Black #0A0A0A
    ============================================================= */
- 
-/* ── Reset ──────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
-html {
-  font-size: 10px;
-  scroll-behavior: smooth;
+
+/* ── Font ─────────────────────────────────────────────────────── */
+@font-face {
+  font-family: montrealbook;
+  font-display: swap;
+  src: url(assets/fonts/NeueMontreal-Regular.woff2) format("woff2"),
+       url(assets/fonts/NeueMontreal-Regular.woff) format("woff");
+  font-weight: 400;
+  font-style: normal;
 }
- 
+
+/* ── Typewriter font (Courier Prime = Type Machine style) ─────── */
+/* Quand tu télécharges TypeMachine.woff2 depuis dafont → assets/fonts/
+   et tu remplaces 'Courier Prime' par typemachine ci-dessous */
+.tm { font-family: 'Courier Prime', 'Courier New', monospace; }
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --ck_accent: #fff;
+  --ck_other: #050505;
+  --bg: #F8F6F2;
+  --fg: #0A0A0A;
+  --col-line: rgba(10,10,10,0.07);
+}
+
+/* ── Reset ────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 10px; scroll-behavior: smooth; }
+
 body {
-  font-family: 'neue-montreal', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: montrealbook, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1.6rem;
-  background: #F0EEE9;
-  color: #0A0A0A;
+  background: var(--bg);
+  color: var(--fg);
   overflow-x: hidden;
   min-height: 100vh;
 }
- 
+
 a { text-decoration: none; color: inherit; }
-img { display: block; width: 100%; height: 100%; object-fit: cover; }
 button { background: none; border: none; cursor: pointer; padding: 0; }
- 
-/* ── Utility ─────────────────────────────────────────────────── */
-.sp-elite { font-family: 'Special Elite', monospace; }
- 
-/* ── NAV ─────────────────────────────────────────────────────── */
+
+/* ── GRID BACKGROUND ─────────────────────────────────────────── */
+.Mbg {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Double tiret vertical : 2 lignes séparées de 6px, tirets 9px/18px */
+.Mbg_col {
+  display: flex;
+  flex-direction: column;
+  background-image:
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.035) 0, rgba(10,10,10,0.035) 9px, transparent 9px, transparent 18px),
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.035) 0, rgba(10,10,10,0.035) 9px, transparent 9px, transparent 18px);
+  background-size: 1px 18px, 1px 18px;
+  background-position: right 0px top 0, right 6px top 0;
+  background-repeat: repeat-y, repeat-y;
+}
+
+/* Première colonne : 2 tirets à gauche aussi */
+.Mbg_col:first-child {
+  background-image:
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.035) 0, rgba(10,10,10,0.035) 9px, transparent 9px, transparent 18px),
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.035) 0, rgba(10,10,10,0.035) 9px, transparent 9px, transparent 18px),
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.035) 0, rgba(10,10,10,0.035) 9px, transparent 9px, transparent 18px),
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.035) 0, rgba(10,10,10,0.035) 9px, transparent 9px, transparent 18px);
+  background-size: 1px 18px, 1px 18px, 1px 18px, 1px 18px;
+  background-position: right 0px top 0, right 6px top 0, left 0px top 0, left 6px top 0;
+  background-repeat: repeat-y, repeat-y, repeat-y, repeat-y;
+}
+
+/* Tick horizontal supprimé — plus de trait dans la nav */
+.Mbg_col_el-1 { height: 0; flex-shrink: 0; }
+
+.Mbg_col_el-2 { flex: 1; }
+
+/* ── NAV ──────────────────────────────────────────────────────── */
 .nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -36,53 +92,174 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 3.2rem;
-  height: 5rem;
-  /* subtle transparent background */
-  background: rgba(240, 238, 233, 0.0);
+  padding: 0 2.4rem;
+  height: 4.8rem;
 }
- 
+
+/* Gradient blur fades smoothly from top to bottom of nav */
+.nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: linear-gradient(to bottom,
+    rgba(248,246,242,0.72) 0%,
+    rgba(248,246,242,0.38) 55%,
+    rgba(248,246,242,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+}
+
+
 .nav_left {
   display: flex;
   align-items: center;
-  gap: 1.6rem;
+  gap: 0.6rem;
 }
- 
+
 .nav_brand {
-  font-size: 1.15rem;
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 1.1rem;
   letter-spacing: 0.06em;
-  color: #888;
   text-transform: uppercase;
+  color: rgba(10,10,10,0.65);
 }
- 
-.nav_sep {
-  width: 1px;
-  height: 1.4rem;
-  background: rgba(10,10,10,0.2);
-}
- 
+
 .nav_clock {
+  font-family: 'Courier Prime', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.04em;
-  color: #999;
   text-transform: uppercase;
+  color: rgba(10,10,10,0.45);
 }
- 
+
 .nav_right {
   display: flex;
   align-items: center;
-  gap: 3.2rem;
+  gap: 2.8rem;
+  margin-right: 0;
 }
- 
+
 .nav_lk {
-  font-family: 'neue-montreal', sans-serif;
-  font-size: 1.25rem;
-  letter-spacing: -0.01em;
-  color: rgba(10,10,10,0.55);
-  transition: color 0.2s;
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg);
+  transition: opacity 0.2s;
 }
-.nav_lk:hover { color: #0A0A0A; }
- 
+.nav_lk:hover { opacity: 0.5; }
+
+.nav_cta {
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #F0EEE9;
+  background: var(--fg);
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 0;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.nav_cta:hover { opacity: 0.75; }
+
+/* ── CSS Typewriter ───────────────────────────────────────────── */
+.typewriter-container {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+/* blinking cursor — position:absolute so it never affects layout width */
+.typewriter-container:not(.done)::after {
+  content: '|';
+  color: var(--fg);
+  animation: tw-blink 0.55s step-end infinite;
+  position: absolute;
+  right: -6px;
+}
+
+.typewriter {
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+/* Only clock + PORTFOLIO_26 still use clip-path typewriter */
+.tw-type { clip-path: inset(0 100% 0 0); }
+
+@keyframes typing { to { clip-path: inset(0 0% 0 0); } }
+@keyframes tw-blink { 50% { opacity: 0; } }
+
+/* ── Char reveal animation (.cn / .cf) ──────────────────────────── */
+.char {
+  display: inline-block;
+  position: relative;
+  vertical-align: bottom;
+}
+
+.cw {
+  display: inline-block;
+  position: relative;
+}
+
+.cn {
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(0.06em);
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.cf {
+  position: absolute;
+  left: 0; top: 0;
+  transform-origin: left center;
+  white-space: nowrap;
+  opacity: 0.22;
+  transition: transform 0.11s ease, opacity 0.11s ease;
+}
+
+.cw.done .cn { opacity: 1; transform: translateX(0); }
+.cw.done .cf { transform: scaleX(0); opacity: 0; }
+
+/* Title chars — smooth opacity stagger, no fake chars */
+.ttj .char {
+  display: inline-block;
+  position: relative;
+  vertical-align: bottom;
+  opacity: 0;
+  transition: opacity 0.55s ease;
+}
+.ttj .char.act { opacity: 1; }
+
+/* Nav left hidden at start — JS reveals via typewriter */
+.nav_left { opacity: 0; }
+
+/* Nav right links: typewriter-container starts hidden */
+.nav_lk .typewriter-container { opacity: 0; }
+
+/* Socials hidden at start */
+.social_lk { opacity: 0; }
+
+/* Portfolio hidden at start */
+#portfolio-txt .typewriter-container { opacity: 0; }
+
+
+#scroll-txt { opacity: 0; }
+
+/* Subtitle dissolve */
+.tt3 {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.tt3.visible { opacity: 1; }
+
 /* ── BURGER ───────────────────────────────────────────────────── */
 .burger {
   display: none;
@@ -93,204 +270,803 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 .burger span {
   display: block;
   height: 1.5px;
-  background: #0A0A0A;
+  background: var(--fg);
   transition: transform 0.3s, opacity 0.3s;
 }
 .burger.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
 .burger.open span:nth-child(2) { opacity: 0; }
- 
+
 /* ── MOBILE MENU ──────────────────────────────────────────────── */
 .mob-menu {
   position: fixed;
   inset: 0;
-  background: #0A0A0A;
+  background: var(--fg);
   z-index: 90;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 6rem 3.2rem 4rem;
   transform: translateY(-100%);
-  transition: transform 0.5s cubic-bezier(0.77,0,0.175,1);
+  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 }
 .mob-menu.open { transform: translateY(0); }
- 
+
 .mob-close {
   position: absolute;
   top: 2rem; right: 2.4rem;
   font-size: 2rem;
-  color: #F0EEE9;
+  color: var(--bg);
 }
- 
+
 .mob-nav {
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
 }
- 
+
 .mob-link {
+  font-family: montrealbook;
   font-size: 3.2rem;
-  color: #F0EEE9;
+  color: var(--bg);
   letter-spacing: 0.02em;
   line-height: 1;
+  transition: opacity 0.2s;
 }
- 
-/* ── HERO ────────────────────────────────────────────────────── */
+.mob-link:hover { opacity: 0.6; }
+
+.mob-footer {
+  position: absolute;
+  bottom: 3.2rem;
+  left: 3.2rem;
+  display: flex;
+  gap: 2.4rem;
+}
+.mob-footer a {
+  font-family: montrealbook;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  color: rgba(240,238,233,0.45);
+  text-transform: uppercase;
+}
+
+/* ── LOADER ───────────────────────────────────────────────────── */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #0A0A0A;
+  z-index: 9999;
+  transition: opacity 0.7s ease;
+}
+
+/* Compteur — haut droite (~3/4 de la page) */
+#loader-count {
+  position: absolute;
+  top: 10%;
+  right: 6%;
+  font-family: montrealbook, 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  font-size: clamp(10rem, 22vw, 26rem);
+  color: #F0EEE9;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  user-select: none;
+}
+
+/* Texte — bas centre */
+#loader-info {
+  position: absolute;
+  bottom: 3.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+  white-space: nowrap;
+}
+#loader-info span {
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(240,238,233,0.7);
+}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
 .hero {
   position: relative;
   width: 100%;
   height: 100svh;
   min-height: 600px;
-  background: #F0EEE9;
+  /* pas de background : le body cream + la grille Mbg sont visibles */
   overflow: hidden;
 }
- 
-/* ── 12-col grid lines ────────────────────────────────────────── */
-.grid-bg {
+
+/* ── TITLE + SUBTITLE BLOCK ────────────────── right half ─────── */
+.hero_cnt {
   position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  pointer-events: none;
-  z-index: 0;
-}
- 
-.grid-col {
-  border-right: 1px solid rgba(10,10,10,0.07);
-}
-.grid-col:first-child {
-  border-left: 1px solid rgba(10,10,10,0.07);
-}
- 
-/* ── TITLE BLOCK — colonnes 7 à 11 ──────────────────────────── */
-/* 12 colonnes = 100% → col 7 débute à (6/12)*100 = 50% */
-.hero_title_wrap {
-  position: absolute;
-  /* aligner sur col 7: gauche = 6 colonnes = 50vw */
   left: 50%;
-  /* largeur = 5 colonnes = 41.6vw, avec un peu de marge droite */
-  width: 44vw;
-  /* centrage vertical légèrement sous le milieu comme Eva */
   top: 50%;
   transform: translateY(-46%);
+  width: 47vw;
   z-index: 2;
 }
- 
-.hero_title {
-  font-family: 'neue-montreal', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 700;
+
+.cnt_tt {
+  display: block;
+  font-family: montrealbook;
+  font-weight: 400;
   font-size: clamp(6.5rem, 9.5vw, 13rem);
-  letter-spacing: -0.04em;
-  line-height: 0.92;
-  color: #0A0A0A;
-  /* pas d'animation — statique */
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  color: var(--fg);
 }
- 
-.hero_sub {
-  font-family: 'neue-montreal', sans-serif;
+
+.Atitle { display: block; }
+
+.ttj {
+  display: block;
+  /* pas de overflow:hidden — évite que le Y soit coupé */
+}
+
+.ttj .word { display: inline-block; }
+
+/* .char already defined above — title chars use .char.done via JS */
+
+/* ── SUBTITLE ─────────────────────────────────────────────────── */
+.cnt_bt { margin-top: 2.8rem; }
+
+.tt3 {
+  font-family: montrealbook;
   font-weight: 400;
   font-size: 1.55rem;
   letter-spacing: -0.01em;
   line-height: 1.4;
-  color: #0A0A0A;
-  margin-top: 2.8rem;
+  color: var(--fg);
 }
- 
-.hero_port {
+
+.Awrite {
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-weight: 400;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
-  color: rgba(10,10,10,0.45);
   text-transform: uppercase;
-  margin-top: 0.8rem;
+  color: rgba(10,10,10,0.4);
+  display: block;
+  margin-top: 0.7rem;
 }
- 
-/* ── SCROLL TO EXPLORE — bas milieu ──────────────────────────── */
-.hero_scroll {
+
+/* ── SCROLL TO EXPLORE — bottom center ───────────────────────── */
+.cnt_sc {
   position: absolute;
   bottom: 3.6rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
-}
- 
-.scroll_txt {
-  font-size: 1.1rem;
-  letter-spacing: 0.04em;
-  color: #555;
-  text-transform: uppercase;
   white-space: nowrap;
 }
- 
-/* curseur carré dans le texte scroll */
-.scroll_cursor {
-  display: inline-block;
-  width: 0.75em;
-  height: 0.85em;
-  background: #0A0A0A;
-  vertical-align: middle;
-  margin-left: 1px;
+.cnt_sc .Awrite {
+  color: var(--fg);
+  margin-top: 0;
 }
- 
-/* ── SOCIALS — bas droite ─────────────────────────────────────── */
+
+/* ── SOCIALS — bottom right ───────────────────────────────────── */
 .hero_socials {
   position: absolute;
   bottom: 3.2rem;
-  right: 3.2rem;
+  right: 2.4rem;
   display: flex;
   gap: 2.8rem;
   z-index: 2;
 }
- 
+
 .social_lk {
+  font-family: 'Courier Prime', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
-  color: #888;
   text-transform: uppercase;
+  color: rgba(10,10,10,0.45);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
   transition: color 0.2s;
 }
-.social_lk:hover { color: #0A0A0A; }
-.social_lk svg {
-  width: 0.55rem;
-  height: 0.55rem;
-  color: #0A0A0A; /* flèche noire */
+.social_lk:hover { color: var(--fg); }
+.social_lk svg { width: 0.55rem; height: 0.55rem; }
+
+/* ── FEATURED WORKS ───────────────────────────────────────────── */
+.works {
+  position: relative;
+  z-index: 1;
+  padding: 0 2.4rem 10rem;
+  margin-top: 12rem;
 }
- 
+
+.works_hd {
+  display: flex;
+  align-items: baseline;
+  gap: 1.6rem;
+  margin-bottom: 3.6rem;
+}
+
+.works_title {
+  font-family: montrealbook;
+  font-weight: 400;
+  font-size: clamp(4.5rem, 7.5vw, 10.5rem);
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+  color: var(--fg);
+}
+
+.works_count {
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  color: rgba(10,10,10,0.35);
+  flex-shrink: 0;
+}
+
+.works_grid {
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+  column-gap: 7rem;
+  row-gap: 1rem;
+  align-items: start;
+}
+
+.work_item {
+  display: block;
+  cursor: default;
+}
+
+/* Third item: back to first column */
+.work_item:nth-child(3) { grid-column: 1; }
+
+.work_thumb {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  transition: opacity 0.3s ease;
+}
+.work_item:hover .work_thumb { opacity: 0.88; }
+
+.work_thumb--a { background: #E2E0DA; }
+.work_thumb--b {
+  background: #0A0A0A url('taminocover.png') center / cover no-repeat;
+}
+.work_thumb--c { background: #CECCC6; }
+
+/* Project 1 — square */
+.work_item:nth-child(1) .work_thumb { aspect-ratio: 1 / 1; }
+
+/* Project 2 — smaller, pushed to the right */
+.work_item:nth-child(2) {
+  justify-self: end;
+  width: 72%;
+}
+
+.work_meta {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-top: 1.2rem;
+  opacity: 0;
+}
+
+.work_tech {
+  flex-basis: 100%;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: rgba(10,10,10,0.35);
+  margin-top: 0.35rem;
+}
+
+.work_num {
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: rgba(10,10,10,0.35);
+}
+
+.work_name {
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+
+/* ── SEE MORE cursor ──────────────────────────────────────────── */
+.see-cursor {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 9000;
+  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--fg);
+  padding: 0;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(18px, 18px);
+  transition: opacity 0.2s ease;
+}
+.see-cursor.visible { opacity: 1; }
+
+/* ── SECTION LIGHT / DARK ─────────────────────────────────────── */
+.section-light { position: relative; z-index: 2; }
+.section-dark  { position: relative; z-index: 1; }
+
+/* Grid columns visible on dark sections — fixed attachment aligns with .Mbg */
+.section-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: linear-gradient(90deg, rgba(248,246,242,0.055) 1px, transparent 1px);
+  background-size: 8.3333% 100%;
+  background-attachment: fixed;
+}
+
+/* ── ABOUT ────────────────────────────────────────────────────── */
+.about {
+  position: relative;
+  background: #0A0A0A;
+  min-height: 100vh;
+  padding: 10rem 2.4rem 8rem;
+}
+
+.about_inner {
+  position: relative;
+  min-height: calc(100vh - 18rem);
+}
+
+.about_tag {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 4rem;
+  border-top: 1px solid rgba(248,246,242,0.12);
+  padding-top: 2rem;
+}
+.about_tag_num,
+.about_tag_label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1rem;
+  color: rgba(248,246,242,0.55);
+  letter-spacing: 0.1em;
+}
+
+.about_title {
+  font-family: montrealbook, 'Helvetica Neue', sans-serif;
+  font-weight: 400;
+  font-size: clamp(4.5rem, 7.5vw, 10.5rem);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: #F8F6F2;
+  max-width: 65%;
+}
+
+.about_desc {
+  position: absolute;
+  right: 12%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(22rem, 32vw, 38rem);
+  font-family: 'Courier Prime', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  line-height: 1.85;
+  color: rgba(248,246,242,0.72);
+}
+
+.about_more {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.88rem;
+  letter-spacing: 0.1em;
+  color: rgba(248,246,242,0.65);
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(248,246,242,0.3);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.about_more:hover {
+  color: #F8F6F2;
+  border-color: rgba(248,246,242,0.7);
+}
+
+/* ── EXPERIENCE + EDUCATION ───────────────────────────────────── */
+.xp {
+  padding: 0 2.4rem 10rem;
+  margin-top: 0;
+}
+
+.xp_hd {
+  display: flex;
+  align-items: baseline;
+  gap: 1.6rem;
+  padding: 4rem 0 0;
+  border-top: 1px solid rgba(10,10,10,0.1);
+  margin-bottom: 0;
+}
+.xp_hd--form { margin-top: 6rem; }
+
+.xp_sub_hd {
+  padding: 1.4rem 0 0.4rem;
+  margin-top: 2rem;
+}
+.xp_sub_label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(10,10,10,0.35);
+}
+
+.xp_label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: rgba(10,10,10,0.3);
+}
+
+.xp_title {
+  font-family: 'Courier Prime', monospace;
+  font-weight: 400;
+  font-size: clamp(1rem, 1.4vw, 1.3rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: rgba(10,10,10,0.55);
+  margin-bottom: 0;
+}
+
+.xp_list {
+  margin-top: 2rem;
+}
+
+.xp_item {
+  border-top: 1px solid rgba(10,10,10,0.1);
+  overflow: hidden;
+  cursor: default;
+}
+.xp_item:last-child { border-bottom: 1px solid rgba(10,10,10,0.1); }
+
+.xp_row {
+  display: grid;
+  grid-template-columns: 12rem 18rem 10rem 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.8rem 0;
+  transition: background 0.25s ease, color 0.25s ease, padding 0.25s ease;
+}
+
+.xp_item:hover .xp_row {
+  background: var(--fg);
+  color: var(--bg);
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+}
+
+.xp_date {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: rgba(10,10,10,0.35);
+  transition: color 0.25s;
+}
+.xp_item:hover .xp_date { color: rgba(248,246,242,0.4); }
+
+.xp_co_wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.xp_co {
+  font-family: montrealbook, sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  transition: color 0.25s;
+}
+.xp_item:hover .xp_co { color: var(--bg); }
+
+.xp_type {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: rgba(10,10,10,0.35);
+  transition: color 0.25s;
+}
+.xp_item:hover .xp_type { color: rgba(248,246,242,0.4); }
+
+.xp_loc {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(10,10,10,0.3);
+  transition: color 0.25s;
+}
+.xp_item:hover .xp_loc { color: rgba(248,246,242,0.35); }
+
+.xp_role {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(10,10,10,0.55);
+  transition: color 0.25s;
+}
+.xp_item:hover .xp_role { color: rgba(248,246,242,0.7); }
+
+.xp_arr {
+  font-size: 1.4rem;
+  color: rgba(10,10,10,0.2);
+  transition: color 0.25s, transform 0.25s;
+}
+.xp_item:hover .xp_arr { color: rgba(248,246,242,0.6); transform: translateX(6px); }
+
+.xp_reveal {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  color: rgba(248,246,242,0.55);
+  text-transform: uppercase;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 1.6rem;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  background: var(--fg);
+}
+.xp_item:hover .xp_reveal {
+  max-height: 4rem;
+  padding: 0.6rem 1.6rem 1rem;
+}
+
+/* ── SKILLS ───────────────────────────────────────────────────── */
+.skills {
+  padding: 0 2.4rem 10rem;
+  background: #000;
+}
+
+.skills_hd {
+  display: flex;
+  align-items: baseline;
+  gap: 1.6rem;
+  padding: 4rem 0 0;
+  border-top: 1px solid rgba(248,246,242,0.1);
+  margin-bottom: 5rem;
+}
+
+.skills_grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-left: 1px solid rgba(248,246,242,0.1);
+}
+
+.skill_col {
+  padding: 3rem 2.4rem;
+  border-right: 1px solid rgba(248,246,242,0.1);
+  border-bottom: 1px solid rgba(248,246,242,0.1);
+  border-top: 1px solid rgba(248,246,242,0.1);
+  transition: background 0.25s;
+}
+.skill_col:hover { background: rgba(248,246,242,0.04); }
+
+.skill_cat {
+  display: block;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  color: rgba(248,246,242,0.7);
+  margin-bottom: 2rem;
+}
+
+.skill_list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skill_item {
+  font-family: montrealbook, sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: -0.01em;
+  color: #F8F6F2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: letter-spacing 0.2s, opacity 0.2s;
+}
+.skill_item:hover { letter-spacing: 0.04em; opacity: 0.7; }
+
+.skill_lvl {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.9rem;
+  color: rgba(248,246,242,0.3);
+}
+
+/* Marquee strip */
+.skills_marquee {
+  overflow: hidden;
+  margin-top: 5rem;
+  border-top: 1px solid rgba(248,246,242,0.1);
+  padding: 1.8rem 0;
+}
+
+.marquee_track {
+  display: flex;
+  gap: 2.4rem;
+  white-space: nowrap;
+  animation: marquee 22s linear infinite;
+  font-family: 'Courier Prime', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: rgba(248,246,242,0.2);
+}
+.marquee_track span:not(:nth-child(odd)) { color: rgba(248,246,242,0.08); }
+
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ── CONTACT ──────────────────────────────────────────────────── */
+.contact {
+  padding: 0 2.4rem 10rem;
+  background: var(--bg);
+}
+
+.contact_hd {
+  padding: 4rem 0 2rem;
+  border-top: 1px solid rgba(10,10,10,0.1);
+}
+
+.contact_body {
+  margin-top: 4rem;
+}
+
+.contact_pre {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(10,10,10,0.35);
+  margin-bottom: 2rem;
+}
+
+.contact_email {
+  display: inline-block;
+  font-family: montrealbook, sans-serif;
+  font-size: clamp(3.5rem, 7vw, 10rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  color: var(--fg);
+  text-decoration: none;
+  position: relative;
+  transition: opacity 0.25s;
+}
+.contact_email:hover { opacity: 0.6; }
+
+.contact_email_arr {
+  font-size: 0.4em;
+  vertical-align: super;
+  margin-left: 0.2em;
+}
+
+.contact_foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 6rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(10,10,10,0.1);
+}
+
+.contact_info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-family: 'Courier Prime', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(10,10,10,0.4);
+}
+
+.contact_socials {
+  display: flex;
+  gap: 2.4rem;
+}
+.contact_socials a {
+  font-family: 'Courier Prime', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.contact_socials a:hover { opacity: 0.45; }
+
+/* ── FOOTER ───────────────────────────────────────────────────── */
+.footer {
+  background: #000;
+  padding: 2.4rem;
+  border-top: 1px solid rgba(248,246,242,0.1);
+}
+
+.footer_inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.footer_brand { color: rgba(248,246,242,0.3); }
+
+.footer_top {
+  color: rgba(248,246,242,0.5);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer_top:hover { color: #F8F6F2; }
+
+.footer_credit { color: rgba(248,246,242,0.2); }
+
+/* About responsive */
+@media (max-width: 900px) {
+  .about_title { max-width: 100%; }
+  .about_cols { grid-template-columns: 1fr; gap: 3rem; }
+  .xp_row { grid-template-columns: 1fr; gap: 0.4rem; }
+  .xp_co { font-size: 1.2rem; }
+  .skills_grid { grid-template-columns: 1fr 1fr; }
+  .contact_foot { flex-direction: column; align-items: flex-start; gap: 2rem; }
+  .footer_inner { flex-direction: column; gap: 1rem; text-align: center; }
+}
+
 /* ── RESPONSIVE ───────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .nav_right { display: none; }
   .burger { display: flex; }
- 
-  .hero_title_wrap {
-    left: 3.2rem;
-    width: calc(100% - 6.4rem);
-    top: 50%;
-    transform: translateY(-46%);
+
+  .hero_cnt {
+    left: 2.4rem;
+    width: calc(100% - 4.8rem);
   }
- 
-  .hero_title {
-    font-size: clamp(5rem, 14vw, 9rem);
-  }
- 
-  .hero_socials {
-    gap: 1.6rem;
-    right: 1.6rem;
-  }
+
+  .cnt_tt { font-size: clamp(5rem, 14vw, 9rem); }
+
+  .hero_socials { gap: 1.6rem; right: 1.6rem; }
 }
- 
+
 @media (max-width: 600px) {
-  .hero_title {
-    font-size: clamp(4.5rem, 15vw, 7rem);
-  }
- 
+  .cnt_tt { font-size: clamp(4.5rem, 15vw, 7rem); }
+
   .hero_socials {
     flex-direction: column;
     gap: 1rem;
     bottom: 5rem;
   }
- 
-  .hero_scroll {
-    bottom: 2rem;
-  }
+
+  .cnt_sc { bottom: 2.4rem; }
+
+  .works_grid { grid-template-columns: 1fr; }
+  .work_item:nth-child(3) { grid-column: auto; }
+  .works_title { font-size: clamp(3.5rem, 12vw, 6rem); }
 }

@@ -1,127 +1,370 @@
-
-Copier
-
 /* =============================================================
-   HULYA ZORLU — Portfolio v21
-   main.js — Clock · Typewriter scroll · Mobile menu
+   HULYA ZORLU — Portfolio v36
+   Clock · Char reveal (nav/socials) · Smooth title · Scramble scroll
+   Mobile menu
    ============================================================= */
- 
-/* ── Horloge Paris (AM/PM) ───────────────────────────────────── */
+
+/* ── Char animation constants ─────────────────────────────────── */
+const FAKE_CHARS = '##·$%&/=€|()@+09*+]}{[';
+function rndFake() {
+  return FAKE_CHARS[Math.floor(Math.random() * FAKE_CHARS.length)];
+}
+
+
+/* ── Clock — visitor's local time ────────────────────────────── */
 (function initClock() {
-  const el = document.getElementById('clock');
-  if (!el) return;
- 
+  const twEl = document.getElementById('clock-tw');
+  if (!twEl) return;
+
+  let triggered = false;
+
+  function getTimeString() {
+    const parts = new Intl.DateTimeFormat(undefined, {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    }).formatToParts(new Date());
+
+    const h  = parts.find(p => p.type === 'hour')?.value   || '00';
+    const m  = parts.find(p => p.type === 'minute')?.value || '00';
+    const dp = parts.find(p => p.type === 'dayPeriod')?.value || '';
+    return `${h}:${m} ${dp.toUpperCase()}`;
+  }
+
+  window.triggerClockTypewriter = function() {
+    if (triggered) return;
+    triggered = true;
+    const timeStr = getTimeString();
+    twEl.textContent = timeStr;
+    twEl.style.clipPath = 'inset(0 100% 0 0)';
+    void twEl.offsetWidth;
+    triggerTypewriter(twEl, 13, null);
+  };
+
   function tick() {
-    const fmt = new Intl.DateTimeFormat('fr', {
-      timeZone: 'Europe/Paris',
-      hour:     '2-digit',
-      minute:   '2-digit',
-      hour12:   true,      // AM/PM
-    });
-    // formatToParts pour séparer heure, minute et dayperiod
-    const parts = fmt.formatToParts(new Date());
-    const h   = parts.find(p => p.type === 'hour')?.value   || '00';
-    const m   = parts.find(p => p.type === 'minute')?.value || '00';
-    const dp  = parts.find(p => p.type === 'dayPeriod')?.value || '';
- 
-    // affichage : _PAR 10:29 PM
-    el.textContent = `_PAR ${h}:${m} ${dp.toUpperCase()}`;
+    if (triggered) twEl.textContent = getTimeString();
   }
- 
-  tick();
-  // mise à jour chaque minute à la seconde pile
   const now = new Date();
-  const msUntilNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
+  const msToNextMinute = (60 - now.getSeconds()) * 1000 - now.getMilliseconds();
+  setTimeout(() => { tick(); setInterval(tick, 60000); }, msToNextMinute);
+})();
+
+
+/* ── Loader ───────────────────────────────────────────────────── */
+(function initLoader() {
+  const loader  = document.getElementById('loader');
+  const countEl = document.getElementById('loader-count');
+  if (!loader || !countEl) { revealPage(); return; }
+
+  const line1El = document.getElementById('loader-line1');
+  const line2El = document.getElementById('loader-line2');
+  const TEXT1   = 'Hulya Zorlu';
+  const TEXT2   = 'UI_UX_Designer_Portfolio';
+
+  function typeWriter(el, text, charDelay, startDelay) {
+    if (!el) return;
+    let i = 0;
+    setTimeout(function type() {
+      el.textContent = text.slice(0, ++i);
+      if (i < text.length) setTimeout(type, charDelay);
+    }, startDelay);
+  }
+  typeWriter(line1El, TEXT1, 58, 0);
+  typeWriter(line2El, TEXT2, 61, 718);
+
+  const START   = Date.now();
+  const MIN_MS  = 1400;
+  let displayed = 0;
+  let closed    = false;
+
+  function setDisplay(n) {
+    n = Math.min(Math.floor(n), 100);
+    if (n > displayed) {
+      displayed = n;
+      countEl.textContent = String(displayed).padStart(3, '0');
+    }
+  }
+
+  const connType = navigator.connection?.effectiveType || '4g';
+  const pctPerSec = connType === '4g' ? 38 : connType === '3g' ? 22 : 14;
+
+  const baseline = setInterval(() => {
+    const elapsed = (Date.now() - START) / 1000;
+    const jitter = (Math.random() - 0.5) * 4;
+    setDisplay(Math.min(elapsed * pctPerSec + jitter, 72));
+  }, 60);
+
+  function finalize() {
+    if (closed) return;
+    clearInterval(baseline);
+    const jump = setInterval(() => {
+      setDisplay(displayed + Math.ceil(Math.random() * 10 + 2));
+      if (displayed >= 100) {
+        clearInterval(jump);
+        closed = true;
+        setTimeout(() => {
+          loader.style.opacity = '0';
+          setTimeout(() => { loader.style.display = 'none'; revealPage(); }, 700);
+        }, 150);
+      }
+    }, 38);
+  }
+
+  window.addEventListener('load', () => {
+    if (Date.now() - START >= MIN_MS) { finalize(); }
+    else { setTimeout(finalize, MIN_MS - (Date.now() - START)); }
+  });
+
+  setTimeout(() => { if (!closed) finalize(); }, 8000);
+})();
+
+
+/* ── CSS Typewriter — clock + PORTFOLIO_26 ────────────────────── */
+function triggerTypewriter(twEl, charsPerSec, onDone) {
+  const charCount = twEl.textContent.length;
+  if (charCount === 0) { if (onDone) onDone(); return; }
+  const duration = charCount / charsPerSec;
+  twEl.style.animation = `typing ${duration}s steps(${charCount}, end) forwards`;
+
+  const container = twEl.closest('.typewriter-container');
+  if (container) container.style.opacity = '1';
+
   setTimeout(() => {
-    tick();
-    setInterval(tick, 60000);
-  }, msUntilNextMinute);
-})();
- 
- 
-/* ── Typewriter "SCROLL TO EXPLORE" ─────────────────────────── */
-(function initScrollTypewriter() {
-  const container = document.getElementById('scroll-txt');
-  if (!container) return;
- 
-  const FULL_TEXT  = '[SCROLL TO EXPLORE';
-  const CHAR_DELAY = 60;     // ms entre chaque lettre
-  // délai avant que le curseur recommence à "défiler" (idle loop)
-  const IDLE_DELAY  = 4000;  // ms après fin d'écriture
-  const SWEEP_SPEED = 45;    // ms par case dans la boucle idle
- 
-  let typed = 0;
-  let cursorEl = null;
- 
-  // 1. Créer le curseur carré
-  function makeCursor() {
-    cursorEl = document.createElement('span');
-    cursorEl.className = 'scroll_cursor';
-    container.appendChild(cursorEl);
+    if (container) container.classList.add('done');
+    if (onDone) onDone();
+  }, duration * 1000 + 60);
+}
+
+
+/* ── Scramble — initial scroll reveal ────────────────────────── */
+const GLYPHS = '&$*@)]}=|%·(){+/9}[·@$)';
+
+function scramble(el, finalText, { delay = 0, duration = 1200 } = {}) {
+  const chars = finalText.split('');
+  const totalFrames = Math.ceil(duration / 40);
+  let frame = 0;
+
+  function render() {
+    const progress = frame / totalFrames;
+    el.textContent = chars.map((ch, i) =>
+      progress > i / chars.length
+        ? ch
+        : GLYPHS[Math.floor(Math.random() * GLYPHS.length)]
+    ).join('');
+    frame++;
+    if (frame <= totalFrames) requestAnimationFrame(render);
+    else el.textContent = finalText;
   }
- 
-  // 2. Écriture lettre par lettre
-  function typeNext() {
-    if (typed < FULL_TEXT.length) {
-      // Insérer le caractère AVANT le curseur
-      const char = document.createTextNode(FULL_TEXT[typed]);
-      container.insertBefore(char, cursorEl);
-      typed++;
-      setTimeout(typeNext, CHAR_DELAY);
+
+  setTimeout(() => requestAnimationFrame(render), delay);
+}
+
+/* ── Scroll ticker — 1 special char at a time, loops ─────────── */
+function scrollTicker(el, text, { charDelay = 45, pause = 2000 } = {}) {
+  const chars = text.split('');
+  const start = 1;                  /* skip '[' */
+  const end   = chars.length - 2;  /* skip ']' */
+  let pos = start;
+
+  function next() {
+    if (pos <= end) {
+      el.textContent = chars.map((ch, i) =>
+        i === pos ? GLYPHS[Math.floor(Math.random() * GLYPHS.length)] : ch
+      ).join('');
+      pos++;
+      setTimeout(next, charDelay);
     } else {
-      // Texte entièrement écrit — lancer la boucle idle
-      setTimeout(startIdleLoop, IDLE_DELAY);
+      el.textContent = text;
+      pos = start;
+      setTimeout(next, pause);
     }
   }
- 
-  // 3. Boucle idle : le curseur "parcourt" le texte de droite à gauche
-  //    puis revient à la fin — crée l'illusion d'une réécriture discrète
-  function startIdleLoop() {
-    // on enlève le curseur de sa position actuelle (fin)
-    // et on le déplace progressivement vers la gauche puis retour
-    const textNodes = [...container.childNodes].filter(n => n.nodeType === Node.TEXT_NODE);
-    let pos = textNodes.length; // commence à la fin
- 
-    function sweepLeft() {
-      if (pos > 0) {
-        pos--;
-        // déplacer le curseur avant le nœud texte[pos]
-        container.insertBefore(cursorEl, textNodes[pos]);
-        setTimeout(sweepLeft, SWEEP_SPEED);
-      } else {
-        // arrivé au début, revenir vers la droite
-        setTimeout(sweepRight, SWEEP_SPEED * 2);
-      }
+
+  setTimeout(next, 1000);
+}
+
+
+/* ── Char animation (.cn / .cf) — nav + socials ───────────────── */
+
+function splitChars(el) {
+  const text = el.textContent;
+  el.innerHTML = '';
+  const charEls = [];
+  for (const ch of text) {
+    if (ch === ' ') {
+      el.appendChild(document.createTextNode(' '));
+    } else {
+      const cw = document.createElement('span');
+      cw.className = 'cw';
+      const cn = document.createElement('span');
+      cn.className = 'cn';
+      cn.textContent = ch;
+      const cf = document.createElement('span');
+      cf.className = 'cf';
+      cf.setAttribute('aria-hidden', 'true');
+      cf.textContent = rndFake();
+      cw.appendChild(cn);
+      cw.appendChild(cf);
+      el.appendChild(cw);
+      charEls.push(cw);
     }
- 
-    function sweepRight() {
-      if (pos < textNodes.length) {
-        pos++;
-        const ref = pos < textNodes.length ? textNodes[pos] : null;
-        container.insertBefore(cursorEl, ref);
-        setTimeout(sweepRight, SWEEP_SPEED);
-      } else {
-        // retour à la fin, pause puis recommencer
-        setTimeout(startIdleLoop, IDLE_DELAY);
-      }
-    }
- 
-    sweepLeft();
   }
- 
-  // Démarrage
-  makeCursor();
-  // petite pause avant de commencer à écrire (après chargement)
-  setTimeout(typeNext, 800);
+  return charEls;
+}
+
+function revealChars(charEls, { stagger = 30, onDone } = {}) {
+  charEls.forEach((cw, i) => {
+    setTimeout(() => cw.classList.add('done'), i * stagger);
+  });
+  if (onDone && charEls.length > 0) {
+    setTimeout(onDone, (charEls.length - 1) * stagger + 300);
+  } else if (onDone) {
+    onDone();
+  }
+}
+
+function charReveal(twEl, { stagger = 30, onDone } = {}) {
+  const container = twEl.closest('.typewriter-container');
+  if (container) {
+    container.style.opacity = '1';
+    container.classList.add('done');
+  }
+  const charEls = splitChars(twEl);
+  revealChars(charEls, { stagger, onDone });
+}
+
+
+/* ── Reveal page after loader ─────────────────────────────────── */
+function revealPage() {
+  const STAGGER = 28;
+
+  /* 1 — Nav right: char reveal simultaneously */
+  document.querySelectorAll('.nav_lk .typewriter').forEach(twEl => {
+    charReveal(twEl, { stagger: STAGGER });
+  });
+
+  /* LETS TALK: fade in + char reveal */
+  const cta = document.querySelector('.nav_cta');
+  const ctaText = document.getElementById('cta-text');
+  if (cta && ctaText) {
+    cta.style.opacity = '1';
+    const charEls = splitChars(ctaText);
+    revealChars(charEls, { stagger: STAGGER });
+  }
+
+  /* 2 — Nav left: brand char reveal + clock typewriter simultaneously */
+  const navLeft = document.querySelector('.nav_left');
+  if (navLeft) navLeft.style.opacity = '1';
+
+  const brandTw = document.getElementById('brand-tw');
+  if (brandTw) charReveal(brandTw, { stagger: 28 });
+
+  if (window.triggerClockTypewriter) {
+    const clockContainer = document.getElementById('clock-tw-container');
+    if (clockContainer) clockContainer.style.opacity = '1';
+    window.triggerClockTypewriter();
+  }
+
+  /* 3 — Socials: char reveal simultaneously */
+  document.querySelectorAll('.hero_socials .social_lk').forEach(link => {
+    link.style.opacity = '1';
+  });
+  document.querySelectorAll('.hero_socials .typewriter').forEach(twEl => {
+    charReveal(twEl, { stagger: STAGGER });
+  });
+
+  /* 4 — Title: smooth opacity stagger, no fake chars */
+  document.querySelectorAll('.ttj').forEach((row, rowIdx) => {
+    row.querySelectorAll('.char').forEach((ch, charIdx) => {
+      setTimeout(() => ch.classList.add('act'), rowIdx * 160 + charIdx * 60);
+    });
+  });
+
+  /* 5 — Subtitle: dissolve */
+  const tt3 = document.querySelector('.tt3');
+  if (tt3) setTimeout(() => tt3.classList.add('visible'), 350);
+
+  /* 6 — PORTFOLIO_26 + scroll after 1400ms */
+  const portTw = document.querySelector('#portfolio-txt .typewriter');
+  const scrollEl = document.getElementById('scroll-txt');
+
+  setTimeout(() => {
+    if (portTw) triggerTypewriter(portTw, 22, null);
+
+    if (scrollEl) {
+      const SCROLL_TEXT = '[scroll to explore]';
+      const INIT_DUR = 2600;
+      scrollEl.style.opacity = '1';
+      scramble(scrollEl, SCROLL_TEXT, { duration: INIT_DUR });
+      setTimeout(() => scrollTicker(scrollEl, SCROLL_TEXT), INIT_DUR + 60);
+    }
+  }, 900);
+}
+
+
+/* ── Experience item description reveal on hover ─────────────── */
+(function initXpReveal() {
+  document.querySelectorAll('.xp_item').forEach(item => {
+    const revealEl = item.querySelector('.xp_reveal');
+    if (!revealEl) return;
+    const desc = item.dataset.desc || '';
+    revealEl.textContent = desc;
+  });
 })();
- 
- 
+
+
+/* ── Work labels char reveal on scroll ───────────────────────── */
+(function initWorkLabels() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      observer.unobserve(entry.target);
+
+      const meta = entry.target.querySelector('.work_meta');
+      if (!meta) return;
+      meta.style.opacity = '1';
+
+      ['.work_num', '.work_name'].forEach((sel, i) => {
+        const el = meta.querySelector(sel);
+        if (!el) return;
+        setTimeout(() => {
+          const chars = splitChars(el);
+          revealChars(chars, { stagger: 28 });
+        }, i * 90);
+      });
+    });
+  }, { threshold: 0.35 });
+
+  document.querySelectorAll('.work_item').forEach(item => observer.observe(item));
+})();
+
+
+
+
+/* ── SEE MORE cursor ─────────────────────────────────────────── */
+(function initSeeCursor() {
+  const cursor = document.getElementById('see-cursor');
+  if (!cursor) return;
+
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+  });
+
+  document.querySelectorAll('.work_thumb').forEach(thumb => {
+    thumb.addEventListener('mouseenter', () => cursor.classList.add('visible'));
+    thumb.addEventListener('mouseleave', () => cursor.classList.remove('visible'));
+  });
+})();
+
+
 /* ── Mobile menu ─────────────────────────────────────────────── */
 (function initMobileMenu() {
   const burger = document.getElementById('burger');
   const menu   = document.getElementById('mob-menu');
   const close  = document.getElementById('mob-close');
- 
+  if (!burger || !menu) return;
+
   function openMenu() {
     menu.classList.add('open');
     menu.setAttribute('aria-hidden', 'false');
@@ -129,7 +372,7 @@ Copier
     burger.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
   }
- 
+
   function closeMenu() {
     menu.classList.remove('open');
     menu.setAttribute('aria-hidden', 'true');
@@ -137,11 +380,8 @@ Copier
     burger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
- 
-  if (burger) burger.addEventListener('click', openMenu);
-  if (close)  close.addEventListener('click', closeMenu);
- 
-  menu && menu.querySelectorAll('.mob-link').forEach(l =>
-    l.addEventListener('click', closeMenu)
-  );
+
+  burger.addEventListener('click', openMenu);
+  if (close) close.addEventListener('click', closeMenu);
+  menu.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', closeMenu));
 })();
