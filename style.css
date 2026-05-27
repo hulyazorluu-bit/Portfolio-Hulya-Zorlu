@@ -531,7 +531,9 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 .work_item:hover .work_thumb { opacity: 0.88; }
 
 .work_thumb--a { background: #E2E0DA; }
-.work_thumb--b { background: #0A0A0A; }
+.work_thumb--b {
+  background: #0A0A0A url('taminocover.png') center / cover no-repeat;
+}
 .work_thumb--c { background: #CECCC6; }
 
 /* Project 1 — square */
