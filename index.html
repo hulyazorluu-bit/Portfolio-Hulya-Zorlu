@@ -1,95 +1,648 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hulya Zorlu — UI/UX Designer basée à Paris." />
-  <title>Hulya Zorlu — UI/UX Designer</title>
- 
-  <!-- Neue Montreal -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Special Elite (typewriter) -->
-  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet" />
-  <!-- Neue Montreal via Bunny Fonts (open source, no tracking) -->
-  <link href="https://fonts.bunny.net/css?family=neue-montreal:400,500,700&display=swap" rel="stylesheet" />
- 
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hulya Zorlu — Junior UI/UX Designer crafting bold digital experiences.">
+  <meta name="theme-color" content="#ffffff">
+  <title>HULYA ZORLU — UI/UX DESIGNER</title>
+
+  <!-- Google Fonts: Space Grotesk + Inter Tight -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter+Tight:ital,wght@0,400;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
- 
-  <!-- NAV -->
-  <nav class="nav" id="nav">
-    <div class="nav_left">
-      <span class="nav_brand sp-elite">HULYAZORLU_PAR</span>
-      <span class="nav_sep"></span>
-      <span class="nav_clock sp-elite" id="clock"></span>
+
+  <!-- ============================================================
+       NOISE GRAIN — injected dynamically by script.js
+  ============================================================ -->
+  <canvas class="grain-canvas" id="grain" aria-hidden="true"></canvas>
+
+  <!-- ============================================================
+       CUSTOM CURSOR
+  ============================================================ -->
+  <div class="cursor" id="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       LOADING SCREEN
+  ============================================================ -->
+  <div class="loader" id="loader" role="status" aria-label="Loading portfolio">
+    <div class="loader-content">
+      <div class="loader-name" id="loader-name">
+        <span>H</span><span>U</span><span>L</span><span>Y</span><span>A</span>
+        <span class="loader-gap">&nbsp;</span>
+        <span>Z</span><span>O</span><span>R</span><span>L</span><span>U</span>
+      </div>
+      <div class="loader-role" id="loader-role">UI/UX DESIGNER</div>
+      <div class="loader-progress-wrap">
+        <div class="loader-bar" id="loader-bar"></div>
+      </div>
+      <div class="loader-percent" id="loader-percent">0%</div>
     </div>
-    <div class="nav_right">
-      <a href="#projets"     class="nav_lk">Projets</a>
-      <a href="#about"       class="nav_lk">À propos</a>
-      <a href="#parcours"    class="nav_lk">Parcours</a>
-      <a href="#competences" class="nav_lk">Compétences</a>
-      <a href="#contact"     class="nav_lk">Contact</a>
-    </div>
-    <!-- burger mobile -->
-    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
-      <span></span><span></span>
-    </button>
-  </nav>
- 
-  <!-- MOBILE MENU -->
-  <div class="mob-menu" id="mob-menu" aria-hidden="true">
-    <button class="mob-close" id="mob-close" aria-label="Fermer">✕</button>
-    <nav class="mob-nav">
-      <a href="#projets"     class="mob-link sp-elite">Projets</a>
-      <a href="#about"       class="mob-link sp-elite">À propos</a>
-      <a href="#parcours"    class="mob-link sp-elite">Parcours</a>
-      <a href="#competences" class="mob-link sp-elite">Compétences</a>
-      <a href="#contact"     class="mob-link sp-elite">Contact</a>
-    </nav>
   </div>
- 
-  <!-- HERO -->
-  <section class="hero" id="hero">
- 
-    <!-- 12-col grid lines (background) -->
-    <div class="grid-bg" aria-hidden="true">
-      <div class="grid-col"></div><div class="grid-col"></div>
-      <div class="grid-col"></div><div class="grid-col"></div>
-      <div class="grid-col"></div><div class="grid-col"></div>
-      <div class="grid-col"></div><div class="grid-col"></div>
-      <div class="grid-col"></div><div class="grid-col"></div>
-      <div class="grid-col"></div><div class="grid-col"></div>
-    </div>
- 
-    <!-- TITLE — colonnes 7-11 -->
-    <div class="hero_title_wrap">
-      <h1 class="hero_title">Hulya<br>Zorlu</h1>
-      <p class="hero_sub">UI/UX Designer basée à Paris</p>
-      <p class="hero_port sp-elite">PORTFOLIO_26</p>
-    </div>
- 
-    <!-- SCROLL TO EXPLORE — bas milieu -->
-    <div class="hero_scroll" id="hero-scroll" aria-hidden="true">
-      <span class="sp-elite scroll_txt" id="scroll-txt"></span>
-    </div>
- 
-    <!-- SOCIALS — bas droite -->
-    <div class="hero_socials">
-      <a href="https://www.linkedin.com/in/hulya-zorlu/" target="_blank" rel="noopener" class="social_lk sp-elite">
-        LINKEDIN <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="Hulya Zorlu Home">
+        <span class="nav-logo-text">HZ</span>
+        <span class="nav-logo-dot" aria-hidden="true"></span>
       </a>
-      <a href="https://www.instagram.com/hueliyaz/" target="_blank" rel="noopener" class="social_lk sp-elite">
-        INSTAGRAM <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
-      </a>
-      <a href="#" class="social_lk sp-elite read-cv-lk">
-        READ.CV <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
-      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#hero"     class="nav-link" data-section="hero">HOME</a></li>
+        <li><a href="#projects" class="nav-link" data-section="projects">PROJECTS</a></li>
+        <li><a href="#about"    class="nav-link" data-section="about">ABOUT</a></li>
+        <li><a href="#skills"   class="nav-link" data-section="skills">SKILLS</a></li>
+        <li><a href="#contact"  class="nav-link" data-section="contact">CONTACT</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <a href="mailto:hello@hulyazorlu.com" class="nav-hire">HIRE ME</a>
+        <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+        </button>
+      </div>
     </div>
- 
+  </nav>
+
+  <!-- MOBILE NAVIGATION OVERLAY -->
+  <div class="mobile-nav" id="mobile-nav" aria-hidden="true" role="dialog" aria-label="Mobile navigation">
+    <ul class="mobile-nav-list" role="list">
+      <li><a href="#hero"     class="mobile-nav-link">HOME</a></li>
+      <li><a href="#projects" class="mobile-nav-link">PROJECTS</a></li>
+      <li><a href="#about"    class="mobile-nav-link">ABOUT</a></li>
+      <li><a href="#skills"   class="mobile-nav-link">SKILLS</a></li>
+      <li><a href="#contact"  class="mobile-nav-link">CONTACT</a></li>
+    </ul>
+    <div class="mobile-nav-footer">
+      <span>HULYA ZORLU</span>
+      <a href="mailto:hello@hulyazorlu.com">hello@hulyazorlu.com</a>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 01 — HERO
+  ============================================================ -->
+  <section class="hero" id="hero" data-section="hero">
+
+    <!-- PLACE BACKGROUND IMAGE HERE:
+         Recommend a dark, editorial, high-contrast image.
+         Could be: abstract architecture, fashion editorial, studio texture.
+         Add: background-image: url('assets/your-hero-image.jpg') to .hero-bg in style.css
+         Suggested ratio: 16:9 or 3:2. Works best with dark tones or B&W. -->
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-bg-overlay"></div>
+    </div>
+
+    <!-- Editorial grid lines overlay -->
+    <div class="hero-grid-lines" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="hero-container">
+
+      <!-- Top tag row -->
+      <div class="hero-tags reveal-up">
+        <span class="chip">PORTFOLIO 2024</span>
+        <span class="chip chip--lime">AVAILABLE FOR WORK</span>
+        <span class="chip">PARIS, FR</span>
+      </div>
+
+      <!-- Main typographic block -->
+      <div class="hero-title-block">
+        <div class="hero-row reveal-up" data-delay="80">
+          <h1 class="hero-h1">UI<em class="hero-slash">/</em>UX</h1>
+        </div>
+        <div class="hero-row reveal-up" data-delay="160">
+          <h1 class="hero-h1 hero-h1--outline">DESIGNER</h1>
+        </div>
+        <div class="hero-row reveal-up" data-delay="240">
+          <p class="hero-sub">Crafting bold digital&nbsp;experiences.</p>
+        </div>
+      </div>
+
+      <!-- CTA buttons -->
+      <div class="hero-cta reveal-up" data-delay="360">
+        <a href="#projects" class="btn btn-filled magnetic">
+          <span>VIEW PROJECTS</span>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M3.5 9H14.5M14.5 9L9 3.5M14.5 9L9 14.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a href="#contact" class="btn btn-outline magnetic">
+          <span>CONTACT ME</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Side stats block (desktop) -->
+    <div class="hero-side reveal-up" data-delay="440">
+      <div class="hero-stat">
+        <span class="hero-stat-n" data-count="24">0</span>
+        <span class="hero-stat-l">PROJECTS<br>DELIVERED</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-n" data-count="3">0</span>
+        <span class="hero-stat-l">YEARS OF<br>EXPERIENCE</span>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="scroll-track"><div class="scroll-thumb"></div></div>
+      <span>SCROLL</span>
+    </div>
+
   </section>
- 
-  <script src="main.js"></script>
+
+  <!-- ============================================================
+       SECTION 02 — PROJECTS
+  ============================================================ -->
+  <section class="projects" id="projects" data-section="projects">
+
+    <header class="section-head reveal-up">
+      <span class="section-tag">02 — SELECTED WORK</span>
+      <h2 class="section-title">PROJECTS</h2>
+    </header>
+
+    <!-- PROJECT 01 — VAULTPAY (FINTECH) -->
+    <article class="project" data-project="1">
+      <div class="project-media reveal-scale">
+        <!-- ADD PROJECT MOCKUP HERE:
+             Fintech mobile app screens — banking dashboard, transactions, card UI.
+             Dark background recommended. Device frame mockups work great.
+             Recommended size: 800x600px or 1200x900px.
+             Add: <img src="assets/vaultpay-mockup.jpg" alt="VaultPay fintech app mockup"> inside this div -->
+        <div class="project-placeholder" style="--ph-color: #0a0a0a;">
+          <span class="ph-label">VAULTPAY — ADD MOCKUP</span>
+          <div class="ph-grid" aria-hidden="true"></div>
+          <div class="ph-tag ph-tag--lime">FINTECH APP</div>
+        </div>
+        <div class="project-hover-cta" aria-hidden="true">VIEW PROJECT →</div>
+      </div>
+
+      <div class="project-info reveal-up" data-delay="120">
+        <div class="project-meta">
+          <span class="project-num">01</span>
+          <span class="project-cat">FINTECH — MOBILE APP</span>
+          <span class="project-yr">2024</span>
+        </div>
+        <h3 class="project-title">VAULT<br>PAY</h3>
+        <p class="project-desc">
+          A next-generation mobile banking experience built around radical clarity.
+          Smart dashboards, frictionless onboarding, and micro-interactions
+          designed to make finance feel genuinely human.
+        </p>
+        <ul class="project-tags" role="list">
+          <li class="tag">UI DESIGN</li>
+          <li class="tag">UX RESEARCH</li>
+          <li class="tag">PROTOTYPING</li>
+          <li class="tag">MOBILE</li>
+        </ul>
+        <a href="#" class="project-link magnetic">
+          <span>VIEW CASE STUDY</span>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M3.5 9H14.5M14.5 9L9 3.5M14.5 9L9 14.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- PROJECT 02 — NOIR MODE (FASHION E-COMMERCE) -->
+    <article class="project project--flip" data-project="2">
+      <div class="project-media reveal-scale">
+        <!-- ADD PROJECT MOCKUP HERE:
+             Fashion e-commerce — editorial product page, lookbook layout.
+             High fashion aesthetics, B&W or muted tones work well.
+             Browser frame mockup or flat screenshot.
+             Recommended size: 800x600px or 1200x900px.
+             Add: <img src="assets/noirmode-mockup.jpg" alt="Noir Mode fashion e-commerce mockup"> inside this div -->
+        <div class="project-placeholder" style="--ph-color: #1a1a1a;">
+          <span class="ph-label">NOIR MODE — ADD MOCKUP</span>
+          <div class="ph-grid" aria-hidden="true"></div>
+          <div class="ph-tag ph-tag--orange">FASHION</div>
+        </div>
+        <div class="project-hover-cta" aria-hidden="true">VIEW PROJECT →</div>
+      </div>
+
+      <div class="project-info reveal-up" data-delay="120">
+        <div class="project-meta">
+          <span class="project-num">02</span>
+          <span class="project-cat">FASHION — E-COMMERCE</span>
+          <span class="project-yr">2024</span>
+        </div>
+        <h3 class="project-title">NOIR<br>MODE</h3>
+        <p class="project-desc">
+          Editorial e-commerce redesign for a Parisian luxury fashion house.
+          A seamless blend of high-fashion aesthetics with conversion-optimised
+          UX — where elegance meets measurable impact.
+        </p>
+        <ul class="project-tags" role="list">
+          <li class="tag">E-COMMERCE</li>
+          <li class="tag">WEB DESIGN</li>
+          <li class="tag">FIGMA</li>
+          <li class="tag">INTERACTION</li>
+        </ul>
+        <a href="#" class="project-link magnetic">
+          <span>VIEW CASE STUDY</span>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M3.5 9H14.5M14.5 9L9 3.5M14.5 9L9 14.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- PROJECT 03 — FLUX STUDIO (CREATIVE AGENCY) -->
+    <article class="project" data-project="3">
+      <div class="project-media reveal-scale">
+        <!-- ADD PROJECT MOCKUP HERE:
+             Creative agency website — experimental layout, bold typography.
+             Strong contrast recommended. Full-page browser screenshot.
+             Recommended size: 800x600px or 1200x900px.
+             Add: <img src="assets/fluxstudio-mockup.jpg" alt="Flux Studio agency redesign mockup"> inside this div -->
+        <div class="project-placeholder" style="--ph-color: #111111;">
+          <span class="ph-label">FLUX STUDIO — ADD MOCKUP</span>
+          <div class="ph-grid" aria-hidden="true"></div>
+          <div class="ph-tag ph-tag--lime">AGENCY</div>
+        </div>
+        <div class="project-hover-cta" aria-hidden="true">VIEW PROJECT →</div>
+      </div>
+
+      <div class="project-info reveal-up" data-delay="120">
+        <div class="project-meta">
+          <span class="project-num">03</span>
+          <span class="project-cat">CREATIVE — AGENCY REDESIGN</span>
+          <span class="project-yr">2023</span>
+        </div>
+        <h3 class="project-title">FLUX<br>STUDIO</h3>
+        <p class="project-desc">
+          Full digital presence overhaul for an experimental creative agency.
+          Bold typography, kinetic motion, and an editorial visual language
+          that challenges every convention of the modern web.
+        </p>
+        <ul class="project-tags" role="list">
+          <li class="tag">BRANDING</li>
+          <li class="tag">WEB DESIGN</li>
+          <li class="tag">DESIGN SYSTEM</li>
+          <li class="tag">MOTION</li>
+        </ul>
+        <a href="#" class="project-link magnetic">
+          <span>VIEW CASE STUDY</span>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M3.5 9H14.5M14.5 9L9 3.5M14.5 9L9 14.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </a>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============================================================
+       SECTION 03 — ABOUT
+  ============================================================ -->
+  <section class="about" id="about" data-section="about">
+
+    <div class="about-grid">
+
+      <!-- LEFT COLUMN -->
+      <div class="about-left">
+        <span class="section-tag reveal-up">03 — ABOUT ME</span>
+
+        <div class="about-big">
+          <div class="about-title-row reveal-up" data-delay="80">
+            <h2>DESIGN</h2>
+          </div>
+          <div class="about-title-row reveal-up" data-delay="160">
+            <h2>IS MY</h2>
+          </div>
+          <div class="about-title-row reveal-up" data-delay="240">
+            <h2 class="about-h2-outline">LANGUAGE.</h2>
+          </div>
+        </div>
+
+        <div class="about-body reveal-up" data-delay="340">
+          <p>
+            Junior UI/UX Designer based in Paris, obsessed with craft,
+            detail, and pushing design past the expected. I build digital
+            experiences that feel as good as they look — interfaces where
+            every pixel has a purpose and every interaction tells a story.
+          </p>
+          <p>
+            Currently open to new opportunities and creative
+            collaborations. Let's make something bold together.
+          </p>
+        </div>
+
+        <div class="about-actions reveal-up" data-delay="420">
+          <a href="#contact" class="btn btn-filled magnetic">
+            <span>GET IN TOUCH</span>
+          </a>
+          <a href="#" class="btn btn-text" aria-label="Download CV PDF">
+            DOWNLOAD CV ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="about-right">
+        <!-- ADD DESIGNER PORTRAIT HERE:
+             Professional editorial portrait — strong contrast, clean background.
+             B&W or colour both work. The portrait can overflow the container
+             intentionally for a dynamic, fashion-editorial composition.
+             Recommended size: 600x900px (2:3 ratio).
+             To add: replace .portrait-placeholder with:
+             <img src="assets/hulya-portrait.jpg" alt="Hulya Zorlu, UI/UX Designer" class="portrait-img">
+             The existing .portrait-wrap handles cropping and overflow. -->
+        <div class="portrait-wrap reveal-scale" data-delay="160">
+          <div class="portrait-placeholder">
+            <span class="ph-label">ADD DESIGNER<br>PORTRAIT HERE</span>
+            <div class="portrait-initials" aria-hidden="true">HZ</div>
+          </div>
+          <div class="portrait-accent-h" aria-hidden="true"></div>
+          <div class="portrait-accent-v" aria-hidden="true"></div>
+          <div class="portrait-chip">
+            <span>PARIS, FR</span>
+            <span>2024</span>
+          </div>
+        </div>
+
+        <!-- Intentional editorial negative space -->
+        <div class="about-empty-space" aria-hidden="true">
+          <span class="empty-label">[ NEGATIVE SPACE ]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROCESS STRIP -->
+    <div class="process-strip reveal-up" data-delay="200">
+      <div class="process-step">
+        <span class="ps-num">01</span>
+        <span class="ps-name">RESEARCH</span>
+      </div>
+      <span class="ps-sep" aria-hidden="true">—</span>
+      <div class="process-step">
+        <span class="ps-num">02</span>
+        <span class="ps-name">IDEATE</span>
+      </div>
+      <span class="ps-sep" aria-hidden="true">—</span>
+      <div class="process-step">
+        <span class="ps-num">03</span>
+        <span class="ps-name">DESIGN</span>
+      </div>
+      <span class="ps-sep" aria-hidden="true">—</span>
+      <div class="process-step">
+        <span class="ps-num">04</span>
+        <span class="ps-name">PROTOTYPE</span>
+      </div>
+      <span class="ps-sep" aria-hidden="true">—</span>
+      <div class="process-step">
+        <span class="ps-num">05</span>
+        <span class="ps-name">TEST</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       SECTION 04 — SKILLS
+  ============================================================ -->
+  <section class="skills" id="skills" data-section="skills">
+
+    <header class="section-head reveal-up">
+      <span class="section-tag">04 — EXPERTISE</span>
+      <h2 class="section-title">WHAT I<br>DO.</h2>
+    </header>
+
+    <div class="skills-grid">
+
+      <div class="skill-card reveal-up" data-delay="0" tabindex="0">
+        <div class="sk-inner">
+          <span class="sk-num">01</span>
+          <svg class="sk-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect x="4" y="4" width="32" height="32" rx="2" stroke="currentColor" stroke-width="2"/>
+            <path d="M4 14H36" stroke="currentColor" stroke-width="2"/>
+            <circle cx="10" cy="9" r="2" fill="currentColor"/>
+            <circle cx="17" cy="9" r="2" fill="currentColor"/>
+          </svg>
+          <h3 class="sk-name">UI DESIGN</h3>
+          <p class="sk-desc">Visual interfaces that communicate clearly and feel premium. Pixel-level precision meets creative ambition.</p>
+        </div>
+      </div>
+
+      <div class="skill-card reveal-up" data-delay="60" tabindex="0">
+        <div class="sk-inner">
+          <span class="sk-num">02</span>
+          <svg class="sk-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <circle cx="20" cy="18" r="10" stroke="currentColor" stroke-width="2"/>
+            <path d="M27 25L35 33" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M20 13V23M15 18H25" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <h3 class="sk-name">UX RESEARCH</h3>
+          <p class="sk-desc">User interviews, usability testing, data synthesis. Design decisions backed by real evidence.</p>
+        </div>
+      </div>
+
+      <div class="skill-card reveal-up" data-delay="120" tabindex="0">
+        <div class="sk-inner">
+          <span class="sk-num">03</span>
+          <svg class="sk-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect x="12" y="4" width="16" height="12" rx="4" stroke="currentColor" stroke-width="2"/>
+            <rect x="4" y="22" width="14" height="14" rx="4" stroke="currentColor" stroke-width="2"/>
+            <rect x="22" y="22" width="14" height="14" rx="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M20 16V22" stroke="currentColor" stroke-width="2"/>
+            <path d="M11 22V18H29V22" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <h3 class="sk-name">FIGMA</h3>
+          <p class="sk-desc">Component libraries, auto-layout, variables, advanced prototypes. Full power-user fluency.</p>
+        </div>
+      </div>
+
+      <div class="skill-card reveal-up" data-delay="180" tabindex="0">
+        <div class="sk-inner">
+          <span class="sk-num">04</span>
+          <svg class="sk-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect x="4" y="8" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2"/>
+            <rect x="22" y="8" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2"/>
+            <rect x="13" y="24" width="14" height="10" rx="2" stroke="currentColor" stroke-width="2"/>
+            <path d="M11 18L20 24M29 18L20 24" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <h3 class="sk-name">PROTOTYPING</h3>
+          <p class="sk-desc">High-fidelity interactive prototypes that communicate flow, logic, and micro-interactions.</p>
+        </div>
+      </div>
+
+      <div class="skill-card reveal-up" data-delay="240" tabindex="0">
+        <div class="sk-inner">
+          <span class="sk-num">05</span>
+          <svg class="sk-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="2"/>
+            <circle cx="28" cy="12" r="6" stroke="currentColor" stroke-width="2"/>
+            <circle cx="20" cy="28" r="6" stroke="currentColor" stroke-width="2"/>
+            <path d="M17 14L20 22M23 14L20 22" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <h3 class="sk-name">DESIGN SYSTEMS</h3>
+          <p class="sk-desc">Scalable component libraries, tokens, and documentation built for teams and growth.</p>
+        </div>
+      </div>
+
+      <div class="skill-card reveal-up" data-delay="300" tabindex="0">
+        <div class="sk-inner">
+          <span class="sk-num">06</span>
+          <svg class="sk-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <path d="M8 20C8 13.4 13.4 8 20 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M32 20C32 26.6 26.6 32 20 32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="20" cy="20" r="4" fill="currentColor"/>
+            <path d="M28 8L32 12L28 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 32L8 28L12 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3 class="sk-name">INTERACTION DESIGN</h3>
+          <p class="sk-desc">Micro-interactions, motion principles, and animation choreography that guides and delights.</p>
+        </div>
+      </div>
+
+      <div class="skill-card reveal-up" data-delay="360" tabindex="0">
+        <div class="sk-inner">
+          <span class="sk-num">07</span>
+          <svg class="sk-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <rect x="4" y="4" width="32" height="32" rx="2" stroke="currentColor" stroke-width="2"/>
+            <rect x="9" y="9" width="10" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="21" y="9" width="10" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="9" y="21" width="22" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <h3 class="sk-name">WIREFRAMING</h3>
+          <p class="sk-desc">Lo-fi to hi-fi. Rapid wireframes that validate structure before visual design begins.</p>
+        </div>
+      </div>
+
+      <!-- Intentional empty editorial slot -->
+      <div class="skill-card skill-card--empty reveal-up" data-delay="420" aria-hidden="true">
+        <div class="sk-inner">
+          <span class="empty-block-text">MORE<br>COMING<br>SOON</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 05 — CONTACT
+  ============================================================ -->
+  <section class="contact" id="contact" data-section="contact">
+
+    <!-- SCROLLING MARQUEE -->
+    <div class="marquee-wrap" aria-hidden="true">
+      <div class="marquee-track" id="marquee-track">
+        <span>LET'S WORK</span>
+        <span class="mq-star">✦</span>
+        <span>LET'S CREATE</span>
+        <span class="mq-star">✦</span>
+        <span>LET'S BUILD</span>
+        <span class="mq-star">✦</span>
+        <span>LET'S DESIGN</span>
+        <span class="mq-star">✦</span>
+        <span>LET'S WORK</span>
+        <span class="mq-star">✦</span>
+        <span>LET'S CREATE</span>
+        <span class="mq-star">✦</span>
+        <span>LET'S BUILD</span>
+        <span class="mq-star">✦</span>
+        <span>LET'S DESIGN</span>
+        <span class="mq-star">✦</span>
+      </div>
+    </div>
+
+    <div class="contact-inner">
+      <span class="section-tag reveal-up">05 — CONTACT</span>
+
+      <!-- Giant heading -->
+      <div class="contact-heading reveal-up" data-delay="100">
+        <h2>
+          <span class="ch-line">LET'S</span>
+          <span class="ch-line ch-outline">WORK</span>
+          <span class="ch-line">TOGETHER.</span>
+        </h2>
+      </div>
+
+      <div class="contact-body reveal-up" data-delay="200">
+        <p>Have a project in mind? I'd love to hear it.<br>Let's make something bold.</p>
+
+        <a href="mailto:hello@hulyazorlu.com" class="contact-email magnetic">
+          hello@hulyazorlu.com
+        </a>
+
+        <div class="contact-socials">
+          <a href="#" class="soc-link magnetic" aria-label="LinkedIn profile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+            LINKEDIN
+          </a>
+          <a href="#" class="soc-link magnetic" aria-label="Behance portfolio">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M7 15h3.5a2 2 0 0 0 0-4H7v8h4a2.5 2.5 0 0 0 0-5H7"/>
+              <path d="M15 8h5M14 12h6"/>
+            </svg>
+            BEHANCE
+          </a>
+          <a href="#" class="soc-link magnetic" aria-label="Dribbble portfolio">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M8.5 2.7C10.7 6 12.5 9.7 13 14M21.3 9c-2.3.7-5 1-7.7.7M2.7 9C5 9.7 7.3 9.7 9.3 9M12 2c-1 3.3-1.5 6.8-1 10.3"/>
+            </svg>
+            DRIBBBLE
+          </a>
+        </div>
+
+        <a href="mailto:hello@hulyazorlu.com" class="btn btn-filled btn-xl magnetic">
+          <span>START A PROJECT</span>
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+            <path d="M4 11H18M18 11L11 4M18 11L11 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-rule" aria-hidden="true"></div>
+    <div class="footer-inner">
+
+      <div class="footer-l">
+        <span class="footer-logo">HZ</span>
+        <span class="footer-copy">© 2024 HULYA ZORLU. ALL RIGHTS RESERVED.</span>
+      </div>
+
+      <div class="footer-c" aria-hidden="true">
+        <div class="footer-ticker" id="footer-ticker">
+          <span>UI/UX DESIGNER&nbsp;&nbsp;✦&nbsp;&nbsp;PARIS, FR&nbsp;&nbsp;✦&nbsp;&nbsp;AVAILABLE FOR WORK&nbsp;&nbsp;✦&nbsp;&nbsp;</span>
+          <span aria-hidden="true">UI/UX DESIGNER&nbsp;&nbsp;✦&nbsp;&nbsp;PARIS, FR&nbsp;&nbsp;✦&nbsp;&nbsp;AVAILABLE FOR WORK&nbsp;&nbsp;✦&nbsp;&nbsp;</span>
+        </div>
+      </div>
+
+      <div class="footer-r">
+        <a href="#hero" class="footer-top magnetic" aria-label="Scroll back to top">
+          BACK TO TOP ↑
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
