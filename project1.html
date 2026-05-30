@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event App — Hulya Zorlu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Project page ── */
+    .proj-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 4.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.4rem;
+      z-index: 100;
+      background: rgba(248,246,242,0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(10,10,10,0.08);
+    }
+
+    .proj-back {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      color: rgba(10,10,10,0.5);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .proj-back:hover { color: #0A0A0A; }
+
+    .proj-nav-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      color: rgba(10,10,10,0.4);
+      text-transform: uppercase;
+    }
+
+    .proj-hero {
+      padding: 12rem 2.4rem 5rem;
+      border-bottom: 1px solid rgba(10,10,10,0.08);
+    }
+
+    .proj-tag {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      color: rgba(10,10,10,0.35);
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .proj-title {
+      font-family: montrealbook, 'Helvetica Neue', sans-serif;
+      font-weight: 400;
+      font-size: clamp(3rem, 6vw, 7rem);
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      color: #0A0A0A;
+      margin-bottom: 3rem;
+    }
+
+    .proj-meta {
+      display: flex;
+      gap: 4rem;
+    }
+
+    .proj-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .proj-meta-label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(10,10,10,0.35);
+    }
+
+    .proj-meta-val {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      color: #0A0A0A;
+    }
+
+    /* ── Brief slides ── */
+    .proj-brief {
+      padding: 5rem 2.4rem 10rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .proj-brief img {
+      width: 100%;
+      display: block;
+      border: 1px solid rgba(10,10,10,0.06);
+    }
+
+    .proj-brief-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: rgba(10,10,10,0.03);
+      border: 1px dashed rgba(10,10,10,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: rgba(10,10,10,0.25);
+      text-transform: uppercase;
+    }
+
+    .proj-footer {
+      padding: 3rem 2.4rem;
+      border-top: 1px solid rgba(10,10,10,0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .proj-footer a {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(10,10,10,0.4);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .proj-footer a:hover { color: #0A0A0A; }
+  </style>
+</head>
+<body style="background: #F8F6F2;">
+
+  <nav class="proj-nav">
+    <a href="index.html" class="proj-back">← Portfolio</a>
+    <span class="proj-nav-title">001 — Event App</span>
+  </nav>
+
+  <div class="proj-hero">
+    <p class="proj-tag">[ 001 ] UX/UI Case Study</p>
+    <h1 class="proj-title">Event App</h1>
+    <div class="proj-meta">
+      <div class="proj-meta-item">
+        <span class="proj-meta-label">Role</span>
+        <span class="proj-meta-val">UX Research · UI Design</span>
+      </div>
+      <div class="proj-meta-item">
+        <span class="proj-meta-label">Tools</span>
+        <span class="proj-meta-val">Figma</span>
+      </div>
+      <div class="proj-meta-item">
+        <span class="proj-meta-label">Type</span>
+        <span class="proj-meta-val">Mobile App</span>
+      </div>
+    </div>
+  </div>
+
+  <!--
+    INSTRUCTIONS :
+    Exporte tes frames du brief Figma en PNG (File → Export)
+    Nomme-les : brief-01.png, brief-02.png, etc.
+    Place-les dans le dossier assets/
+    Remplace les placeholders ci-dessous par :
+    <img src="assets/brief-01.png" alt="Brief slide 1">
+  -->
+  <div class="proj-brief">
+    <div class="proj-brief-placeholder">Brief slide 1 — exporte depuis Figma → assets/brief-01.png</div>
+    <div class="proj-brief-placeholder">Brief slide 2 — assets/brief-02.png</div>
+    <div class="proj-brief-placeholder">Brief slide 3 — assets/brief-03.png</div>
+  </div>
+
+  <div class="proj-footer">
+    <a href="index.html">← Back to portfolio</a>
+    <a href="#top">Top ↑</a>
+  </div>
+
+</body>
+</html>

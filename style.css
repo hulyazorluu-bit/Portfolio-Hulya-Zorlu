@@ -530,10 +530,19 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 }
 .work_item:hover .work_thumb { opacity: 0.88; }
 
-.work_thumb--a { background: #E2E0DA; }
-.work_thumb--b {
-  background: #0A0A0A url('taminocover.png') center / cover no-repeat;
+.work_cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
+
+.work_thumb { position: relative; }
+
+.work_thumb--a { background: #E2E0DA; }
+.work_thumb--b { background: #0A0A0A; }
 .work_thumb--c { background: #CECCC6; }
 
 /* Project 1 — square */
