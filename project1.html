@@ -28,9 +28,14 @@
   </style>
 </head>
 <body>
-  <img src="assets/Brief.png" alt="Event App — Brief">
+  <img id="brief-img" src="" alt="Event App — Brief">
   <a class="figma-link" href="https://www.figma.com/design/GTOusKG5gaMvX1fJP46EqT/Event-app?node-id=48-2&p=f&t=OzlAY1Zyzr9ujeME-0" target="_blank" rel="noopener">
-    View Project on Figma ↗
+    <span id="figma-link-txt">View Project on Figma ↗</span>
   </a>
+  <script>
+    const lang = localStorage.getItem('lang') || 'en';
+    document.getElementById('brief-img').src = lang === 'fr' ? 'assets/briefFR.png' : 'assets/briefEN.png';
+    document.getElementById('figma-link-txt').textContent = lang === 'fr' ? 'Voir le projet sur Figma ↗' : 'View Project on Figma ↗';
+  </script>
 </body>
 </html>

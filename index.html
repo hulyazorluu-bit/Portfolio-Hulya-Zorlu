@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="lang-en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,20 +52,37 @@
       </span>
     </div>
     <div class="nav_right">
+      <div class="lang-toggle">
+        <button class="lang-btn" data-lang="en">EN</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" data-lang="fr">FR</button>
+      </div>
       <a href="#projects" class="nav_lk">
-        <span class="typewriter-container"><span class="typewriter">Projects</span></span>
+        <span class="typewriter-container">
+          <span class="typewriter t-en">Projects</span>
+          <span class="typewriter t-fr">Projets</span>
+        </span>
       </a>
       <a href="#about" class="nav_lk">
-        <span class="typewriter-container"><span class="typewriter">About</span></span>
+        <span class="typewriter-container">
+          <span class="typewriter t-en">About</span>
+          <span class="typewriter t-fr">À propos</span>
+        </span>
       </a>
       <a href="#experience" class="nav_lk">
-        <span class="typewriter-container"><span class="typewriter">Experience</span></span>
+        <span class="typewriter-container">
+          <span class="typewriter t-en">Experience</span>
+          <span class="typewriter t-fr">Expérience</span>
+        </span>
       </a>
       <a href="#skills" class="nav_lk">
-        <span class="typewriter-container"><span class="typewriter">Skills</span></span>
+        <span class="typewriter-container">
+          <span class="typewriter t-en">Skills</span>
+          <span class="typewriter t-fr">Compétences</span>
+        </span>
       </a>
       <a href="#contact" class="nav_cta">
-        <span id="cta-text">LETS TALK</span>
+        <span id="cta-text"></span>
       </a>
     </div>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
@@ -77,11 +94,11 @@
   <div class="mob-menu" id="mob-menu" aria-hidden="true">
     <button class="mob-close" id="mob-close" aria-label="Fermer">✕</button>
     <nav class="mob-nav">
-      <a href="#projects" class="mob-link">Projects</a>
-      <a href="#about" class="mob-link">About</a>
-      <a href="#experience" class="mob-link">Experience</a>
-      <a href="#skills" class="mob-link">Skills</a>
-      <a href="#contact" class="mob-link">Lets Talk</a>
+      <a href="#projects" class="mob-link"><span class="t-en">Projects</span><span class="t-fr">Projets</span></a>
+      <a href="#about" class="mob-link"><span class="t-en">About</span><span class="t-fr">À propos</span></a>
+      <a href="#experience" class="mob-link"><span class="t-en">Experience</span><span class="t-fr">Expérience</span></a>
+      <a href="#skills" class="mob-link"><span class="t-en">Skills</span><span class="t-fr">Compétences</span></a>
+      <a href="#contact" class="mob-link"><span class="t-en">Lets Talk</span><span class="t-fr">Parlons</span></a>
     </nav>
     <div class="mob-footer">
       <a href="https://www.instagram.com/hueliyaz/" target="_blank" rel="noopener">INSTAGRAM</a>
@@ -113,7 +130,7 @@
       </h2>
 
       <div class="cnt_bt">
-        <h3 class="tt3">UI/UX Designer<br>Based in Paris</h3>
+        <h3 class="tt3"><span class="t-en">UI/UX Designer<br>Based in Paris</span><span class="t-fr">UI/UX Designer<br>Basée à Paris</span></h3>
         <h4 class="Awrite" id="portfolio-txt">
           <span class="typewriter-container"><span class="typewriter tw-type">PORTFOLIO_26</span></span>
         </h4>
@@ -146,7 +163,7 @@
   <!-- FEATURED WORKS -->
   <section class="works section-light" id="projects">
     <div class="works_hd">
-      <h2 class="works_title">Featured works</h2>
+      <h2 class="works_title"><span class="t-en">Featured works</span><span class="t-fr">Projets sélectionnés</span></h2>
       <span class="works_count">[003]</span>
     </div>
 
@@ -185,7 +202,7 @@
   </section>
 
   <!-- SEE MORE custom cursor -->
-  <div class="see-cursor" id="see-cursor" aria-hidden="true">SEE MORE</div>
+  <div class="see-cursor" id="see-cursor" aria-hidden="true"><span class="t-en">SEE MORE</span><span class="t-fr">VOIR PLUS</span></div>
 
   <!-- ABOUT -->
   <section class="about section-dark" id="about">
@@ -193,14 +210,17 @@
 
       <div class="about_tag">
         <span class="about_tag_num">[ 001 ]</span>
-        <span class="about_tag_label">ABOUT</span>
+        <span class="about_tag_label"><span class="t-en">ABOUT</span><span class="t-fr">À PROPOS</span></span>
       </div>
 
       <h2 class="about_title">UI/UX Designer —<br>Paris.</h2>
 
-      <p class="about_desc">Designing digital experiences that are intuitive, purposeful and visually sharp.<br>From user research to final prototype — working across the full design process with a strong focus on usability, clarity and impact.</p>
+      <p class="about_desc">
+        <span class="t-en">Designing digital experiences that are intuitive, purposeful and visually sharp.<br>From user research to final prototype — working across the full design process with a strong focus on usability, clarity and impact.</span>
+        <span class="t-fr">Conception d'expériences digitales intuitives, purposeful et visuellement soignées.<br>De la recherche utilisateur au prototype final — sur l'ensemble du processus design, avec une forte attention portée à l'ergonomie, la clarté et l'impact.</span>
+      </p>
 
-      <a href="about.html" class="about_more">Full profile ↗</a>
+      <a href="about.html" class="about_more"><span class="t-en">Full profile ↗</span><span class="t-fr">Mon profil ↗</span></a>
 
     </div>
   </section>
@@ -210,7 +230,7 @@
 
     <div class="xp_hd">
       <span class="xp_label">[ 002 ]</span>
-      <h2 class="xp_title">Experience</h2>
+      <h2 class="xp_title"><span class="t-en">Experience</span><span class="t-fr">Expérience</span></h2>
     </div>
 
     <div class="xp_list">
@@ -272,11 +292,11 @@
 
     <div class="xp_hd xp_hd--form">
       <span class="xp_label">[ 003 ]</span>
-      <h2 class="xp_title">Education</h2>
+      <h2 class="xp_title"><span class="t-en">Education</span><span class="t-fr">Formation</span></h2>
     </div>
 
     <div class="xp_sub_hd">
-      <span class="xp_sub_label">Degrees</span>
+      <span class="xp_sub_label"><span class="t-en">Degrees</span><span class="t-fr">Diplômes</span></span>
     </div>
 
     <div class="xp_list">
@@ -353,7 +373,7 @@
 
     <div class="skills_hd">
       <span class="xp_label">[ 004 ]</span>
-      <h2 class="xp_title" style="color:#F8F6F2">Skills</h2>
+      <h2 class="xp_title" style="color:#F8F6F2"><span class="t-en">Skills</span><span class="t-fr">Compétences</span></h2>
     </div>
 
     <div class="skills_grid">
@@ -392,7 +412,7 @@
       </div>
 
       <div class="skill_col">
-        <span class="skill_cat">LANGUAGES</span>
+        <span class="skill_cat"><span class="t-en">LANGUAGES</span><span class="t-fr">LANGUES</span></span>
         <ul class="skill_list">
           <li class="skill_item">French <span class="skill_lvl">NATIVE</span></li>
           <li class="skill_item">English <span class="skill_lvl">C1</span></li>
@@ -418,7 +438,7 @@
     </div>
 
     <div class="contact_body">
-      <p class="contact_pre">Open to new opportunities</p>
+      <p class="contact_pre"><span class="t-en">Open to new opportunities</span><span class="t-fr">Disponible pour de nouvelles opportunités</span></p>
       <a href="mailto:zorluu.hulya@gmail.com" class="contact_email">
         ZORLUU.HULYA<br>@GMAIL.COM
         <span class="contact_email_arr">↗</span>

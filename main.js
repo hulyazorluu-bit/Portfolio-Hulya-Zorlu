@@ -4,6 +4,39 @@
    Mobile menu
    ============================================================= */
 
+/* ── Language ────────────────────────────────────────────────── */
+(function initLang() {
+  const lang = localStorage.getItem('lang') || 'en';
+  document.documentElement.className = 'lang-' + lang;
+
+  function applyLang(l) {
+    localStorage.setItem('lang', l);
+    document.documentElement.className = 'lang-' + l;
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === l);
+    });
+    /* CTA — reset text & re-split chars instantly */
+    const ctaEl = document.getElementById('cta-text');
+    if (ctaEl) {
+      ctaEl.textContent = l === 'fr' ? 'PARLONS' : 'LETS TALK';
+      const cws = splitChars(ctaEl);
+      cws.forEach(cw => cw.classList.add('done'));
+    }
+  }
+
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.lang-btn');
+    if (btn) applyLang(btn.dataset.lang);
+  });
+
+  /* Mark active button once DOM ready */
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+  });
+})();
+
 /* ── Char animation constants ─────────────────────────────────── */
 const FAKE_CHARS = '##·$%&/=€|()@+09*+]}{[';
 function rndFake() {
@@ -247,6 +280,8 @@ function revealPage() {
   const cta = document.querySelector('.nav_cta');
   const ctaText = document.getElementById('cta-text');
   if (cta && ctaText) {
+    const _lang = localStorage.getItem('lang') || 'en';
+    ctaText.textContent = _lang === 'fr' ? 'PARLONS' : 'LETS TALK';
     cta.style.opacity = '1';
     const charEls = splitChars(ctaText);
     revealChars(charEls, { stagger: STAGGER });

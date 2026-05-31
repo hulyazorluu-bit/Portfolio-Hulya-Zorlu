@@ -84,6 +84,35 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 
 .Mbg_col_el-2 { flex: 1; }
 
+/* ── LANGUAGE TOGGLE ─────────────────────────────────────────── */
+html.lang-en .t-fr { display: none !important; }
+html.lang-fr .t-en { display: none !important; }
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-right: 0.8rem;
+}
+.lang-btn {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: rgba(10,10,10,0.35);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s;
+}
+.lang-btn:hover { color: var(--fg); }
+.lang-btn.active { color: var(--fg); }
+.lang-sep {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.8rem;
+  color: rgba(10,10,10,0.15);
+}
+
 /* ── NAV ──────────────────────────────────────────────────────── */
 .nav {
   position: fixed;
