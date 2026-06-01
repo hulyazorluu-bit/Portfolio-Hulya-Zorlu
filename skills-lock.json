@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "career-ops": {
+      "source": "santifer/career-ops",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/career-ops/SKILL.md",
+      "computedHash": "9f11e1da6623a78e25d4e0ad8e9d45d6f4a19e6a5b63faedc60822d2a3b1351c"
+    },
+    "extract-design": {
+      "source": "Manavarya09/design-extract",
+      "sourceType": "github",
+      "skillPath": "skills/extract-design/SKILL.md",
+      "computedHash": "a20e0950c9d1dde2047af456319416281ac4e655862f09506328ee7faca5ea91"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "portfolio-hulya-zorlu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://local_proxy@127.0.0.1:36265/git/hulyazorluu-bit/Portfolio-Hulya-Zorlu"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "three": "^0.184.0"
+  }
+}
