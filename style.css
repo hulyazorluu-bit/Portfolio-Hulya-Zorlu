@@ -408,6 +408,18 @@ button { cursor: none; border: none; background: none; font-family: inherit; }
 }
 .Atitle.vis .tt1 { transform: translateY(0); }
 
+/* ── LIQUID SLICE TITLE ──────────────────────────────────────── */
+/* JS splits each char into N vertical slices; .Atitle overflow:hidden
+   would clip the slices animating from outside, so we unset it. */
+.Atitle:has(.js-liquid) {
+  overflow: visible;
+}
+.Atitle .tt1.js-liquid {
+  transform: none;          /* JS controls the reveal */
+  display: inline-block;
+  overflow: visible;
+}
+
 
 /* ================================================================
    HERO — s-intro

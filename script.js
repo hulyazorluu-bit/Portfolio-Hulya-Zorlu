@@ -128,13 +128,19 @@ function initReveal() {
 }
 
 /* ── REVEAL — title slide-up (.Atitle) ───────────────────────── */
+/* Skips .js-liquid elements — those use initLiquidTitle() instead */
 function initTitleReveal() {
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
       io.unobserve(e.target);
 
-      gsap.to(e.target.querySelectorAll('.tt1'), {
+      const targets = [...e.target.querySelectorAll('.tt1')].filter(
+        t => !t.classList.contains('js-liquid')
+      );
+      if (!targets.length) return;
+
+      gsap.to(targets, {
         y: '0%',
         duration: 1.0,
         ease: 'power3.out',
@@ -145,6 +151,70 @@ function initTitleReveal() {
   }, { rootMargin: '0px 0px -5% 0px', threshold: 0 });
 
   document.querySelectorAll('.Atitle').forEach(el => io.observe(el));
+}
+
+/* ── LIQUID SLICE TITLE ───────────────────────────────────────── */
+/* Replicates Eva Sanchez's vertical-slice distortion effect.
+   Each character is split into SLICES vertical strips via clip-path.
+   Every strip animates from a random Y offset → 0 with expo.out.
+   An invisible ghost span holds the character's layout width. */
+function initLiquidTitle() {
+  const SLICES = 6;
+
+  document.querySelectorAll('.js-liquid').forEach((el, wordIdx) => {
+    const letters = [...el.textContent.trim()];
+    el.innerHTML = '';
+    el.style.display = 'inline-block';
+
+    letters.forEach((letter, charIdx) => {
+      const wrap = document.createElement('span');
+      wrap.style.cssText = 'position:relative;display:inline-block;';
+
+      if (letter === ' ') {
+        wrap.innerHTML = '&nbsp;';
+        el.appendChild(wrap);
+        return;
+      }
+
+      // Base delay: stagger words then chars
+      const baseDelay = wordIdx * 0.18 + charIdx * 0.045;
+
+      for (let i = 0; i < SLICES; i++) {
+        const slice = document.createElement('span');
+        slice.textContent = letter;
+
+        const leftPct  = i * (100 / SLICES);
+        const rightPct = (SLICES - i - 1) * (100 / SLICES);
+        slice.style.cssText = [
+          'position:absolute',
+          'left:0',
+          'top:0',
+          `clip-path:inset(0 ${rightPct.toFixed(2)}% 0 ${leftPct.toFixed(2)}%)`,
+          'will-change:transform',
+        ].join(';') + ';';
+
+        wrap.appendChild(slice);
+
+        gsap.fromTo(
+          slice,
+          { y: gsap.utils.random(-160, 160) },
+          {
+            y: 0,
+            duration: 1.5,
+            ease: 'expo.out',
+            delay: baseDelay + i * 0.028,
+          }
+        );
+      }
+
+      // Ghost span keeps the character's layout width
+      const ghost = document.createElement('span');
+      ghost.textContent = letter;
+      ghost.style.opacity = '0';
+      wrap.appendChild(ghost);
+      el.appendChild(wrap);
+    });
+  });
 }
 
 /* ── LOADER ───────────────────────────────────────────────────── */
@@ -460,6 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ScrollTrigger.refresh();
 
+    initLiquidTitle();   // hero "Hulya / Zorlu." slice distortion
     initReveal();
     initTitleReveal();
     initColorInversion();
