@@ -3,237 +3,254 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Hulya Zorlu — UI/UX Designer based in Paris.">
+  <meta name="description" content="Hulya Zorlu — UI/UX Designer based in Paris. Crafting interfaces that feel intentional and beautifully human.">
   <title>Hulya Zorlu — UI/UX Designer</title>
 
-  <!-- Playfair Display (serif display) + DM Sans (clean body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- CURSOR -->
-  <div class="cur" id="cur" aria-hidden="true"></div>
+  <div class="cursor" id="cursor"><div class="cursor-ring"></div></div>
 
   <!-- LOADER -->
-  <div class="ldr" id="ldr" aria-label="Loading" role="status">
-    <div class="ldr-inner">
-      <span class="ldr-logo">HZ</span>
-      <p class="ldr-name">Hulya Zorlu</p>
-      <div class="ldr-track"><div class="ldr-fill" id="ldr-fill"></div></div>
+  <div class="loader" id="loader">
+    <div class="loader-body">
+      <div class="loader-name-wrap">
+        <span class="loader-name" id="loader-name">Hulya Zorlu</span>
+      </div>
+      <div class="loader-track"><div class="loader-bar" id="loader-bar"></div></div>
+      <span class="loader-pct" id="loader-pct">0%</span>
     </div>
   </div>
 
-  <!-- HEADER -->
-  <header class="hdr" id="hdr">
-    <div class="hdr-in">
-      <a href="#home" class="hdr-logo" aria-label="Hulya Zorlu — home">HZ</a>
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="nav-in">
+      <a href="#home" class="nav-logo" aria-label="Home">HZ</a>
 
-      <nav class="hdr-nav" aria-label="Main navigation">
-        <a href="#home"    class="nl" data-s="home">Home</a>
-        <a href="#work"    class="nl" data-s="work">Work</a>
-        <a href="#about"   class="nl" data-s="about">About</a>
-        <a href="#skills"  class="nl" data-s="skills">Skills</a>
-        <a href="#contact" class="nl" data-s="contact">Contact</a>
+      <nav class="nav-center" aria-label="Main">
+        <a href="#work"    class="nav-lnk" data-s="work">Work</a>
+        <a href="#about"   class="nav-lnk" data-s="about">About</a>
+        <a href="#contact" class="nav-lnk" data-s="contact">Contact</a>
       </nav>
 
-      <div class="hdr-r">
-        <a href="mailto:hello@hulyazorlu.com" class="hdr-cta mag">hello@hulyazorlu.com</a>
-        <button class="burg" id="burg" aria-label="Toggle menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+      <a href="mailto:hello@hulyazorlu.com" class="nav-mail">hello@hulyazorlu.com</a>
+
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
     </div>
   </header>
 
   <!-- MOBILE MENU -->
-  <div class="mob" id="mob" aria-hidden="true">
-    <nav class="mob-nav">
-      <a href="#home"    class="moblink">Home</a>
-      <a href="#work"    class="moblink">Work</a>
-      <a href="#about"   class="moblink">About</a>
-      <a href="#skills"  class="moblink">Skills</a>
-      <a href="#contact" class="moblink">Contact</a>
+  <div class="mmenu" id="mmenu" aria-hidden="true">
+    <nav class="mmenu-nav">
+      <a href="#work"    class="mmenu-lnk">Work</a>
+      <a href="#about"   class="mmenu-lnk">About</a>
+      <a href="#contact" class="mmenu-lnk">Contact</a>
     </nav>
-    <a href="mailto:hello@hulyazorlu.com" class="mob-mail">hello@hulyazorlu.com</a>
+    <a href="mailto:hello@hulyazorlu.com" class="mmenu-mail">hello@hulyazorlu.com</a>
   </div>
 
-  <!-- ═══════════════════════════════════════════
+
+  <!-- ════════════════════════════════════
        HERO
-  ═══════════════════════════════════════════ -->
+  ════════════════════════════════════ -->
   <section class="s-hero" id="home" data-section="home">
 
-    <div class="hero-wrap">
+    <div class="hero-in">
 
-      <div class="hero-left">
-        <p class="hero-label fade-up">UI/UX Designer &nbsp;·&nbsp; Paris</p>
-
-        <h1 class="hero-name">
-          <span class="hn-line fade-up" data-d="60">Hulya</span>
-          <span class="hn-line hn-italic fade-up" data-d="140">Zorlu.</span>
-        </h1>
-
-        <p class="hero-sub fade-up" data-d="240">
-          Crafting interfaces that feel<br>
-          <em>intentional and beautifully human.</em>
-        </p>
-
-        <div class="hero-btns fade-up" data-d="340">
-          <a href="#work"  class="btn-primary mag">See my work</a>
-          <a href="#about" class="btn-ghost mag">About me</a>
-        </div>
+      <div class="hero-tag ru">
+        <span class="tag-dot"></span>
+        <span>Available — Paris, France</span>
       </div>
 
-      <div class="hero-right fade-up" data-d="120" aria-hidden="true">
-        <!-- Decorative composition -->
-        <div class="hero-deco">
-          <div class="deco-box deco-box--bg"></div>
-          <!-- ADD HERO IMAGE / PORTRAIT HERE:
-               A warm, editorial portrait or abstract lifestyle image.
-               Replace .deco-ph with: <img src="assets/hero-img.jpg" alt="...">
-               Recommended: portrait 3:4 ratio, warm tones -->
-          <div class="deco-ph">
-            <span>ADD IMAGE</span>
-          </div>
-          <div class="deco-tag">
-            <span>Open to work</span>
-            <span class="deco-dot" aria-hidden="true"></span>
-          </div>
-          <div class="deco-line" aria-hidden="true"></div>
-        </div>
+      <h1 class="hero-title" aria-label="Hulya Zorlu">
+        <span class="ht-line"><span class="ht-word" data-d="0">Hulya</span></span>
+        <span class="ht-line"><span class="ht-word ht-serif" data-d="90">Zorlu.</span></span>
+      </h1>
+
+      <p class="hero-role ru" data-d="220">UI/UX Designer</p>
+
+      <p class="hero-sub ru" data-d="300">
+        Crafting interfaces that feel<br>intentional and beautifully human.
+      </p>
+
+      <div class="hero-cta ru" data-d="400">
+        <a href="#work" class="btn">See my work</a>
+        <a href="#about" class="btn btn-ghost">About me</a>
       </div>
 
     </div>
 
-    <div class="hero-bottom">
-      <div class="hero-scroll fade-up" data-d="500" aria-hidden="true">
-        <div class="scrl-bar"><div class="scrl-inner"></div></div>
+    <div class="hero-foot">
+      <span class="hero-scroll ru" data-d="500">
+        <span class="scroll-line"><span class="scroll-fill"></span></span>
         <span>Scroll</span>
-      </div>
-      <span class="hero-idx fade-up" data-d="500" aria-hidden="true">01 / 05</span>
+      </span>
+      <span class="hero-idx ru" data-d="500" aria-hidden="true">01 / 04</span>
     </div>
 
   </section>
 
-  <!-- ═══════════════════════════════════════════
+
+  <!-- ════════════════════════════════════
+       MARQUEE
+  ════════════════════════════════════ -->
+  <div class="mq" aria-hidden="true">
+    <div class="mq-track">
+      <div class="mq-inner">
+        <span>UI Design</span><i>·</i>
+        <span>Visual Design</span><i>·</i>
+        <span>Interaction Design</span><i>·</i>
+        <span>User Research</span><i>·</i>
+        <span>Design Systems</span><i>·</i>
+        <span>Prototyping</span><i>·</i>
+        <span>Brand Identity</span><i>·</i>
+        <span>Typography</span><i>·</i>
+        <span>Figma</span><i>·</i>
+        <span>Wireframing</span><i>·</i>
+      </div>
+      <div class="mq-inner" aria-hidden="true">
+        <span>UI Design</span><i>·</i>
+        <span>Visual Design</span><i>·</i>
+        <span>Interaction Design</span><i>·</i>
+        <span>User Research</span><i>·</i>
+        <span>Design Systems</span><i>·</i>
+        <span>Prototyping</span><i>·</i>
+        <span>Brand Identity</span><i>·</i>
+        <span>Typography</span><i>·</i>
+        <span>Figma</span><i>·</i>
+        <span>Wireframing</span><i>·</i>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════
        WORK
-  ═══════════════════════════════════════════ -->
+  ════════════════════════════════════ -->
   <section class="s-work" id="work" data-section="work">
 
-    <div class="sec-head fade-up">
-      <span class="sec-eyebrow">02 — Selected work</span>
-      <h2 class="sec-title">Projects</h2>
+    <!-- Cursor-following image preview -->
+    <div class="wp" id="wp" aria-hidden="true">
+      <div class="wp-frame wp-frame--1">
+        <div class="wp-ph"><span class="wp-ph-n">01</span><span class="wp-ph-t">VaultPay</span></div>
+      </div>
+      <div class="wp-frame wp-frame--2">
+        <div class="wp-ph"><span class="wp-ph-n">02</span><span class="wp-ph-t">Noir Mode</span></div>
+      </div>
+      <div class="wp-frame wp-frame--3">
+        <div class="wp-ph"><span class="wp-ph-n">03</span><span class="wp-ph-t">Flux Studio</span></div>
+      </div>
+      <div class="wp-frame wp-frame--4">
+        <div class="wp-ph"><span class="wp-ph-n">04</span><span class="wp-ph-t">PulseHealth</span></div>
+      </div>
     </div>
 
-    <div class="work-grid">
+    <div class="work-head">
+      <div class="sec-label ru">02 — Selected work</div>
+      <h2 class="sec-title ru" data-d="60">
+        Featured<br><em>Projects</em>
+      </h2>
+    </div>
 
-      <!-- PROJECT 01 — full width -->
-      <article class="wcard wcard--wide fade-up" data-d="0">
-        <div class="wcard-img-wrap">
-          <!-- ADD VAULTPAY MOCKUP HERE:
-               Fintech mobile app screens on dark bg. Device frames recommended.
-               <img src="assets/vaultpay.jpg" alt="VaultPay app" class="wcard-img"> -->
-          <div class="wcard-img">
-            <div class="wcard-ph"><span>Add mockup</span></div>
-            <div class="wcard-overlay" aria-hidden="true">View Project →</div>
-          </div>
-        </div>
-        <div class="wcard-info">
-          <span class="wcard-cat">Fintech · Mobile App · 2024</span>
-          <h3 class="wcard-title">VaultPay</h3>
-          <p class="wcard-desc">Next-gen banking experience — clarity, smart dashboards and frictionless flows.</p>
-          <a href="#" class="wcard-link mag">Read case study →</a>
-        </div>
+    <div class="wlist">
+      <div class="wdiv"></div>
+
+      <article class="wi ru" data-d="0" data-pi="1">
+        <a href="#" class="wi-lnk" tabindex="0">
+          <span class="wi-num">01</span>
+          <span class="wi-name">VaultPay</span>
+          <span class="wi-tags">Fintech · Mobile App</span>
+          <span class="wi-year">2024</span>
+          <span class="wi-arr" aria-hidden="true">→</span>
+        </a>
       </article>
+      <div class="wdiv"></div>
 
-      <!-- PROJECT 02 -->
-      <article class="wcard fade-up" data-d="80">
-        <div class="wcard-img-wrap">
-          <!-- ADD NOIR MODE MOCKUP HERE:
-               Fashion e-commerce, editorial product pages.
-               <img src="assets/noirmode.jpg" alt="Noir Mode" class="wcard-img"> -->
-          <div class="wcard-img">
-            <div class="wcard-ph"><span>Add mockup</span></div>
-            <div class="wcard-overlay" aria-hidden="true">View Project →</div>
-          </div>
-        </div>
-        <div class="wcard-info">
-          <span class="wcard-cat">Fashion · E-Commerce · 2024</span>
-          <h3 class="wcard-title">Noir Mode</h3>
-          <p class="wcard-desc">Luxury fashion redesign — where high aesthetics meet measurable UX impact.</p>
-          <a href="#" class="wcard-link mag">Read case study →</a>
-        </div>
+      <article class="wi ru" data-d="60" data-pi="2">
+        <a href="#" class="wi-lnk" tabindex="0">
+          <span class="wi-num">02</span>
+          <span class="wi-name">Noir Mode</span>
+          <span class="wi-tags">Fashion · E-Commerce</span>
+          <span class="wi-year">2024</span>
+          <span class="wi-arr" aria-hidden="true">→</span>
+        </a>
       </article>
+      <div class="wdiv"></div>
 
-      <!-- PROJECT 03 -->
-      <article class="wcard fade-up" data-d="160">
-        <div class="wcard-img-wrap">
-          <!-- ADD FLUX STUDIO MOCKUP HERE:
-               Creative agency website, bold experimental layout.
-               <img src="assets/fluxstudio.jpg" alt="Flux Studio" class="wcard-img"> -->
-          <div class="wcard-img">
-            <div class="wcard-ph"><span>Add mockup</span></div>
-            <div class="wcard-overlay" aria-hidden="true">View Project →</div>
-          </div>
-        </div>
-        <div class="wcard-info">
-          <span class="wcard-cat">Creative · Agency · 2023</span>
-          <h3 class="wcard-title">Flux Studio</h3>
-          <p class="wcard-desc">Full digital overhaul — bold typographic identity and kinetic visual language.</p>
-          <a href="#" class="wcard-link mag">Read case study →</a>
-        </div>
+      <article class="wi ru" data-d="120" data-pi="3">
+        <a href="#" class="wi-lnk" tabindex="0">
+          <span class="wi-num">03</span>
+          <span class="wi-name">Flux Studio</span>
+          <span class="wi-tags">Creative · Agency</span>
+          <span class="wi-year">2023</span>
+          <span class="wi-arr" aria-hidden="true">→</span>
+        </a>
       </article>
+      <div class="wdiv"></div>
 
+      <article class="wi ru" data-d="180" data-pi="4">
+        <a href="#" class="wi-lnk" tabindex="0">
+          <span class="wi-num">04</span>
+          <span class="wi-name">PulseHealth</span>
+          <span class="wi-tags">Health · Dashboard</span>
+          <span class="wi-year">2023</span>
+          <span class="wi-arr" aria-hidden="true">→</span>
+        </a>
+      </article>
+      <div class="wdiv"></div>
+    </div>
+
+    <div class="work-cta ru" data-d="200">
+      <a href="mailto:hello@hulyazorlu.com" class="btn btn-ghost">Start a project →</a>
     </div>
 
   </section>
 
-  <!-- ═══════════════════════════════════════════
+
+  <!-- ════════════════════════════════════
        ABOUT
-  ═══════════════════════════════════════════ -->
+  ════════════════════════════════════ -->
   <section class="s-about" id="about" data-section="about">
+    <div class="about-in">
 
-    <div class="about-wrap">
+      <!-- Left -->
+      <div class="about-l">
+        <div class="sec-label ru">03 — About me</div>
 
-      <!-- Portrait side -->
-      <div class="about-img fade-up" data-d="0">
-        <!-- ADD PORTRAIT HERE:
-             Professional or editorial portrait. B&W or warm tones.
-             2:3 ratio recommended (e.g. 500×750px).
-             Replace: <img src="assets/portrait.jpg" alt="Hulya Zorlu" class="about-portrait"> -->
-        <div class="portrait-frame">
-          <div class="portrait-bg" aria-hidden="true"></div>
-          <div class="portrait-ph">
-            <span>Add portrait</span>
-            <span class="ph-initials" aria-hidden="true">HZ</span>
+        <blockquote class="about-quote ru" data-d="80">
+          Obsessed with craft,<br>driven by empathy.
+        </blockquote>
+
+        <div class="about-img ru" data-d="140">
+          <!-- Replace .about-img-ph with <img src="assets/hulya.png" alt="Hulya Zorlu"> -->
+          <div class="about-img-ph">
+            <img src="assets/hulya.png" alt="Hulya Zorlu" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="about-img-fallback" style="display:none">
+              <span>HZ</span>
+            </div>
           </div>
-        </div>
-        <div class="about-caption">
-          <span class="about-name-sm">Hulya Zorlu</span>
-          <span class="about-role-sm">UI/UX Designer</span>
         </div>
       </div>
 
-      <!-- Text side -->
-      <div class="about-text">
-        <span class="sec-eyebrow fade-up">03 — About</span>
-
-        <blockquote class="about-quote fade-up" data-d="80">
-          "Obsessed with craft,<br>driven by empathy."
-        </blockquote>
-
-        <div class="about-body fade-up" data-d="160">
+      <!-- Right -->
+      <div class="about-r">
+        <div class="about-body ru" data-d="100">
           <p>Junior UI/UX Designer based in Paris. I believe the best design is the kind you don't notice — interfaces that feel so natural, so right, that using them is simply a pleasure.</p>
           <p>From research to final pixel, I care deeply about the whole process. Currently open to new opportunities and creative collaborations.</p>
         </div>
 
-        <div class="about-stats fade-up" data-d="240">
+        <div class="about-stats ru" data-d="180">
           <div class="astat">
             <span class="astat-n" data-count="24">0</span>
-            <span class="astat-l">Projects done</span>
+            <span class="astat-l">Projects</span>
           </div>
           <div class="astat">
             <span class="astat-n" data-count="3">0</span>
@@ -241,117 +258,80 @@
           </div>
           <div class="astat">
             <span class="astat-n" data-count="8">0</span>
-            <span class="astat-l">Happy clients</span>
+            <span class="astat-l">Clients</span>
           </div>
         </div>
 
-        <a href="#contact" class="btn-primary mag fade-up" data-d="320">Let's work together</a>
+        <div class="about-skills ru" data-d="260">
+          <div class="sk-col">
+            <h4>Design</h4>
+            <ul>
+              <li>UI Design</li>
+              <li>Visual Design</li>
+              <li>Design Systems</li>
+              <li>Brand Identity</li>
+            </ul>
+          </div>
+          <div class="sk-col">
+            <h4>Research</h4>
+            <ul>
+              <li>UX Research</li>
+              <li>User Testing</li>
+              <li>Competitive Analysis</li>
+              <li>Persona Building</li>
+            </ul>
+          </div>
+          <div class="sk-col">
+            <h4>Tools</h4>
+            <ul>
+              <li>Figma</li>
+              <li>Principle</li>
+              <li>Miro</li>
+              <li>Notion</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
     </div>
-
   </section>
 
-  <!-- ═══════════════════════════════════════════
-       SKILLS
-  ═══════════════════════════════════════════ -->
-  <section class="s-skills" id="skills" data-section="skills">
 
-    <div class="sec-head fade-up">
-      <span class="sec-eyebrow">04 — Expertise</span>
-      <h2 class="sec-title">Skills</h2>
-    </div>
-
-    <div class="skills-wrap">
-
-      <div class="skill-col fade-up" data-d="0">
-        <h3 class="skill-cat">Design</h3>
-        <ul class="skill-list">
-          <li>UI Design</li>
-          <li>Visual Design</li>
-          <li>Design Systems</li>
-          <li>Brand Identity</li>
-          <li>Typography</li>
-        </ul>
-      </div>
-
-      <div class="skill-col fade-up" data-d="80">
-        <h3 class="skill-cat">Research</h3>
-        <ul class="skill-list">
-          <li>UX Research</li>
-          <li>User Interviews</li>
-          <li>Usability Testing</li>
-          <li>Competitive Analysis</li>
-          <li>Persona Building</li>
-        </ul>
-      </div>
-
-      <div class="skill-col fade-up" data-d="160">
-        <h3 class="skill-cat">Tools</h3>
-        <ul class="skill-list">
-          <li>Figma</li>
-          <li>Principle</li>
-          <li>Maze</li>
-          <li>Miro</li>
-          <li>Notion</li>
-        </ul>
-      </div>
-
-      <div class="skill-col fade-up" data-d="240">
-        <h3 class="skill-cat">Process</h3>
-        <ul class="skill-list">
-          <li>Wireframing</li>
-          <li>Prototyping</li>
-          <li>A/B Testing</li>
-          <li>Design Thinking</li>
-          <li>Agile / Scrum</li>
-        </ul>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ═══════════════════════════════════════════
+  <!-- ════════════════════════════════════
        CONTACT
-  ═══════════════════════════════════════════ -->
+  ════════════════════════════════════ -->
   <section class="s-contact" id="contact" data-section="contact">
+    <div class="ct-in">
 
-    <div class="contact-wrap">
+      <div class="sec-label ru">04 — Get in touch</div>
 
-      <span class="sec-eyebrow fade-up">05 — Get in touch</span>
-
-      <h2 class="contact-title fade-up" data-d="80">
+      <h2 class="ct-title ru" data-d="80">
         Let's create<br>
         <em>something</em><br>
         beautiful.
       </h2>
 
-      <p class="contact-sub fade-up" data-d="180">
-        Have a project in mind? I'd love to hear about it.
-      </p>
-
-      <a href="mailto:hello@hulyazorlu.com" class="contact-email mag fade-up" data-d="260">
+      <a href="mailto:hello@hulyazorlu.com" class="ct-email ru" data-d="220">
         hello@hulyazorlu.com
       </a>
 
-      <div class="contact-socials fade-up" data-d="340">
-        <a href="#" class="csoc mag" aria-label="LinkedIn">LinkedIn</a>
+      <div class="ct-socials ru" data-d="300">
+        <a href="#" class="ct-soc">LinkedIn</a>
         <span aria-hidden="true">·</span>
-        <a href="#" class="csoc mag" aria-label="Behance">Behance</a>
+        <a href="#" class="ct-soc">Behance</a>
         <span aria-hidden="true">·</span>
-        <a href="#" class="csoc mag" aria-label="Dribbble">Dribbble</a>
+        <a href="#" class="ct-soc">Dribbble</a>
       </div>
 
     </div>
-
   </section>
+
 
   <!-- FOOTER -->
   <footer class="ftr">
     <div class="ftr-in">
-      <span>© 2024 Hulya Zorlu</span>
-      <a href="#home" class="ftr-top mag" aria-label="Back to top">↑ Back to top</a>
+      <span>© 2024 Hulya Zorlu — UI/UX Designer</span>
+      <a href="#home" class="ftr-top" aria-label="Back to top">↑ Top</a>
     </div>
   </footer>
 
