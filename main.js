@@ -429,9 +429,9 @@ function revealPage() {
   const chars = [...document.querySelectorAll('.ttj .char')];
   if (!chars.length) return;
 
-  const RADIUS    = 130;  /* px — zone d'influence */
-  const INTENSITY = 6;    /* px — déplacement max  */
-  const LERP      = 0.09; /* fluidité du retour    */
+  const RADIUS    = 150;  /* px — zone d'influence */
+  const INTENSITY = 18;   /* px — déplacement max  */
+  const LERP      = 0.15; /* fluidité du retour    */
 
   const state = chars.map(() => ({ x: 0, y: 0, tx: 0, ty: 0 }));
   let centers = [];
