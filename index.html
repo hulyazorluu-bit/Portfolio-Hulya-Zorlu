@@ -1,340 +1,354 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="D">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Hulya Zorlu — UI/UX Designer based in Paris. Crafting interfaces that feel intentional and beautifully human.">
+  <meta name="description" content="Hulya Zorlu — UI/UX Designer based in Paris.">
   <title>Hulya Zorlu — UI/UX Designer</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- CURSOR -->
-  <div class="cursor" id="cursor"><div class="cursor-ring"></div></div>
+  <!-- MOUSE FOLLOWER -->
+  <div class="mouse" id="mouse">
+    <div class="mouse_ring"></div>
+    <div class="mouse_el">
+      <span class="mouse_label">View</span>
+    </div>
+  </div>
 
   <!-- LOADER -->
   <div class="loader" id="loader">
-    <div class="loader-body">
-      <div class="loader-name-wrap">
-        <span class="loader-name" id="loader-name">Hulya Zorlu</span>
+    <div class="loader_bg"></div>
+    <div class="loader_cnt">
+      <div class="loader_name">
+        <span class="loader_n1">Hulya</span>
+        <span class="loader_n2">Zorlu</span>
       </div>
-      <div class="loader-track"><div class="loader-bar" id="loader-bar"></div></div>
-      <span class="loader-pct" id="loader-pct">0%</span>
+      <div class="loader_tp" id="loader_tp">0</div>
     </div>
   </div>
 
   <!-- NAV -->
-  <header class="nav" id="nav">
-    <div class="nav-in">
-      <a href="#home" class="nav-logo" aria-label="Home">HZ</a>
+  <nav class="nav" id="nav">
+    <div class="nav_blur" id="nav_blur"></div>
 
-      <nav class="nav-center" aria-label="Main">
-        <a href="#work"    class="nav-lnk" data-s="work">Work</a>
-        <a href="#about"   class="nav-lnk" data-s="about">About</a>
-        <a href="#contact" class="nav-lnk" data-s="contact">Contact</a>
-      </nav>
+    <a href="#home" class="nav_logo">
+      <span class="char"><span class="n">H</span></span><span class="char"><span class="n">Z</span></span>
+    </a>
 
-      <a href="mailto:hello@hulyazorlu.com" class="nav-mail">hello@hulyazorlu.com</a>
-
-      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span>
-      </button>
+    <div class="nav_clock_s" id="nav_clock">
+      <span class="nav_clock_p" id="clock_city">Paris</span>
+      <span class="nav_clock_h" id="clock_h">00</span>
+      <span class="nav_clock_sep">:</span>
+      <span class="nav_clock_m" id="clock_m">00</span>
+      <span class="nav_clock_a" id="clock_a">AM</span>
     </div>
-  </header>
+
+    <div class="nav_right">
+      <a href="#work"    class="nav_lnk" data-s="work">Work</a>
+      <a href="#about"   class="nav_lnk" data-s="about">About</a>
+      <a href="#contact" class="nav_lnk" data-s="contact">Contact</a>
+    </div>
+
+    <button class="nav_burger" id="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </nav>
 
   <!-- MOBILE MENU -->
-  <div class="mmenu" id="mmenu" aria-hidden="true">
-    <nav class="mmenu-nav">
-      <a href="#work"    class="mmenu-lnk">Work</a>
-      <a href="#about"   class="mmenu-lnk">About</a>
-      <a href="#contact" class="mmenu-lnk">Contact</a>
+  <div class="mob_menu" id="mob_menu" aria-hidden="true">
+    <nav class="mob_nav">
+      <a href="#work"    class="mob_lnk">Work</a>
+      <a href="#about"   class="mob_lnk">About</a>
+      <a href="#contact" class="mob_lnk">Contact</a>
     </nav>
-    <a href="mailto:hello@hulyazorlu.com" class="mmenu-mail">hello@hulyazorlu.com</a>
+    <a href="mailto:hello@hulyazorlu.com" class="mob_mail">hello@hulyazorlu.com</a>
   </div>
 
+  <!-- ═══════════════════════════
+       MAIN
+  ═══════════════════════════ -->
+  <main id="main">
 
-  <!-- ════════════════════════════════════
-       HERO
-  ════════════════════════════════════ -->
-  <section class="s-hero" id="home" data-section="home">
+    <!-- HERO / HOME INTRO -->
+    <section class="s-intro" id="home" data-section="home">
+      <div class="s-intro_inner">
 
-    <div class="hero-in">
+        <div class="s-intro_tag Awrite" data-w="1">
+          <span class="iO"></span>
+          UI/UX Designer &nbsp;·&nbsp; Paris
+        </div>
 
-      <div class="hero-tag ru">
-        <span class="tag-dot"></span>
-        <span>Available — Paris, France</span>
+        <h1 class="s-intro_title">
+          <div class="title_line">
+            <span class="Atitle">
+              <span class="tt1 ttj">Hulya</span>
+            </span>
+          </div>
+          <div class="title_line">
+            <span class="Atitle title_serif">
+              <span class="tt1 ttj">Zorlu.</span>
+            </span>
+          </div>
+        </h1>
+
+        <p class="s-intro_sub Atext">
+          <span class="iO"></span>
+          Crafting interfaces that feel<br>
+          intentional and beautifully human.
+        </p>
+
+        <div class="s-intro_cta">
+          <a href="#work"  class="btn_main Awrite" data-w="1"><span class="iO"></span>See my work</a>
+          <a href="#about" class="btn_ghost Awrite" data-w="1"><span class="iO"></span>About me</a>
+        </div>
+
       </div>
 
-      <h1 class="hero-title" aria-label="Hulya Zorlu">
-        <span class="ht-line"><span class="ht-word" data-d="0">Hulya</span></span>
-        <span class="ht-line"><span class="ht-word ht-serif" data-d="90">Zorlu.</span></span>
-      </h1>
-
-      <p class="hero-role ru" data-d="220">UI/UX Designer</p>
-
-      <p class="hero-sub ru" data-d="300">
-        Crafting interfaces that feel<br>intentional and beautifully human.
-      </p>
-
-      <div class="hero-cta ru" data-d="400">
-        <a href="#work" class="btn">See my work</a>
-        <a href="#about" class="btn btn-ghost">About me</a>
+      <div class="s-intro_foot">
+        <div class="s-intro_scroll Awrite" data-w="1">
+          <span class="iO"></span>
+          <span class="scroll_bar"><span class="scroll_fill"></span></span>
+          <span>Scroll</span>
+        </div>
+        <span class="s-intro_idx Awrite" data-w="1"><span class="iO"></span>01 / 05</span>
       </div>
+    </section>
 
-    </div>
-
-    <div class="hero-foot">
-      <span class="hero-scroll ru" data-d="500">
-        <span class="scroll-line"><span class="scroll-fill"></span></span>
-        <span>Scroll</span>
-      </span>
-      <span class="hero-idx ru" data-d="500" aria-hidden="true">01 / 04</span>
-    </div>
-
-  </section>
-
-
-  <!-- ════════════════════════════════════
-       MARQUEE
-  ════════════════════════════════════ -->
-  <div class="mq" aria-hidden="true">
-    <div class="mq-track">
-      <div class="mq-inner">
-        <span>UI Design</span><i>·</i>
-        <span>Visual Design</span><i>·</i>
-        <span>Interaction Design</span><i>·</i>
-        <span>User Research</span><i>·</i>
-        <span>Design Systems</span><i>·</i>
-        <span>Prototyping</span><i>·</i>
-        <span>Brand Identity</span><i>·</i>
-        <span>Typography</span><i>·</i>
-        <span>Figma</span><i>·</i>
-        <span>Wireframing</span><i>·</i>
-      </div>
-      <div class="mq-inner" aria-hidden="true">
-        <span>UI Design</span><i>·</i>
-        <span>Visual Design</span><i>·</i>
-        <span>Interaction Design</span><i>·</i>
-        <span>User Research</span><i>·</i>
-        <span>Design Systems</span><i>·</i>
-        <span>Prototyping</span><i>·</i>
-        <span>Brand Identity</span><i>·</i>
-        <span>Typography</span><i>·</i>
-        <span>Figma</span><i>·</i>
-        <span>Wireframing</span><i>·</i>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ════════════════════════════════════
-       WORK
-  ════════════════════════════════════ -->
-  <section class="s-work" id="work" data-section="work">
-
-    <!-- Cursor-following image preview -->
-    <div class="wp" id="wp" aria-hidden="true">
-      <div class="wp-frame wp-frame--1">
-        <div class="wp-ph"><span class="wp-ph-n">01</span><span class="wp-ph-t">VaultPay</span></div>
-      </div>
-      <div class="wp-frame wp-frame--2">
-        <div class="wp-ph"><span class="wp-ph-n">02</span><span class="wp-ph-t">Noir Mode</span></div>
-      </div>
-      <div class="wp-frame wp-frame--3">
-        <div class="wp-ph"><span class="wp-ph-n">03</span><span class="wp-ph-t">Flux Studio</span></div>
-      </div>
-      <div class="wp-frame wp-frame--4">
-        <div class="wp-ph"><span class="wp-ph-n">04</span><span class="wp-ph-t">PulseHealth</span></div>
+    <!-- MARQUEE -->
+    <div class="s-mq" aria-hidden="true">
+      <div class="mq_track">
+        <div class="mq_inner">
+          <span>UI Design</span><i>·</i>
+          <span>Visual Design</span><i>·</i>
+          <span>Interaction Design</span><i>·</i>
+          <span>User Research</span><i>·</i>
+          <span>Design Systems</span><i>·</i>
+          <span>Prototyping</span><i>·</i>
+          <span>Brand Identity</span><i>·</i>
+          <span>Typography</span><i>·</i>
+          <span>Figma</span><i>·</i>
+          <span>Wireframing</span><i>·</i>
+        </div>
+        <div class="mq_inner" aria-hidden="true">
+          <span>UI Design</span><i>·</i>
+          <span>Visual Design</span><i>·</i>
+          <span>Interaction Design</span><i>·</i>
+          <span>User Research</span><i>·</i>
+          <span>Design Systems</span><i>·</i>
+          <span>Prototyping</span><i>·</i>
+          <span>Brand Identity</span><i>·</i>
+          <span>Typography</span><i>·</i>
+          <span>Figma</span><i>·</i>
+          <span>Wireframing</span><i>·</i>
+        </div>
       </div>
     </div>
 
-    <div class="work-head">
-      <div class="sec-label ru">02 — Selected work</div>
-      <h2 class="sec-title ru" data-d="60">
-        Featured<br><em>Projects</em>
-      </h2>
-    </div>
+    <!-- DARK SECTION — about intro (color swap) -->
+    <section class="s-dark" id="about-intro" data-section="about-intro">
+      <div class="s-dark_inner">
 
-    <div class="wlist">
-      <div class="wdiv"></div>
+        <div class="s-dark_left">
+          <span class="sec_label Awrite"><span class="iO"></span>03 — About me</span>
+          <blockquote class="s-dark_quote Atext">
+            <span class="iO"></span>
+            Obsessed with craft,<br>driven by empathy.
+          </blockquote>
+          <div class="s-dark_body Atext">
+            <span class="iO"></span>
+            <p>Junior UI/UX Designer based in Paris. I believe the best design is the kind you don't notice — interfaces that feel so natural, so right, that using them is simply a pleasure.</p>
+            <p>From research to final pixel, I care deeply about the whole process. Currently open to new opportunities.</p>
+          </div>
+          <a href="#contact" class="btn_dark_cta Awrite" data-w="1"><span class="iO"></span>Let's work together →</a>
+        </div>
 
-      <article class="wi ru" data-d="0" data-pi="1">
-        <a href="#" class="wi-lnk" tabindex="0">
-          <span class="wi-num">01</span>
-          <span class="wi-name">VaultPay</span>
-          <span class="wi-tags">Fintech · Mobile App</span>
-          <span class="wi-year">2024</span>
-          <span class="wi-arr" aria-hidden="true">→</span>
-        </a>
-      </article>
-      <div class="wdiv"></div>
-
-      <article class="wi ru" data-d="60" data-pi="2">
-        <a href="#" class="wi-lnk" tabindex="0">
-          <span class="wi-num">02</span>
-          <span class="wi-name">Noir Mode</span>
-          <span class="wi-tags">Fashion · E-Commerce</span>
-          <span class="wi-year">2024</span>
-          <span class="wi-arr" aria-hidden="true">→</span>
-        </a>
-      </article>
-      <div class="wdiv"></div>
-
-      <article class="wi ru" data-d="120" data-pi="3">
-        <a href="#" class="wi-lnk" tabindex="0">
-          <span class="wi-num">03</span>
-          <span class="wi-name">Flux Studio</span>
-          <span class="wi-tags">Creative · Agency</span>
-          <span class="wi-year">2023</span>
-          <span class="wi-arr" aria-hidden="true">→</span>
-        </a>
-      </article>
-      <div class="wdiv"></div>
-
-      <article class="wi ru" data-d="180" data-pi="4">
-        <a href="#" class="wi-lnk" tabindex="0">
-          <span class="wi-num">04</span>
-          <span class="wi-name">PulseHealth</span>
-          <span class="wi-tags">Health · Dashboard</span>
-          <span class="wi-year">2023</span>
-          <span class="wi-arr" aria-hidden="true">→</span>
-        </a>
-      </article>
-      <div class="wdiv"></div>
-    </div>
-
-    <div class="work-cta ru" data-d="200">
-      <a href="mailto:hello@hulyazorlu.com" class="btn btn-ghost">Start a project →</a>
-    </div>
-
-  </section>
-
-
-  <!-- ════════════════════════════════════
-       ABOUT
-  ════════════════════════════════════ -->
-  <section class="s-about" id="about" data-section="about">
-    <div class="about-in">
-
-      <!-- Left -->
-      <div class="about-l">
-        <div class="sec-label ru">03 — About me</div>
-
-        <blockquote class="about-quote ru" data-d="80">
-          Obsessed with craft,<br>driven by empathy.
-        </blockquote>
-
-        <div class="about-img ru" data-d="140">
-          <!-- Replace .about-img-ph with <img src="assets/hulya.png" alt="Hulya Zorlu"> -->
-          <div class="about-img-ph">
-            <img src="assets/hulya.png" alt="Hulya Zorlu" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-            <div class="about-img-fallback" style="display:none">
-              <span>HZ</span>
+        <div class="s-dark_right">
+          <div class="s-dark_img">
+            <img src="assets/hulya.png" alt="Hulya Zorlu"
+                 onerror="this.style.display='none';document.querySelector('.s-dark_ph').style.display='flex'">
+            <div class="s-dark_ph" style="display:none">
+              <span class="s-dark_initials">HZ</span>
             </div>
           </div>
+          <div class="s-dark_caption">
+            <span>Hulya Zorlu</span>
+            <span>UI/UX Designer · Paris</span>
+          </div>
         </div>
+
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="s-work" id="work" data-section="work">
+
+      <!-- hover preview (follows cursor) -->
+      <div class="work_preview" id="work_preview" aria-hidden="true">
+        <div class="wp_frame wp_frame--1"><div class="wp_ph"><span>01</span><b>VaultPay</b></div></div>
+        <div class="wp_frame wp_frame--2"><div class="wp_ph"><span>02</span><b>Noir Mode</b></div></div>
+        <div class="wp_frame wp_frame--3"><div class="wp_ph"><span>03</span><b>Flux Studio</b></div></div>
+        <div class="wp_frame wp_frame--4"><div class="wp_ph"><span>04</span><b>PulseHealth</b></div></div>
       </div>
 
-      <!-- Right -->
-      <div class="about-r">
-        <div class="about-body ru" data-d="100">
-          <p>Junior UI/UX Designer based in Paris. I believe the best design is the kind you don't notice — interfaces that feel so natural, so right, that using them is simply a pleasure.</p>
-          <p>From research to final pixel, I care deeply about the whole process. Currently open to new opportunities and creative collaborations.</p>
+      <div class="s-work_head">
+        <span class="sec_label Awrite"><span class="iO"></span>02 — Selected work</span>
+        <h2 class="Atitle"><span class="tt1 ttj">Projects</span></h2>
+      </div>
+
+      <div class="work_list" id="work_list">
+        <div class="work_div"></div>
+
+        <article class="work_item Awrite" data-pi="1"><span class="iO"></span>
+          <a href="#" class="work_lnk">
+            <span class="wi_num">01</span>
+            <span class="wi_name ttj">VaultPay</span>
+            <span class="wi_tags">Fintech · Mobile App</span>
+            <span class="wi_year">2024</span>
+            <span class="wi_arr">→</span>
+          </a>
+        </article>
+        <div class="work_div"></div>
+
+        <article class="work_item Awrite" data-pi="2"><span class="iO"></span>
+          <a href="#" class="work_lnk">
+            <span class="wi_num">02</span>
+            <span class="wi_name ttj">Noir Mode</span>
+            <span class="wi_tags">Fashion · E-Commerce</span>
+            <span class="wi_year">2024</span>
+            <span class="wi_arr">→</span>
+          </a>
+        </article>
+        <div class="work_div"></div>
+
+        <article class="work_item Awrite" data-pi="3"><span class="iO"></span>
+          <a href="#" class="work_lnk">
+            <span class="wi_num">03</span>
+            <span class="wi_name ttj">Flux Studio</span>
+            <span class="wi_tags">Creative · Agency</span>
+            <span class="wi_year">2023</span>
+            <span class="wi_arr">→</span>
+          </a>
+        </article>
+        <div class="work_div"></div>
+
+        <article class="work_item Awrite" data-pi="4"><span class="iO"></span>
+          <a href="#" class="work_lnk">
+            <span class="wi_num">04</span>
+            <span class="wi_name ttj">PulseHealth</span>
+            <span class="wi_tags">Health · Dashboard</span>
+            <span class="wi_year">2023</span>
+            <span class="wi_arr">→</span>
+          </a>
+        </article>
+        <div class="work_div"></div>
+      </div>
+
+    </section>
+
+    <!-- SKILLS / ABOUT FULL -->
+    <section class="s-about" id="about" data-section="about">
+      <div class="s-about_inner">
+
+        <div class="s-about_head">
+          <span class="sec_label Awrite"><span class="iO"></span>04 — Expertise</span>
+          <h2 class="Atitle"><span class="tt1 ttj">Skills</span></h2>
         </div>
 
-        <div class="about-stats ru" data-d="180">
-          <div class="astat">
-            <span class="astat-n" data-count="24">0</span>
-            <span class="astat-l">Projects</span>
+        <div class="s-about_stats">
+          <div class="astat Awrite"><span class="iO"></span>
+            <span class="astat_n" data-count="24">0</span>
+            <span class="astat_l">Projects done</span>
           </div>
-          <div class="astat">
-            <span class="astat-n" data-count="3">0</span>
-            <span class="astat-l">Years exp.</span>
+          <div class="astat Awrite"><span class="iO"></span>
+            <span class="astat_n" data-count="3">0</span>
+            <span class="astat_l">Years exp.</span>
           </div>
-          <div class="astat">
-            <span class="astat-n" data-count="8">0</span>
-            <span class="astat-l">Clients</span>
+          <div class="astat Awrite"><span class="iO"></span>
+            <span class="astat_n" data-count="8">0</span>
+            <span class="astat_l">Happy clients</span>
           </div>
         </div>
 
-        <div class="about-skills ru" data-d="260">
-          <div class="sk-col">
+        <div class="skills_grid">
+          <div class="sk_col Atext"><span class="iO"></span>
             <h4>Design</h4>
             <ul>
-              <li>UI Design</li>
-              <li>Visual Design</li>
-              <li>Design Systems</li>
-              <li>Brand Identity</li>
+              <li>UI Design</li><li>Visual Design</li>
+              <li>Design Systems</li><li>Brand Identity</li>
+              <li>Typography</li>
             </ul>
           </div>
-          <div class="sk-col">
+          <div class="sk_col Atext"><span class="iO"></span>
             <h4>Research</h4>
             <ul>
-              <li>UX Research</li>
-              <li>User Testing</li>
-              <li>Competitive Analysis</li>
+              <li>UX Research</li><li>User Interviews</li>
+              <li>Usability Testing</li><li>Competitive Analysis</li>
               <li>Persona Building</li>
             </ul>
           </div>
-          <div class="sk-col">
+          <div class="sk_col Atext"><span class="iO"></span>
             <h4>Tools</h4>
             <ul>
-              <li>Figma</li>
-              <li>Principle</li>
-              <li>Miro</li>
+              <li>Figma</li><li>Principle</li>
+              <li>Maze</li><li>Miro</li>
               <li>Notion</li>
             </ul>
           </div>
+          <div class="sk_col Atext"><span class="iO"></span>
+            <h4>Process</h4>
+            <ul>
+              <li>Wireframing</li><li>Prototyping</li>
+              <li>A/B Testing</li><li>Design Thinking</li>
+              <li>Agile / Scrum</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER / CONTACT -->
+    <footer class="footer" id="contact" data-section="contact">
+
+      <div class="footer_cm">
+        <div class="Atitle footer_title">
+          <span class="tt1 ttj">Hulya<br>Zorlu.</span>
         </div>
       </div>
 
-    </div>
-  </section>
-
-
-  <!-- ════════════════════════════════════
-       CONTACT
-  ════════════════════════════════════ -->
-  <section class="s-contact" id="contact" data-section="contact">
-    <div class="ct-in">
-
-      <div class="sec-label ru">04 — Get in touch</div>
-
-      <h2 class="ct-title ru" data-d="80">
-        Let's create<br>
-        <em>something</em><br>
-        beautiful.
-      </h2>
-
-      <a href="mailto:hello@hulyazorlu.com" class="ct-email ru" data-d="220">
-        hello@hulyazorlu.com
-      </a>
-
-      <div class="ct-socials ru" data-d="300">
-        <a href="#" class="ct-soc">LinkedIn</a>
-        <span aria-hidden="true">·</span>
-        <a href="#" class="ct-soc">Behance</a>
-        <span aria-hidden="true">·</span>
-        <a href="#" class="ct-soc">Dribbble</a>
+      <div class="footer_cnt">
+        <div class="footer_cnt_lk">
+          <div class="cnt_lk_el">
+            <a href="mailto:hello@hulyazorlu.com" class="Awrite" data-w="1">
+              <span class="iO"></span>hello@hulyazorlu.com
+            </a>
+          </div>
+          <div class="cnt_lk_el">
+            <a href="#" class="Awrite" data-w="1"><span class="iO"></span>LinkedIn</a>
+          </div>
+          <div class="cnt_lk_el">
+            <a href="#" class="Awrite" data-w="1"><span class="iO"></span>Behance</a>
+          </div>
+          <div class="cnt_lk_el">
+            <a href="#" class="Awrite" data-w="1"><span class="iO"></span>Dribbble</a>
+          </div>
+        </div>
+        <div class="footer_cnt_cr">
+          <span class="Awrite"><span class="iO"></span>© 2024 Hulya Zorlu</span>
+          <a href="#home" class="Awrite ftr_top" data-w="1"><span class="iO"></span>Back to top ↑</a>
+        </div>
       </div>
 
-    </div>
-  </section>
+    </footer>
 
+  </main><!-- /main -->
 
-  <!-- FOOTER -->
-  <footer class="ftr">
-    <div class="ftr-in">
-      <span>© 2024 Hulya Zorlu — UI/UX Designer</span>
-      <a href="#home" class="ftr-top" aria-label="Back to top">↑ Top</a>
-    </div>
-  </footer>
-
+  <!-- SCRIPTS — CDN libs first, then our script -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
