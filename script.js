@@ -128,19 +128,13 @@ function initReveal() {
 }
 
 /* ── REVEAL — title slide-up (.Atitle) ───────────────────────── */
-/* Skips .js-liquid elements — those use initLiquidTitle() instead */
 function initTitleReveal() {
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
       io.unobserve(e.target);
 
-      const targets = [...e.target.querySelectorAll('.tt1')].filter(
-        t => !t.classList.contains('js-liquid')
-      );
-      if (!targets.length) return;
-
-      gsap.to(targets, {
+      gsap.to(e.target.querySelectorAll('.tt1'), {
         y: '0%',
         duration: 1.0,
         ease: 'power3.out',
@@ -153,67 +147,55 @@ function initTitleReveal() {
   document.querySelectorAll('.Atitle').forEach(el => io.observe(el));
 }
 
-/* ── LIQUID SLICE TITLE ───────────────────────────────────────── */
-/* Replicates Eva Sanchez's vertical-slice distortion effect.
-   Each character is split into SLICES vertical strips via clip-path.
-   Every strip animates from a random Y offset → 0 with expo.out.
-   An invisible ghost span holds the character's layout width. */
-function initLiquidTitle() {
-  const SLICES = 6;
+/* ── LIQUID HOVER DISTORTION ──────────────────────────────────── */
+/* SVG feTurbulence + feDisplacementMap: cursor acts as a lens.
+   The displacement scale lerps toward 85 on hover and back to 0
+   on leave. The turbulence baseFrequency shifts with cursor position
+   so the distortion follows the mouse organically. */
+function initLiquidHover() {
+  if (!window.matchMedia('(hover: hover)').matches) return;
 
-  document.querySelectorAll('.js-liquid').forEach((el, wordIdx) => {
-    const letters = [...el.textContent.trim()];
-    el.innerHTML = '';
-    el.style.display = 'inline-block';
+  const title = document.getElementById('hero_title');
+  const disp  = document.getElementById('liq_disp');
+  const turb  = document.getElementById('liq_turb');
+  if (!title || !disp || !turb) return;
 
-    letters.forEach((letter, charIdx) => {
-      const wrap = document.createElement('span');
-      wrap.style.cssText = 'position:relative;display:inline-block;';
+  // Apply filter only on pointer-capable devices
+  title.style.filter = 'url(#liquid)';
 
-      if (letter === ' ') {
-        wrap.innerHTML = '&nbsp;';
-        el.appendChild(wrap);
-        return;
-      }
+  let current = 0;
+  let target  = 0;
 
-      // Base delay: stagger words then chars
-      const baseDelay = wordIdx * 0.18 + charIdx * 0.045;
+  title.addEventListener('mousemove', e => {
+    const rect = title.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top)  / rect.height;
 
-      for (let i = 0; i < SLICES; i++) {
-        const slice = document.createElement('span');
-        slice.textContent = letter;
+    target = 85;
 
-        const leftPct  = i * (100 / SLICES);
-        const rightPct = (SLICES - i - 1) * (100 / SLICES);
-        slice.style.cssText = [
-          'position:absolute',
-          'left:0',
-          'top:0',
-          `clip-path:inset(0 ${rightPct.toFixed(2)}% 0 ${leftPct.toFixed(2)}%)`,
-          'will-change:transform',
-        ].join(';') + ';';
-
-        wrap.appendChild(slice);
-
-        gsap.fromTo(
-          slice,
-          { y: gsap.utils.random(-160, 160) },
-          {
-            y: 0,
-            duration: 1.5,
-            ease: 'expo.out',
-            delay: baseDelay + i * 0.028,
-          }
-        );
-      }
-
-      // Ghost span keeps the character's layout width
-      const ghost = document.createElement('span');
-      ghost.textContent = letter;
-      ghost.style.opacity = '0';
-      wrap.appendChild(ghost);
-      el.appendChild(wrap);
+    gsap.to(turb, {
+      attr: {
+        baseFrequency: `${(0.01 + x * 0.03).toFixed(4)} ${(0.02 + y * 0.03).toFixed(4)}`,
+      },
+      duration: 0.35,
+      ease: 'power2.out',
     });
+  });
+
+  title.addEventListener('mouseleave', () => {
+    target = 0;
+    // Also reset turbulence so next hover starts clean
+    gsap.to(turb, {
+      attr: { baseFrequency: '0.01 0.02' },
+      duration: 0.6,
+      ease: 'power2.out',
+    });
+  });
+
+  // Smooth lerp on every frame
+  gsap.ticker.add(() => {
+    current += (target - current) * 0.08;
+    disp.setAttribute('scale', current.toFixed(3));
   });
 }
 
@@ -530,7 +512,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ScrollTrigger.refresh();
 
-    initLiquidTitle();   // hero "Hulya / Zorlu." slice distortion
+    initLiquidHover();   // hero title SVG liquid distortion on hover
     initReveal();
     initTitleReveal();
     initColorInversion();
