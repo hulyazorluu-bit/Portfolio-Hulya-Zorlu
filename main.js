@@ -420,39 +420,3 @@ function revealPage() {
   if (close) close.addEventListener('click', closeMenu);
   menu.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', closeMenu));
 })();
-
-
-/* ── Title lens refraction ───────────────────────────────────────── */
-(function initTitleRefraction() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const chars = [...document.querySelectorAll('.ttj .char')];
-  if (!chars.length) return;
-
-  const hero = document.querySelector('.hero');
-  if (!hero) return;
-
-  const RADIUS    = 140;
-  const INTENSITY = 16;
-
-  hero.addEventListener('mousemove', function(e) {
-    chars.forEach(ch => {
-      const r    = ch.getBoundingClientRect();
-      const cx   = r.left + r.width  * 0.5;
-      const cy   = r.top  + r.height * 0.5;
-      const dx   = cx - e.clientX;
-      const dy   = cy - e.clientY;
-      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-      const g    = Math.exp(-(dist * dist) / (2 * RADIUS * RADIUS));
-      ch.style.transition = '';
-      ch.style.transform  = `translate(${((dx / dist) * INTENSITY * g).toFixed(1)}px,${((dy / dist) * INTENSITY * g).toFixed(1)}px)`;
-    });
-  }, { passive: true });
-
-  hero.addEventListener('mouseleave', function() {
-    chars.forEach(ch => {
-      ch.style.transition = 'transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94)';
-      ch.style.transform  = '';
-    });
-  });
-})();
