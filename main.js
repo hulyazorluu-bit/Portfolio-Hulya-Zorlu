@@ -335,6 +335,8 @@ function revealPage() {
     }
   }, 900);
 
+  setTimeout(() => document.dispatchEvent(new Event('titleReady')), 950);
+
 }
 
 

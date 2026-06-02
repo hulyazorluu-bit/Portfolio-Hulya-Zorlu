@@ -5,7 +5,6 @@
 (function () {
   'use strict';
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (!window.WebGLRenderingContext) return;
 
   /* ── GLSL ─────────────────────────────────────────────────── */
@@ -215,7 +214,7 @@
     loop();
   }
 
-  /* ── Entry ──────────────────────────────────────────────── */
+  /* ── Entry — simple timeout, no event chain ─────────────── */
 
   var ran = false;
   function trySetup() {
@@ -224,19 +223,16 @@
     var el = document.querySelector('.cnt_tt');
     if (!el) return;
     var fs = parseFloat(window.getComputedStyle(el).fontSize);
-    var fontSpec = '400 ' + fs + 'px montrealbook';
-    var p = (document.fonts && document.fonts.load)
-              ? document.fonts.load(fontSpec)
-              : Promise.resolve();
+    var p  = (document.fonts && document.fonts.load)
+               ? document.fonts.load('400 ' + fs + 'px montrealbook')
+               : Promise.resolve();
     p.then(setup).catch(setup);
   }
 
-  /* Trigger from revealPage() signal */
+  /* Primary: fire when reveal animation completes */
   document.addEventListener('titleReady', trySetup, { once: true });
 
-  /* Hard fallback: run 3s after window load regardless */
-  window.addEventListener('load', function () {
-    setTimeout(trySetup, 3000);
-  });
+  /* Fallback: 3.5s after script parses (covers all cases) */
+  setTimeout(trySetup, 3500);
 
 })();
