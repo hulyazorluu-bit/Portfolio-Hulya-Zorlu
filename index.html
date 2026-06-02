@@ -457,6 +457,31 @@
   </section>
 
   <script src="main.js"></script>
-  <script src="title-gl.js"></script>
+  <script>
+    (function () {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var chars = document.querySelectorAll('.ttj .char');
+      if (!chars.length) return;
+      document.addEventListener('mousemove', function (e) {
+        for (var i = 0; i < chars.length; i++) {
+          var r  = chars[i].getBoundingClientRect();
+          var dx = (r.left + r.width  / 2) - e.clientX;
+          var dy = (r.top  + r.height / 2) - e.clientY;
+          var d  = Math.sqrt(dx * dx + dy * dy) || 1;
+          var g  = Math.exp(-(d * d) / (2 * 120 * 120));
+          chars[i].style.transition = 'transform 0.05s linear';
+          chars[i].style.transform  = 'translate('
+            + ((dx / d) * 8 * g).toFixed(2) + 'px,'
+            + ((dy / d) * 8 * g).toFixed(2) + 'px)';
+        }
+      }, { passive: true });
+      document.addEventListener('mouseleave', function () {
+        for (var i = 0; i < chars.length; i++) {
+          chars[i].style.transition = 'transform 1s cubic-bezier(0.25,0.46,0.45,0.94)';
+          chars[i].style.transform  = '';
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

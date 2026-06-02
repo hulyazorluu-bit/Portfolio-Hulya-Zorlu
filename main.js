@@ -335,8 +335,6 @@ function revealPage() {
     }
   }, 900);
 
-  /* Signal GL title effect — fired after chars are fully opaque */
-  setTimeout(() => document.dispatchEvent(new Event('titleReady')), 950);
 }
 
 
