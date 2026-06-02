@@ -426,7 +426,7 @@ html.lang-fr .t-en { display: none !important; }
   font-family: montrealbook;
   font-weight: 400;
   font-size: clamp(6.5rem, 9.5vw, 13rem);
-  letter-spacing: -0.03em;
+  letter-spacing: 0.06em;
   line-height: 0.9;
   color: var(--fg);
 }
