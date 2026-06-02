@@ -1119,3 +1119,29 @@ html.lang-fr .t-en { display: none !important; }
   .work_item:nth-child(3) { grid-column: auto; }
   .works_title { font-size: clamp(3.5rem, 12vw, 6rem); }
 }
+
+/* ── Blob cursor (title hover) ───────────────────────────── */
+#blob-cursor {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  pointer-events: none;
+  z-index: 9;
+  left: -100px;
+  top: -100px;
+  margin-left: -28px;
+  margin-top: -28px;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  background: rgba(10, 10, 10, 0.06);
+  border-radius: 50%;
+  animation: blob-morph 3s ease-in-out infinite;
+}
+#blob-cursor.active { opacity: 1; }
+
+@keyframes blob-morph {
+  0%,100% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+  25%     { border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%; }
+  50%     { border-radius: 40% 60% 54% 46% / 48% 52% 48% 52%; }
+  75%     { border-radius: 54% 46% 38% 62% / 40% 60% 40% 60%; }
+}

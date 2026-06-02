@@ -456,22 +456,44 @@
 
   </section>
 
+  <div id="blob-cursor"></div>
+
   <script src="main.js"></script>
   <script>
     (function() {
       var chars = document.querySelectorAll('.ttj .char');
-      if (!chars.length) return;
+      var blob  = document.getElementById('blob-cursor');
+      var hero  = document.querySelector('.hero');
+
       document.addEventListener('mousemove', function(e) {
+        if (blob) {
+          blob.style.left = e.clientX + 'px';
+          blob.style.top  = e.clientY + 'px';
+          if (hero) {
+            var hr = hero.getBoundingClientRect();
+            var inside = e.clientX >= hr.left && e.clientX <= hr.right && e.clientY >= hr.top && e.clientY <= hr.bottom;
+            blob.classList.toggle('active', inside);
+          }
+        }
+        if (!chars.length) return;
         for (var i = 0; i < chars.length; i++) {
-          var r = chars[i].getBoundingClientRect();
-          var dx = (r.left + r.width/2) - e.clientX;
-          var dy = (r.top + r.height/2) - e.clientY;
-          var d = Math.sqrt(dx*dx + dy*dy) || 1;
-          var g = Math.exp(-(d*d) / (2*140*140));
-          chars[i].style.transition = 'transform 0s';
-          chars[i].style.transform = 'translate(' + ((dx/d)*16*g).toFixed(1) + 'px,' + ((dy/d)*16*g).toFixed(1) + 'px)';
+          var r  = chars[i].getBoundingClientRect();
+          var dx = (r.left + r.width  / 2) - e.clientX;
+          var dy = (r.top  + r.height / 2) - e.clientY;
+          var d  = Math.sqrt(dx * dx + dy * dy) || 1;
+          var g  = Math.exp(-(d * d) / (2 * 140 * 140));
+          chars[i].style.transition = 'transform 0.04s linear';
+          chars[i].style.transform  = 'translate(' + ((dx / d) * 5 * g).toFixed(1) + 'px,' + ((dy / d) * 5 * g).toFixed(1) + 'px)';
         }
       }, {passive: true});
+
+      document.addEventListener('mouseleave', function() {
+        if (blob) blob.classList.remove('active');
+        for (var i = 0; i < chars.length; i++) {
+          chars[i].style.transition = 'transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94)';
+          chars[i].style.transform  = '';
+        }
+      });
     })();
   </script>
 </body>
