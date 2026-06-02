@@ -459,7 +459,6 @@
   <script src="main.js"></script>
   <script>
     (function () {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       var chars = document.querySelectorAll('.ttj .char');
       if (!chars.length) return;
       document.addEventListener('mousemove', function (e) {
@@ -468,11 +467,11 @@
           var dx = (r.left + r.width  / 2) - e.clientX;
           var dy = (r.top  + r.height / 2) - e.clientY;
           var d  = Math.sqrt(dx * dx + dy * dy) || 1;
-          var g  = Math.exp(-(d * d) / (2 * 120 * 120));
-          chars[i].style.transition = 'transform 0.05s linear';
+          var g  = Math.exp(-(d * d) / (2 * 140 * 140));
+          chars[i].style.transition = 'transform 0s';
           chars[i].style.transform  = 'translate('
-            + ((dx / d) * 8 * g).toFixed(2) + 'px,'
-            + ((dy / d) * 8 * g).toFixed(2) + 'px)';
+            + ((dx / d) * 12 * g).toFixed(1) + 'px,'
+            + ((dy / d) * 12 * g).toFixed(1) + 'px)';
         }
       }, { passive: true });
       document.addEventListener('mouseleave', function () {
