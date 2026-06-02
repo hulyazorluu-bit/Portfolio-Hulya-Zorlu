@@ -335,7 +335,8 @@ function revealPage() {
     }
   }, 900);
 
-  setTimeout(() => document.dispatchEvent(new Event('titleReady')), 950);
+  /* Fire immediately — WebGL takes over before chars are visible */
+  document.dispatchEvent(new Event('titleReady'));
 
 }
 

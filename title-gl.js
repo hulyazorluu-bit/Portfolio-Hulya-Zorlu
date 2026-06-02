@@ -237,11 +237,10 @@
       targetX = -999; targetY = -999;
     });
 
+    /* Instant reveal — chars already transparent, no transition needed */
     requestAnimationFrame(function () {
-      glCanvas.style.transition = 'opacity 0.5s ease';
-      glCanvas.style.opacity    = '1';
-      titleEl.querySelectorAll('.ttj .char').forEach(function (ch) {
-        ch.style.color = 'transparent';
+      requestAnimationFrame(function () {
+        glCanvas.style.opacity = '1';
       });
     });
 
@@ -256,6 +255,10 @@
     ran = true;
     var el = document.querySelector('.cnt_tt');
     if (!el) return;
+    /* Hide chars immediately — WebGL canvas will replace them */
+    el.querySelectorAll('.ttj .char').forEach(function (ch) {
+      ch.style.color = 'transparent';
+    });
     var fs = parseFloat(window.getComputedStyle(el).fontSize);
     var p  = (document.fonts && document.fonts.load)
                ? document.fonts.load('400 ' + fs + 'px montrealbook')
