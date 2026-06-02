@@ -334,6 +334,9 @@ function revealPage() {
       setTimeout(() => scrollTicker(scrollEl, SCROLL_TEXT), INIT_DUR + 60);
     }
   }, 900);
+
+  /* Signal GL title effect — fired after chars are fully opaque */
+  setTimeout(() => document.dispatchEvent(new Event('titleReady')), 950);
 }
 
 

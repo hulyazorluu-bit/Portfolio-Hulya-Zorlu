@@ -1120,3 +1120,11 @@ html.lang-fr .t-en { display: none !important; }
   .works_title { font-size: clamp(3.5rem, 12vw, 6rem); }
 }
 
+/* ── WebGL title canvas ──────────────────────────────────── */
+#title-gl {
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+}
+
