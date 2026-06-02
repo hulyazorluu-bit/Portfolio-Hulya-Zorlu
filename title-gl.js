@@ -34,7 +34,7 @@
     '  float ar  = uRes.x / uRes.y;',
     '  vec2  m   = vec2(uMouse.x/uRes.x, 1.0-uMouse.y/uRes.y);',
     '  float lr  = uLetterR / uRes.y;',   /* letter radius in UV  */
-    '  float cr  = lr * 2.2;',            /* cursor influence zone */
+    '  float cr  = lr * 0.9;',            /* cursor influence zone — tight so only nearest letter activates */
     '  vec2  off = vec2(0.0);',
     '  for(int i=0;i<10;i++){',
     '    vec2 lp = uLetters[i];',
@@ -222,7 +222,7 @@
     uStr        = gl.getUniformLocation(glProg, 'uStr');
     uLettersLoc = gl.getUniformLocation(glProg, 'uLetters[0]');
     uLetterR    = gl.getUniformLocation(glProg, 'uLetterR');
-    gl.uniform1f(uStr, 9.0); /* max displacement px */
+    gl.uniform1f(uStr, 4.5); /* max displacement px — soft */
 
     resize();
     window.addEventListener('resize', resize, { passive: true });
