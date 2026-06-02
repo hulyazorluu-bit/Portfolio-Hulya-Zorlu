@@ -215,10 +215,28 @@
     loop();
   }
 
-  /* ── Entry — wait for fonts + titleReady event ─────────────── */
+  /* ── Entry ──────────────────────────────────────────────── */
 
-  document.fonts.ready.then(function () {
-    document.addEventListener('titleReady', setup, { once: true });
+  var ran = false;
+  function trySetup() {
+    if (ran) return;
+    ran = true;
+    var el = document.querySelector('.cnt_tt');
+    if (!el) return;
+    var fs = parseFloat(window.getComputedStyle(el).fontSize);
+    var fontSpec = '400 ' + fs + 'px montrealbook';
+    var p = (document.fonts && document.fonts.load)
+              ? document.fonts.load(fontSpec)
+              : Promise.resolve();
+    p.then(setup).catch(setup);
+  }
+
+  /* Trigger from revealPage() signal */
+  document.addEventListener('titleReady', trySetup, { once: true });
+
+  /* Hard fallback: run 3s after window load regardless */
+  window.addEventListener('load', function () {
+    setTimeout(trySetup, 3000);
   });
 
 })();
