@@ -1,7 +1,7 @@
 /* ============================================================
    Section headings — 3D letter reveal on scroll
-   Each letter flips in from rotateX(-70deg) with stagger.
-   Pure CSS 3D + IntersectionObserver, no particles.
+   Each letter flips in from rotateX(-72deg) with stagger.
+   Respects active language (EN/FR) — never concatenates both.
    ============================================================ */
 (function () {
   'use strict';
@@ -9,35 +9,33 @@
   /* ── Inject styles ──────────────────────────────────────── */
   var style = document.createElement('style');
   style.textContent = [
-    '.sec-reveal-wrap {',
-    '  display:inline-block;',
-    '  overflow:hidden;',
-    '  vertical-align:bottom;',
-    '  perspective:600px;',
-    '}',
-    '.sec-reveal-char {',
-    '  display:inline-block;',
-    '  opacity:0;',
-    '  transform:rotateX(-72deg) translateY(18px);',
-    '  transform-origin:50% 100%;',
-    '  transition:',
-    '    opacity 0.55s cubic-bezier(.22,1,.36,1),',
-    '    transform 0.55s cubic-bezier(.22,1,.36,1);',
-    '}',
-    '.sec-reveal-char.in {',
-    '  opacity:1;',
-    '  transform:rotateX(0deg) translateY(0px);',
-    '}',
-    '.sec-reveal-space { display:inline-block; width:0.28em; }'
+    '.sec-reveal-wrap{display:inline-block;overflow:hidden;vertical-align:bottom;perspective:600px;}',
+    '.sec-reveal-char{display:inline-block;opacity:0;',
+    '  transform:rotateX(-72deg) translateY(18px);transform-origin:50% 100%;',
+    '  transition:opacity 0.55s cubic-bezier(.22,1,.36,1),transform 0.55s cubic-bezier(.22,1,.36,1);}',
+    '.sec-reveal-char.in{opacity:1;transform:rotateX(0deg) translateY(0px);}',
+    '.sec-reveal-space{display:inline-block;width:0.28em;}'
   ].join('\n');
   document.head.appendChild(style);
 
-  /* ── Selectors to animate ─────────────────────────────── */
-  var SELECTORS = ['.works_title', '.about_title', '.xp_title'];
+  /* ── Get active-language text only ───────────────────────── */
+  function getActiveText(el) {
+    var lang = /lang-fr/.test(document.documentElement.className) ? 'fr' : 'en';
+    /* Try the active language span first */
+    var span = el.querySelector('.t-' + lang);
+    if (span) return span.textContent.trim();
+    /* Fallback: EN span */
+    var enSpan = el.querySelector('.t-en');
+    if (enSpan) return enSpan.textContent.trim();
+    /* Plain text element (no lang spans) */
+    return el.childNodes[0] && el.childNodes[0].nodeType === 3
+      ? el.childNodes[0].textContent.trim()
+      : el.textContent.trim();
+  }
 
   /* ── Split text into animated char spans ─────────────── */
   function splitEl(el) {
-    var text = el.textContent.trim();
+    var text = getActiveText(el);
     if (!text) return [];
     el.innerHTML = '';
     var chars = [];
@@ -49,7 +47,7 @@
         sp.setAttribute('aria-hidden', 'true');
         el.appendChild(sp);
       } else {
-        var wrap = document.createElement('span');
+        var wrap  = document.createElement('span');
         wrap.className = 'sec-reveal-wrap';
         var inner = document.createElement('span');
         inner.className = 'sec-reveal-char';
@@ -70,6 +68,8 @@
   }
 
   /* ── Setup ───────────────────────────────────────────── */
+  var SELECTORS = ['.works_title', '.about_title', '.xp_title'];
+
   function setup() {
     var targets = [];
     SELECTORS.forEach(function (sel) {
