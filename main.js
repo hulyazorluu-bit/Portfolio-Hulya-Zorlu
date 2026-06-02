@@ -429,70 +429,30 @@ function revealPage() {
   const chars = [...document.querySelectorAll('.ttj .char')];
   if (!chars.length) return;
 
-  const RADIUS    = 150;  /* px — zone d'influence */
-  const INTENSITY = 18;   /* px — déplacement max  */
-  const LERP      = 0.15; /* fluidité du retour    */
-
-  const state = chars.map(() => ({ x: 0, y: 0, tx: 0, ty: 0 }));
-  let centers = [];
-  let raf     = null;
-  let active  = false;
-
-  function cachePositions() {
-    centers = chars.map(ch => {
-      const r = ch.getBoundingClientRect();
-      return { x: r.left + r.width * 0.5, y: r.top + r.height * 0.5 };
-    });
-  }
-
-  function tick() {
-    let anyMoving = false;
-    chars.forEach((ch, i) => {
-      const s = state[i];
-      s.x += (s.tx - s.x) * LERP;
-      s.y += (s.ty - s.y) * LERP;
-      const ax = Math.abs(s.x), ay = Math.abs(s.y);
-      if (ax > 0.04 || ay > 0.04) {
-        ch.style.transform = `translate(${s.x.toFixed(2)}px,${s.y.toFixed(2)}px)`;
-        anyMoving = true;
-      } else {
-        s.x = 0; s.y = 0;
-        ch.style.transform = '';
-      }
-    });
-    if (active || anyMoving) raf = requestAnimationFrame(tick);
-    else raf = null;
-  }
-
-  function onMove(e) {
-    if (!active) {
-      active = true;
-      cachePositions();
-      chars.forEach(ch => (ch.style.willChange = 'transform'));
-      if (!raf) raf = requestAnimationFrame(tick);
-    }
-    const mx = e.clientX, my = e.clientY;
-    chars.forEach((_, i) => {
-      const dx  = centers[i].x - mx;
-      const dy  = centers[i].y - my;
-      const d2  = dx * dx + dy * dy;
-      const g   = Math.exp(-d2 / (2 * RADIUS * RADIUS));
-      const len = Math.sqrt(d2) || 1;
-      state[i].tx = (dx / len) * INTENSITY * g;
-      state[i].ty = (dy / len) * INTENSITY * g;
-    });
-  }
-
-  function onLeave() {
-    active = false;
-    state.forEach(s => { s.tx = 0; s.ty = 0; });
-    chars.forEach(ch => (ch.style.willChange = ''));
-    if (!raf) raf = requestAnimationFrame(tick);
-  }
-
   const hero = document.querySelector('.hero');
   if (!hero) return;
-  hero.addEventListener('mousemove', onMove, { passive: true });
-  hero.addEventListener('mouseleave', onLeave);
-  window.addEventListener('resize', () => { if (active) cachePositions(); }, { passive: true });
+
+  const RADIUS    = 140;
+  const INTENSITY = 16;
+
+  hero.addEventListener('mousemove', function(e) {
+    chars.forEach(ch => {
+      const r    = ch.getBoundingClientRect();
+      const cx   = r.left + r.width  * 0.5;
+      const cy   = r.top  + r.height * 0.5;
+      const dx   = cx - e.clientX;
+      const dy   = cy - e.clientY;
+      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+      const g    = Math.exp(-(dist * dist) / (2 * RADIUS * RADIUS));
+      ch.style.transition = '';
+      ch.style.transform  = `translate(${((dx / dist) * INTENSITY * g).toFixed(1)}px,${((dy / dist) * INTENSITY * g).toFixed(1)}px)`;
+    });
+  }, { passive: true });
+
+  hero.addEventListener('mouseleave', function() {
+    chars.forEach(ch => {
+      ch.style.transition = 'transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94)';
+      ch.style.transform  = '';
+    });
+  });
 })();
