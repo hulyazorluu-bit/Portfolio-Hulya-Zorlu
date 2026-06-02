@@ -1,6 +1,6 @@
 /* ============================================================
-   Title WebGL Lens Refraction
-   Canvas 2D → texture · GLSL displacement shader · mouse lerp
+   Title WebGL — Per-Letter Lens Refraction
+   Each character has its own displacement bubble
    ============================================================ */
 (function () {
   'use strict';
@@ -18,27 +18,41 @@
     '}'
   ].join('\n');
 
+  /* Per-letter: each letter has its own lens that activates
+     when the cursor is nearby. Max 10 chars (Hulya+Zorlu=10). */
   var FS = [
     'precision mediump float;',
     'uniform sampler2D uTex;',
-    'uniform vec2 uMouse;',
-    'uniform vec2 uRes;',
+    'uniform vec2  uMouse;',
+    'uniform vec2  uRes;',
     'uniform float uStr;',
+    'uniform vec2  uLetters[10];',
+    'uniform float uLetterR;',
     'varying vec2 vUv;',
-    'void main() {',
-    '  vec2 uv   = vUv;',
-    '  vec2 m    = vec2(uMouse.x / uRes.x, 1.0 - uMouse.y / uRes.y);',
-    '  vec2 d    = uv - m;',
-    '  d.x      *= uRes.x / uRes.y;',
-    '  float dist = length(d);',
-    '  float r    = 110.0 / uRes.y;',
-    '  float g    = exp(-dist * dist / (2.0 * r * r));',
-    '  vec2 n     = normalize(d + vec2(0.0001));',
-    '  gl_FragColor = texture2D(uTex, uv + n * (uStr / uRes.y) * g);',
+    'void main(){',
+    '  vec2  uv  = vUv;',
+    '  float ar  = uRes.x / uRes.y;',
+    '  vec2  m   = vec2(uMouse.x/uRes.x, 1.0-uMouse.y/uRes.y);',
+    '  float lr  = uLetterR / uRes.y;',   /* letter radius in UV  */
+    '  float cr  = lr * 2.2;',            /* cursor influence zone */
+    '  vec2  off = vec2(0.0);',
+    '  for(int i=0;i<10;i++){',
+    '    vec2 lp = uLetters[i];',
+    /* cursor → letter distance (how much this letter activates) */
+    '    vec2 cd = (m - lp) * vec2(ar,1.0);',
+    '    float cg = exp(-dot(cd,cd)/(2.0*cr*cr));',
+    /* pixel → letter distance (where pixels are displaced) */
+    '    vec2 pd = (uv - lp) * vec2(ar,1.0);',
+    '    float pg = exp(-dot(pd,pd)/(2.0*lr*lr));',
+    /* displace outward from cursor */
+    '    vec2 dir = normalize((uv-m)*vec2(ar,1.0)+vec2(0.0001));',
+    '    off += dir * (uStr/uRes.y) * cg * pg;',
+    '  }',
+    '  gl_FragColor = texture2D(uTex, uv + off);',
     '}'
   ].join('\n');
 
-  /* ── Shader helpers ───────────────────────────────────────── */
+  /* ── GL helpers ───────────────────────────────────────────── */
 
   function mkShader(gl, type, src) {
     var s = gl.createShader(type);
@@ -55,7 +69,7 @@
     return p;
   }
 
-  /* ── Build text texture ────────────────────────────────────── */
+  /* ── Text → texture ────────────────────────────────────────── */
 
   function buildTexture(gl, titleEl) {
     var dpr  = Math.min(window.devicePixelRatio || 1, 2);
@@ -70,29 +84,23 @@
     var ctx = off.getContext('2d');
     ctx.scale(dpr, dpr);
 
-    /* cream background */
     ctx.fillStyle = '#F8F6F2';
     ctx.fillRect(0, 0, W, H);
 
-    /* match CSS typography */
     var fs = parseFloat(window.getComputedStyle(titleEl).fontSize);
-    var ls = -0.03 * fs; /* letter-spacing: -0.03em */
-
+    var ls = -0.03 * fs;
     ctx.fillStyle    = '#0A0A0A';
     ctx.font         = '400 ' + fs + 'px montrealbook, sans-serif';
     ctx.textBaseline = 'alphabetic';
 
-    /* render each title row */
     titleEl.querySelectorAll('.ttj').forEach(function (row) {
       var rr   = row.getBoundingClientRect();
       var text = row.textContent.replace(/\s/g, '');
       var m    = ctx.measureText(text);
       var desc = (typeof m.actualBoundingBoxDescent === 'number')
-                  ? m.actualBoundingBoxDescent
-                  : fs * 0.18;
+                  ? m.actualBoundingBoxDescent : fs * 0.18;
       var x = rr.left - rect.left;
       var y = rr.bottom - rect.top - desc;
-
       for (var i = 0; i < text.length; i++) {
         ctx.fillText(text[i], x, y);
         x += ctx.measureText(text[i]).width + ls;
@@ -112,9 +120,36 @@
 
   /* ── State ────────────────────────────────────────────────── */
 
-  var glCanvas, gl, uMouse, uRes, uStr, tex;
+  var glCanvas, gl, uMouse, uRes, uStr, uLettersLoc, uLetterR, tex;
   var mx = -999, my = -999, targetX = -999, targetY = -999;
   var titleEl;
+
+  /* ── Letter UV positions ──────────────────────────────────── */
+
+  function uploadLetterPositions() {
+    if (!gl || !glCanvas || !titleEl) return;
+    var cr   = glCanvas.getBoundingClientRect();
+    var chars = titleEl.querySelectorAll('.ttj .char');
+    var data  = new Float32Array(20); /* 10 × vec2 */
+    for (var k = 0; k < 20; k++) data[k] = -2.0; /* default: off-screen */
+
+    chars.forEach(function (ch, i) {
+      if (i >= 10) return;
+      var r = ch.getBoundingClientRect();
+      /* UV x: left→right, UV y: flipped (WebGL Y=0 is bottom) */
+      data[i * 2]     = (r.left + r.width  / 2 - cr.left) / cr.width;
+      data[i * 2 + 1] = 1.0 - (r.top + r.height / 2 - cr.top) / cr.height;
+    });
+    gl.uniform2fv(uLettersLoc, data);
+
+    /* letter radius ≈ 55% of char height in canvas pixels */
+    var firstChar = titleEl.querySelector('.ttj .char');
+    if (firstChar && uLetterR) {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var charH = firstChar.getBoundingClientRect().height;
+      gl.uniform1f(uLetterR, charH * 0.55 * dpr);
+    }
+  }
 
   /* ── Resize ───────────────────────────────────────────────── */
 
@@ -138,6 +173,7 @@
 
     if (tex) gl.deleteTexture(tex);
     tex = buildTexture(gl, titleEl);
+    uploadLetterPositions();
   }
 
   /* ── Render loop ──────────────────────────────────────────── */
@@ -163,8 +199,6 @@
     glCanvas = document.createElement('canvas');
     glCanvas.id = 'title-gl';
     glCanvas.setAttribute('aria-hidden', 'true');
-
-    /* append inside hero_cnt, after the title */
     titleEl.parentElement.appendChild(glCanvas);
 
     gl = glCanvas.getContext('webgl', { alpha: false, antialias: false });
@@ -173,26 +207,26 @@
     var glProg = mkProgram(gl);
     gl.useProgram(glProg);
 
-    /* full-screen quad */
     var buf = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buf);
     gl.bufferData(gl.ARRAY_BUFFER,
-      new Float32Array([-1, -1,  1, -1,  -1, 1,  1, 1]),
+      new Float32Array([-1,-1, 1,-1, -1,1, 1,1]),
       gl.STATIC_DRAW);
     var aPos = gl.getAttribLocation(glProg, 'aPos');
     gl.enableVertexAttribArray(aPos);
     gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
 
     gl.uniform1i(gl.getUniformLocation(glProg, 'uTex'), 0);
-    uMouse = gl.getUniformLocation(glProg, 'uMouse');
-    uRes   = gl.getUniformLocation(glProg, 'uRes');
-    uStr   = gl.getUniformLocation(glProg, 'uStr');
-    gl.uniform1f(uStr, 7.0); /* max displacement px */
+    uMouse      = gl.getUniformLocation(glProg, 'uMouse');
+    uRes        = gl.getUniformLocation(glProg, 'uRes');
+    uStr        = gl.getUniformLocation(glProg, 'uStr');
+    uLettersLoc = gl.getUniformLocation(glProg, 'uLetters[0]');
+    uLetterR    = gl.getUniformLocation(glProg, 'uLetterR');
+    gl.uniform1f(uStr, 9.0); /* max displacement px */
 
     resize();
     window.addEventListener('resize', resize, { passive: true });
 
-    /* mouse tracking */
     document.addEventListener('mousemove', function (e) {
       var r = glCanvas.getBoundingClientRect();
       targetX = e.clientX - r.left;
@@ -203,7 +237,6 @@
       targetX = -999; targetY = -999;
     });
 
-    /* fade in canvas · make HTML chars transparent */
     requestAnimationFrame(function () {
       glCanvas.style.transition = 'opacity 0.5s ease';
       glCanvas.style.opacity    = '1';
@@ -215,7 +248,7 @@
     loop();
   }
 
-  /* ── Entry — simple timeout, no event chain ─────────────── */
+  /* ── Entry ──────────────────────────────────────────────── */
 
   var ran = false;
   function trySetup() {
@@ -230,10 +263,7 @@
     p.then(setup).catch(setup);
   }
 
-  /* Primary: fire when reveal animation completes */
   document.addEventListener('titleReady', trySetup, { once: true });
-
-  /* Fallback: 3.5s after script parses (covers all cases) */
   setTimeout(trySetup, 3500);
 
 })();
