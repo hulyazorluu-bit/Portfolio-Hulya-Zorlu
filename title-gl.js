@@ -237,13 +237,11 @@
       targetX = -999; targetY = -999;
     });
 
-    /* Wait 2 frames so WebGL has rendered before swapping — no fade to avoid jump */
     requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        glCanvas.style.opacity = '1';
-        titleEl.querySelectorAll('.ttj .char').forEach(function (ch) {
-          ch.style.color = 'transparent';
-        });
+      glCanvas.style.transition = 'opacity 0.5s ease';
+      glCanvas.style.opacity    = '1';
+      titleEl.querySelectorAll('.ttj .char').forEach(function (ch) {
+        ch.style.color = 'transparent';
       });
     });
 
