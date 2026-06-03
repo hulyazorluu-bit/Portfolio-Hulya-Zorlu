@@ -425,3 +425,25 @@ function revealPage() {
   if (close) close.addEventListener('click', closeMenu);
   menu.querySelectorAll('.mob-link').forEach(l => l.addEventListener('click', closeMenu));
 })();
+
+
+/* ── Nav dark/light adaptation on scroll ─────────────────────── */
+(function initNavAdapt() {
+  const nav = document.getElementById('nav');
+  if (!nav) return;
+
+  const darkSections = document.querySelectorAll('.section-dark');
+
+  function check() {
+    const navH = nav.offsetHeight;
+    let isDark = false;
+    darkSections.forEach(sec => {
+      const r = sec.getBoundingClientRect();
+      if (r.top < navH && r.bottom > 0) isDark = true;
+    });
+    nav.classList.toggle('nav--dark', isDark);
+  }
+
+  window.addEventListener('scroll', check, { passive: true });
+  check();
+})();
