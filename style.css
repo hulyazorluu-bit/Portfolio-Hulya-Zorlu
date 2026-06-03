@@ -746,7 +746,7 @@ html.lang-fr .t-en { display: none !important; }
   gap: 1.6rem;
   padding: 4rem 0 0;
   border-top: 1px solid rgba(10,10,10,0.1);
-  margin-bottom: 0;
+  margin-bottom: 3rem;
 }
 .xp_hd--form { margin-top: 6rem; }
 
@@ -769,19 +769,33 @@ html.lang-fr .t-en { display: none !important; }
   color: rgba(10,10,10,0.3);
 }
 
+.skills_num {
+  color: rgba(248,246,242,0.55);
+}
+
 .xp_title {
-  font-family: 'Courier Prime', monospace;
+  font-family: montrealbook, 'Helvetica Neue', sans-serif;
   font-weight: 400;
-  font-size: clamp(1rem, 1.4vw, 1.3rem);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  line-height: 1;
-  color: rgba(10,10,10,0.55);
+  font-size: clamp(4.5rem, 7.5vw, 10.5rem);
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+  color: var(--fg);
   margin-bottom: 0;
 }
 
+/* Experience + Formation: slightly larger than works/about/skills */
+.xp .xp_title {
+  font-size: clamp(5.5rem, 9vw, 13rem);
+}
+
+/* Skills: same size as works/about, light color on dark bg */
+.skills .xp_title {
+  font-size: clamp(4.5rem, 7.5vw, 10.5rem);
+  color: #F8F6F2;
+}
+
 .xp_list {
-  margin-top: 2rem;
+  margin-top: 0;
 }
 
 .xp_item {
@@ -811,7 +825,7 @@ html.lang-fr .t-en { display: none !important; }
   font-family: 'Courier Prime', monospace;
   font-size: 1rem;
   letter-spacing: 0.04em;
-  color: rgba(10,10,10,0.35);
+  color: rgba(10,10,10,0.55);
   transition: color 0.25s;
 }
 .xp_item:hover .xp_date { color: rgba(248,246,242,0.4); }
@@ -824,7 +838,7 @@ html.lang-fr .t-en { display: none !important; }
 
 .xp_co {
   font-family: montrealbook, sans-serif;
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   letter-spacing: -0.01em;
   color: var(--fg);
   transition: color 0.25s;
@@ -855,7 +869,7 @@ html.lang-fr .t-en { display: none !important; }
   font-size: 1rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgba(10,10,10,0.55);
+  color: rgba(10,10,10,0.8);
   transition: color 0.25s;
 }
 .xp_item:hover .xp_role { color: rgba(248,246,242,0.7); }
@@ -896,7 +910,7 @@ html.lang-fr .t-en { display: none !important; }
   gap: 1.6rem;
   padding: 4rem 0 0;
   border-top: 1px solid rgba(248,246,242,0.1);
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
 }
 
 .skills_grid {

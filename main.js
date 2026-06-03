@@ -6,7 +6,7 @@
 
 /* ── Language ────────────────────────────────────────────────── */
 (function initLang() {
-  const lang = localStorage.getItem('lang') || 'en';
+  const lang = localStorage.getItem('lang') || 'fr';
   document.documentElement.className = 'lang-' + lang;
 
   function applyLang(l) {
@@ -280,7 +280,7 @@ function revealPage() {
   const cta = document.querySelector('.nav_cta');
   const ctaText = document.getElementById('cta-text');
   if (cta && ctaText) {
-    const _lang = localStorage.getItem('lang') || 'en';
+    const _lang = localStorage.getItem('lang') || 'fr';
     ctaText.textContent = _lang === 'fr' ? 'PARLONS' : 'LETS TALK';
     cta.style.opacity = '1';
     const charEls = splitChars(ctaText);
