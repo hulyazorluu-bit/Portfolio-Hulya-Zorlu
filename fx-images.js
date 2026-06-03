@@ -39,8 +39,9 @@
       // Max 0.018 UV displacement, modulated by hover amount
       vec2 disp = normalize(delta + 0.0001) * wave * 0.018 * uHover;
 
-      vec4 col = texture2D(uTex, uv + disp);
-      gl_FragColor = col;
+      /* Clamp to avoid sampling white edges of the image */
+      vec2 displaced = clamp(uv + disp, 0.002, 0.998);
+      gl_FragColor = texture2D(uTex, displaced);
     }
   `;
 
@@ -96,8 +97,11 @@
     ].join(';');
     thumb.appendChild(canvas);
 
-    var gl = canvas.getContext('webgl', { alpha: false, antialias: false });
+    var gl = canvas.getContext('webgl', { alpha: true, antialias: false });
     if (!gl) { canvas.remove(); return; }
+
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
     var prog = createProgram(gl, VS, FS);
     if (!prog) { canvas.remove(); return; }
