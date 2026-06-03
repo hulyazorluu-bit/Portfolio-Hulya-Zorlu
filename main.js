@@ -18,7 +18,7 @@
     /* CTA — reset text & re-split chars instantly */
     const ctaEl = document.getElementById('cta-text');
     if (ctaEl) {
-      ctaEl.textContent = l === 'fr' ? 'PARLONS' : 'LETS TALK';
+      ctaEl.textContent = l === 'fr' ? 'CONTACT' : 'CONTACT';
       const cws = splitChars(ctaEl);
       cws.forEach(cw => cw.classList.add('done'));
     }
@@ -276,12 +276,12 @@ function revealPage() {
     charReveal(twEl, { stagger: STAGGER });
   });
 
-  /* LETS TALK: fade in + char reveal */
+  /* CONTACT: fade in + char reveal */
   const cta = document.querySelector('.nav_cta');
   const ctaText = document.getElementById('cta-text');
   if (cta && ctaText) {
     const _lang = localStorage.getItem('lang') || 'fr';
-    ctaText.textContent = _lang === 'fr' ? 'PARLONS' : 'LETS TALK';
+    ctaText.textContent = _lang === 'fr' ? 'CONTACT' : 'CONTACT';
     cta.style.opacity = '1';
     const charEls = splitChars(ctaText);
     revealChars(charEls, { stagger: STAGGER });
@@ -308,16 +308,17 @@ function revealPage() {
     charReveal(twEl, { stagger: STAGGER });
   });
 
-  /* 4 — Title: smooth opacity stagger, no fake chars */
+  /* 4 — Title: delayed entrance so it doesn't pop instantly on load */
+  const TITLE_DELAY = 600;
   document.querySelectorAll('.ttj').forEach((row, rowIdx) => {
     row.querySelectorAll('.char').forEach((ch, charIdx) => {
-      setTimeout(() => ch.classList.add('act'), rowIdx * 160 + charIdx * 60);
+      setTimeout(() => ch.classList.add('act'), TITLE_DELAY + rowIdx * 160 + charIdx * 60);
     });
   });
 
   /* 5 — Subtitle: dissolve */
   const tt3 = document.querySelector('.tt3');
-  if (tt3) setTimeout(() => tt3.classList.add('visible'), 350);
+  if (tt3) setTimeout(() => tt3.classList.add('visible'), TITLE_DELAY + 200);
 
   /* 6 — PORTFOLIO_26 + scroll after 1400ms */
   const portTw = document.querySelector('#portfolio-txt .typewriter');
@@ -327,7 +328,7 @@ function revealPage() {
     if (portTw) triggerTypewriter(portTw, 22, null);
 
     if (scrollEl) {
-      const SCROLL_TEXT = '[scroll to explore]';
+      const SCROLL_TEXT = '[défiler pour explorer]';
       const INIT_DUR = 2600;
       scrollEl.style.opacity = '1';
       scramble(scrollEl, SCROLL_TEXT, { duration: INIT_DUR });
@@ -335,8 +336,8 @@ function revealPage() {
     }
   }, 900);
 
-  /* Fire immediately — WebGL takes over before chars are visible */
-  document.dispatchEvent(new Event('titleReady'));
+  /* Delay WebGL title canvas to match title entrance */
+  setTimeout(() => document.dispatchEvent(new Event('titleReady')), TITLE_DELAY);
 
 }
 
