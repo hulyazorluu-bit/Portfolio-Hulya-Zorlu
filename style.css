@@ -126,27 +126,29 @@ html.lang-fr .t-en { display: none !important; }
   overflow: visible;
 }
 
-/* Soft gradient — extends well below nav so no hard edge */
+/* Nav gradient — strong at top, tight fade, no hard edge */
 .nav::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 16rem;
+  height: 10rem;
   z-index: -1;
   pointer-events: none;
   background: linear-gradient(to bottom,
-    rgba(248,246,242,0.55) 0%,
-    rgba(248,246,242,0.18) 35%,
+    rgba(248,246,242,0.92) 0%,
+    rgba(248,246,242,0.55) 25%,
+    rgba(248,246,242,0.12) 60%,
     rgba(248,246,242,0) 100%);
   transition: background 0.55s ease;
 }
 
 .nav--dark::before {
   background: linear-gradient(to bottom,
-    rgba(10,10,10,0.5) 0%,
-    rgba(10,10,10,0.15) 35%,
+    rgba(10,10,10,0.88) 0%,
+    rgba(10,10,10,0.5) 25%,
+    rgba(10,10,10,0.1) 60%,
     rgba(10,10,10,0) 100%);
 }
 
