@@ -237,11 +237,9 @@
       targetX = -999; targetY = -999;
     });
 
-    /* Instant reveal — chars already transparent, no transition needed */
+    /* Fade in — CSS transition on #title-gl handles the ease */
     requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        glCanvas.style.opacity = '1';
-      });
+      glCanvas.style.opacity = '1';
     });
 
     loop();

@@ -268,15 +268,16 @@ html.lang-fr .t-en { display: none !important; }
 .cw.done .cn { opacity: 1; transform: translateX(0); }
 .cw.done .cf { transform: scaleX(0); opacity: 0; }
 
-/* Title chars — smooth opacity stagger, no fake chars */
+/* Title chars — fade + subtle rise */
 .ttj .char {
   display: inline-block;
   position: relative;
   vertical-align: bottom;
   opacity: 0;
-  transition: opacity 0.55s ease;
+  transform: translateY(10px);
+  transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.ttj .char.act { opacity: 1; }
+.ttj .char.act { opacity: 1; transform: translateY(0); }
 
 /* Nav left hidden at start — JS reveals via typewriter */
 .nav_left { opacity: 0; }
@@ -1152,5 +1153,6 @@ html.lang-fr .t-en { display: none !important; }
   pointer-events: none;
   z-index: 10;
   opacity: 0;
+  transition: opacity 1s ease;
 }
 
