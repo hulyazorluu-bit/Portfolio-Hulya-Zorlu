@@ -784,6 +784,15 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 /* ── ABOUT ────────────────────────────────────────────────────── */
+.about_pretitle {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(248,246,242,0.45);
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+}
+
 .about {
   position: relative;
   background: #0A0A0A;
