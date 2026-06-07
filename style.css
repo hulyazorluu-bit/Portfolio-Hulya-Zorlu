@@ -823,16 +823,16 @@ html.lang-fr .t-en { display: none !important; }
 
 .about_desc {
   position: absolute;
-  right: 5%;
+  left: 42%;
   top: 50%;
   transform: translateY(-50%);
-  width: clamp(22rem, 30vw, 38rem);
-  font-family: 'Inter', 'Helvetica Neue', sans-serif;
-  font-size: 1.05rem;
+  width: clamp(22rem, 46%, 46rem);
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1.2rem;
   font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1.75;
-  color: rgba(248,246,242,0.8);
+  letter-spacing: -0.01em;
+  line-height: 1.7;
+  color: rgba(248,246,242,0.82);
 }
 .about_desc p + p { margin-top: 1.3em; }
 
