@@ -594,9 +594,33 @@ html.lang-fr .t-en { display: none !important; }
 .work_thumb--b { background: #0A0A0A; }
 .work_thumb--c {
   background: #CECCC6;
-  filter: url(#liquid-wave);
-  transition: filter 0.3s ease;
+  overflow: hidden;
+  position: relative;
 }
+.work_cover--blur {
+  filter: blur(10px);
+  transform: scale(1.1);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+.work_soon_badge {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background: rgba(255,255,255,0.92);
+  color: #1C1C1E;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.work_item--soon { cursor: default; }
 
 /* Project 1 — square */
 .work_item:nth-child(1) .work_thumb { aspect-ratio: 1 / 1; }
