@@ -335,7 +335,7 @@ function revealPage() {
     if (portTw) triggerTypewriter(portTw, 22, null);
 
     if (scrollEl) {
-      const SCROLL_TEXT = '[ Faites défiler vers le bas ]';
+      const SCROLL_TEXT = '[défiler pour explorer]';
       const INIT_DUR = 2600;
       scrollEl.style.opacity = '1';
       scramble(scrollEl, SCROLL_TEXT, { duration: INIT_DUR });
