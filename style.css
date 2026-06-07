@@ -592,7 +592,11 @@ html.lang-fr .t-en { display: none !important; }
 
 .work_thumb--a { background: #E2E0DA; }
 .work_thumb--b { background: #0A0A0A; }
-.work_thumb--c { background: #CECCC6; }
+.work_thumb--c {
+  background: #CECCC6;
+  filter: url(#liquid-wave);
+  transition: filter 0.3s ease;
+}
 
 /* Project 1 — square */
 .work_item:nth-child(1) .work_thumb { aspect-ratio: 1 / 1; }

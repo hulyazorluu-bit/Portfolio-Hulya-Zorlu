@@ -123,7 +123,19 @@
     function uploadTexture() {
       gl.bindTexture(gl.TEXTURE_2D, tex);
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+      // Draw to offscreen canvas first — avoids crossorigin/SVG issues in WebGL
+      var w = img.naturalWidth  || thumb.offsetWidth  || 512;
+      var h = img.naturalHeight || thumb.offsetHeight || 512;
+      var offscreen = document.createElement('canvas');
+      offscreen.width  = w;
+      offscreen.height = h;
+      var ctx2d = offscreen.getContext('2d');
+      ctx2d.drawImage(img, 0, 0, w, h);
+      try {
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, offscreen);
+      } catch (e) {
+        canvas.remove(); return;
+      }
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
