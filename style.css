@@ -815,25 +815,26 @@ html.lang-fr .t-en { display: none !important; }
 .about_title {
   font-family: montrealbook, 'Helvetica Neue', sans-serif;
   font-weight: 400;
-  font-size: clamp(5.5rem, 9vw, 13rem);
+  font-size: clamp(3rem, 4.8vw, 7.5rem);
   letter-spacing: -0.03em;
-  line-height: 0.95;
+  line-height: 1;
   color: #F8F6F2;
 }
 
 .about_desc {
   position: absolute;
-  right: 12%;
+  right: 5%;
   top: 50%;
   transform: translateY(-50%);
-  width: clamp(22rem, 30vw, 36rem);
-  font-family: 'Courier Prime', monospace;
-  font-size: 0.94rem;
-  letter-spacing: 0.03em;
-  line-height: 1.8;
-  color: rgba(248,246,242,0.72);
+  width: clamp(22rem, 30vw, 38rem);
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.75;
+  color: rgba(248,246,242,0.8);
 }
-.about_desc p + p { margin-top: 1.4em; }
+.about_desc p + p { margin-top: 1.3em; }
 
 .about_more {
   position: absolute;
