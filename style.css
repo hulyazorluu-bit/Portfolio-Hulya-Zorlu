@@ -786,11 +786,11 @@ html.lang-fr .t-en { display: none !important; }
 /* ── ABOUT ────────────────────────────────────────────────────── */
 .about_pretitle {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  color: rgba(248,246,242,0.45);
-  letter-spacing: 0.02em;
-  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #F8F6F2;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.2rem;
 }
 
 .about {
