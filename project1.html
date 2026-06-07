@@ -241,116 +241,147 @@
     .tl-step-title { font-size: 8.5px; font-weight: 600; color: #1C1C1E; line-height: 1.3; }
     .tl-step-desc { font-size: 7.5px; color: #8E8E93; line-height: 1.4; }
 
-    /* S04 USER FLOW - zigzag snake */
-    .uf-snake { display: flex; flex-direction: column; }
-    .uf-row { display: flex; align-items: center; }
-    .uf-row--rtl { flex-direction: row-reverse; }
-    /* horizontal arrow connector */
-    .uf-harr {
+    /* S04 USER FLOW */
+    .uf-scroll { overflow-x: auto; padding: 80px 0 160px; }
+    .uf-flow { display: flex; align-items: center; gap: 0; width: max-content; }
+
+    /* Thomas flottant AU-DESSUS de HOME */
+    .uf-home-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .uf-thomas-float {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .uf-vc-s { width: 2px; height: 10px; background: #2B2B2E; flex-shrink: 0; }
+    .uf-vc-lbl { font-size: 9px; color: #8E8E93; margin: 2px 0; white-space: nowrap; }
+
+    /* Rappel avec Check-in/Feedback flottant EN DESSOUS */
+    .uf-rappel-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .uf-below-float {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Connecteur horizontal avec fleche */
+    .uf-hc {
       width: 36px; height: 2px;
       background: #2B2B2E;
       flex-shrink: 0;
       position: relative;
     }
-    .uf-harr::after {
+    .uf-hc::after {
       content: '';
       position: absolute;
       right: -1px; top: 50%;
       transform: translateY(-50%);
-      border-top: 5px solid transparent;
-      border-bottom: 5px solid transparent;
-      border-left: 7px solid #2B2B2E;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 6px solid #2B2B2E;
     }
-    .uf-row--rtl .uf-harr::after {
-      right: auto; left: -1px;
-      border-left: none;
-      border-right: 7px solid #2B2B2E;
-    }
-    /* turn connector: vertical line on one side */
-    .uf-turn {
-      display: flex;
-      align-items: stretch;
-    }
-    .uf-turn--right { justify-content: flex-end; }
-    .uf-turn--left { justify-content: flex-start; }
-    .uf-varr {
-      width: 2px;
-      height: 32px;
-      background: #2B2B2E;
+    .uf-hc-lbl {
+      position: absolute;
+      bottom: 5px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 8px; color: #8E8E93;
+      white-space: nowrap;
     }
 
-    /* node boxes */
+    /* Connecteur vertical */
+    .uf-vc { width: 2px; height: 28px; background: #2B2B2E; flex-shrink: 0; }
+
+    /* Nodes */
     .uf-node {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; flex-shrink: 0;
       border-radius: 8px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      flex-shrink: 0;
-      padding: 6px 10px;
     }
     .uf-node--user {
-      width: 110px; height: 44px;
-      background: #2B2B2E;
+      width: 120px; height: 50px;
+      background: #2B2B2E; padding: 6px 10px;
     }
-    .uf-node--user .uf-name { color: #FFF; font-size: 10px; font-weight: 600; }
-    .uf-node--user .uf-sub  { color: #8E8E93; font-size: 8px; }
+    .uf-nm { font-size: 11px; font-weight: 600; color: #FFF; }
+    .uf-sb { font-size: 9px; color: #8E8E93; }
     .uf-node--screen {
-      width: 110px; height: 44px;
-      border: 1.5px solid #2B2B2E;
-      background: #FFF;
-      font-size: 11px; font-weight: 700; color: #2B2B2E;
+      width: 120px; height: 50px;
+      border: 1.5px solid #2B2B2E; background: #FFF;
+      font-size: 12px; font-weight: 700; color: #2B2B2E;
     }
-    .uf-node--key {
-      width: 130px; height: 52px;
-      border: 1.5px solid #FF6B35;
-      background: #FCF7F0;
-      font-size: 9px; font-weight: 600; color: #1C1C1E;
-      gap: 2px;
+    .uf-node--cat {
+      width: 140px; height: 60px;
+      border: 1.5px solid #FF6B35; background: #FCF7F0;
+      font-size: 11px; font-weight: 600; color: #1C1C1E;
+      padding: 0 10px;
     }
-    .uf-node--key .uf-sub { font-size: 8px; color: #8E8E93; }
-    .uf-node--fork {
-      width: 130px; height: 60px;
-      border: 1.5px solid #FF6B35;
-      background: #FCF7F0;
-      gap: 2px;
+    .uf-fork { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+    .uf-fork-a {
+      width: 140px; height: 30px; border-radius: 6px;
+      border: 2px solid #FF6B35; background: #FFF;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; font-weight: 600; color: #FF6B35; font-style: italic;
     }
-    .uf-fork-a { font-size: 8px; font-weight: 700; color: #FF6B35; border: 1.5px solid #FF6B35; border-radius: 4px; padding: 2px 6px; }
-    .uf-fork-sep { font-size: 8px; color: #8E8E93; }
-    .uf-fork-b { font-size: 8px; color: #8E8E93; border: 1px solid #E5E5E8; border-radius: 4px; padding: 2px 6px; }
+    .uf-fork-b {
+      width: 140px; height: 40px; border-radius: 6px;
+      border: 1px solid #E5E5E8; background: #FFF;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 9px; color: #8E8E93; font-style: italic;
+    }
+    .uf-node--pro {
+      width: 140px; height: 60px;
+      border: 1.5px solid #2B2B2E; background: #FFF;
+      font-size: 10px; font-weight: 600; color: #1C1C1E;
+      padding: 6px 10px; gap: 3px;
+    }
+    .uf-node--pro .uf-sb { font-size: 9px; font-weight: 400; }
     .uf-node--invite {
-      width: 190px; height: 140px;
-      border: 1.5px solid #FF6B35;
-      background: #FCF7F0;
-      align-items: flex-start;
-      padding: 10px 12px;
-      gap: 0;
+      width: 210px; height: 200px;
+      border: 1.5px solid #FF6B35; background: #FCF7F0;
+      border-radius: 10px; padding: 14px;
+      align-items: flex-start; justify-content: flex-start; gap: 0;
     }
-    .uf-invite-title { font-size: 8px; font-weight: 700; color: #FF6B35; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
-    .uf-invite-item { font-size: 8px; color: #2C2C2E; padding: 2px 0 2px 8px; position: relative; line-height: 1.3; width: 100%; }
-    .uf-invite-item::before { content: '·'; position: absolute; left: 0; color: #FF6B35; }
+    .uf-invite-title {
+      font-size: 9px; font-weight: 700; color: #FF6B35;
+      text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px;
+    }
+    .uf-invite-item { font-size: 9px; color: #2C2C2E; line-height: 1.7; }
     .uf-node--rappel {
-      width: 130px; height: 84px;
-      border: 1.5px solid #2B2B2E;
-      background: #FFF;
-      align-items: flex-start;
-      padding: 8px 10px;
-      gap: 0;
+      width: 150px; height: 90px;
+      border: 1.5px solid #2B2B2E; background: #FFF;
+      border-radius: 8px; padding: 10px 12px;
+      align-items: flex-start; justify-content: flex-start; gap: 0;
     }
-    .uf-rappel-t { font-size: 9px; font-weight: 700; color: #1C1C1E; margin-bottom: 4px; }
-    .uf-rappel-i { font-size: 8px; color: #8E8E93; padding: 1px 0; }
+    .uf-rappel-t { font-size: 10px; font-weight: 700; color: #1C1C1E; margin-bottom: 5px; }
+    .uf-rappel-i { font-size: 9px; color: #8E8E93; line-height: 1.7; }
     .uf-node--checkin {
-      width: 130px; height: 50px;
-      border: 1.5px solid #2B2B2E;
-      background: #FCF7F0;
-      font-size: 9px; font-weight: 600; color: #1C1C1E;
+      width: 150px; height: 54px;
+      border: 1.5px solid #2B2B2E; background: #FCF7F0;
+      border-radius: 8px; font-size: 10px; font-weight: 600; color: #1C1C1E;
     }
     .uf-node--feedback {
-      width: 130px; height: 50px;
-      border: 1.5px solid #2B2B2E;
-      background: #E4E4E4;
-      font-size: 9px; font-weight: 600; color: #1C1C1E;
+      width: 150px; height: 54px;
+      border: 1.5px solid #2B2B2E; background: #E4E4E4;
+      border-radius: 8px; font-size: 10px; font-weight: 600; color: #1C1C1E;
     }
     .uf-legend { display: flex; gap: 20px; align-items: center; margin-top: 32px; flex-wrap: wrap; }
     .uf-legend-title { font-size: 11px; font-weight: 700; color: #8E8E93; text-transform: uppercase; letter-spacing: 0.06em; }
@@ -755,67 +786,72 @@
       <p class="section-sub">Sch&eacute;ma de navigation - parcours de Thomas de l&rsquo;ouverture de l&rsquo;app au feedback post-event.</p>
     </div>
 
-    <div class="uf-snake">
+    <div class="uf-scroll">
+      <div class="uf-flow">
 
-      <!-- ROW 1: L to R — Thomas → HOME → Choisir catégorie → Fork -->
-      <div class="uf-row">
-        <div class="uf-node uf-node--user">
-          <span class="uf-name">Thomas</span>
-          <span class="uf-sub">utilisateur</span>
+        <!-- Thomas flottant au-dessus de HOME -->
+        <div class="uf-home-wrap">
+          <div class="uf-thomas-float">
+            <div class="uf-node uf-node--user">
+              <span class="uf-nm">Thomas</span>
+              <span class="uf-sb">utilisateur</span>
+            </div>
+            <div class="uf-vc-s"></div>
+            <span class="uf-vc-lbl">ouvre l&rsquo;app</span>
+            <div class="uf-vc-s"></div>
+          </div>
+          <div class="uf-node uf-node--screen">HOME</div>
         </div>
-        <div class="uf-harr"></div>
-        <div class="uf-node uf-node--screen">HOME</div>
-        <div class="uf-harr"></div>
-        <div class="uf-node uf-node--key">Choisir la cat&eacute;gorie</div>
-        <div class="uf-harr"></div>
-        <div class="uf-node uf-node--fork">
-          <span class="uf-fork-a">Cr&eacute;er un event</span>
-          <span class="uf-fork-sep">ou</span>
-          <span class="uf-fork-b">Rejoindre un event</span>
-        </div>
-      </div>
 
-      <!-- Turn: down on the right -->
-      <div class="uf-turn uf-turn--right" style="padding-right:65px;">
-        <div class="uf-varr"></div>
-      </div>
+        <div class="uf-hc"></div>
 
-      <!-- ROW 2: R to L — Rappel ← Invitation ← Page Pro -->
-      <div class="uf-row uf-row--rtl">
-        <div class="uf-node uf-node--rappel">
-          <p class="uf-rappel-t">Rappel : event</p>
-          <p class="uf-rappel-i">Event</p>
-          <p class="uf-rappel-i">Itin&eacute;raire</p>
-          <p class="uf-rappel-i">Chat / confirmation</p>
+        <div class="uf-node uf-node--cat">Choisir la cat&eacute;gorie</div>
+
+        <div class="uf-hc"></div>
+
+        <!-- Fork : Créer / Rejoindre -->
+        <div class="uf-fork">
+          <div class="uf-fork-a">&ldquo;Cr&eacute;er un event&rdquo;</div>
+          <div class="uf-fork-b">&ldquo;Rejoindre un event&rdquo;</div>
         </div>
-        <div class="uf-harr"></div>
+
+        <div class="uf-hc"></div>
+
+        <div class="uf-node uf-node--pro">
+          <span>Page Pro</span>
+          <span class="uf-sb">(cr&eacute;er un event)</span>
+        </div>
+
+        <div class="uf-hc" style="position:relative;"><span class="uf-hc-lbl">id&eacute;e</span></div>
+
         <div class="uf-node uf-node--invite">
           <p class="uf-invite-title">Partie : Invitation</p>
           <p class="uf-invite-item">1. Espace collaboratif (chat)</p>
           <p class="uf-invite-item">2. To-do (temps r&eacute;el)</p>
-          <p class="uf-invite-item">3. Info de l&rsquo;event</p>
-          <p class="uf-invite-item">4. Budget partag&eacute;</p>
-          <p class="uf-invite-item">5. Itin&eacute;raire (Maps)</p>
+          <p class="uf-invite-item">3. Info de l&rsquo;event (r&eacute;cap lieu, heure...)</p>
+          <p class="uf-invite-item">4. Budget partag&eacute; (d&eacute;penses...)</p>
+          <p class="uf-invite-item">5. Itin&eacute;raire recommand&eacute; (Maps)</p>
         </div>
-        <div class="uf-harr"></div>
-        <div class="uf-node uf-node--key">
-          <span>Page Pro</span>
-          <span class="uf-sub">(cr&eacute;er un event)</span>
+
+        <div class="uf-hc"></div>
+
+        <!-- Rappel avec Check-in + Feedback en dessous -->
+        <div class="uf-rappel-wrap">
+          <div class="uf-node uf-node--rappel">
+            <p class="uf-rappel-t">Rappel : event</p>
+            <p class="uf-rappel-i">Event</p>
+            <p class="uf-rappel-i">Itin&eacute;raire</p>
+            <p class="uf-rappel-i">Chat / confirmation</p>
+          </div>
+          <div class="uf-below-float">
+            <div class="uf-vc"></div>
+            <div class="uf-node uf-node--checkin">Check-in (QR Code)</div>
+            <div class="uf-vc"></div>
+            <div class="uf-node uf-node--feedback">Feedback (avis)</div>
+          </div>
         </div>
-      </div>
 
-      <!-- Turn: down on the left -->
-      <div class="uf-turn uf-turn--left" style="padding-left:65px;">
-        <div class="uf-varr"></div>
       </div>
-
-      <!-- ROW 3: L to R — Check-in → Feedback -->
-      <div class="uf-row">
-        <div class="uf-node uf-node--checkin">Check-in (QR Code)</div>
-        <div class="uf-harr"></div>
-        <div class="uf-node uf-node--feedback">Feedback (avis)</div>
-      </div>
-
     </div>
 
     <div class="uf-legend">
