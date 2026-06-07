@@ -392,6 +392,7 @@ function revealPage() {
   });
 
   document.querySelectorAll('.work_thumb').forEach(thumb => {
+    if (thumb.closest('.work_item--soon')) return;
     thumb.addEventListener('mouseenter', () => cursor.classList.add('visible'));
     thumb.addEventListener('mouseleave', () => cursor.classList.remove('visible'));
   });
