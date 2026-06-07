@@ -815,11 +815,10 @@ html.lang-fr .t-en { display: none !important; }
 .about_title {
   font-family: montrealbook, 'Helvetica Neue', sans-serif;
   font-weight: 400;
-  font-size: clamp(2.8rem, 4.2vw, 6rem);
+  font-size: clamp(5.5rem, 9vw, 13rem);
   letter-spacing: -0.03em;
   line-height: 0.95;
   color: #F8F6F2;
-  white-space: nowrap;
 }
 
 .about_desc {
@@ -1215,7 +1214,7 @@ html.lang-fr .t-en { display: none !important; }
 
 /* About responsive */
 @media (max-width: 900px) {
-  .about_title { white-space: normal; font-size: clamp(2.4rem, 6vw, 4rem); }
+  .about_title { font-size: clamp(3.2rem, 8vw, 6rem); }
   .about_cols { grid-template-columns: 1fr; gap: 3rem; }
   .xp_row { grid-template-columns: 1fr; gap: 0.4rem; }
   .xp_co { font-size: 1.2rem; }
