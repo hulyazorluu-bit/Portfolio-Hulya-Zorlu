@@ -471,11 +471,11 @@
           var dx = (r.left + r.width  / 2) - e.clientX;
           var dy = (r.top  + r.height / 2) - e.clientY;
           var d  = Math.sqrt(dx * dx + dy * dy) || 1;
-          var g  = Math.exp(-(d * d) / (2 * 140 * 140));
+          var g  = Math.exp(-(d * d) / (2 * 90 * 90));
           chars[i].style.transition = 'transform 0s';
           chars[i].style.transform  = 'translate('
-            + ((dx / d) * 12 * g).toFixed(1) + 'px,'
-            + ((dy / d) * 12 * g).toFixed(1) + 'px)';
+            + ((dx / d) * 6 * g).toFixed(1) + 'px,'
+            + ((dy / d) * 6 * g).toFixed(1) + 'px)';
         }
       }, { passive: true });
       document.addEventListener('mouseleave', function () {
