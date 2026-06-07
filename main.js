@@ -192,28 +192,35 @@ function scramble(el, finalText, { delay = 0, duration = 1200 } = {}) {
   setTimeout(() => requestAnimationFrame(render), delay);
 }
 
-/* ── Scroll ticker — 1 special char at a time, loops ─────────── */
-function scrollTicker(el, text, { charDelay = 45, pause = 2000 } = {}) {
-  const chars = text.split('');
-  const start = 1;                  /* skip '[' */
-  const end   = chars.length - 2;  /* skip ']' */
-  let pos = start;
+/* ── Scroll ticker — scramble inner text only, brackets stay fixed ─ */
+function scrollTicker(el, text, { duration = 1400, pause = 2200 } = {}) {
+  const open   = text.indexOf('[');
+  const close  = text.lastIndexOf(']');
+  const prefix = text.slice(0, open + 1);
+  const inner  = text.slice(open + 1, close).split('');
+  const suffix = text.slice(close);
+  const totalFrames = Math.ceil(duration / 40);
 
-  function next() {
-    if (pos <= end) {
-      el.textContent = chars.map((ch, i) =>
-        i === pos ? GLYPHS[Math.floor(Math.random() * GLYPHS.length)] : ch
+  function runScramble() {
+    let frame = 0;
+    function render() {
+      const progress = frame / totalFrames;
+      const scrambled = inner.map((ch, i) =>
+        ch === ' '
+          ? ch
+          : progress > i / inner.length
+            ? ch
+            : GLYPHS[Math.floor(Math.random() * GLYPHS.length)]
       ).join('');
-      pos++;
-      setTimeout(next, charDelay);
-    } else {
-      el.textContent = text;
-      pos = start;
-      setTimeout(next, pause);
+      el.textContent = prefix + scrambled + suffix;
+      frame++;
+      if (frame <= totalFrames) requestAnimationFrame(render);
+      else { el.textContent = text; setTimeout(runScramble, pause); }
     }
+    requestAnimationFrame(render);
   }
 
-  setTimeout(next, 1000);
+  setTimeout(runScramble, pause);
 }
 
 
@@ -328,7 +335,7 @@ function revealPage() {
     if (portTw) triggerTypewriter(portTw, 22, null);
 
     if (scrollEl) {
-      const SCROLL_TEXT = '[défiler pour explorer]';
+      const SCROLL_TEXT = '[ Faites défiler vers le bas ]';
       const INIT_DUR = 2600;
       scrollEl.style.opacity = '1';
       scramble(scrollEl, SCROLL_TEXT, { duration: INIT_DUR });
