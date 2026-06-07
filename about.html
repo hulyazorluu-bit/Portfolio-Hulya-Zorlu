@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>À propos — Hulya Zorlu, Designer UX/UI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #F5F0E8; color: #1C1C1E; line-height: 1.5; }
+
+    /* ── NAV ── */
+    .nav {
+      background: #1C1C1E;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 80px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-back {
+      color: #8E8E93;
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: #FF6B35; }
+    .nav-cv {
+      color: #FF6B35;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid #FF6B35;
+      padding: 6px 16px;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cv:hover { background: #FF6B35; color: #1C1C1E; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 100px 80px 80px;
+      position: relative;
+      border-bottom: 1px solid rgba(28,28,30,0.1);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0;
+      width: 4px; height: 100%;
+      background: #FF6B35;
+    }
+    .hero-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: #FF6B35;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 36px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .hero-left {}
+    .hero-name {
+      font-size: clamp(2.8rem, 5vw, 5.2rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #1C1C1E;
+      margin-bottom: 28px;
+    }
+    .hero-name strong { color: #FF6B35; font-weight: 700; }
+    .hero-lead {
+      font-size: 15px;
+      color: #2C2C2E;
+      line-height: 1.75;
+      max-width: 480px;
+    }
+
+    /* ── IMAGE ── */
+    .hero-right {}
+    .photo-wrap {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: #E8E3D8;
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+      max-width: 420px;
+    }
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      color: #8E8E93;
+    }
+    .photo-placeholder span:first-child {
+      font-size: 36px;
+      opacity: 0.35;
+    }
+    .photo-placeholder span:last-child {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* ── BIO ── */
+    .bio {
+      padding: 80px 80px 100px;
+      max-width: 1200px;
+    }
+    .bio-inner {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 80px;
+    }
+    .bio-sidebar {
+      padding-top: 6px;
+    }
+    .bio-sidebar-label {
+      font-size: 10px;
+      font-weight: 700;
+      color: #8E8E93;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .bio-sidebar-line {
+      width: 32px;
+      height: 2px;
+      background: #FF6B35;
+    }
+    .bio-text {}
+    .bio-text p {
+      font-size: 15px;
+      color: #2C2C2E;
+      line-height: 1.85;
+      max-width: 640px;
+    }
+    .bio-text p + p {
+      margin-top: 2em;
+    }
+    .bio-text p:last-child {
+      font-style: italic;
+      color: #8E8E93;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #1C1C1E;
+      padding: 24px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer span { font-size: 12px; color: #8E8E93; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .nav { padding: 16px 24px; }
+      .hero { padding: 64px 24px 56px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .photo-wrap { max-width: 100%; aspect-ratio: 4 / 3; }
+      .bio { padding: 56px 24px 72px; }
+      .bio-inner { grid-template-columns: 1fr; gap: 32px; }
+      .bio-sidebar { display: flex; align-items: center; gap: 16px; }
+      .footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav-back">&larr; Portfolio</a>
+    <a href="assets/CV_portfolio.pdf" target="_blank" rel="noopener" class="nav-cv">READ.CV &nearr;</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-tag">À propos</p>
+    <div class="hero-grid">
+      <div class="hero-left">
+        <h1 class="hero-name">Hello, moi c&rsquo;est <strong>H&uuml;lya</strong></h1>
+        <p class="hero-lead">
+          Mon parcours n&rsquo;est pas celui d&rsquo;une designer traditionnelle, et c&rsquo;est justement ce qui fait ma force.
+        </p>
+      </div>
+      <div class="hero-right">
+        <div class="photo-wrap">
+          <!-- Remplacer par : <img src="assets/photo-hulya.jpg" alt="Hülya Zorlu" /> -->
+          <div class="photo-placeholder">
+            <span>&#128247;</span>
+            <span>Photo &agrave; venir</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIO -->
+  <section class="bio">
+    <div class="bio-inner">
+      <div class="bio-sidebar">
+        <p class="bio-sidebar-label">Biographie</p>
+        <div class="bio-sidebar-line"></div>
+      </div>
+      <div class="bio-text">
+        <p>
+          J&rsquo;ai commenc&eacute; par &eacute;tudier le commerce international avant de poursuivre un MSc en Data Analytics &amp; Marketing Management. Cette formation m&rsquo;a appris &agrave; analyser les comportements, interpr&eacute;ter les donn&eacute;es et comprendre les m&eacute;canismes qui influencent les d&eacute;cisions des utilisateurs.
+        </p>
+        <p>
+          Mes exp&eacute;riences en agence de publicit&eacute; et en marketing m&rsquo;ont permis de prendre conscience de mon attrait pour les dimensions plus cr&eacute;atives des projets. En travaillant sur des probl&eacute;matiques de communication et d&rsquo;exp&eacute;rience de marque, j&rsquo;ai d&eacute;couvert que j&rsquo;&eacute;tais particuli&egrave;rement attir&eacute;e par la conception, la mise en forme des id&eacute;es et la recherche de solutions visuelles et fonctionnelles. C&rsquo;est dans ce contexte que j&rsquo;ai progressivement explor&eacute; l&rsquo;UX/UI Design, en y retrouvant un &eacute;quilibre entre cr&eacute;ativit&eacute;, analyse et r&eacute;solution de probl&egrave;mes.
+        </p>
+        <p>
+          Pour approfondir cette sp&eacute;cialisation, j&rsquo;ai suivi des formations en design graphique, en UX/UI Design et en d&eacute;veloppement web. Aujourd&rsquo;hui, je travaille principalement avec Figma et je continue &agrave; d&eacute;velopper mes comp&eacute;tences en HTML, CSS et JavaScript afin de mieux comprendre les contraintes techniques et collaborer efficacement avec les &eacute;quipes produit et d&eacute;veloppement.
+        </p>
+        <p>
+          Ce qui m&rsquo;anime au quotidien, c&rsquo;est de transformer des insights utilisateurs en exp&eacute;riences simples, intuitives et utiles. J&rsquo;aime explorer les comportements, remettre en question les &eacute;vidences et trouver l&rsquo;&eacute;quilibre entre les besoins des utilisateurs et les objectifs business.
+        </p>
+        <p>
+          Quand je ne suis pas sur Figma, on me trouve souvent en train d&rsquo;observer les d&eacute;tails d&rsquo;une application, de tester un nouveau produit digital ou de me demander pourquoi un bouton est plac&eacute; exactement &agrave; cet endroit.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span>H&uuml;lya Zorlu &middot; Designer UX/UI</span>
+    <span>&copy; 2026</span>
+    <span><a href="index.html" style="color:#8E8E93;text-decoration:none;">&larr; Retour au portfolio</a></span>
+  </footer>
+
+</body>
+</html>

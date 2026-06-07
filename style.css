@@ -827,13 +827,14 @@ html.lang-fr .t-en { display: none !important; }
   right: 12%;
   top: 50%;
   transform: translateY(-50%);
-  width: clamp(22rem, 32vw, 38rem);
+  width: clamp(22rem, 30vw, 36rem);
   font-family: 'Courier Prime', monospace;
-  font-size: 1rem;
+  font-size: 0.94rem;
   letter-spacing: 0.03em;
-  line-height: 1.85;
+  line-height: 1.8;
   color: rgba(248,246,242,0.72);
 }
+.about_desc p + p { margin-top: 1.4em; }
 
 .about_more {
   position: absolute;
