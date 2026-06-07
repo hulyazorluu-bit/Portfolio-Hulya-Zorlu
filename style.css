@@ -126,27 +126,51 @@ html.lang-fr .t-en { display: none !important; }
   overflow: visible;
 }
 
-/* Frosted nav — covers only the nav bar, fades at bottom edge, no hard line */
-.nav::before {
-  content: '';
+/* Liquid glass — 4 stacked blur layers, strongest at top, gone at bottom */
+.nav-glass {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 6rem;
+  inset: 0;
   z-index: -1;
   pointer-events: none;
-  backdrop-filter: blur(22px) saturate(1.4);
-  -webkit-backdrop-filter: blur(22px) saturate(1.4);
-  background: rgba(245,240,232,0.82);
-  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
   opacity: var(--nav-bg-opacity, 0);
-  transition: background 0.55s ease, opacity 0.4s ease;
+  transition: opacity 0.4s ease;
 }
 
-.nav--dark::before {
-  background: rgba(12,12,12,0.88);
+.nav-glass > div {
+  position: absolute;
+  inset: 0;
+}
+
+/* Layer 1 — maximum blur, dominates the top third */
+.nav-glass__l1 {
+  backdrop-filter: blur(28px) saturate(1.7);
+  -webkit-backdrop-filter: blur(28px) saturate(1.7);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 22%, transparent 70%);
+  mask-image: linear-gradient(to bottom, black 0%, black 22%, transparent 70%);
+}
+
+/* Layer 2 — strong blur, middle-upper band */
+.nav-glass__l2 {
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 14%, black 32%, black 52%, transparent 83%);
+  mask-image: linear-gradient(to bottom, transparent 14%, black 32%, black 52%, transparent 83%);
+}
+
+/* Layer 3 — medium blur, lower-middle band */
+.nav-glass__l3 {
+  backdrop-filter: blur(8px) saturate(1.2);
+  -webkit-backdrop-filter: blur(8px) saturate(1.2);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 44%, black 60%, transparent 92%);
+  mask-image: linear-gradient(to bottom, transparent 44%, black 60%, transparent 92%);
+}
+
+/* Layer 4 — feather, bottom edge only */
+.nav-glass__l4 {
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 70%, black 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 70%, black 82%, transparent 100%);
 }
 
 
