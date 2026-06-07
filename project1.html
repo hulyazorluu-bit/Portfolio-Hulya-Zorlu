@@ -58,7 +58,6 @@
     }
     .hero-right {
       width: 360px;
-      background: #1C1C1E;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -66,10 +65,9 @@
       padding: 40px;
     }
     .hero-mockup {
-      max-width: 200px;
-      max-height: 400px;
+      max-width: 260px;
+      max-height: 460px;
       object-fit: contain;
-      border-radius: 16px;
     }
     .hero-title {
       font-size: 110px;
@@ -213,6 +211,15 @@
       background: #FFC0A9;
       border-radius: 0 0 8px 8px;
     }
+    .tl-card--p1 { border-color: #FF6B35; }
+    .tl-card--p1::after { background: #FF6B35; }
+    .tl-card--p2 { border-color: #8E8E93; }
+    .tl-card--p2::after { background: #8E8E93; }
+    .tl-card--p3 { border-color: #2C2C2E; }
+    .tl-card--p3::after { background: #2C2C2E; }
+    .tl-dot--p1 { background: #FF6B35; }
+    .tl-dot--p2 { background: #8E8E93; }
+    .tl-dot--p3 { background: #2C2C2E; }
     .tl-conn {
       width: 2px;
       height: 20px;
@@ -227,175 +234,132 @@
       flex-shrink: 0;
       z-index: 2;
     }
-    .tl-step-num { font-size: 9px; font-weight: 700; color: #FFC0A9; }
+    .tl-step-num { font-size: 9px; font-weight: 700; color: inherit; opacity: 0.7; }
+    .tl-card--p1 .tl-step-num { color: #FF6B35; opacity: 1; }
+    .tl-card--p2 .tl-step-num { color: #8E8E93; opacity: 1; }
+    .tl-card--p3 .tl-step-num { color: #2C2C2E; opacity: 1; }
     .tl-step-title { font-size: 8.5px; font-weight: 600; color: #1C1C1E; line-height: 1.3; }
     .tl-step-desc { font-size: 7.5px; color: #8E8E93; line-height: 1.4; }
 
-    /* S04 USER FLOW */
-    .uf-wrap { display: flex; flex-direction: column; align-items: center; padding: 20px 0; }
-    .uf-conn { width: 2px; height: 54px; background: #2B2B2E; flex-shrink: 0; }
-    .uf-conn--light { background: #E5E5E8; }
-
-    .uf-box-user {
-      width: 120px; height: 44px;
-      border-radius: 8px;
+    /* S04 USER FLOW - zigzag snake */
+    .uf-snake { display: flex; flex-direction: column; }
+    .uf-row { display: flex; align-items: center; }
+    .uf-row--rtl { flex-direction: row-reverse; }
+    /* horizontal arrow connector */
+    .uf-harr {
+      width: 36px; height: 2px;
       background: #2B2B2E;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .uf-harr::after {
+      content: '';
+      position: absolute;
+      right: -1px; top: 50%;
+      transform: translateY(-50%);
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 7px solid #2B2B2E;
+    }
+    .uf-row--rtl .uf-harr::after {
+      right: auto; left: -1px;
+      border-left: none;
+      border-right: 7px solid #2B2B2E;
+    }
+    /* turn connector: vertical line on one side */
+    .uf-turn {
+      display: flex;
+      align-items: stretch;
+    }
+    .uf-turn--right { justify-content: flex-end; }
+    .uf-turn--left { justify-content: flex-start; }
+    .uf-varr {
+      width: 2px;
+      height: 32px;
+      background: #2B2B2E;
+    }
+
+    /* node boxes */
+    .uf-node {
+      border-radius: 8px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 1px;
+      text-align: center;
+      flex-shrink: 0;
+      padding: 6px 10px;
     }
-    .uf-box-user-name { color: #FFF; font-size: 10px; font-weight: 600; text-align: center; }
-    .uf-box-user-sub { color: #8E8E93; font-size: 8px; text-align: center; }
-
-    .uf-box-home {
-      width: 120px; height: 44px;
-      border-radius: 8px;
+    .uf-node--user {
+      width: 110px; height: 44px;
+      background: #2B2B2E;
+    }
+    .uf-node--user .uf-name { color: #FFF; font-size: 10px; font-weight: 600; }
+    .uf-node--user .uf-sub  { color: #8E8E93; font-size: 8px; }
+    .uf-node--screen {
+      width: 110px; height: 44px;
       border: 1.5px solid #2B2B2E;
       background: #FFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 11px;
-      font-weight: 700;
-      color: #2B2B2E;
-      letter-spacing: 0.05em;
+      font-size: 11px; font-weight: 700; color: #2B2B2E;
     }
-
-    .uf-box-cat {
-      width: 140px; height: 56px;
-      border-radius: 8px;
+    .uf-node--key {
+      width: 130px; height: 52px;
       border: 1.5px solid #FF6B35;
       background: #FCF7F0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 9px;
-      font-weight: 600;
-      color: #1C1C1E;
-      text-align: center;
-      padding: 0 10px;
-    }
-
-    .uf-choice { display: flex; flex-direction: column; align-items: center; }
-    .uf-box-choice-a {
-      width: 134px; height: 20px;
-      border-radius: 6px;
-      border: 2px solid #FF6B35;
-      background: #FFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 8px;
-      font-weight: 600;
-      color: #FF6B35;
-    }
-    .uf-box-choice-b {
-      width: 134px; height: 38px;
-      border-radius: 6px;
-      border: 1px solid #E5E5E8;
-      background: #FFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 8px;
-      font-weight: 600;
-      color: #8E8E93;
-    }
-
-    .uf-box-pro {
-      width: 130px; height: 60px;
-      border-radius: 8px;
-      border: 1.5px solid #FF6B35;
-      background: #FCF7F0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      font-size: 9px; font-weight: 600; color: #1C1C1E;
       gap: 2px;
     }
-    .uf-box-pro-title { font-size: 9px; font-weight: 600; color: #1F1F21; text-align: center; }
-    .uf-box-pro-sub { font-size: 8px; color: #8E8E93; text-align: center; }
-
-    .uf-box-invitation {
-      width: 220px; height: 220px;
-      border-radius: 10px;
+    .uf-node--key .uf-sub { font-size: 8px; color: #8E8E93; }
+    .uf-node--fork {
+      width: 130px; height: 60px;
       border: 1.5px solid #FF6B35;
       background: #FCF7F0;
-      padding: 16px;
+      gap: 2px;
     }
-    .uf-invitation-title {
-      font-size: 9px;
-      font-weight: 700;
-      color: #FF6B35;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 8px;
+    .uf-fork-a { font-size: 8px; font-weight: 700; color: #FF6B35; border: 1.5px solid #FF6B35; border-radius: 4px; padding: 2px 6px; }
+    .uf-fork-sep { font-size: 8px; color: #8E8E93; }
+    .uf-fork-b { font-size: 8px; color: #8E8E93; border: 1px solid #E5E5E8; border-radius: 4px; padding: 2px 6px; }
+    .uf-node--invite {
+      width: 190px; height: 140px;
+      border: 1.5px solid #FF6B35;
+      background: #FCF7F0;
+      align-items: flex-start;
+      padding: 10px 12px;
+      gap: 0;
     }
-    .uf-invitation-item {
-      font-size: 9px;
-      color: #2C2C2E;
-      padding: 3px 0 3px 10px;
-      position: relative;
-      line-height: 1.3;
-    }
-    .uf-invitation-item::before { content: '·'; position: absolute; left: 0; color: #FF6B35; }
-
-    .uf-box-rappel {
-      width: 130px; height: 100px;
-      border-radius: 8px;
+    .uf-invite-title { font-size: 8px; font-weight: 700; color: #FF6B35; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+    .uf-invite-item { font-size: 8px; color: #2C2C2E; padding: 2px 0 2px 8px; position: relative; line-height: 1.3; width: 100%; }
+    .uf-invite-item::before { content: '·'; position: absolute; left: 0; color: #FF6B35; }
+    .uf-node--rappel {
+      width: 130px; height: 84px;
       border: 1.5px solid #2B2B2E;
       background: #FFF;
-      padding: 10px 12px;
+      align-items: flex-start;
+      padding: 8px 10px;
+      gap: 0;
     }
-    .uf-rappel-title { font-size: 9px; font-weight: 700; color: #1C1C1E; margin-bottom: 6px; }
-    .uf-rappel-item { font-size: 8px; color: #8E8E93; padding: 2px 0; }
-
-    .uf-box-checkin {
-      width: 130px; height: 54px;
-      border-radius: 8px;
+    .uf-rappel-t { font-size: 9px; font-weight: 700; color: #1C1C1E; margin-bottom: 4px; }
+    .uf-rappel-i { font-size: 8px; color: #8E8E93; padding: 1px 0; }
+    .uf-node--checkin {
+      width: 130px; height: 50px;
       border: 1.5px solid #2B2B2E;
       background: #FCF7F0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 9px;
-      font-weight: 600;
-      color: #1C1C1E;
-      text-align: center;
-      padding: 0 10px;
+      font-size: 9px; font-weight: 600; color: #1C1C1E;
     }
-
-    .uf-box-feedback {
-      width: 130px; height: 54px;
-      border-radius: 8px;
+    .uf-node--feedback {
+      width: 130px; height: 50px;
       border: 1.5px solid #2B2B2E;
       background: #E4E4E4;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 9px;
-      font-weight: 600;
-      color: #1C1C1E;
-      text-align: center;
-      padding: 0 10px;
+      font-size: 9px; font-weight: 600; color: #1C1C1E;
     }
-
     .uf-legend { display: flex; gap: 20px; align-items: center; margin-top: 32px; flex-wrap: wrap; }
     .uf-legend-title { font-size: 11px; font-weight: 700; color: #8E8E93; text-transform: uppercase; letter-spacing: 0.06em; }
     .uf-legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #8E8E93; }
     .uf-legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
 
     /* S05 & S07 WIREFRAMES */
-    .wf-tags { display: flex; gap: 10px; margin-bottom: 28px; flex-wrap: wrap; }
-    .wf-tag { font-size: 11px; font-weight: 600; color: #FF6B35; border: 1px solid #FF6B35; border-radius: 100px; padding: 4px 12px; }
-    .wf-points { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 36px; }
-    .wf-point-title { font-size: 13px; font-weight: 600; color: #1C1C1E; margin-bottom: 4px; }
-    .wf-point-desc { font-size: 12px; color: #8E8E93; }
-    .wf-img { width: 100%; border-radius: 8px; display: block; border: 1px solid #E5E0D8; }
-    .midfi-labels { display: flex; gap: 10px; margin-bottom: 28px; flex-wrap: wrap; }
-    .midfi-label { font-size: 11px; font-weight: 600; color: #8E8E93; background: #F5F0E8; padding: 4px 10px; border-radius: 4px; }
+    .section--fullimg { padding: 0; border-top: 1px solid #E5E0D8; }
+    .wf-fullimg { width: 100%; display: block; }
 
     /* S06 & S08 TESTS */
     .test-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
@@ -495,7 +459,7 @@
       </div>
     </div>
     <div class="hero-right">
-      <img src="assets/wevenmockup.jpg" alt="Wevent App Mockup" class="hero-mockup" />
+      <img src="assets/weventmockup.png" alt="Wevent App Mockup" class="hero-mockup" />
     </div>
   </section>
 
@@ -566,7 +530,7 @@
 
       <div class="persona-card persona-card--selected">
         <p class="persona-badge">Persona retenu &#10003;</p>
-        <div class="persona-photo"><img src="assets/thomacarrel.jpg" alt="Thomas Carrel" /></div>
+        <div class="persona-photo"><img src="assets/thomascarrel.jpg" alt="Thomas Carrel" /></div>
         <p class="persona-name">Thomas Carrel</p>
         <p class="persona-role">Directeur artistique - Balenciaga</p>
         <p class="persona-desc">Responsable de la direction cr&eacute;ative de campagnes et d&rsquo;&eacute;v&eacute;nements de marque premium &agrave; Paris.</p>
@@ -623,159 +587,159 @@
       <div class="tl-grid">
         <div class="tl-horiz-line" aria-hidden="true"></div>
 
-        <!-- Col 1 — above -->
+        <!-- Col 1 — above — P1 -->
         <div class="tl-col tl-col--above">
-          <div class="tl-card">
+          <div class="tl-card tl-card--p1">
             <span class="tl-step-num">01</span>
             <p class="tl-step-title">Entretien utilisateur</p>
             <p class="tl-step-desc">Interview M. Nicrole Recherche qualitative</p>
           </div>
           <div class="tl-conn"></div>
-          <div class="tl-dot"></div>
+          <div class="tl-dot tl-dot--p1"></div>
           <div class="tl-spacer"></div>
         </div>
 
-        <!-- Col 2 — below -->
+        <!-- Col 2 — below — P1 -->
         <div class="tl-col tl-col--below">
           <div class="tl-spacer"></div>
-          <div class="tl-dot"></div>
+          <div class="tl-dot tl-dot--p1"></div>
           <div class="tl-conn"></div>
-          <div class="tl-card">
+          <div class="tl-card tl-card--p1">
             <span class="tl-step-num">02</span>
             <p class="tl-step-title">Persona</p>
             <p class="tl-step-desc">Thomas Carrel retenu DA - Balenciaga</p>
           </div>
         </div>
 
-        <!-- Col 3 — above -->
+        <!-- Col 3 — above — P1 -->
         <div class="tl-col tl-col--above">
-          <div class="tl-card">
+          <div class="tl-card tl-card--p1">
             <span class="tl-step-num">03</span>
             <p class="tl-step-title">Parcours utilisateur</p>
             <p class="tl-step-desc">User Journey Map Sc&eacute;nario Thomas</p>
           </div>
           <div class="tl-conn"></div>
-          <div class="tl-dot"></div>
+          <div class="tl-dot tl-dot--p1"></div>
           <div class="tl-spacer"></div>
         </div>
 
-        <!-- Col 4 — below -->
+        <!-- Col 4 — below — P1 -->
         <div class="tl-col tl-col--below">
           <div class="tl-spacer"></div>
-          <div class="tl-dot"></div>
+          <div class="tl-dot tl-dot--p1"></div>
           <div class="tl-conn"></div>
-          <div class="tl-card">
+          <div class="tl-card tl-card--p1">
             <span class="tl-step-num">04</span>
             <p class="tl-step-title">Probl&eacute;misation</p>
             <p class="tl-step-desc">HMW Reformulation du probl&egrave;me</p>
           </div>
         </div>
 
-        <!-- Col 5 — above -->
+        <!-- Col 5 — above — P2 -->
         <div class="tl-col tl-col--above">
-          <div class="tl-card">
+          <div class="tl-card tl-card--p2">
             <span class="tl-step-num">05</span>
             <p class="tl-step-title">Id&eacute;ation</p>
             <p class="tl-step-desc">Crazy 8 S&eacute;lection solutions</p>
           </div>
           <div class="tl-conn"></div>
-          <div class="tl-dot"></div>
+          <div class="tl-dot tl-dot--p2"></div>
           <div class="tl-spacer"></div>
         </div>
 
-        <!-- Col 6 — below -->
+        <!-- Col 6 — below — P2 -->
         <div class="tl-col tl-col--below">
           <div class="tl-spacer"></div>
-          <div class="tl-dot"></div>
+          <div class="tl-dot tl-dot--p2"></div>
           <div class="tl-conn"></div>
-          <div class="tl-card">
+          <div class="tl-card tl-card--p2">
             <span class="tl-step-num">06</span>
             <p class="tl-step-title">User Flow</p>
             <p class="tl-step-desc">Architecture nav 3 flux principaux</p>
           </div>
         </div>
 
-        <!-- Col 7 — above -->
+        <!-- Col 7 — above — P2 -->
         <div class="tl-col tl-col--above">
-          <div class="tl-card">
+          <div class="tl-card tl-card--p2">
             <span class="tl-step-num">07</span>
             <p class="tl-step-title">Wireframes</p>
             <p class="tl-step-desc">20 &eacute;crans Lo-Fi Annot&eacute;s &amp; test&eacute;s</p>
           </div>
           <div class="tl-conn"></div>
-          <div class="tl-dot"></div>
+          <div class="tl-dot tl-dot--p2"></div>
           <div class="tl-spacer"></div>
         </div>
 
-        <!-- Col 8 — below -->
+        <!-- Col 8 — below — P2 -->
         <div class="tl-col tl-col--below">
           <div class="tl-spacer"></div>
-          <div class="tl-dot"></div>
+          <div class="tl-dot tl-dot--p2"></div>
           <div class="tl-conn"></div>
-          <div class="tl-card">
+          <div class="tl-card tl-card--p2">
             <span class="tl-step-num">08</span>
             <p class="tl-step-title">Test user 1</p>
             <p class="tl-step-desc">3 fiches observation It&eacute;rations nav</p>
           </div>
         </div>
 
-        <!-- Col 9 — above -->
+        <!-- Col 9 — above — P3 -->
         <div class="tl-col tl-col--above">
-          <div class="tl-card">
+          <div class="tl-card tl-card--p3">
             <span class="tl-step-num">09</span>
             <p class="tl-step-title">Prototype Mid-Fi</p>
             <p class="tl-step-desc">Design system 90+ interactions</p>
           </div>
           <div class="tl-conn"></div>
-          <div class="tl-dot"></div>
+          <div class="tl-dot tl-dot--p3"></div>
           <div class="tl-spacer"></div>
         </div>
 
-        <!-- Col 10 — below -->
+        <!-- Col 10 — below — P3 -->
         <div class="tl-col tl-col--below">
           <div class="tl-spacer"></div>
-          <div class="tl-dot"></div>
+          <div class="tl-dot tl-dot--p3"></div>
           <div class="tl-conn"></div>
-          <div class="tl-card">
+          <div class="tl-card tl-card--p3">
             <span class="tl-step-num">10</span>
             <p class="tl-step-title">Test user 2</p>
             <p class="tl-step-desc">Nouveaux participants Ajustements UX</p>
           </div>
         </div>
 
-        <!-- Col 11 — above -->
+        <!-- Col 11 — above — P3 -->
         <div class="tl-col tl-col--above">
-          <div class="tl-card">
+          <div class="tl-card tl-card--p3">
             <span class="tl-step-num">11</span>
             <p class="tl-step-title">Veille UI/UX</p>
             <p class="tl-step-desc">Benchmark Tendances 2025-26</p>
           </div>
           <div class="tl-conn"></div>
-          <div class="tl-dot"></div>
+          <div class="tl-dot tl-dot--p3"></div>
           <div class="tl-spacer"></div>
         </div>
 
-        <!-- Col 12 — below -->
+        <!-- Col 12 — below — P3 -->
         <div class="tl-col tl-col--below">
           <div class="tl-spacer"></div>
-          <div class="tl-dot"></div>
+          <div class="tl-dot tl-dot--p3"></div>
           <div class="tl-conn"></div>
-          <div class="tl-card">
+          <div class="tl-card tl-card--p3">
             <span class="tl-step-num">12</span>
             <p class="tl-step-title">Design system</p>
             <p class="tl-step-desc">Palette, Typo Composants</p>
           </div>
         </div>
 
-        <!-- Col 13 — above -->
+        <!-- Col 13 — above — P3 -->
         <div class="tl-col tl-col--above">
-          <div class="tl-card">
+          <div class="tl-card tl-card--p3">
             <span class="tl-step-num">13</span>
             <p class="tl-step-title">Pitch</p>
             <p class="tl-step-desc">Case study Handoff devs</p>
           </div>
           <div class="tl-conn"></div>
-          <div class="tl-dot"></div>
+          <div class="tl-dot tl-dot--p3"></div>
           <div class="tl-spacer"></div>
         </div>
 
@@ -791,63 +755,66 @@
       <p class="section-sub">Sch&eacute;ma de navigation - parcours de Thomas de l&rsquo;ouverture de l&rsquo;app au feedback post-event.</p>
     </div>
 
-    <div class="uf-wrap">
+    <div class="uf-snake">
 
-      <!-- Thomas -->
-      <div class="uf-box-user">
-        <span class="uf-box-user-name">Thomas</span>
-        <span class="uf-box-user-sub">utilisateur</span>
+      <!-- ROW 1: L to R — Thomas → HOME → Choisir catégorie → Fork -->
+      <div class="uf-row">
+        <div class="uf-node uf-node--user">
+          <span class="uf-name">Thomas</span>
+          <span class="uf-sub">utilisateur</span>
+        </div>
+        <div class="uf-harr"></div>
+        <div class="uf-node uf-node--screen">HOME</div>
+        <div class="uf-harr"></div>
+        <div class="uf-node uf-node--key">Choisir la cat&eacute;gorie</div>
+        <div class="uf-harr"></div>
+        <div class="uf-node uf-node--fork">
+          <span class="uf-fork-a">Cr&eacute;er un event</span>
+          <span class="uf-fork-sep">ou</span>
+          <span class="uf-fork-b">Rejoindre un event</span>
+        </div>
       </div>
-      <div class="uf-conn"></div>
 
-      <!-- HOME -->
-      <div class="uf-box-home">HOME</div>
-      <div class="uf-conn"></div>
-
-      <!-- Choisir la catégorie -->
-      <div class="uf-box-cat">Choisir la cat&eacute;gorie</div>
-      <div class="uf-conn"></div>
-
-      <!-- Fork: Créer / Rejoindre -->
-      <div class="uf-choice">
-        <div class="uf-box-choice-a">Cr&eacute;er un event</div>
-        <div class="uf-box-choice-b">Rejoindre un event</div>
+      <!-- Turn: down on the right -->
+      <div class="uf-turn uf-turn--right" style="padding-right:65px;">
+        <div class="uf-varr"></div>
       </div>
-      <div class="uf-conn"></div>
 
-      <!-- Page Pro -->
-      <div class="uf-box-pro">
-        <span class="uf-box-pro-title">Page Pro</span>
-        <span class="uf-box-pro-sub">(cr&eacute;er un event)</span>
+      <!-- ROW 2: R to L — Rappel ← Invitation ← Page Pro -->
+      <div class="uf-row uf-row--rtl">
+        <div class="uf-node uf-node--rappel">
+          <p class="uf-rappel-t">Rappel : event</p>
+          <p class="uf-rappel-i">Event</p>
+          <p class="uf-rappel-i">Itin&eacute;raire</p>
+          <p class="uf-rappel-i">Chat / confirmation</p>
+        </div>
+        <div class="uf-harr"></div>
+        <div class="uf-node uf-node--invite">
+          <p class="uf-invite-title">Partie : Invitation</p>
+          <p class="uf-invite-item">1. Espace collaboratif (chat)</p>
+          <p class="uf-invite-item">2. To-do (temps r&eacute;el)</p>
+          <p class="uf-invite-item">3. Info de l&rsquo;event</p>
+          <p class="uf-invite-item">4. Budget partag&eacute;</p>
+          <p class="uf-invite-item">5. Itin&eacute;raire (Maps)</p>
+        </div>
+        <div class="uf-harr"></div>
+        <div class="uf-node uf-node--key">
+          <span>Page Pro</span>
+          <span class="uf-sub">(cr&eacute;er un event)</span>
+        </div>
       </div>
-      <div class="uf-conn"></div>
 
-      <!-- Invitation -->
-      <div class="uf-box-invitation">
-        <p class="uf-invitation-title">Partie : Invitation</p>
-        <p class="uf-invitation-item">1. Espace collaboratif (chat)</p>
-        <p class="uf-invitation-item">2. To-do (temps r&eacute;el)</p>
-        <p class="uf-invitation-item">3. Info de l&rsquo;event (r&eacute;cap lieu, heure...)</p>
-        <p class="uf-invitation-item">4. Budget partag&eacute; (d&eacute;penses...)</p>
-        <p class="uf-invitation-item">5. Itin&eacute;raire recommand&eacute; (Maps)</p>
+      <!-- Turn: down on the left -->
+      <div class="uf-turn uf-turn--left" style="padding-left:65px;">
+        <div class="uf-varr"></div>
       </div>
-      <div class="uf-conn"></div>
 
-      <!-- Rappel -->
-      <div class="uf-box-rappel">
-        <p class="uf-rappel-title">Rappel : event</p>
-        <p class="uf-rappel-item">Event</p>
-        <p class="uf-rappel-item">Itin&eacute;raire</p>
-        <p class="uf-rappel-item">Chat / confirmation</p>
+      <!-- ROW 3: L to R — Check-in → Feedback -->
+      <div class="uf-row">
+        <div class="uf-node uf-node--checkin">Check-in (QR Code)</div>
+        <div class="uf-harr"></div>
+        <div class="uf-node uf-node--feedback">Feedback (avis)</div>
       </div>
-      <div class="uf-conn"></div>
-
-      <!-- Check-in -->
-      <div class="uf-box-checkin">Check-in (QR Code)</div>
-      <div class="uf-conn"></div>
-
-      <!-- Feedback -->
-      <div class="uf-box-feedback">Feedback (avis)</div>
 
     </div>
 
@@ -861,24 +828,8 @@
   </section>
 
   <!-- 05 -->
-  <section class="section">
-    <div class="section-header">
-      <p class="section-number">05</p>
-      <h2 class="section-title">Wireframes - Low Fidelity</h2>
-    </div>
-    <div class="wf-tags">
-      <span class="wf-tag">20 &eacute;crans</span>
-      <span class="wf-tag">3 flux</span>
-      <span class="wf-tag">Annot&eacute;</span>
-      <span class="wf-tag">Test&eacute;</span>
-    </div>
-    <div class="wf-points">
-      <div><p class="wf-point-title">Navigation</p><p class="wf-point-desc">Structure claire des 3 flux principaux</p></div>
-      <div><p class="wf-point-title">Hi&eacute;rarchie</p><p class="wf-point-desc">Titres, boutons et contenu bien ordonn&eacute;s</p></div>
-      <div><p class="wf-point-title">Interactions</p><p class="wf-point-desc">Chaque bouton pointe vers l&rsquo;&eacute;cran suivant</p></div>
-      <div><p class="wf-point-title">Tests</p><p class="wf-point-desc">Valid&eacute; avec 3 utilisateurs r&eacute;els</p></div>
-    </div>
-    <img src="assets/wireframe_lowfi.png" alt="Wireframes Low Fidelity" class="wf-img" />
+  <section class="section section--fullimg">
+    <img src="assets/wireframe_lowfi.png" alt="Wireframes Low Fidelity" class="wf-fullimg" />
   </section>
 
   <!-- 06 -->
@@ -926,19 +877,8 @@
   </section>
 
   <!-- 07 -->
-  <section class="section">
-    <div class="section-header">
-      <p class="section-number">07</p>
-      <h2 class="section-title">Prototype Mid-Fidelity</h2>
-      <p class="section-sub">Design system complet &middot; 20 &eacute;crans stylis&eacute;s &middot; 90+ interactions prototype&eacute;es.</p>
-    </div>
-    <div class="midfi-labels">
-      <span class="midfi-label">10_Home</span>
-      <span class="midfi-label">02_Choix d&rsquo;usage</span>
-      <span class="midfi-label">15_Profil</span>
-      <span class="midfi-label">17_Paiement</span>
-    </div>
-    <img src="assets/wireframe_midfi.png" alt="Prototype Mid-Fidelity" class="wf-img" />
+  <section class="section section--fullimg">
+    <img src="assets/wireframe_midfi.png" alt="Prototype Mid-Fidelity" class="wf-fullimg" />
   </section>
 
   <!-- 08 -->
