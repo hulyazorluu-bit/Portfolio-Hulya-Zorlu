@@ -193,7 +193,7 @@ function scramble(el, finalText, { delay = 0, duration = 1200 } = {}) {
 }
 
 /* ── Scroll ticker — scramble inner text only, brackets stay fixed ─ */
-function scrollTicker(el, text, { duration = 1400, pause = 2200 } = {}) {
+function scrollTicker(el, text, { duration = 2200, pause = 1200 } = {}) {
   const open   = text.indexOf('[');
   const close  = text.lastIndexOf(']');
   const prefix = text.slice(0, open + 1);
