@@ -443,6 +443,10 @@ function revealPage() {
       if (r.top < navH && r.bottom > 0) isDark = true;
     });
     nav.classList.toggle('nav--dark', isDark);
+
+    /* Fade in bg as user scrolls away from top, disappear back at top */
+    const p = Math.min(window.scrollY / 110, 1);
+    document.documentElement.style.setProperty('--nav-bg-opacity', p);
   }
 
   window.addEventListener('scroll', check, { passive: true });
