@@ -817,8 +817,10 @@ html.lang-fr .t-en { display: none !important; }
   font-weight: 400;
   font-size: clamp(3.2rem, 5vw, 7.5rem);
   letter-spacing: -0.03em;
-  line-height: 1;
+  line-height: 1.05;
   color: #F8F6F2;
+  position: relative;
+  z-index: 1;
 }
 
 .about_desc {
