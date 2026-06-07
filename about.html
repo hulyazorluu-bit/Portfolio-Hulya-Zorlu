@@ -3,228 +3,205 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>À propos — Hulya Zorlu, Designer UX/UI</title>
+  <title>Hülya Zorlu — À propos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: #F5F0E8; color: #1C1C1E; line-height: 1.5; }
 
-    /* ── NAV ── */
-    .nav {
-      background: #1C1C1E;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 80px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+    html, body {
+      height: 100%;
+      background: #0A0A0A;
+      color: #F8F6F2;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
     }
-    .nav-back {
-      color: #8E8E93;
-      text-decoration: none;
-      font-size: 13px;
-      transition: color 0.2s;
-    }
-    .nav-back:hover { color: #FF6B35; }
-    .nav-cv {
-      color: #FF6B35;
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 600;
-      border: 1px solid #FF6B35;
-      padding: 6px 16px;
-      border-radius: 4px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .nav-cv:hover { background: #FF6B35; color: #1C1C1E; }
 
-    /* ── HERO ── */
-    .hero {
-      padding: 100px 80px 80px;
-      position: relative;
-      border-bottom: 1px solid rgba(28,28,30,0.1);
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0;
-      width: 4px; height: 100%;
-      background: #FF6B35;
-    }
-    .hero-tag {
+    /* ── BACK LINK ── */
+    .back {
+      position: fixed;
+      top: 28px;
+      left: 36px;
+      z-index: 50;
       font-size: 11px;
-      font-weight: 700;
-      color: #FF6B35;
+      font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      margin-bottom: 36px;
+      color: rgba(248,246,242,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
     }
-    .hero-grid {
+    .back:hover { color: #F8F6F2; }
+
+    /* ── LAYOUT ── */
+    .page {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-    .hero-left {}
-    .hero-name {
-      font-size: clamp(2.8rem, 5vw, 5.2rem);
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      color: #1C1C1E;
-      margin-bottom: 28px;
-    }
-    .hero-name strong { color: #FF6B35; font-weight: 700; }
-    .hero-lead {
-      font-size: 15px;
-      color: #2C2C2E;
-      line-height: 1.75;
-      max-width: 480px;
+      min-height: 100vh;
     }
 
-    /* ── IMAGE ── */
-    .hero-right {}
+    /* ── LEFT — PHOTO ── */
+    .col-photo {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
     .photo-wrap {
       width: 100%;
-      aspect-ratio: 3 / 4;
-      background: #E8E3D8;
-      border-radius: 2px;
-      overflow: hidden;
-      position: relative;
-      max-width: 420px;
+      height: 100%;
+      background: #111;
     }
     .photo-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center top;
       display: block;
+      filter: grayscale(8%);
     }
+    /* Placeholder shown until real photo is added */
     .photo-placeholder {
       width: 100%;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
-      gap: 12px;
-      color: #8E8E93;
-    }
-    .photo-placeholder span:first-child {
-      font-size: 36px;
-      opacity: 0.35;
-    }
-    .photo-placeholder span:last-child {
+      background: #111;
+      color: rgba(248,246,242,0.15);
       font-size: 11px;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       font-weight: 600;
     }
 
-    /* ── BIO ── */
-    .bio {
-      padding: 80px 80px 100px;
-      max-width: 1200px;
+    /* ── RIGHT — CONTENT ── */
+    .col-content {
+      padding: 88px 60px 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
-    .bio-inner {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 80px;
-    }
-    .bio-sidebar {
-      padding-top: 6px;
-    }
-    .bio-sidebar-label {
+
+    .content-label {
       font-size: 10px;
       font-weight: 700;
-      color: #8E8E93;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .bio-sidebar-line {
-      width: 32px;
-      height: 2px;
-      background: #FF6B35;
-    }
-    .bio-text {}
-    .bio-text p {
-      font-size: 15px;
-      color: #2C2C2E;
-      line-height: 1.85;
-      max-width: 640px;
-    }
-    .bio-text p + p {
-      margin-top: 2em;
-    }
-    .bio-text p:last-child {
-      font-style: italic;
-      color: #8E8E93;
+      color: rgba(248,246,242,0.35);
+      margin-bottom: 48px;
     }
 
-    /* ── FOOTER ── */
-    .footer {
-      background: #1C1C1E;
-      padding: 24px 80px;
+    .title-block {
+      margin-bottom: 48px;
+    }
+    .title-hello {
+      font-size: clamp(4rem, 6.5vw, 8rem);
+      font-weight: 900;
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+      color: #F8F6F2;
+      text-transform: uppercase;
+      display: block;
+    }
+    .title-sub {
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      color: rgba(248,246,242,0.55);
+      margin-top: 20px;
+      line-height: 1.3;
+    }
+    .title-sub strong {
+      font-weight: 700;
+      color: #F8F6F2;
+    }
+
+    .rule {
+      width: 100%;
+      height: 1px;
+      background: rgba(248,246,242,0.1);
+      margin-bottom: 40px;
+    }
+
+    .bio {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      gap: 28px;
     }
-    .footer span { font-size: 12px; color: #8E8E93; }
+    .bio p {
+      font-size: 0.97rem;
+      font-weight: 400;
+      line-height: 1.82;
+      color: rgba(248,246,242,0.7);
+    }
+    .bio p:last-child {
+      font-style: italic;
+      color: rgba(248,246,242,0.4);
+    }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 860px) {
-      .nav { padding: 16px 24px; }
-      .hero { padding: 64px 24px 56px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
-      .photo-wrap { max-width: 100%; aspect-ratio: 4 / 3; }
-      .bio { padding: 56px 24px 72px; }
-      .bio-inner { grid-template-columns: 1fr; gap: 32px; }
-      .bio-sidebar { display: flex; align-items: center; gap: 16px; }
-      .footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    .bottom-link {
+      margin-top: 64px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(248,246,242,0.3);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(248,246,242,0.15);
+      padding-bottom: 3px;
+      align-self: flex-start;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .bottom-link:hover {
+      color: #F8F6F2;
+      border-color: rgba(248,246,242,0.5);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .page { grid-template-columns: 1fr; }
+      .col-photo {
+        position: relative;
+        height: 70vw;
+        min-height: 300px;
+      }
+      .back { top: 20px; left: 20px; }
+      .col-content { padding: 48px 24px 64px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <a href="index.html" class="nav-back">&larr; Portfolio</a>
-    <a href="assets/CV_portfolio.pdf" target="_blank" rel="noopener" class="nav-cv">READ.CV &nearr;</a>
-  </nav>
+  <a href="index.html" class="back">&larr; Portfolio</a>
 
-  <!-- HERO -->
-  <section class="hero">
-    <p class="hero-tag">À propos</p>
-    <div class="hero-grid">
-      <div class="hero-left">
-        <h1 class="hero-name">Hello, moi c&rsquo;est <strong>H&uuml;lya</strong></h1>
-        <p class="hero-lead">
-          Mon parcours n&rsquo;est pas celui d&rsquo;une designer traditionnelle, et c&rsquo;est justement ce qui fait ma force.
-        </p>
-      </div>
-      <div class="hero-right">
-        <div class="photo-wrap">
-          <!-- Remplacer par : <img src="assets/photo-hulya.jpg" alt="Hülya Zorlu" /> -->
-          <div class="photo-placeholder">
-            <span>&#128247;</span>
-            <span>Photo &agrave; venir</span>
-          </div>
-        </div>
+  <div class="page">
+
+    <!-- PHOTO -->
+    <div class="col-photo">
+      <div class="photo-wrap">
+        <!-- Remplacer par votre photo : <img src="assets/photo-hulya.jpg" alt="Hülya Zorlu" /> -->
+        <div class="photo-placeholder">Photo &agrave; venir</div>
       </div>
     </div>
-  </section>
 
-  <!-- BIO -->
-  <section class="bio">
-    <div class="bio-inner">
-      <div class="bio-sidebar">
-        <p class="bio-sidebar-label">Biographie</p>
-        <div class="bio-sidebar-line"></div>
+    <!-- CONTENT -->
+    <div class="col-content">
+
+      <p class="content-label">Designer UX/UI &mdash; Paris, 2026</p>
+
+      <div class="title-block">
+        <span class="title-hello">Hello,</span>
+        <p class="title-sub">moi c&rsquo;est <strong>H&uuml;lya.</strong></p>
       </div>
-      <div class="bio-text">
+
+      <div class="rule"></div>
+
+      <div class="bio">
+        <p>
+          Mon parcours n&rsquo;est pas celui d&rsquo;une designer traditionnelle, et c&rsquo;est justement ce qui fait ma force.
+        </p>
         <p>
           J&rsquo;ai commenc&eacute; par &eacute;tudier le commerce international avant de poursuivre un MSc en Data Analytics &amp; Marketing Management. Cette formation m&rsquo;a appris &agrave; analyser les comportements, interpr&eacute;ter les donn&eacute;es et comprendre les m&eacute;canismes qui influencent les d&eacute;cisions des utilisateurs.
         </p>
@@ -241,15 +218,11 @@
           Quand je ne suis pas sur Figma, on me trouve souvent en train d&rsquo;observer les d&eacute;tails d&rsquo;une application, de tester un nouveau produit digital ou de me demander pourquoi un bouton est plac&eacute; exactement &agrave; cet endroit.
         </p>
       </div>
-    </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <span>H&uuml;lya Zorlu &middot; Designer UX/UI</span>
-    <span>&copy; 2026</span>
-    <span><a href="index.html" style="color:#8E8E93;text-decoration:none;">&larr; Retour au portfolio</a></span>
-  </footer>
+      <a href="index.html" class="bottom-link">&larr; Retour au portfolio</a>
+
+    </div>
+  </div>
 
 </body>
 </html>
