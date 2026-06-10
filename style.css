@@ -51,6 +51,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   inset: 0;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  padding: 0 2.4rem;
   pointer-events: none;
   z-index: 0;
 }
@@ -126,21 +127,7 @@ html.lang-fr .t-en { display: none !important; }
   overflow: visible;
 }
 
-/* Fond nav — transparent, Swiss Design */
-.nav-glass {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  border-bottom: none;
-  opacity: 1;
-  transition: none;
-}
-
-.nav-glass > div { display: none; }
+/* nav-glass supprimé — nav entièrement transparent */
 
 
 .nav_left {
@@ -419,10 +406,10 @@ html.lang-fr .t-en { display: none !important; }
   overflow: hidden;
 }
 
-/* ── TITLE + SUBTITLE BLOCK ────────────────── right half ─────── */
+/* ── TITLE + SUBTITLE BLOCK — col 5 → col 10 ─────────────────── */
 .hero_cnt {
   position: absolute;
-  left: 25%;
+  left: 33.333%;
   top: 50%;
   transform: translateY(-46%);
   width: 50%;
@@ -521,9 +508,11 @@ html.lang-fr .t-en { display: none !important; }
 
 .works_hd {
   display: flex;
-  align-items: baseline;
+  align-items: flex-end;
   gap: 1.6rem;
   margin-bottom: 3.6rem;
+  overflow: visible;
+  padding-bottom: 0.2em;
 }
 
 .works_title {
