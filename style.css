@@ -531,7 +531,9 @@ html.lang-fr .t-en { display: none !important; }
   font-weight: 400;
   font-size: clamp(3.5rem, 5.2vw, 7.5rem);
   letter-spacing: -0.03em;
-  line-height: 0.92;
+  line-height: 1;
+  padding-top: 0.06em;
+  overflow: visible;
   color: var(--fg);
 }
 
