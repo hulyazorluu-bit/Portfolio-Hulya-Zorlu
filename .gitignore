@@ -31,3 +31,5 @@ next-env.d.ts
 
 # Lock files (optional)
 package-lock.json
+__pycache__/
+*.pyc
