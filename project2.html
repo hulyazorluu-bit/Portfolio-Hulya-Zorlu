@@ -6,70 +6,98 @@
   <title>Commande sans allergènes - Case Study UX/UI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
+    @font-face {
+      font-family: montrealbook;
+      font-display: swap;
+      src: url(assets/fonts/NeueMontreal-Regular.woff2) format("woff2"),
+           url(assets/fonts/NeueMontreal-Regular.woff) format("woff");
+      font-weight: 400;
+    }
+
+    :root {
+      --bg: #F8F6F2;
+      --fg: #0A0A0A;
+      --fg-40: rgba(10,10,10,0.4);
+      --fg-60: rgba(10,10,10,0.6);
+      --border: rgba(10,10,10,0.1);
+      --border-md: rgba(10,10,10,0.18);
+      --alt-bg: #F0EEEA;
+      --mono: 'IBM Plex Mono', 'Courier New', monospace;
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: #fff; color: #1C1C1E; line-height: 1.5; }
+    body { font-family: montrealbook, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--fg); line-height: 1.5; }
+    a { text-decoration: none; color: inherit; }
 
     /* NAV */
     .nav {
-      background: #1C1C1E;
+      background: rgba(248,246,242,0.94);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 80px;
+      padding: 16px 80px;
       position: sticky;
       top: 0;
       z-index: 100;
     }
     .nav-left { display: flex; align-items: center; gap: 28px; }
-    .nav-back { color: #8E8E93; text-decoration: none; font-size: 13px; transition: color 0.2s; }
-    .nav-back:hover { color: #FF6B35; }
+    .nav-back {
+      font-family: var(--mono);
+      color: var(--fg-40);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--fg); }
     .nav-figma {
-      color: #FF6B35;
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 600;
-      border: 1px solid #FF6B35;
-      padding: 6px 16px;
-      border-radius: 4px;
+      font-family: var(--mono);
+      color: var(--fg);
+      font-size: 10px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid var(--fg);
+      padding: 8px 16px;
+      border-radius: 0;
       transition: background 0.2s, color 0.2s;
     }
-    .nav-figma:hover { background: #FF6B35; color: #1C1C1E; }
+    .nav-figma:hover { background: var(--fg); color: var(--bg); }
 
     /* HERO */
     .hero {
-      background: #F5F0E8;
+      background: var(--bg);
       padding: 100px 80px 80px;
       position: relative;
+      border-bottom: 1px solid var(--border);
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0;
-      width: 4px; height: 100%;
-      background: #FF6B35;
-    }
+    .hero::before { display: none; }
     .hero-tag {
-      font-size: 12px;
-      font-weight: 700;
-      color: #FF6B35;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--fg-40);
       letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 24px;
     }
     .hero-title {
-      font-size: 72px;
-      font-weight: 700;
-      color: #1C1C1E;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
+      font-family: montrealbook, 'Helvetica Neue', sans-serif;
+      font-size: clamp(3.5rem, 6vw, 7.5rem);
+      font-weight: 400;
+      color: var(--fg);
+      line-height: 1;
+      letter-spacing: -0.03em;
       max-width: 800px;
       margin-bottom: 32px;
     }
     .hero-desc {
-      font-size: 16px;
-      color: #2C2C2E;
+      font-size: 15px;
+      color: var(--fg-60);
       max-width: 600px;
       line-height: 1.7;
       margin-bottom: 48px;
@@ -77,65 +105,62 @@
     .hero-meta {
       display: flex;
       gap: 48px;
-      margin-bottom: 56px;
+      margin-bottom: 48px;
       flex-wrap: wrap;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
     }
-    .meta-item {}
     .meta-label {
+      font-family: var(--mono);
       font-size: 10px;
-      font-weight: 700;
-      color: #8E8E93;
+      color: var(--fg-40);
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-bottom: 6px;
     }
     .meta-value {
       font-size: 14px;
-      font-weight: 600;
-      color: #1C1C1E;
+      font-weight: 400;
+      color: var(--fg);
     }
 
     /* CTA BUTTONS */
-    .cta-group {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
+    .cta-group { display: flex; gap: 14px; flex-wrap: wrap; }
     .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: #FF6B35;
-      color: #fff;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      padding: 14px 28px;
-      border-radius: 4px;
-      transition: background 0.2s;
+      background: var(--fg);
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 24px;
+      border-radius: 0;
+      transition: opacity 0.2s;
     }
-    .btn-primary:hover { background: #e55a25; }
+    .btn-primary:hover { opacity: 0.75; }
     .btn-secondary {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       background: transparent;
-      color: #1C1C1E;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      padding: 14px 28px;
-      border-radius: 4px;
-      border: 1.5px solid #1C1C1E;
+      color: var(--fg);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 24px;
+      border-radius: 0;
+      border: 1px solid var(--border-md);
       transition: background 0.2s, color 0.2s;
     }
-    .btn-secondary:hover { background: #1C1C1E; color: #fff; }
+    .btn-secondary:hover { background: var(--fg); color: var(--bg); }
 
     /* COVER IMAGE */
     .cover-section {
-      background: #0A0A0A;
+      background: var(--fg);
       padding: 0;
       line-height: 0;
     }
@@ -144,17 +169,49 @@
       display: block;
       max-height: 600px;
       object-fit: cover;
+      opacity: 0.95;
+    }
+
+    /* FIGMA EMBED */
+    .figma-section {
+      padding: 80px;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .figma-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--fg-40);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+    }
+    .figma-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border: 1px solid var(--border-md);
+    }
+    .figma-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
     }
 
     /* FOOTER */
-    .footer {
-      background: #1C1C1E;
-      padding: 24px 80px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .footer { background: var(--fg); padding: 24px 80px; display: flex; justify-content: space-between; align-items: center; }
+    .footer span { font-family: var(--mono); font-size: 10px; color: rgba(248,246,242,0.4); text-transform: uppercase; letter-spacing: 0.08em; }
+
+    @media (max-width: 900px) {
+      .nav { padding: 14px 24px; }
+      .hero { padding: 64px 24px 48px; }
+      .figma-section { padding: 48px 24px; }
+      .footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
     }
-    .footer span { font-size: 12px; color: #8E8E93; }
   </style>
 </head>
 <body>
@@ -204,6 +261,18 @@
   <!-- COVER -->
   <section class="cover-section">
     <img src="assets/projet3.svg" alt="Commande sans allerg&egrave;nes" class="cover-img" />
+  </section>
+
+  <!-- FIGMA EMBED -->
+  <section class="figma-section">
+    <p class="figma-label">Prototype interactif — Figma</p>
+    <div class="figma-container">
+      <iframe
+        src="https://embed.figma.com/design/0NM5ghnJNSKCaTUVtCliof/CASE-STUDY-Commande-sans-allerg%C3%A8nes?node-id=335-29&embed-host=share"
+        allowfullscreen
+        title="CASE STUDY — Commande sans allergènes">
+      </iframe>
+    </div>
   </section>
 
   <!-- FOOTER -->
