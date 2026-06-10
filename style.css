@@ -406,13 +406,13 @@ html.lang-fr .t-en { display: none !important; }
   overflow: hidden;
 }
 
-/* ── TITLE + SUBTITLE BLOCK — col 5 → col 10 ─────────────────── */
+/* ── TITLE + SUBTITLE BLOCK — col 5 → col 10, exact grid align ── */
 .hero_cnt {
   position: absolute;
-  left: 33.333%;
+  left: calc(0.8rem + 33.333%);
+  width: calc(50% - 2.4rem);
   top: 50%;
   transform: translateY(-46%);
-  width: 50%;
   z-index: 2;
 }
 
@@ -537,9 +537,9 @@ html.lang-fr .t-en { display: none !important; }
 
 .works_grid {
   display: grid;
-  grid-template-columns: 3fr 7fr;
-  column-gap: 3.5rem;
-  row-gap: 1rem;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 0;
+  row-gap: 8rem;
   align-items: start;
 }
 
@@ -548,8 +548,10 @@ html.lang-fr .t-en { display: none !important; }
   cursor: default;
 }
 
-/* Third item: back to first column */
-.work_item:nth-child(3) { grid-column: 1; }
+/* Grid alignment: col 1-4 / 5-12 / 1-6 */
+.work_item               { grid-column: 1 / 5; }
+.work_item:nth-child(2)  { grid-column: 5 / 13; }
+.work_item:nth-child(3)  { grid-column: 1 / 7; }
 
 .work_thumb {
   width: 100%;
@@ -616,10 +618,10 @@ html.lang-fr .t-en { display: none !important; }
 /* Project 1 — square */
 .work_item:nth-child(1) .work_thumb { aspect-ratio: 1 / 1; }
 
-/* Project 2 — smaller, pushed to the right */
+/* Project 2 — large card, cols 5-12 */
 .work_item:nth-child(2) {
-  justify-self: end;
-  width: 84%;
+  justify-self: auto;
+  width: auto;
 }
 
 /* Project 2 — SVG cover adapts to natural image proportions */
@@ -755,10 +757,10 @@ html.lang-fr .t-en { display: none !important; }
 
 .about_desc {
   position: absolute;
-  left: 42%;
+  left: 50%;
   top: 50%;
   transform: translateY(-50%);
-  width: clamp(22rem, 46%, 46rem);
+  width: 50%;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1.4rem;
   font-weight: 400;
@@ -1177,7 +1179,9 @@ html.lang-fr .t-en { display: none !important; }
   .cnt_sc { bottom: 2.4rem; }
 
   .works_grid { grid-template-columns: 1fr; }
-  .work_item:nth-child(3) { grid-column: auto; }
+  .work_item               { grid-column: auto; }
+  .work_item:nth-child(2)  { grid-column: auto; width: auto; }
+  .work_item:nth-child(3)  { grid-column: auto; }
   .works_title { font-size: clamp(3.5rem, 12vw, 6rem); }
 }
 
