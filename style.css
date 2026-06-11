@@ -26,6 +26,8 @@
   --bg: #F8F6F2;
   --fg: #0A0A0A;
   --col-line: rgba(10,10,10,0.07);
+  --mg: 30px;
+  --gg: 24px;
 }
 
 /* ── Reset ────────────────────────────────────────────────────── */
@@ -51,7 +53,8 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   inset: 0;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  padding: 0 2.4rem;
+  column-gap: var(--gg);
+  padding: 0 var(--mg);
   pointer-events: none;
   z-index: 0;
 }
@@ -122,7 +125,7 @@ html.lang-fr .t-en { display: none !important; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2.4rem;
+  padding: 0 var(--mg);
   height: 4.8rem;
   overflow: visible;
   background: transparent;
@@ -326,7 +329,7 @@ html.lang-fr .t-en { display: none !important; }
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 6rem 3.2rem 4rem;
+  padding: 6rem var(--mg) 4rem;
   transform: translateY(-100%);
   transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 }
@@ -334,7 +337,7 @@ html.lang-fr .t-en { display: none !important; }
 
 .mob-close {
   position: absolute;
-  top: 2rem; right: 2.4rem;
+  top: 2rem; right: var(--mg);
   font-size: 2rem;
   color: var(--bg);
 }
@@ -358,7 +361,7 @@ html.lang-fr .t-en { display: none !important; }
 .mob-footer {
   position: absolute;
   bottom: 3.2rem;
-  left: 3.2rem;
+  left: var(--mg);
   display: flex;
   gap: 2.4rem;
 }
@@ -426,8 +429,8 @@ html.lang-fr .t-en { display: none !important; }
 /* ── TITLE + SUBTITLE BLOCK — col 6 → col 10, exact grid align ── */
 .hero_cnt {
   position: absolute;
-  left: calc(0.4rem + 41.667%);
-  width: calc(41.667% - 2rem);
+  left: calc(15px + 41.667%);
+  width: calc(41.667% - 39px);
   top: 50%;
   transform: translateY(-46%);
   z-index: 2;
@@ -495,7 +498,7 @@ html.lang-fr .t-en { display: none !important; }
 .hero_socials {
   position: absolute;
   bottom: 3.2rem;
-  right: 2.4rem;
+  right: var(--mg);
   display: flex;
   gap: 2.8rem;
   z-index: 2;
@@ -519,7 +522,7 @@ html.lang-fr .t-en { display: none !important; }
 .works {
   position: relative;
   z-index: 1;
-  padding: 0 2.4rem 10rem;
+  padding: 0 var(--mg) 10rem;
   margin-top: 12rem;
 }
 
@@ -556,7 +559,7 @@ html.lang-fr .t-en { display: none !important; }
 .works_grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  column-gap: 0;
+  column-gap: var(--gg);
   row-gap: 8rem;
   align-items: start;
 }
@@ -719,8 +722,15 @@ html.lang-fr .t-en { display: none !important; }
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background-image: linear-gradient(90deg, rgba(248,246,242,0.12) 1px, transparent 1px);
-  background-size: 8.3333% 100%;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent calc((100% - 2 * var(--mg) - 11 * var(--gg)) / 12 + var(--gg) - 1px),
+    rgba(248,246,242,0.10) calc((100% - 2 * var(--mg) - 11 * var(--gg)) / 12 + var(--gg) - 1px),
+    rgba(248,246,242,0.10) calc((100% - 2 * var(--mg) - 11 * var(--gg)) / 12 + var(--gg))
+  );
+  background-size: calc((100% - 2 * var(--mg) - 11 * var(--gg)) / 12 + var(--gg)) 100%;
+  background-position: var(--mg) 0;
   background-attachment: fixed;
 }
 
@@ -738,7 +748,7 @@ html.lang-fr .t-en { display: none !important; }
   position: relative;
   background: #0A0A0A;
   min-height: 100vh;
-  padding: 10rem 2.4rem 8rem;
+  padding: 10rem var(--mg) 8rem;
 }
 
 .about_inner {
@@ -811,7 +821,7 @@ html.lang-fr .t-en { display: none !important; }
 
 /* ── EXPERIENCE + EDUCATION ───────────────────────────────────── */
 .xp {
-  padding: 0 2.4rem 10rem;
+  padding: 0 var(--mg) 10rem;
   margin-top: 0;
 }
 
@@ -969,7 +979,7 @@ html.lang-fr .t-en { display: none !important; }
 
 /* ── SKILLS ───────────────────────────────────────────────────── */
 .skills {
-  padding: 0 2.4rem 10rem;
+  padding: 0 var(--mg) 10rem;
   background: #000;
 }
 
@@ -1056,7 +1066,7 @@ html.lang-fr .t-en { display: none !important; }
 
 /* ── CONTACT ──────────────────────────────────────────────────── */
 .contact {
-  padding: 0 2.4rem 10rem;
+  padding: 0 var(--mg) 10rem;
   background: var(--bg);
 }
 
@@ -1136,7 +1146,7 @@ html.lang-fr .t-en { display: none !important; }
 /* ── FOOTER ───────────────────────────────────────────────────── */
 .footer {
   background: #000;
-  padding: 2.4rem;
+  padding: 2.4rem var(--mg);
   border-top: 1px solid rgba(248,246,242,0.1);
 }
 
@@ -1178,13 +1188,13 @@ html.lang-fr .t-en { display: none !important; }
   .burger { display: flex; }
 
   .hero_cnt {
-    left: 2.4rem;
-    width: calc(100% - 4.8rem);
+    left: var(--mg);
+    width: calc(100% - 2 * var(--mg));
   }
 
   .cnt_tt { font-size: clamp(5rem, 14vw, 9rem); }
 
-  .hero_socials { gap: 1.6rem; right: 1.6rem; }
+  .hero_socials { gap: 1.6rem; right: var(--mg); }
 }
 
 @media (max-width: 600px) {
