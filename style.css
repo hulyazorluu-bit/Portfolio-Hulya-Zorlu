@@ -126,93 +126,42 @@ html.lang-fr .t-en { display: none !important; }
   overflow: visible;
 }
 
-/* Liquid glass — pure blur gradient, no tint, no saturate */
+/* Glassmorphism — single clean layer, blur fades top→bottom, no tint */
 .nav-glass {
   position: absolute;
-  inset: 0;
+  top: 0; left: 0; right: 0;
+  height: 160%;
   z-index: -1;
   pointer-events: none;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  -webkit-mask-image: linear-gradient(to bottom,
+    rgba(0,0,0,1)   0%,
+    rgba(0,0,0,1)  38%,
+    rgba(0,0,0,.6) 60%,
+    rgba(0,0,0,.1) 80%,
+    rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to bottom,
+    rgba(0,0,0,1)   0%,
+    rgba(0,0,0,1)  38%,
+    rgba(0,0,0,.6) 60%,
+    rgba(0,0,0,.1) 80%,
+    rgba(0,0,0,0) 100%);
   opacity: var(--nav-bg-opacity, 0);
-  transition: opacity 0.4s ease;
+  transition: opacity 0.45s ease;
 }
-
-.nav-glass > div {
+.nav-glass::after {
+  content: '';
   position: absolute;
-  inset: 0;
-}
-
-/* L1 — strongest blur, long smooth fade top → 80% */
-.nav-glass__l1 {
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  -webkit-mask-image: linear-gradient(to bottom,
-    rgba(0,0,0,1)    0%,
-    rgba(0,0,0,1)   18%,
-    rgba(0,0,0,.78) 38%,
-    rgba(0,0,0,.38) 58%,
-    rgba(0,0,0,.08) 72%,
-    rgba(0,0,0,0)   82%);
-  mask-image: linear-gradient(to bottom,
-    rgba(0,0,0,1)    0%,
-    rgba(0,0,0,1)   18%,
-    rgba(0,0,0,.78) 38%,
-    rgba(0,0,0,.38) 58%,
-    rgba(0,0,0,.08) 72%,
-    rgba(0,0,0,0)   82%);
-}
-
-/* L2 — medium blur, takes over as L1 fades */
-.nav-glass__l2 {
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  -webkit-mask-image: linear-gradient(to bottom,
-    rgba(0,0,0,0)   10%,
-    rgba(0,0,0,.22) 26%,
-    rgba(0,0,0,.72) 46%,
-    rgba(0,0,0,.85) 62%,
-    rgba(0,0,0,.32) 78%,
-    rgba(0,0,0,0)   90%);
-  mask-image: linear-gradient(to bottom,
-    rgba(0,0,0,0)   10%,
-    rgba(0,0,0,.22) 26%,
-    rgba(0,0,0,.72) 46%,
-    rgba(0,0,0,.85) 62%,
-    rgba(0,0,0,.32) 78%,
-    rgba(0,0,0,0)   90%);
-}
-
-/* L3 — light blur, lower zone */
-.nav-glass__l3 {
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  -webkit-mask-image: linear-gradient(to bottom,
-    rgba(0,0,0,0)   48%,
-    rgba(0,0,0,.28) 62%,
-    rgba(0,0,0,.82) 76%,
-    rgba(0,0,0,.55) 88%,
-    rgba(0,0,0,0)  100%);
-  mask-image: linear-gradient(to bottom,
-    rgba(0,0,0,0)   48%,
-    rgba(0,0,0,.28) 62%,
-    rgba(0,0,0,.82) 76%,
-    rgba(0,0,0,.55) 88%,
-    rgba(0,0,0,0)  100%);
-}
-
-/* L4 — feather, dissolves right at the bottom edge */
-.nav-glass__l4 {
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
-  -webkit-mask-image: linear-gradient(to bottom,
-    rgba(0,0,0,0)   72%,
-    rgba(0,0,0,.35) 84%,
-    rgba(0,0,0,.6)  92%,
-    rgba(0,0,0,0)  100%);
-  mask-image: linear-gradient(to bottom,
-    rgba(0,0,0,0)   72%,
-    rgba(0,0,0,.35) 84%,
-    rgba(0,0,0,.6)  92%,
-    rgba(0,0,0,0)  100%);
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(128,128,128,0.12) 20%,
+    rgba(128,128,128,0.12) 80%,
+    transparent 100%
+  );
 }
 
 
@@ -602,10 +551,12 @@ html.lang-fr .t-en { display: none !important; }
 .works_title {
   font-family: montrealbook;
   font-weight: 400;
-  font-size: clamp(4.5rem, 7.5vw, 10.5rem);
+  font-size: clamp(4.5rem, 6.5vw, 8.8rem);
   letter-spacing: -0.03em;
-  line-height: 0.92;
+  line-height: 1;
   color: var(--fg);
+  padding-right: 0.3em;
+  white-space: nowrap;
 }
 
 .works_count {
