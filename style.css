@@ -17,7 +17,7 @@
 /* ── Typewriter font (Courier Prime = Type Machine style) ─────── */
 /* Quand tu télécharges TypeMachine.woff2 depuis dafont → assets/fonts/
    et tu remplaces 'Courier Prime' par typemachine ci-dessous */
-.tm { font-family: 'Courier Prime', 'Courier New', monospace; }
+.tm { font-family: 'IBM Plex Mono', 'Courier New', monospace; }
 
 /* ── CSS Variables ────────────────────────────────────────────── */
 :root {
@@ -38,7 +38,7 @@ body {
   font-size: 1.6rem;
   background: var(--bg);
   color: var(--fg);
-  overflow-x: hidden;
+  overflow-x: clip;
   min-height: 100vh;
 }
 
@@ -51,6 +51,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   inset: 0;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  padding: 0 2.4rem;
   pointer-events: none;
   z-index: 0;
 }
@@ -60,8 +61,8 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   display: flex;
   flex-direction: column;
   background-image:
-    repeating-linear-gradient(to bottom, rgba(10,10,10,0.035) 0, rgba(10,10,10,0.035) 9px, transparent 9px, transparent 18px),
-    repeating-linear-gradient(to bottom, rgba(10,10,10,0.035) 0, rgba(10,10,10,0.035) 9px, transparent 9px, transparent 18px);
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.08) 0, rgba(10,10,10,0.08) 9px, transparent 9px, transparent 18px),
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.08) 0, rgba(10,10,10,0.08) 9px, transparent 9px, transparent 18px);
   background-size: 1px 18px, 1px 18px;
   background-position: right 0px top 0, right 6px top 0;
   background-repeat: repeat-y, repeat-y;
@@ -70,10 +71,10 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
 /* Première colonne : 2 tirets à gauche aussi */
 .Mbg_col:first-child {
   background-image:
-    repeating-linear-gradient(to bottom, rgba(10,10,10,0.035) 0, rgba(10,10,10,0.035) 9px, transparent 9px, transparent 18px),
-    repeating-linear-gradient(to bottom, rgba(10,10,10,0.035) 0, rgba(10,10,10,0.035) 9px, transparent 9px, transparent 18px),
-    repeating-linear-gradient(to bottom, rgba(10,10,10,0.035) 0, rgba(10,10,10,0.035) 9px, transparent 9px, transparent 18px),
-    repeating-linear-gradient(to bottom, rgba(10,10,10,0.035) 0, rgba(10,10,10,0.035) 9px, transparent 9px, transparent 18px);
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.08) 0, rgba(10,10,10,0.08) 9px, transparent 9px, transparent 18px),
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.08) 0, rgba(10,10,10,0.08) 9px, transparent 9px, transparent 18px),
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.08) 0, rgba(10,10,10,0.08) 9px, transparent 9px, transparent 18px),
+    repeating-linear-gradient(to bottom, rgba(10,10,10,0.08) 0, rgba(10,10,10,0.08) 9px, transparent 9px, transparent 18px);
   background-size: 1px 18px, 1px 18px, 1px 18px, 1px 18px;
   background-position: right 0px top 0, right 6px top 0, left 0px top 0, left 6px top 0;
   background-repeat: repeat-y, repeat-y, repeat-y, repeat-y;
@@ -95,7 +96,7 @@ html.lang-fr .t-en { display: none !important; }
   margin-right: 0.8rem;
 }
 .lang-btn {
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   color: rgba(10,10,10,0.35);
@@ -108,7 +109,7 @@ html.lang-fr .t-en { display: none !important; }
 .lang-btn:hover { color: var(--fg); }
 .lang-btn.active { color: var(--fg); }
 .lang-sep {
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.8rem;
   color: rgba(10,10,10,0.15);
 }
@@ -124,44 +125,25 @@ html.lang-fr .t-en { display: none !important; }
   padding: 0 2.4rem;
   height: 4.8rem;
   overflow: visible;
+  background: transparent;
 }
 
-/* Glassmorphism — single clean layer, blur fades top→bottom, no tint */
-.nav-glass {
+/* Glassmorphism Apple/Linear : très subtil, fondu quasi invisible */
+.nav::before {
+  content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 160%;
-  z-index: -1;
-  pointer-events: none;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  -webkit-mask-image: linear-gradient(to bottom,
-    rgba(0,0,0,1)   0%,
-    rgba(0,0,0,1)  38%,
-    rgba(0,0,0,.6) 60%,
-    rgba(0,0,0,.1) 80%,
-    rgba(0,0,0,0) 100%);
-  mask-image: linear-gradient(to bottom,
-    rgba(0,0,0,1)   0%,
-    rgba(0,0,0,1)  38%,
-    rgba(0,0,0,.6) 60%,
-    rgba(0,0,0,.1) 80%,
-    rgba(0,0,0,0) 100%);
-  opacity: var(--nav-bg-opacity, 0);
-  transition: opacity 0.45s ease;
-}
-.nav-glass::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 1px;
   background: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(128,128,128,0.12) 20%,
-    rgba(128,128,128,0.12) 80%,
+    to bottom,
+    rgba(248,246,242,0.10) 0%,
+    rgba(248,246,242,0.03) 55%,
     transparent 100%
   );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: -1;
+  pointer-events: none;
 }
 
 
@@ -172,7 +154,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .nav_brand {
-  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -182,7 +164,7 @@ html.lang-fr .t-en { display: none !important; }
 .nav--dark .nav_brand { color: rgba(248,246,242,0.6); }
 
 .nav_clock {
-  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -199,7 +181,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .nav_lk {
-  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -210,7 +192,7 @@ html.lang-fr .t-en { display: none !important; }
 .nav--dark .nav_lk { color: rgba(248,246,242,0.85); }
 
 .nav_cta {
-  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -424,7 +406,7 @@ html.lang-fr .t-en { display: none !important; }
   white-space: nowrap;
 }
 #loader-info span {
-  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
   font-size: 1.15rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -437,17 +419,17 @@ html.lang-fr .t-en { display: none !important; }
   width: 100%;
   height: 100svh;
   min-height: 600px;
-  /* pas de background : le body cream + la grille Mbg sont visibles */
-  overflow: hidden;
+  background: transparent;
+  overflow: visible;
 }
 
-/* ── TITLE + SUBTITLE BLOCK ────────────────── right half ─────── */
+/* ── TITLE + SUBTITLE BLOCK — col 6 → col 10, exact grid align ── */
 .hero_cnt {
   position: absolute;
-  left: 50%;
+  left: calc(0.4rem + 41.667%);
+  width: calc(41.667% - 2rem);
   top: 50%;
   transform: translateY(-46%);
-  width: 47vw;
   z-index: 2;
 }
 
@@ -455,8 +437,8 @@ html.lang-fr .t-en { display: none !important; }
   display: block;
   font-family: montrealbook;
   font-weight: 400;
-  font-size: clamp(6.5rem, 9.5vw, 13rem);
-  letter-spacing: -0.03em;
+  font-size: clamp(6rem, 11vw, 16rem);
+  letter-spacing: -0.04em;
   line-height: 0.9;
   color: var(--fg);
 }
@@ -485,7 +467,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .Awrite {
-  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
   font-weight: 400;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
@@ -520,7 +502,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .social_lk {
-  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -544,23 +526,27 @@ html.lang-fr .t-en { display: none !important; }
 .works_hd {
   display: flex;
   align-items: baseline;
+  flex-wrap: nowrap;
   gap: 1.6rem;
-  margin-bottom: 3.6rem;
+  margin-bottom: 3.2rem;
+  overflow: visible;
 }
 
 .works_title {
   font-family: montrealbook;
   font-weight: 400;
-  font-size: clamp(4.5rem, 6.5vw, 8.8rem);
+  font-size: clamp(3.5rem, 5.2vw, 7.5rem);
   letter-spacing: -0.03em;
-  line-height: 1;
-  color: var(--fg);
-  padding-right: 0.3em;
+  line-height: 1.3;
   white-space: nowrap;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: visible;
+  color: var(--fg);
 }
 
 .works_count {
-  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   color: rgba(10,10,10,0.35);
@@ -569,9 +555,9 @@ html.lang-fr .t-en { display: none !important; }
 
 .works_grid {
   display: grid;
-  grid-template-columns: 3fr 7fr;
-  column-gap: 7rem;
-  row-gap: 1rem;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: 0;
+  row-gap: 8rem;
   align-items: start;
 }
 
@@ -580,8 +566,10 @@ html.lang-fr .t-en { display: none !important; }
   cursor: default;
 }
 
-/* Third item: back to first column */
-.work_item:nth-child(3) { grid-column: 1; }
+/* Grid alignment — col 5 laissé vide = gutter Swiss */
+.work_item               { grid-column: 1 / 5; }
+.work_item:nth-child(2)  { grid-column: 6 / 13; }
+.work_item:nth-child(3)  { grid-column: 1 / 4; }
 
 .work_thumb {
   width: 100%;
@@ -604,6 +592,8 @@ html.lang-fr .t-en { display: none !important; }
 
 .work_thumb--a { background: #E2E0DA; }
 .work_thumb--b { background: #0A0A0A; }
+.work_item:nth-child(3) .work_thumb { aspect-ratio: 1 / 1; }
+
 .work_thumb--c {
   background: #CECCC6;
   overflow: hidden;
@@ -648,10 +638,10 @@ html.lang-fr .t-en { display: none !important; }
 /* Project 1 — square */
 .work_item:nth-child(1) .work_thumb { aspect-ratio: 1 / 1; }
 
-/* Project 2 — smaller, pushed to the right */
+/* Project 2 — large card, cols 5-12 */
 .work_item:nth-child(2) {
-  justify-self: end;
-  width: 72%;
+  justify-self: auto;
+  width: auto;
 }
 
 /* Project 2 — SVG cover adapts to natural image proportions */
@@ -671,12 +661,12 @@ html.lang-fr .t-en { display: none !important; }
   flex-wrap: wrap;
   gap: 0;
   margin-top: 1.2rem;
-  opacity: 0;
+  opacity: 1;
 }
 
 .work_tech {
   flex-basis: 100%;
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   color: rgba(10,10,10,0.35);
@@ -684,14 +674,14 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .work_num {
-  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.04em;
   color: rgba(10,10,10,0.35);
 }
 
 .work_name {
-  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -704,7 +694,7 @@ html.lang-fr .t-en { display: none !important; }
   top: 0; left: 0;
   pointer-events: none;
   z-index: 9000;
-  font-family: 'Courier Prime', 'Courier New', monospace;
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -729,7 +719,7 @@ html.lang-fr .t-en { display: none !important; }
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background-image: linear-gradient(90deg, rgba(248,246,242,0.055) 1px, transparent 1px);
+  background-image: linear-gradient(90deg, rgba(248,246,242,0.12) 1px, transparent 1px);
   background-size: 8.3333% 100%;
   background-attachment: fixed;
 }
@@ -766,7 +756,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 .about_tag_num,
 .about_tag_label {
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 1rem;
   color: rgba(248,246,242,0.55);
   letter-spacing: 0.1em;
@@ -775,7 +765,7 @@ html.lang-fr .t-en { display: none !important; }
 .about_title {
   font-family: montrealbook, 'Helvetica Neue', sans-serif;
   font-weight: 400;
-  font-size: clamp(3.2rem, 5vw, 7.5rem);
+  font-size: clamp(3.5rem, 5.2vw, 7.5rem);
   letter-spacing: -0.03em;
   line-height: 1;
   color: #F8F6F2;
@@ -787,10 +777,10 @@ html.lang-fr .t-en { display: none !important; }
 
 .about_desc {
   position: absolute;
-  left: 42%;
+  left: 50%;
   top: 50%;
   transform: translateY(-50%);
-  width: clamp(22rem, 46%, 46rem);
+  width: 25%;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1.4rem;
   font-weight: 400;
@@ -804,7 +794,7 @@ html.lang-fr .t-en { display: none !important; }
   position: absolute;
   bottom: 0;
   right: 0;
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.88rem;
   letter-spacing: 0.1em;
   color: rgba(248,246,242,0.65);
@@ -840,15 +830,15 @@ html.lang-fr .t-en { display: none !important; }
   margin-top: 2rem;
 }
 .xp_sub_label {
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.82rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(10,10,10,0.35);
+  color: rgba(10,10,10,0.55);
 }
 
 .xp_label {
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 1rem;
   letter-spacing: 0.08em;
   color: rgba(10,10,10,0.3);
@@ -861,21 +851,15 @@ html.lang-fr .t-en { display: none !important; }
 .xp_title {
   font-family: montrealbook, 'Helvetica Neue', sans-serif;
   font-weight: 400;
-  font-size: clamp(4.5rem, 7.5vw, 10.5rem);
+  font-size: clamp(3.5rem, 5.2vw, 7.5rem);
   letter-spacing: -0.03em;
   line-height: 0.92;
   color: var(--fg);
   margin-bottom: 0;
 }
 
-/* Experience + Formation: slightly larger than works/about/skills */
-.xp .xp_title {
-  font-size: clamp(5.5rem, 9vw, 13rem);
-}
-
-/* Skills: same size as works/about, light color on dark bg */
+/* Skills: light color on dark bg */
 .skills .xp_title {
-  font-size: clamp(4.5rem, 7.5vw, 10.5rem);
   color: #F8F6F2;
 }
 
@@ -895,7 +879,7 @@ html.lang-fr .t-en { display: none !important; }
   grid-template-columns: 12rem 18rem 10rem 1fr auto;
   align-items: center;
   gap: 2rem;
-  padding: 1.8rem 0;
+  padding: 2.4rem 0;
   transition: background 0.25s ease, color 0.25s ease, padding 0.25s ease;
 }
 
@@ -907,10 +891,10 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .xp_date {
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 1rem;
   letter-spacing: 0.04em;
-  color: rgba(10,10,10,0.55);
+  color: rgba(10,10,10,0.7);
   transition: color 0.25s;
 }
 .xp_item:hover .xp_date { color: rgba(248,246,242,0.4); }
@@ -918,7 +902,7 @@ html.lang-fr .t-en { display: none !important; }
 .xp_co_wrap {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.5rem;
 }
 
 .xp_co {
@@ -931,26 +915,26 @@ html.lang-fr .t-en { display: none !important; }
 .xp_item:hover .xp_co { color: var(--bg); }
 
 .xp_type {
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.8rem;
   letter-spacing: 0.05em;
-  color: rgba(10,10,10,0.35);
+  color: rgba(10,10,10,0.55);
   transition: color 0.25s;
 }
 .xp_item:hover .xp_type { color: rgba(248,246,242,0.4); }
 
 .xp_loc {
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.95rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: rgba(10,10,10,0.3);
+  color: rgba(10,10,10,0.55);
   transition: color 0.25s;
 }
 .xp_item:hover .xp_loc { color: rgba(248,246,242,0.35); }
 
 .xp_role {
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 1rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -967,7 +951,7 @@ html.lang-fr .t-en { display: none !important; }
 .xp_item:hover .xp_arr { color: rgba(248,246,242,0.6); transform: translateX(6px); }
 
 .xp_reveal {
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 1rem;
   letter-spacing: 0.05em;
   color: rgba(248,246,242,0.55);
@@ -1016,7 +1000,7 @@ html.lang-fr .t-en { display: none !important; }
 
 .skill_cat {
   display: block;
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.9rem;
   letter-spacing: 0.12em;
   color: rgba(248,246,242,0.7);
@@ -1043,7 +1027,7 @@ html.lang-fr .t-en { display: none !important; }
 .skill_item:hover { letter-spacing: 0.04em; opacity: 0.7; }
 
 .skill_lvl {
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.9rem;
   color: rgba(248,246,242,0.3);
 }
@@ -1061,7 +1045,7 @@ html.lang-fr .t-en { display: none !important; }
   gap: 2.4rem;
   white-space: nowrap;
   animation: marquee 22s linear infinite;
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 1rem;
   letter-spacing: 0.1em;
   color: rgba(248,246,242,0.2);
@@ -1086,7 +1070,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .contact_pre {
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 1rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1127,7 +1111,7 @@ html.lang-fr .t-en { display: none !important; }
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 1rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1139,7 +1123,7 @@ html.lang-fr .t-en { display: none !important; }
   gap: 2.4rem;
 }
 .contact_socials a {
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 1rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1160,7 +1144,7 @@ html.lang-fr .t-en { display: none !important; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Courier Prime', monospace;
+  font-family: 'IBM Plex Mono', monospace;
   font-size: 0.95rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1215,7 +1199,9 @@ html.lang-fr .t-en { display: none !important; }
   .cnt_sc { bottom: 2.4rem; }
 
   .works_grid { grid-template-columns: 1fr; }
-  .work_item:nth-child(3) { grid-column: auto; }
+  .work_item               { grid-column: auto; }
+  .work_item:nth-child(2)  { grid-column: auto; width: auto; }
+  .work_item:nth-child(3)  { grid-column: auto; }
   .works_title { font-size: clamp(3.5rem, 12vw, 6rem); }
 }
 
@@ -1227,4 +1213,3 @@ html.lang-fr .t-en { display: none !important; }
   opacity: 0;
   transition: opacity 1s ease;
 }
-
