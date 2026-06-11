@@ -9,7 +9,7 @@
   /* ── Inject styles ──────────────────────────────────────── */
   var style = document.createElement('style');
   style.textContent = [
-    '.sec-reveal-wrap{display:inline-block;overflow:hidden;vertical-align:bottom;perspective:600px;}',
+    '.sec-reveal-wrap{display:inline-block;vertical-align:bottom;perspective:600px;}',
     '.sec-reveal-char{display:inline-block;opacity:0;',
     '  transform:rotateX(-72deg) translateY(18px);transform-origin:50% 100%;',
     '  transition:opacity 0.55s cubic-bezier(.22,1,.36,1),transform 0.55s cubic-bezier(.22,1,.36,1);}',

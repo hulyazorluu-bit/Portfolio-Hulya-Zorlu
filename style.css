@@ -426,13 +426,13 @@ html.lang-fr .t-en { display: none !important; }
   overflow: visible;
 }
 
-/* ── TITLE + SUBTITLE BLOCK — col 6 → col 10, exact grid align ── */
+/* ── TITLE + SUBTITLE BLOCK — col 1 → col 7, touche la première colonne ── */
 .hero_cnt {
   position: absolute;
-  left: calc(15px + 41.667%);
-  width: calc(41.667% - 39px);
+  left: var(--mg);
+  width: calc(58.333% - var(--gg));
   top: 50%;
-  transform: translateY(-46%);
+  transform: translateY(-50%);
   z-index: 2;
 }
 
@@ -535,9 +535,10 @@ html.lang-fr .t-en { display: none !important; }
   font-family: montrealbook;
   font-weight: 400;
   font-size: clamp(3.5rem, 5.2vw, 7.5rem);
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
   display: block;
+  padding-right: 0.06em;
   color: var(--fg);
 }
 
