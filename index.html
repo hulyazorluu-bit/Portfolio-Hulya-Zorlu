@@ -1,1 +1,483 @@
-placeholder
+<!DOCTYPE html>
+<html lang="fr" class="lang-fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hulya Zorlu - Designer UI/UX basée à Paris." />
+  <title>Hulya Zorlu - Designer UI/UX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=41" />
+</head>
+<body>
+
+  <!-- LOADER -->
+  <div id="loader">
+    <div id="loader-count">000</div>
+    <div id="loader-info">
+      <span id="loader-line1"></span>
+      <span id="loader-line2"></span>
+    </div>
+  </div>
+
+  <!-- BACKGROUND GRID -->
+  <div class="Mbg" aria-hidden="true">
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+    <div class="Mbg_col"><div class="Mbg_col_el Mbg_col_el-1"></div><div class="Mbg_col_el Mbg_col_el-2"></div></div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav_left">
+      <span class="nav_brand">
+        <span class="typewriter-container" id="brand-tw-container">
+          <span class="typewriter" id="brand-tw">HULYAZORLU_PAR</span>
+        </span>
+      </span>
+      <span class="nav_clock">
+        <span class="typewriter-container" id="clock-tw-container">
+          <span class="typewriter tw-type" id="clock-tw">00:00 AM</span>
+        </span>
+      </span>
+    </div>
+    <div class="nav_right">
+      <a href="#projects" class="nav_lk">
+        <span class="typewriter-container">
+          <span class="typewriter">Projets</span>
+        </span>
+      </a>
+      <a href="#about" class="nav_lk">
+        <span class="typewriter-container">
+          <span class="typewriter">À propos</span>
+        </span>
+      </a>
+      <a href="#experience" class="nav_lk">
+        <span class="typewriter-container">
+          <span class="typewriter">Expérience</span>
+        </span>
+      </a>
+      <a href="#skills" class="nav_lk">
+        <span class="typewriter-container">
+          <span class="typewriter">Compétences</span>
+        </span>
+      </a>
+      <a href="#contact" class="nav_cta">
+        <span id="cta-text"></span>
+      </a>
+    </div>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mob-menu" id="mob-menu" aria-hidden="true">
+    <button class="mob-close" id="mob-close" aria-label="Fermer">✕</button>
+    <nav class="mob-nav">
+      <a href="#projects" class="mob-link">Projets</a>
+      <a href="#about" class="mob-link">À propos</a>
+      <a href="#experience" class="mob-link">Expérience</a>
+      <a href="#skills" class="mob-link">Compétences</a>
+      <a href="#contact" class="mob-link">Parlons</a>
+    </nav>
+    <div class="mob-footer">
+      <a href="https://www.instagram.com/hueliyaz/" target="_blank" rel="noopener">INSTAGRAM</a>
+      <a href="https://www.linkedin.com/in/hulya-zorlu/" target="_blank" rel="noopener">LINKEDIN</a>
+      <a href="https://github.com/hulyazorluu-bit" target="_blank" rel="noopener">GITHUB</a>
+      <a href="assets/CV_portfolio.pdf" target="_blank" rel="noopener" class="read-cv-lk">READ.CV</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+
+    <!-- TITLE + SUBTITLE -->
+    <div class="hero_cnt">
+      <h2 class="cnt_tt">
+        <div class="Atitle">
+          <div class="ttj Oiel" id="title-hulya">
+            <div class="word" style="display:inline-block">
+              <div class="char" style="display:inline-block">H</div><div class="char" style="display:inline-block">u</div><div class="char" style="display:inline-block">l</div><div class="char" style="display:inline-block">y</div><div class="char" style="display:inline-block">a</div>
+            </div>
+          </div>
+        </div>
+        <div class="Atitle">
+          <div class="ttj Oiel" id="title-zorlu">
+            <div class="word" style="display:inline-block">
+              <div class="char" style="display:inline-block">Z</div><div class="char" style="display:inline-block">o</div><div class="char" style="display:inline-block">r</div><div class="char" style="display:inline-block">l</div><div class="char" style="display:inline-block">u</div>
+            </div>
+          </div>
+        </div>
+      </h2>
+
+      <div class="cnt_bt">
+        <h3 class="tt3">Designer UI/UX<br>Basée à Paris</h3>
+        <h4 class="Awrite" id="portfolio-txt">
+          <span class="typewriter-container"><span class="typewriter tw-type">PORTFOLIO_26</span></span>
+        </h4>
+      </div>
+    </div>
+
+    <!-- SCROLL TO EXPLORE -->
+    <div class="cnt_sc">
+      <h4 class="Awrite" id="scroll-txt">[défiler pour explorer]</h4>
+    </div>
+
+    <!-- SOCIALS -->
+    <div class="hero_socials">
+      <a href="https://www.instagram.com/hueliyaz/" target="_blank" rel="noopener" class="social_lk">
+        <span class="typewriter-container"><span class="typewriter">INSTAGRAM</span></span>
+        <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/hulya-zorlu/" target="_blank" rel="noopener" class="social_lk">
+        <span class="typewriter-container"><span class="typewriter">LINKEDIN</span></span>
+        <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
+      </a>
+      <a href="https://github.com/hulyazorluu-bit" target="_blank" rel="noopener" class="social_lk">
+        <span class="typewriter-container"><span class="typewriter">GITHUB</span></span>
+        <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
+      </a>
+      <a href="assets/CV_portfolio.pdf" target="_blank" rel="noopener" class="social_lk read-cv-lk">
+        <span class="typewriter-container"><span class="typewriter">READ.CV</span></span>
+        <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
+      </a>
+    </div>
+
+  </section>
+
+  <!-- FEATURED WORKS -->
+  <section class="works section-light" id="projects">
+    <div class="works_hd">
+      <h2 class="works_title">Projets sélectionnés</h2>
+      <span class="works_count">[002]</span>
+    </div>
+
+    <div class="works_grid">
+
+      <a href="project1.html" class="work_item">
+        <div class="work_thumb work_thumb--a">
+          <img src="assets/Mock_up_Event_App.png" alt="Event App" class="work_cover">
+        </div>
+        <div class="work_meta">
+          <span class="work_num">001_</span><span class="work_name">WEVENT APP</span>
+          <span class="work_tech">Recherche UX · Design UI · Figma</span>
+        </div>
+      </a>
+
+      <a href="https://www.figma.com/proto/0NM5ghnJNSKCaTUVtCliof/CASE-STUDY-Commande-sans-allerg%C3%A8nes?node-id=335-29&t=6P7kkzSp2JTR4bdA-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" target="_blank" rel="noopener" class="work_item">
+        <div class="work_thumb work_thumb--b">
+          <img src="assets/projet3.svg" alt="Projet 2" class="work_cover">
+        </div>
+        <div class="work_meta">
+          <span class="work_num">002_</span><span class="work_name">Allergy Safe Ordering</span>
+        </div>
+      </a>
+
+      <div class="work_item work_item--soon">
+        <div class="work_thumb work_thumb--c">
+          <img src="assets/tamino.svg" alt="Projet en cours" class="work_bg work_cover--blur">
+          <div class="work_soon_overlay"><span class="work_soon_text">&Agrave; venir</span></div>
+        </div>
+        <div class="work_meta">
+          <span class="work_num">003_</span><span class="work_name">Projet 3</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SEE MORE custom cursor -->
+  <div class="see-cursor" id="see-cursor" aria-hidden="true">VOIR PLUS</div>
+
+  <!-- ABOUT -->
+  <section class="about section-dark" id="about">
+    <div class="about_inner">
+
+      <div class="about_tag">
+        <span class="about_tag_label">À PROPOS</span>
+      </div>
+
+      <p class="about_pretitle">À propos de moi</p>
+
+      <h2 class="about_title">
+        <span class="about_t1">Designer UX/UI</span>
+        <span class="about_t2">&amp; Strat&eacute;gie Digitale</span>
+      </h2>
+
+      <div class="about_desc">
+        <p>Apr&egrave;s un parcours en marketing, data et strat&eacute;gie en agence, j&rsquo;ai choisi de me sp&eacute;cialiser dans le design UX/UI pour me rapprocher de ce qui me passionne le plus&nbsp;: comprendre les comportements et concevoir des exp&eacute;riences qui ont du sens.</p>
+        <p>Aujourd&rsquo;hui, je combine recherche utilisateur, pens&eacute;e strat&eacute;gique et design visuel pour cr&eacute;er des produits &agrave; la fois utiles, intuitifs et align&eacute;s avec les objectifs business. Je d&eacute;veloppe &eacute;galement mes comp&eacute;tences en HTML, CSS et d&eacute;veloppement web afin de mieux collaborer avec les &eacute;quipes produit et tech.</p>
+      </div>
+
+      <a href="about.html" class="about_more">En savoir plus &nearr;</a>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE + EDUCATION -->
+  <section class="xp section-light" id="experience">
+
+    <div class="xp_hd">
+      <h2 class="xp_title">Expérience</h2>
+    </div>
+
+    <div class="xp_list">
+
+
+      <div class="xp_item" data-desc="Recherche UX · Tests utilisateurs · +15% inscription · Agile">
+        <div class="xp_row">
+          <span class="xp_date">Mar 2023 - Sep 2024</span>
+          <div class="xp_co_wrap">
+            <span class="xp_co">TANKE</span>
+            <span class="xp_type">Agence Créative de Marketing d'Influence</span>
+          </div>
+          <span class="xp_loc">Paris</span>
+          <span class="xp_role">UX Project Manager</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+      <div class="xp_item" data-desc="JO Paris 2024 · Diffuseurs internationaux · Accréditations · FR/EN/TR">
+        <div class="xp_row">
+          <span class="xp_date">Juil. - Août 2024</span>
+          <span class="xp_co">OLYMPIC BROADCASTING</span>
+          <span class="xp_loc">Paris</span>
+          <span class="xp_role">Coordinatrice Liaison Internationale</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+      <div class="xp_item" data-desc="Benchmarks · Kantar · TikTok Pro · +12% performance · Pitch clients">
+        <div class="xp_row">
+          <span class="xp_date">Sep - Déc 2022</span>
+          <div class="xp_co_wrap">
+            <span class="xp_co">AUSTRALIEGAD</span>
+            <span class="xp_type">Agence de Publicité</span>
+          </div>
+          <span class="xp_loc">Paris</span>
+          <span class="xp_role">Planneur Stratégique</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+    </div>
+
+    <div class="xp_hd xp_hd--form">
+      <h2 class="xp_title">Formation</h2>
+    </div>
+
+    <div class="xp_sub_hd">
+      <span class="xp_sub_label">Diplômes</span>
+    </div>
+
+    <div class="xp_list">
+
+      <div class="xp_item" data-desc="Data Analytics · Marketing · Agile · Scoring">
+        <div class="xp_row">
+          <span class="xp_date">2022 - 2024</span>
+          <span class="xp_co">INSEEC BUSINESS SCHOOL</span>
+          <span class="xp_loc">Paris</span>
+          <span class="xp_role">MSc Data Analytics &amp; Marketing Management</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+      <div class="xp_item" data-desc="Langues · Commerce · FR / EN / TR">
+        <div class="xp_row">
+          <span class="xp_date">2018 - 2021</span>
+          <span class="xp_co">UNIV. JEAN MONNET</span>
+          <span class="xp_loc">Saint-Étienne</span>
+          <span class="xp_role">Licence Langues Appliquées &amp; Commerce International</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+      <div class="xp_item" data-desc="Administration · Comptabilité · Microéconomie">
+        <div class="xp_row">
+          <span class="xp_date">2020 - 2021</span>
+          <span class="xp_co">UNIVERSIDADE DO ALGARVE</span>
+          <span class="xp_loc">Faro, Portugal</span>
+          <span class="xp_role">Erasmus - Administration des Affaires</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+    </div>
+
+    <div class="xp_hd xp_hd--form">
+      <h2 class="xp_title">Certifications</h2>
+    </div>
+
+    <div class="xp_list">
+
+      <div class="xp_item" data-desc="UX/UI · Figma · Wireframing · HTML / CSS / JS">
+        <div class="xp_row">
+          <span class="xp_date">Mar - Juil 2026</span>
+          <span class="xp_co">EMLYON BUSINESS SCHOOL - LA TOILE</span>
+          <span class="xp_loc">Paris</span>
+          <span class="xp_role">Certificat Design UX/UI &amp; Développement Web</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+      <div class="xp_item" data-desc="Typographie · Identité visuelle · Photoshop · Illustrator">
+        <div class="xp_row">
+          <span class="xp_date">2024 - 2025</span>
+          <span class="xp_co">EDAA - ÉCOLE D'ARTS APPLIQUÉS</span>
+          <span class="xp_loc">Paris</span>
+          <span class="xp_role">Certificat Design Graphique</span>
+          <span class="xp_arr">→</span>
+        </div>
+        <div class="xp_reveal"></div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills section-dark" id="skills">
+
+    <div class="skills_hd">
+      <h2 class="xp_title skills_title">Compétences</h2>
+    </div>
+
+    <div class="skills_grid">
+
+      <div class="skill_col">
+        <span class="skill_cat">UX DESIGN</span>
+        <ul class="skill_list">
+          <li class="skill_item">Recherche Utilisateur</li>
+          <li class="skill_item">Tests d'Utilisabilité</li>
+          <li class="skill_item">Wireframing</li>
+          <li class="skill_item">Stratégie UX</li>
+          <li class="skill_item">Parcours Utilisateur</li>
+        </ul>
+      </div>
+
+      <div class="skill_col">
+        <span class="skill_cat">UI &amp; VISUEL</span>
+        <ul class="skill_list">
+          <li class="skill_item">Figma</li>
+          <li class="skill_item">Webflow</li>
+          <li class="skill_item">Photoshop</li>
+          <li class="skill_item">Illustrator</li>
+          <li class="skill_item">HTML / CSS / JS</li>
+        </ul>
+      </div>
+
+      <div class="skill_col">
+        <span class="skill_cat">MÉTHODES &amp; OUTILS</span>
+        <ul class="skill_list">
+          <li class="skill_item">Agile / Scrum</li>
+          <li class="skill_item">Jira / Confluence</li>
+          <li class="skill_item">Selenium / Cypress</li>
+          <li class="skill_item">Analyse de Données</li>
+          <li class="skill_item">Analyse Heuristique</li>
+        </ul>
+      </div>
+
+      <div class="skill_col">
+        <span class="skill_cat">LANGUES</span>
+        <ul class="skill_list">
+          <li class="skill_item">Français <span class="skill_lvl">NATIF</span></li>
+          <li class="skill_item">Anglais <span class="skill_lvl">C1</span></li>
+          <li class="skill_item">Turc <span class="skill_lvl">NATIF</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="skills_marquee" aria-hidden="true">
+      <div class="marquee_track">
+        <span>FIGMA</span><span>·</span><span>WEBFLOW</span><span>·</span><span>RECHERCHE UX</span><span>·</span><span>PHOTOSHOP</span><span>·</span><span>ILLUSTRATOR</span><span>·</span><span>AGILE</span><span>·</span><span>HTML / CSS</span><span>·</span><span>ANALYSE DE DONNÉES</span><span>·</span><span>SELENIUM</span><span>·</span><span>FIGMA</span><span>·</span><span>WEBFLOW</span><span>·</span><span>RECHERCHE UX</span><span>·</span><span>PHOTOSHOP</span><span>·</span><span>ILLUSTRATOR</span><span>·</span><span>AGILE</span><span>·</span><span>HTML / CSS</span><span>·</span><span>ANALYSE DE DONNÉES</span><span>·</span><span>SELENIUM</span><span>·</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact section-light" id="contact">
+
+    <div class="contact_hd">
+    </div>
+
+    <div class="contact_body">
+      <p class="contact_pre">Disponible pour de nouvelles opportunités</p>
+      <a href="mailto:zorluu.hulya@gmail.com" class="contact_email">
+        ZORLUU.HULYA<br>@GMAIL.COM
+        <span class="contact_email_arr">↗</span>
+      </a>
+    </div>
+
+    <div class="contact_foot">
+      <div class="contact_socials">
+        <a href="https://www.linkedin.com/in/hulya-zorlu/" target="_blank" rel="noopener">LINKEDIN ↗</a>
+        <a href="https://www.instagram.com/hueliyaz/" target="_blank" rel="noopener">INSTAGRAM ↗</a>
+        <a href="https://github.com/hulyazorluu-bit" target="_blank" rel="noopener">GITHUB ↗</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SVG filter: liquid wave for thumbs without image -->
+  <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <defs>
+      <filter id="liquid-wave" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="linearRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="3" seed="5" result="noise">
+          <animate attributeName="baseFrequency" dur="14s" keyTimes="0;0.5;1" values="0.012 0.018;0.018 0.024;0.012 0.018" repeatCount="indefinite"/>
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <script src="main.js"></script>
+  <script src="title-gl.js"></script>
+  <script src="fx-images.js"></script>
+  <script src="fx-sections.js"></script>
+  <script>
+    (function () {
+      var chars = document.querySelectorAll('.ttj .char');
+      if (!chars.length) return;
+      document.addEventListener('mousemove', function (e) {
+        for (var i = 0; i < chars.length; i++) {
+          var r  = chars[i].getBoundingClientRect();
+          var dx = (r.left + r.width  / 2) - e.clientX;
+          var dy = (r.top  + r.height / 2) - e.clientY;
+          var d  = Math.sqrt(dx * dx + dy * dy) || 1;
+          var g  = Math.exp(-(d * d) / (2 * 90 * 90));
+          chars[i].style.transition = 'transform 0s';
+          chars[i].style.transform  = 'translate('
+            + ((dx / d) * 6 * g).toFixed(1) + 'px,'
+            + ((dy / d) * 6 * g).toFixed(1) + 'px)';
+        }
+      }, { passive: true });
+      document.addEventListener('mouseleave', function () {
+        for (var i = 0; i < chars.length; i++) {
+          chars[i].style.transition = 'transform 1s cubic-bezier(0.25,0.46,0.45,0.94)';
+          chars[i].style.transform  = '';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
