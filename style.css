@@ -40,7 +40,7 @@ body {
   font-size: 1.6rem;
   background: var(--bg);
   color: var(--fg);
-  overflow-x: clip;
+  overflow-x: clip; /* clip évite de créer un scroll-container sur body */
   min-height: 100vh;
 }
 
@@ -148,6 +148,8 @@ html.lang-fr .t-en { display: none !important; }
   z-index: -1;
   pointer-events: none;
 }
+
+/* nav-glass supprimé — nav entièrement transparent */
 
 
 .nav_left {
