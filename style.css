@@ -71,17 +71,8 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
   background-repeat: repeat-y, repeat-y;
 }
 
-/* Première colonne : 2 tirets à gauche aussi */
-.Mbg_col:first-child {
-  background-image:
-    repeating-linear-gradient(to bottom, rgba(10,10,10,0.08) 0, rgba(10,10,10,0.08) 9px, transparent 9px, transparent 18px),
-    repeating-linear-gradient(to bottom, rgba(10,10,10,0.08) 0, rgba(10,10,10,0.08) 9px, transparent 9px, transparent 18px),
-    repeating-linear-gradient(to bottom, rgba(10,10,10,0.08) 0, rgba(10,10,10,0.08) 9px, transparent 9px, transparent 18px),
-    repeating-linear-gradient(to bottom, rgba(10,10,10,0.08) 0, rgba(10,10,10,0.08) 9px, transparent 9px, transparent 18px);
-  background-size: 1px 18px, 1px 18px, 1px 18px, 1px 18px;
-  background-position: right 0px top 0, right 6px top 0, left 0px top 0, left 6px top 0;
-  background-repeat: repeat-y, repeat-y, repeat-y, repeat-y;
-}
+/* Marges extérieures propres — Swiss grid : règles entre colonnes seulement */
+.Mbg_col:last-child { background: none; }
 
 /* Tick horizontal supprimé — plus de trait dans la nav */
 .Mbg_col_el-1 { height: 0; flex-shrink: 0; }
@@ -422,11 +413,13 @@ html.lang-fr .t-en { display: none !important; }
   overflow: visible;
 }
 
-/* ── TITLE + SUBTITLE BLOCK — col 1 → col 7, touche la première colonne ── */
+/* ── TITLE BLOCK — col 7 → col 10, Swiss grid right-side positioning ── */
+/* Col 7 left edge = 30px + 6×(col+24px) = 50% + 12px  (--mg:30, --gg:24) */
+/* Width 4 cols + 3 gaps = (100% - 324px)/3 + 72px                          */
 .hero_cnt {
   position: absolute;
-  left: var(--mg);
-  width: calc(58.333% - var(--gg));
+  left: calc(50% + 12px);
+  width: calc((100% - 324px) / 3 + 72px);
   top: 50%;
   transform: translateY(-50%);
   z-index: 2;
