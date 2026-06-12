@@ -17,7 +17,12 @@
 /* ── Typewriter font (Courier Prime = Type Machine style) ─────── */
 /* Quand tu télécharges TypeMachine.woff2 depuis dafont → assets/fonts/
    et tu remplaces 'Courier Prime' par typemachine ci-dessous */
-.tm { font-family: 'IBM Plex Mono', 'Courier New', monospace; }
+.tm { font-family: 'Courier Prime', monospace; }
+
+.courier-prime-regular        { font-family: 'Courier Prime', monospace; font-weight: 400; font-style: normal; }
+.courier-prime-bold           { font-family: 'Courier Prime', monospace; font-weight: 700; font-style: normal; }
+.courier-prime-regular-italic { font-family: 'Courier Prime', monospace; font-weight: 400; font-style: italic; }
+.courier-prime-bold-italic    { font-family: 'Courier Prime', monospace; font-weight: 700; font-style: italic; }
 
 /* ── CSS Variables ────────────────────────────────────────────── */
 :root {
@@ -90,7 +95,7 @@ html.lang-fr .t-en { display: none !important; }
   margin-right: 0.8rem;
 }
 .lang-btn {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   color: rgba(10,10,10,0.35);
@@ -103,7 +108,7 @@ html.lang-fr .t-en { display: none !important; }
 .lang-btn:hover { color: var(--fg); }
 .lang-btn.active { color: var(--fg); }
 .lang-sep {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 0.8rem;
   color: rgba(10,10,10,0.15);
 }
@@ -144,7 +149,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .nav_brand {
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -154,7 +159,7 @@ html.lang-fr .t-en { display: none !important; }
 .nav--dark .nav_brand { color: rgba(248,246,242,0.6); }
 
 .nav_clock {
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -171,7 +176,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .nav_lk {
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -182,7 +187,7 @@ html.lang-fr .t-en { display: none !important; }
 .nav--dark .nav_lk { color: rgba(248,246,242,0.85); }
 
 .nav_cta {
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -396,7 +401,7 @@ html.lang-fr .t-en { display: none !important; }
   white-space: nowrap;
 }
 #loader-info span {
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1.15rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -459,7 +464,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .Awrite {
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-family: 'Courier Prime', monospace;
   font-weight: 400;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
@@ -494,7 +499,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .social_lk {
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -532,7 +537,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .works_count {
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   color: rgba(10,10,10,0.35);
@@ -654,7 +659,7 @@ html.lang-fr .t-en { display: none !important; }
 
 .work_tech {
   flex-basis: 100%;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 0.8rem;
   letter-spacing: 0.1em;
   color: rgba(10,10,10,0.35);
@@ -662,14 +667,14 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .work_num {
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.04em;
   color: rgba(10,10,10,0.35);
 }
 
 .work_name {
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -682,7 +687,7 @@ html.lang-fr .t-en { display: none !important; }
   top: 0; left: 0;
   pointer-events: none;
   z-index: 9000;
-  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -751,7 +756,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 .about_tag_num,
 .about_tag_label {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1rem;
   color: rgba(248,246,242,0.55);
   letter-spacing: 0.1em;
@@ -789,7 +794,7 @@ html.lang-fr .t-en { display: none !important; }
   position: absolute;
   bottom: 0;
   right: 0;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 0.88rem;
   letter-spacing: 0.1em;
   color: rgba(248,246,242,0.65);
@@ -825,7 +830,7 @@ html.lang-fr .t-en { display: none !important; }
   margin-top: 2rem;
 }
 .xp_sub_label {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 0.82rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -833,7 +838,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .xp_label {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1rem;
   letter-spacing: 0.08em;
   color: rgba(10,10,10,0.3);
@@ -886,7 +891,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .xp_date {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1rem;
   letter-spacing: 0.04em;
   color: rgba(10,10,10,0.7);
@@ -910,7 +915,7 @@ html.lang-fr .t-en { display: none !important; }
 .xp_item:hover .xp_co { color: var(--bg); }
 
 .xp_type {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 0.8rem;
   letter-spacing: 0.05em;
   color: rgba(10,10,10,0.55);
@@ -919,7 +924,7 @@ html.lang-fr .t-en { display: none !important; }
 .xp_item:hover .xp_type { color: rgba(248,246,242,0.4); }
 
 .xp_loc {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 0.95rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -929,7 +934,7 @@ html.lang-fr .t-en { display: none !important; }
 .xp_item:hover .xp_loc { color: rgba(248,246,242,0.35); }
 
 .xp_role {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -946,7 +951,7 @@ html.lang-fr .t-en { display: none !important; }
 .xp_item:hover .xp_arr { color: rgba(248,246,242,0.6); transform: translateX(6px); }
 
 .xp_reveal {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1rem;
   letter-spacing: 0.05em;
   color: rgba(248,246,242,0.55);
@@ -995,7 +1000,7 @@ html.lang-fr .t-en { display: none !important; }
 
 .skill_cat {
   display: block;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 0.9rem;
   letter-spacing: 0.12em;
   color: rgba(248,246,242,0.7);
@@ -1022,7 +1027,7 @@ html.lang-fr .t-en { display: none !important; }
 .skill_item:hover { letter-spacing: 0.04em; opacity: 0.7; }
 
 .skill_lvl {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 0.9rem;
   color: rgba(248,246,242,0.3);
 }
@@ -1040,7 +1045,7 @@ html.lang-fr .t-en { display: none !important; }
   gap: 2.4rem;
   white-space: nowrap;
   animation: marquee 22s linear infinite;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1rem;
   letter-spacing: 0.1em;
   color: rgba(248,246,242,0.2);
@@ -1065,7 +1070,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .contact_pre {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1106,7 +1111,7 @@ html.lang-fr .t-en { display: none !important; }
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1118,7 +1123,7 @@ html.lang-fr .t-en { display: none !important; }
   gap: 2.4rem;
 }
 .contact_socials a {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 1rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1139,7 +1144,7 @@ html.lang-fr .t-en { display: none !important; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'Courier Prime', monospace;
   font-size: 0.95rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
