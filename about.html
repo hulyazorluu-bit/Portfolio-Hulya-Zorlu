@@ -12,6 +12,7 @@
 
     html, body {
       height: 100%;
+      max-height: 100%;
       background: #fff;
       color: #000;
       font-family: 'Inter', sans-serif;
@@ -35,22 +36,21 @@
     }
     .back:hover { color: #000; }
 
-    /* ── LAYOUT : 2 colonnes, tient dans 100vh ──────────────── */
-    /* Colonne gauche : flexible                                  */
-    /* Colonne droite : 38% (~ 543px sur 1440px)                 */
-    /* Marge droite : 5.5vw = marge gauche                       */
+    /* ── LAYOUT : position fixed = zero scroll possible ────────── */
+    /* inset:0 colle exactement au viewport sur tous les ecrans    */
     .layout {
+      position: fixed;
+      inset: 0;
       display: grid;
       grid-template-columns: 1fr 38%;
       padding-right: 5.5vw;
-      height: 100vh;
       overflow: hidden;
       align-items: start;
     }
 
     /* ── COLONNE GAUCHE — texte ─────────────────────────────── */
     .left {
-      height: 100vh;
+      height: 100%;
       overflow: hidden;
       padding: 8vh 3vw 4vh 5.5vw;
     }
@@ -99,7 +99,7 @@
 
     /* ── COLONNE DROITE — PHOTO ─────────────────────────────── */
     .right {
-      height: 100vh;
+      height: 100%;
       overflow: hidden;
     }
 
@@ -123,16 +123,17 @@
 
     /* ── MOBILE & TABLETTE (< 900px) ────────────────────────── */
     @media (max-width: 900px) {
-      html, body { overflow: auto; }
+      html, body { overflow: auto; max-height: none; }
 
       .layout {
+        position: static;
         grid-template-columns: 1fr;
         height: auto;
         overflow: visible;
         padding-right: 0;
       }
 
-      .right { height: auto; }
+      .left, .right { height: auto; overflow: visible; }
 
       .photo-wrap {
         height: 65vw;
@@ -142,8 +143,6 @@
 
       .left {
         padding: 56px 24px 48px 24px;
-        height: auto;
-        overflow: visible;
       }
 
       .label  { font-size: 14px; margin-bottom: 6px; }
