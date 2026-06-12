@@ -16,6 +16,7 @@
       color: #000000;
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
     }
 
     /* ── BACK LINK ─────────────────────────────────────────── */
@@ -34,26 +35,21 @@
     }
     .back:hover { color: #000; }
 
-    /* ── PAGE WRAPPER ──────────────────────────────────────── */
-    .page {
-      position: relative;
-      min-height: 100vh;
-      padding: 0 0 80px;
-    }
-
-    /* ── MAIN GRID : text left / photo right ───────────────── */
+    /* ── MAIN GRID ─────────────────────────────────────────── */
+    /* text = flexible, photo = fixed 543px (Figma exact), + 80px right margin */
     .layout {
       display: grid;
-      grid-template-columns: calc(50% + 96px) 1fr;
+      grid-template-columns: 1fr 543px;
+      padding-right: 80px;
       min-height: 100vh;
+      align-items: start;
     }
 
-    /* ── LEFT COLUMN ───────────────────────────────────────── */
+    /* ── LEFT COLUMN — text ────────────────────────────────── */
     .left {
-      padding: 184px 60px 80px 80px;
+      padding: 184px 48px 80px 80px;
     }
 
-    /* Label */
     .label {
       font-size: 20px;
       font-weight: 500;
@@ -62,7 +58,6 @@
       margin-bottom: 8px;
     }
 
-    /* Title */
     .title {
       font-size: 50px;
       font-weight: 700;
@@ -82,79 +77,77 @@
     .col {
       font-size: 15px;
       font-weight: 400;
-      line-height: 1.6;
+      line-height: 1.65;
       color: #000;
     }
 
-    .col p {
-      margin-bottom: 12px;
-    }
+    .col p { margin-bottom: 12px; }
     .col p:last-child { margin-bottom: 0; }
 
     .col strong {
       font-weight: 700;
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     /* ── RIGHT COLUMN — PHOTO ──────────────────────────────── */
     .right {
       padding-top: 184px;
-      padding-right: 0;
     }
 
+    /* Photo container : exact Figma dimensions 543×711 */
     .photo-wrap {
-      width: 100%;
-      height: 724px;
+      width: 543px;
+      height: 711px;
       overflow: hidden;
-      background: #e8e4df;
+      background: #eeece9;
     }
 
     .photo-wrap img {
-      width: 100%;
+      width: 104.49%;      /* slight overflow to avoid gap, matches Figma */
       height: 100%;
       object-fit: cover;
-      object-position: center top;
+      object-position: top center;
+      margin-left: -0.25%;
       display: block;
     }
 
-    /* ── MOBILE ────────────────────────────────────────────── */
-    @media (max-width: 900px) {
-      .back { left: 24px; top: 20px; }
-
+    /* ── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 1100px) {
       .layout {
         grid-template-columns: 1fr;
+        padding-right: 0;
       }
-
+      /* Photo comes first on tablet/mobile */
       .right {
+        order: -1;
         padding-top: 0;
       }
-
       .photo-wrap {
-        height: 70vw;
-        min-height: 280px;
+        width: 100%;
+        height: 60vw;
+        min-height: 300px;
       }
-
+      .photo-wrap img { width: 100%; margin-left: 0; }
       .left {
-        padding: 80px 24px 60px 24px;
+        padding: 48px 32px 64px 32px;
       }
-
       .title {
-        font-size: clamp(28px, 7vw, 50px);
+        font-size: clamp(28px, 6vw, 44px);
         margin-bottom: 36px;
       }
-
       .cols {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 20px;
       }
+      .back { left: 24px; top: 20px; }
     }
 
-    @media (min-width: 901px) and (max-width: 1200px) {
+    @media (min-width: 1101px) and (max-width: 1300px) {
       .title { font-size: 38px; }
-      .cols { gap: 20px; }
       .left { padding-left: 60px; }
       .back { left: 60px; }
+      .photo-wrap { width: 100%; }
     }
   </style>
 </head>
@@ -162,49 +155,47 @@
 
   <a href="index.html" class="back">&larr; Portfolio</a>
 
-  <div class="page">
-    <div class="layout">
+  <div class="layout">
 
-      <!-- LEFT : label + title + 3 colonnes Q&A -->
-      <div class="left">
+    <!-- LEFT : label + title + 3 colonnes Q&A -->
+    <div class="left">
 
-        <p class="label">À Propos de moi</p>
-        <h1 class="title">Designer UX/UI&nbsp;- Paris, 2026</h1>
+      <p class="label">À Propos de moi</p>
+      <h1 class="title">Designer UX/UI&nbsp;— Paris, 2026</h1>
 
-        <div class="cols">
+      <div class="cols">
 
-          <!-- Colonne 1 -->
-          <div class="col">
-            <p><strong>Comment es-tu arrivée au design&nbsp;?</strong>
-            Mon parcours a pris un chemin un peu différent avant d'arriver au design. Diplômée d'un Master en Data Analytics&nbsp;&amp; Marketing Management, cette formation m'a appris à analyser les comportements, interpréter les données et comprendre les mécanismes qui influencent les décisions des utilisateurs.</p>
-            <p>Mes expériences en agence de publicité et en marketing m'ont permis de prendre conscience de mon attrait pour les dimensions plus créatives des projets. En travaillant sur des problématiques de communication et d'expérience de marque, j'ai découvert que j'étais particulièrement attirée par la conception, la mise en forme des idées et la recherche de solutions visuelles et fonctionnelles.</p>
-          </div>
-
-          <!-- Colonne 2 -->
-          <div class="col">
-            <p>C'est dans ce contexte que j'ai progressivement exploré l'UX/UI Design, en y retrouvant un équilibre entre créativité, analyse et résolution de problèmes.</p>
-            <p><strong>Quelles compétences tu as développées en cours de route&nbsp;?</strong>
-            Pour aller plus loin dans cette direction, je me suis formée en UX/UI Design, ainsi qu'en design graphique et développement web. Aujourd'hui, je travaille principalement avec Figma et je continue à développer mes compétences en HTML, CSS et JavaScript afin de mieux comprendre les contraintes techniques et collaborer efficacement avec les équipes produit et développement.</p>
-          </div>
-
-          <!-- Colonne 3 -->
-          <div class="col">
-            <p><strong>Ce qui t'anime dans ton travail&nbsp;?</strong>
-            Ce qui m'anime au quotidien, c'est de transformer des insights utilisateurs en expériences simples, intuitives et utiles. J'aime explorer les comportements, remettre en question les évidences et trouver l'équilibre entre les besoins des utilisateurs et les objectifs business.</p>
-            <p>Quand je ne suis pas sur Figma, on me trouve souvent en train d'observer les détails d'une application, de tester un nouveau produit digital ou de me demander pourquoi un bouton est placé exactement à cet endroit.</p>
-          </div>
-
+        <!-- Colonne 1 -->
+        <div class="col">
+          <p><strong>Comment es-tu arrivée au design&nbsp;?</strong>
+          Mon parcours a pris un chemin un peu différent avant d'arriver au design. Diplômée d'un Master en Data Analytics&nbsp;&amp; Marketing Management, cette formation m'a appris à analyser les comportements, interpréter les données et comprendre les mécanismes qui influencent les décisions des utilisateurs.</p>
+          <p>Mes expériences en agence de publicité et en marketing m'ont permis de prendre conscience de mon attrait pour les dimensions plus créatives des projets. En travaillant sur des problématiques de communication et d'expérience de marque, j'ai découvert que j'étais particulièrement attirée par la conception, la mise en forme des idées et la recherche de solutions visuelles et fonctionnelles.</p>
         </div>
-      </div>
 
-      <!-- RIGHT : photo -->
-      <div class="right">
-        <div class="photo-wrap">
-          <img src="assets/hulya.jpeg" alt="Hulya Zorlu" />
+        <!-- Colonne 2 -->
+        <div class="col">
+          <p>C'est dans ce contexte que j'ai progressivement exploré l'UX/UI Design, en y retrouvant un équilibre entre créativité, analyse et résolution de problèmes.</p>
+          <p><strong>Quelles compétences tu as développées en cours de route&nbsp;?</strong>
+          Pour aller plus loin dans cette direction, je me suis formée en UX/UI Design, ainsi qu'en design graphique et développement web. Aujourd'hui, je travaille principalement avec Figma et je continue à développer mes compétences en HTML, CSS et JavaScript afin de mieux comprendre les contraintes techniques et collaborer efficacement avec les équipes produit et développement.</p>
         </div>
-      </div>
 
+        <!-- Colonne 3 -->
+        <div class="col">
+          <p><strong>Ce qui t'anime dans ton travail&nbsp;?</strong>
+          Ce qui m'anime au quotidien, c'est de transformer des insights utilisateurs en expériences simples, intuitives et utiles. J'aime explorer les comportements, remettre en question les évidences et trouver l'équilibre entre les besoins des utilisateurs et les objectifs business.</p>
+          <p>Quand je ne suis pas sur Figma, on me trouve souvent en train d'observer les détails d'une application, de tester un nouveau produit digital ou de me demander pourquoi un bouton est placé exactement à cet endroit.</p>
+        </div>
+
+      </div>
     </div>
+
+    <!-- RIGHT : photo -->
+    <div class="right">
+      <div class="photo-wrap">
+        <img src="assets/hulya.jpg" alt="Hulya Zorlu" />
+      </div>
+    </div>
+
   </div>
 
 </body>
