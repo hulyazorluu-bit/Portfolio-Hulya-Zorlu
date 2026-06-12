@@ -11,12 +11,12 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
-      height: 100%;
-      overflow: hidden;
+      min-height: 100%;
       background: #ffffff;
       color: #000000;
       font-family: 'Inter', sans-serif;
       -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
     }
 
     /* ── BACK LINK ─────────────────────────────────────────── */
@@ -41,15 +41,13 @@
       display: grid;
       grid-template-columns: 1fr 543px;
       padding-right: 80px;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
       align-items: start;
     }
 
     /* ── LEFT COLUMN — text ────────────────────────────────── */
     .left {
       padding: 184px 48px 80px 80px;
-      overflow: hidden;
     }
 
     .label {
@@ -163,7 +161,7 @@
     <div class="left">
 
       <p class="label">À Propos de moi</p>
-      <h1 class="title">Designer UX/UI - Paris, 2026</h1>
+      <h1 class="title">Designer UX/UI&nbsp;— Paris, 2026</h1>
 
       <div class="cols">
 
