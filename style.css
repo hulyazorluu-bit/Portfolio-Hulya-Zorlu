@@ -118,10 +118,9 @@ html.lang-fr .t-en { display: none !important; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: var(--gg);
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0 var(--mg);
   height: 4.8rem;
   background: transparent;
@@ -144,7 +143,6 @@ html.lang-fr .t-en { display: none !important; }
 
 
 .nav_left {
-  grid-column: 1 / 7;
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -171,10 +169,9 @@ html.lang-fr .t-en { display: none !important; }
 .nav--dark .nav_clock { color: rgba(248,246,242,0.4); }
 
 .nav_right {
-  grid-column: 7 / 13;
-  display: grid;
-  grid-template-columns: subgrid;
+  display: flex;
   align-items: center;
+  gap: 2.8rem;
   margin-right: 0;
 }
 
@@ -190,19 +187,17 @@ html.lang-fr .t-en { display: none !important; }
 .nav--dark .nav_lk { color: rgba(248,246,242,0.85); }
 
 .nav_cta {
-  grid-column: 6;
   font-family: 'Courier Prime', monospace;
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #F0EEE9;
   background: var(--fg);
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
   align-self: stretch;
   border-radius: 0;
-  padding: 0 1.2rem;
+  padding: 0;
   opacity: 0;
   transition: opacity 0.6s ease;
 }
@@ -493,12 +488,11 @@ html.lang-fr .t-en { display: none !important; }
   margin-top: 0;
 }
 
-/* ── SOCIALS — bottom left, aligned to col 2 ─────────────────── */
-/* col 2 left = mg + col_width + gg = 30 + (100%-324px)/12 + 24  */
+/* ── SOCIALS — bottom right ───────────────────────────────────── */
 .hero_socials {
   position: absolute;
   bottom: 3.2rem;
-  left: calc(var(--mg) + (100% - 2*var(--mg) - 11*var(--gg)) / 12 + var(--gg));
+  right: var(--mg);
   display: flex;
   gap: 2.8rem;
   z-index: 2;
@@ -565,10 +559,10 @@ html.lang-fr .t-en { display: none !important; }
   cursor: default;
 }
 
-/* Grid alignment — col 1 laissé vide = gutter Swiss */
-.work_item               { grid-column: 2 / 6; }
+/* Grid alignment — col 5 laissé vide = gutter Swiss */
+.work_item               { grid-column: 1 / 5; }
 .work_item:nth-child(2)  { grid-column: 6 / 13; }
-.work_item:nth-child(3)  { grid-column: 2 / 5; }
+.work_item:nth-child(3)  { grid-column: 1 / 4; }
 
 .work_thumb {
   width: 100%;
@@ -1180,7 +1174,6 @@ html.lang-fr .t-en { display: none !important; }
 
 /* ── RESPONSIVE ───────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .nav { display: flex; justify-content: space-between; }
   .nav_right { display: none; }
   .burger { display: flex; }
 
@@ -1191,7 +1184,7 @@ html.lang-fr .t-en { display: none !important; }
 
   .cnt_tt { font-size: clamp(5rem, 14vw, 9rem); }
 
-  .hero_socials { gap: 1.6rem; left: auto; right: var(--mg); }
+  .hero_socials { gap: 1.6rem; right: var(--mg); }
 }
 
 @media (max-width: 600px) {
@@ -1201,8 +1194,6 @@ html.lang-fr .t-en { display: none !important; }
     flex-direction: column;
     gap: 1rem;
     bottom: 5rem;
-    left: var(--mg);
-    right: auto;
   }
 
   .cnt_sc { bottom: 2.4rem; }
