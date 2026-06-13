@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Preview Swiss Design — Hulya Zorlu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['IBM Plex Sans', 'system-ui', 'sans-serif'],
+            mono: ['IBM Plex Mono', 'monospace'],
+          },
+          colors: {
+            accent: '#C8102E',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background: #fafaf9; color: #1c1917; }
+    .col-line { border-left: 1px solid rgba(28,25,23,0.08); }
+  </style>
+</head>
+<body class="font-sans antialiased">
+
+  <!-- NOTE -->
+  <div class="fixed top-0 inset-x-0 z-50 bg-accent text-white text-xs font-mono tracking-widest uppercase px-6 py-2 flex items-center justify-between">
+    <span>Apercu Swiss Design — fichier test uniquement, ne touche pas au portfolio</span>
+    <a href="index.html" class="underline opacity-70 hover:opacity-100">Retour au vrai portfolio</a>
+  </div>
+
+  <!-- ── HERO ── -->
+  <section class="pt-16 min-h-screen grid grid-cols-12 gap-6 px-8 border-b border-stone-200">
+
+    <!-- col 1-2 : index colonne -->
+    <div class="col-span-2 pt-24 col-line pl-4">
+      <span class="text-xs font-mono tracking-widest uppercase text-stone-400">01 / Hero</span>
+    </div>
+
+    <!-- col 3-8 : titre -->
+    <div class="col-span-6 pt-24 flex flex-col justify-center min-h-[70vh]">
+      <p class="text-xs font-mono tracking-widest uppercase text-stone-400 mb-8">
+        Designer UI/UX — Paris, 2026
+      </p>
+      <h1 class="text-7xl font-light tracking-tight leading-none text-balance mb-10" style="color:#1c1917">
+        Hulya<br/>Zorlu
+      </h1>
+      <p class="text-base font-light leading-relaxed max-w-[52ch] text-stone-600">
+        Designer UX/UI combinant recherche utilisateur, pensee strategique
+        et design visuel pour creer des produits utiles, intuitifs et alignes
+        avec les objectifs business.
+      </p>
+      <div class="mt-12 flex items-center gap-8">
+        <a href="#" class="text-xs font-mono tracking-widest uppercase border-b border-accent text-accent pb-0.5 hover:opacity-70 transition-opacity">
+          Voir les projets
+        </a>
+        <a href="#" class="text-xs font-mono tracking-widest uppercase text-stone-400 border-b border-stone-300 pb-0.5 hover:text-stone-700 transition-colors">
+          A propos
+        </a>
+      </div>
+    </div>
+
+    <!-- col 9-12 : info laterale -->
+    <div class="col-span-4 pt-24 col-line pl-6 flex flex-col justify-center gap-8">
+      <div>
+        <p class="text-xs font-mono tracking-widest uppercase text-stone-400 mb-2">Disponible</p>
+        <p class="text-sm font-light text-stone-700">Freelance · CDI</p>
+      </div>
+      <div>
+        <p class="text-xs font-mono tracking-widest uppercase text-stone-400 mb-2">Outils</p>
+        <p class="text-sm font-light text-stone-700">Figma · HTML · CSS · JS</p>
+      </div>
+      <div>
+        <p class="text-xs font-mono tracking-widest uppercase text-stone-400 mb-2">Contact</p>
+        <p class="text-sm font-light text-stone-700">hulya.zorluu@gmail.com</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── PROJETS ── -->
+  <section class="grid grid-cols-12 gap-6 px-8 py-24 border-b border-stone-200">
+
+    <div class="col-span-2 col-line pl-4">
+      <span class="text-xs font-mono tracking-widest uppercase text-stone-400">02 / Projets</span>
+    </div>
+
+    <div class="col-span-10">
+      <h2 class="text-3xl font-light tracking-tight text-balance mb-16" style="color:#1c1917">
+        Projets selectionnes
+      </h2>
+
+      <!-- Grille projets -->
+      <div class="grid grid-cols-3 gap-px bg-stone-200">
+
+        <!-- Projet 1 -->
+        <div class="bg-stone-50 p-8 hover:bg-white transition-colors group cursor-pointer">
+          <div class="aspect-video bg-stone-100 mb-6 overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center">
+              <span class="text-xs font-mono text-stone-400 tracking-widest">WEVENT</span>
+            </div>
+          </div>
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="text-xs font-mono tracking-widest uppercase text-stone-400 mb-1">01</p>
+              <h3 class="text-lg font-normal">WeEvent</h3>
+              <p class="text-sm font-light text-stone-500 mt-1">App evenementielle · UX/UI</p>
+            </div>
+            <span class="text-accent opacity-0 group-hover:opacity-100 transition-opacity text-xl font-light">↗</span>
+          </div>
+        </div>
+
+        <!-- Projet 2 -->
+        <div class="bg-stone-50 p-8 hover:bg-white transition-colors group cursor-pointer">
+          <div class="aspect-video bg-stone-100 mb-6 overflow-hidden">
+            <div class="w-full h-full bg-gradient-to-br from-stone-300 to-stone-400 flex items-center justify-center">
+              <span class="text-xs font-mono text-stone-500 tracking-widest">PROJET 2</span>
+            </div>
+          </div>
+          <div class="flex items-start justify-between">
+            <div>
+              <p class="text-xs font-mono tracking-widest uppercase text-stone-400 mb-1">02</p>
+              <h3 class="text-lg font-normal">Projet 2</h3>
+              <p class="text-sm font-light text-stone-500 mt-1">Design graphique · Identite</p>
+            </div>
+            <span class="text-accent opacity-0 group-hover:opacity-100 transition-opacity text-xl font-light">↗</span>
+          </div>
+        </div>
+
+        <!-- Projet 3 — bientot -->
+        <div class="bg-stone-100 p-8 opacity-50">
+          <div class="aspect-video bg-stone-200 mb-6 flex items-center justify-center">
+            <span class="text-xs font-mono text-stone-400 tracking-widest">BIENTOT</span>
+          </div>
+          <div>
+            <p class="text-xs font-mono tracking-widest uppercase text-stone-400 mb-1">03</p>
+            <h3 class="text-lg font-normal text-stone-400">En cours…</h3>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── A PROPOS ── -->
+  <section class="grid grid-cols-12 gap-6 px-8 py-24 border-b border-stone-200">
+
+    <div class="col-span-2 col-line pl-4">
+      <span class="text-xs font-mono tracking-widest uppercase text-stone-400">03 / A propos</span>
+    </div>
+
+    <div class="col-span-5">
+      <h2 class="text-3xl font-light tracking-tight text-balance mb-8">
+        Designer UX/UI<br/>& Strategie Digitale
+      </h2>
+      <div class="space-y-5 text-sm font-light leading-relaxed text-stone-600 max-w-[56ch]">
+        <p>
+          Apres un parcours en marketing, data et strategie en agence,
+          j'ai choisi de me specialiser dans le design UX/UI pour me
+          rapprocher de ce qui me passionne le plus : comprendre les
+          comportements et concevoir des experiences qui ont du sens.
+        </p>
+        <p>
+          Aujourd'hui, je combine recherche utilisateur, pensee strategique
+          et design visuel pour creer des produits a la fois utiles,
+          intuitifs et alignes avec les objectifs business.
+        </p>
+      </div>
+      <a href="about.html" class="inline-flex items-center gap-2 mt-10 text-xs font-mono tracking-widest uppercase text-accent border-b border-accent pb-0.5 hover:opacity-70 transition-opacity">
+        En savoir plus ↗
+      </a>
+    </div>
+
+    <div class="col-span-5 col-line pl-8 flex flex-col gap-6">
+      <div class="border border-stone-200 p-6">
+        <p class="text-xs font-mono tracking-widest uppercase text-stone-400 mb-3">Competences</p>
+        <div class="flex flex-wrap gap-2">
+          {['UX Research', 'UI Design', 'Figma', 'Prototypage', 'HTML/CSS', 'Design System'].map(s =>
+          `<span class="text-xs font-mono border border-stone-200 px-2 py-1">${s}</span>`
+          ).join('')}
+        </div>
+      </div>
+      <div class="border border-stone-200 p-6">
+        <p class="text-xs font-mono tracking-widest uppercase text-stone-400 mb-3">Formation</p>
+        <p class="text-sm font-light text-stone-600">MSc Data Analytics & Marketing Management</p>
+        <p class="text-xs font-mono text-stone-400 mt-1">+ Formation UX/UI Design</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="grid grid-cols-12 gap-6 px-8 py-16">
+    <div class="col-span-2 col-line pl-4">
+      <span class="text-xs font-mono tracking-widest uppercase text-stone-400">Hulya Zorlu</span>
+    </div>
+    <div class="col-span-6 flex items-center gap-8">
+      <a href="#" class="text-xs font-mono tracking-widest uppercase text-stone-400 hover:text-accent transition-colors">LinkedIn</a>
+      <a href="#" class="text-xs font-mono tracking-widest uppercase text-stone-400 hover:text-accent transition-colors">Behance</a>
+      <a href="#" class="text-xs font-mono tracking-widest uppercase text-stone-400 hover:text-accent transition-colors">hulya.zorluu@gmail.com</a>
+    </div>
+    <div class="col-span-4 flex justify-end items-center">
+      <span class="text-xs font-mono text-stone-300">Paris, 2026</span>
+    </div>
+  </footer>
+
+</body>
+</html>
