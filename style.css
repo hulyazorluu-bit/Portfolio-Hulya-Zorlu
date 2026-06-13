@@ -113,14 +113,15 @@ html.lang-fr .t-en { display: none !important; }
   color: rgba(10,10,10,0.15);
 }
 
-/* ── NAV ──────────────────────────────────────────────────────── */
+/* ── NAV — grille 12 cols ─────────────────────────────────────── */
 .nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gg);
   align-items: center;
-  justify-content: space-between;
   padding: 0 var(--mg);
   height: 4.8rem;
   background: transparent;
@@ -143,6 +144,7 @@ html.lang-fr .t-en { display: none !important; }
 
 
 .nav_left {
+  grid-column: 1 / 8;
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -169,10 +171,10 @@ html.lang-fr .t-en { display: none !important; }
 .nav--dark .nav_clock { color: rgba(248,246,242,0.4); }
 
 .nav_right {
+  grid-column: 8 / 13;
   display: flex;
   align-items: center;
   gap: 2.8rem;
-  margin-right: 0;
 }
 
 .nav_lk {
@@ -418,12 +420,11 @@ html.lang-fr .t-en { display: none !important; }
   overflow: visible;
 }
 
-/* ── TITLE BLOCK — col 7 → col 10, Swiss grid right-side positioning ── */
-/* Col 7 left edge = 30px + 6×(col+24px) = 50% + 12px  (--mg:30, --gg:24) */
-/* Width 4 cols + 3 gaps = (100% - 324px)/3 + 72px                          */
+/* ── TITLE BLOCK — col 6 right edge, Swiss grid positioning ── */
+/* Col 6 right edge = 30px + 6×col + 5×24px = 50% - 12px       */
 .hero_cnt {
   position: absolute;
-  left: calc(50% + 12px);
+  left: calc(50% - 12px);
   width: calc((100% - 324px) / 3 + 72px);
   top: 50%;
   transform: translateY(-50%);
@@ -488,11 +489,12 @@ html.lang-fr .t-en { display: none !important; }
   margin-top: 0;
 }
 
-/* ── SOCIALS — bottom right ───────────────────────────────────── */
+/* ── SOCIALS — anchored at col 9 right edge ──────────────────── */
+/* Col 9 right = mg + 9×col_w + 8×gg = mg + 9×(100%-2mg-11gg)/12 + 8×gg */
 .hero_socials {
   position: absolute;
   bottom: 3.2rem;
-  right: var(--mg);
+  left: calc(var(--mg) + 9 * (100% - 2 * var(--mg) - 11 * var(--gg)) / 12 + 8 * var(--gg));
   display: flex;
   gap: 2.8rem;
   z-index: 2;
@@ -1174,6 +1176,7 @@ html.lang-fr .t-en { display: none !important; }
 
 /* ── RESPONSIVE ───────────────────────────────────────────────── */
 @media (max-width: 900px) {
+  .nav { display: flex; justify-content: space-between; }
   .nav_right { display: none; }
   .burger { display: flex; }
 
@@ -1184,7 +1187,7 @@ html.lang-fr .t-en { display: none !important; }
 
   .cnt_tt { font-size: clamp(5rem, 14vw, 9rem); }
 
-  .hero_socials { gap: 1.6rem; right: var(--mg); }
+  .hero_socials { left: auto; right: var(--mg); gap: 1.6rem; }
 }
 
 @media (max-width: 600px) {
