@@ -175,6 +175,8 @@ html.lang-fr .t-en { display: none !important; }
   display: flex;
   align-items: center;
   gap: 2.8rem;
+  margin-left: calc(-1 * var(--gg));
+  width: calc(100% + var(--gg));
 }
 
 .nav_lk {
