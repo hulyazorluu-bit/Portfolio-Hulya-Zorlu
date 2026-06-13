@@ -33,6 +33,8 @@
   --col-line: rgba(10,10,10,0.07);
   --mg: 30px;
   --gg: 24px;
+  /* column unit: col_width + gap = (100vw - 2*mg + gg) / 12 */
+  --col-unit: calc((100vw - 2 * var(--mg) + var(--gg)) / 12);
 }
 
 /* ── Reset ────────────────────────────────────────────────────── */
@@ -72,7 +74,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
     repeating-linear-gradient(to bottom, rgba(10,10,10,0.08) 0, rgba(10,10,10,0.08) 9px, transparent 9px, transparent 18px),
     repeating-linear-gradient(to bottom, rgba(10,10,10,0.08) 0, rgba(10,10,10,0.08) 9px, transparent 9px, transparent 18px);
   background-size: 1px 18px, 1px 18px;
-  background-position: right 0px top 0, right 6px top 0;
+  background-position: left 0px top 0, left 6px top 0;
   background-repeat: repeat-y, repeat-y;
 }
 
@@ -175,8 +177,6 @@ html.lang-fr .t-en { display: none !important; }
   display: flex;
   align-items: center;
   gap: 2.8rem;
-  margin-left: calc(-1 * var(--gg));
-  width: calc(100% + var(--gg));
 }
 
 .nav_lk {
@@ -422,11 +422,11 @@ html.lang-fr .t-en { display: none !important; }
   overflow: visible;
 }
 
-/* ── TITLE BLOCK — col 6 right edge, Swiss grid positioning ── */
-/* Col 6 right edge = 30px + 6×col + 5×24px = 50% - 12px       */
+/* ── TITLE BLOCK — col 7 left edge, Swiss grid snap ──────────── */
+/* Col 7 left = mg + 6 × col-unit = calc(50% + 12px)            */
 .hero_cnt {
   position: absolute;
-  left: calc(50% - 12px);
+  left: calc(50% + 12px);
   width: calc((100% - 324px) / 3 + 72px);
   top: 50%;
   transform: translateY(-50%);
@@ -491,12 +491,12 @@ html.lang-fr .t-en { display: none !important; }
   margin-top: 0;
 }
 
-/* ── SOCIALS — anchored at col 9 right edge ──────────────────── */
-/* Col 9 right = mg + 9×col_w + 8×gg = mg + 9×(100%-2mg-11gg)/12 + 8×gg */
+/* ── SOCIALS — col 9 left edge, Swiss grid snap ──────────────── */
+/* Col 9 left = mg + 8 × col-unit                               */
 .hero_socials {
   position: absolute;
   bottom: 3.2rem;
-  left: calc(var(--mg) + 9 * (100% - 2 * var(--mg) - 11 * var(--gg)) / 12 + 8 * var(--gg));
+  left: calc(var(--mg) + 8 * var(--col-unit));
   display: flex;
   gap: 2.8rem;
   z-index: 2;
@@ -563,10 +563,10 @@ html.lang-fr .t-en { display: none !important; }
   cursor: default;
 }
 
-/* Grid alignment — col 5 laissé vide = gutter Swiss */
-.work_item               { grid-column: 1 / 5; }
+/* Grid alignment — each card snaps to a column left edge */
+.work_item               { grid-column: 2 / 6; }
 .work_item:nth-child(2)  { grid-column: 6 / 13; }
-.work_item:nth-child(3)  { grid-column: 1 / 4; }
+.work_item:nth-child(3)  { grid-column: 2 / 5; }
 
 .work_thumb {
   width: 100%;
@@ -781,7 +781,7 @@ html.lang-fr .t-en { display: none !important; }
 
 .about_desc {
   position: absolute;
-  left: 50%;
+  left: calc(var(--mg) + 6 * var(--col-unit));  /* col 7 left */
   top: 50%;
   transform: translateY(-50%);
   width: 25%;
@@ -1190,6 +1190,8 @@ html.lang-fr .t-en { display: none !important; }
   .cnt_tt { font-size: clamp(5rem, 14vw, 9rem); }
 
   .hero_socials { left: auto; right: var(--mg); gap: 1.6rem; }
+
+  .about_desc { left: var(--mg); width: calc(100% - 2 * var(--mg)); position: relative; top: auto; transform: none; margin-top: 3rem; }
 }
 
 @media (max-width: 600px) {
