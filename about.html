@@ -33,29 +33,24 @@
     }
     .skip-link:focus { top: 0; }
 
-    /* NAV — 48px height */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0 80px; height: 48px;
-      background: #0A0A0A;
+    /* RETOUR — lien simple en haut à gauche, pas de barre */
+    .back-link {
+      position: fixed;
+      top: 24px;
+      left: 80px;
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      text-decoration: none;
+      z-index: 100;
+      transition: opacity 0.2s;
     }
-    .nav-back {
-      font-family: montrealbook, sans-serif; font-size: 14px;
-      color: rgba(248,246,242,0.55); text-decoration: none;
-      letter-spacing: 0.02em; padding: 12px 0; transition: color 0.2s;
-    }
-    .nav-back:hover { color: #F8F6F2; }
-    .nav-back:focus-visible { color: #F8F6F2; outline: 2px solid rgba(248,246,242,0.7); outline-offset: 4px; }
-    .nav-meta { font-size: 11px; color: rgba(248,246,242,0.35); letter-spacing: 0.06em; }
+    .back-link:hover { opacity: 0.5; }
+    .back-link:focus-visible { outline: 2px solid #000; outline-offset: 3px; }
 
-    /* PAGE
-     * margin-top = nav 48px
-     * padding-left = 80px  (Figma left margin)
-     * padding-right = 70px (Figma right : 1440-1370=70px)
-     */
+    /* PAGE — plus de margin-top nav */
     .page {
-      margin-top: 48px;
       padding-left: 80px;
       padding-right: 70px;
       padding-bottom: 80px;
@@ -181,10 +176,7 @@
 
   <a href="#contenu" class="skip-link">Aller au contenu principal</a>
 
-  <nav class="nav" aria-label="Navigation principale">
-    <a href="index.html" class="nav-back" aria-label="Retour au portfolio">&larr; Portfolio</a>
-    <span class="nav-meta" aria-hidden="true">Hulya Zorlu &mdash; 2026</span>
-  </nav>
+  <a href="index.html" class="back-link" aria-label="Retour au portfolio">&larr; Portfolio</a>
 
   <main id="contenu" class="page">
 
