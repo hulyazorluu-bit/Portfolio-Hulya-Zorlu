@@ -64,27 +64,19 @@
       color: rgba(248,246,242,0.35); letter-spacing: 0.06em;
     }
 
-    /* ── GRILLE 12 COLONNES ───────────────────────────────────
-     * Ligne 1 : titre pleine largeur (col 1-12)
-     * Ligne 2 : photo (col 1-5) | vide (col 6) | Q&A (col 7-12)
-     */
+    /* ── LAYOUT ───────────────────────────────────────────── */
     .layout {
       margin-top: var(--nav-h);
       padding: 0 var(--mg);
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: auto 1fr;
-      column-gap: var(--gg);
       min-height: calc(100vh - var(--nav-h));
     }
 
-    /* ── TITRE — ligne 1, cols 1-12 ──────────────────────── */
+    /* ── TITRE — pleine largeur ───────────────────────────── */
     .title-row {
-      grid-column: 1 / 13;
-      grid-row: 1;
       padding-top: 5.6rem;
       padding-bottom: 3.6rem;
       border-bottom: 1px solid var(--rule);
+      margin-bottom: 4rem;
     }
 
     .page-title {
@@ -97,12 +89,20 @@
       white-space: nowrap;
     }
 
-    /* ── PHOTO — ligne 2, cols 1-5 ───────────────────────── */
+    /* ── CONTENU — photo et Q&A alignés en haut ──────────────
+     * Les deux colonnes démarrent à la même ligne (align-items: start)
+     */
+    .content-row {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--gg);
+      align-items: start;
+      padding-bottom: 5.6rem;
+    }
+
+    /* ── PHOTO — cols 1-5 ─────────────────────────────────── */
     .photo-col {
       grid-column: 1 / 6;
-      grid-row: 2;
-      padding-top: 3.6rem;
-      padding-bottom: 5.6rem;
       display: flex;
       flex-direction: column;
       gap: 3.2rem;
@@ -121,12 +121,9 @@
     /* Question sous la photo */
     .left-block { display: flex; flex-direction: column; gap: 1.2rem; }
 
-    /* ── Q&A — ligne 2, cols 7-12 ────────────────────────── */
+    /* ── Q&A — cols 7-12 ──────────────────────────────────── */
     .right-col {
       grid-column: 7 / 13;
-      grid-row: 2;
-      padding-top: 3.6rem;
-      padding-bottom: 5.6rem;
       display: flex;
       flex-direction: column;
       gap: 3.6rem;
@@ -157,12 +154,11 @@
 
     /* ── RESPONSIVE ──────────────────────────────────────── */
     @media (max-width: 900px) {
-      .layout { display: flex; flex-direction: column; }
-      .title-row { padding-top: 3.6rem; padding-bottom: 2.4rem; border-bottom: none; }
+      .title-row { padding-top: 3.6rem; padding-bottom: 2.4rem; margin-bottom: 2.4rem; }
       .page-title { font-size: clamp(3.6rem, 10vw, 6.4rem); white-space: normal; }
-      .photo-col { padding-top: 0; padding-bottom: 0; gap: 2.4rem; }
-      .photo-wrap { height: 60vw; }
-      .right-col { padding-top: 3.2rem; padding-bottom: 5.6rem; }
+      .content-row { display: flex; flex-direction: column; gap: 3.2rem; }
+      .photo-col { gap: 2.4rem; }
+      .right-col { padding-bottom: 5.6rem; }
     }
 
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
@@ -180,12 +176,15 @@
 
   <main id="contenu" class="layout">
 
-    <!-- LIGNE 1 : titre -->
+    <!-- TITRE -->
     <header class="title-row">
       <h1 class="page-title">À propos de moi</h1>
     </header>
 
-    <!-- LIGNE 2 GAUCHE : photo + bloc -->
+    <!-- CONTENU : photo et Q&A alignés en haut -->
+    <div class="content-row">
+
+    <!-- GAUCHE : photo + bloc -->
     <div class="photo-col">
 
       <div class="photo-wrap">
@@ -204,7 +203,7 @@
 
     </div>
 
-    <!-- LIGNE 2 DROITE : Q&A -->
+    <!-- DROITE : Q&A -->
     <div class="right-col" role="article" aria-label="Biographie">
 
       <section class="bio-section" aria-labelledby="q1">
@@ -224,6 +223,8 @@
       </section>
 
     </div>
+
+    </div><!-- .content-row -->
 
   </main>
 
