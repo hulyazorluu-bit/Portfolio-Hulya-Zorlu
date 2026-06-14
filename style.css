@@ -125,6 +125,7 @@ html.lang-fr .t-en { display: none !important; }
   column-gap: var(--gg);
   align-items: center;
   padding: 0 var(--mg);
+  overflow: visible;
   height: 4.8rem;
   background: transparent;
 }
@@ -176,7 +177,7 @@ html.lang-fr .t-en { display: none !important; }
   grid-column: 9 / 13;
   display: flex;
   align-items: center;
-  gap: 3.4rem;
+  gap: 3rem;
   /* snap left edge onto col 8 right-edge dash (shift left one gutter) */
   transform: translateX(calc(-1 * var(--gg)));
 }
