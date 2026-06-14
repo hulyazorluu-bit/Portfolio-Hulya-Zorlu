@@ -682,9 +682,9 @@ html.lang-fr .t-en { display: none !important; }
 .work_result {
   flex-basis: 100%;
   font-family: 'Courier Prime', monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.06em;
-  color: rgba(10,10,10,0.5);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: rgba(10,10,10,0.72);
   margin-top: 0.5rem;
   font-style: italic;
 }
@@ -913,7 +913,7 @@ html.lang-fr .t-en { display: none !important; }
   letter-spacing: -0.03em;
   line-height: 0.92;
   color: var(--fg);
-  margin-left: 0;
+  margin-left: calc((100% - 11 * var(--gg)) / 12);
   margin-bottom: 0;
 }
 
@@ -993,9 +993,9 @@ html.lang-fr .t-en { display: none !important; }
 
 .xp_type {
   font-family: 'Courier Prime', monospace;
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
-  color: rgba(10,10,10,0.55);
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: rgba(10,10,10,0.6);
   transition: color 0.25s;
 }
 .xp_item:hover .xp_type { color: rgba(248,246,242,0.4); }
