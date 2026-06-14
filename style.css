@@ -176,7 +176,7 @@ html.lang-fr .t-en { display: none !important; }
   grid-column: 9 / 13;
   display: flex;
   align-items: center;
-  gap: 2.8rem;
+  gap: 3.4rem;
   /* snap left edge onto col 8 right-edge dash (shift left one gutter) */
   transform: translateX(calc(-1 * var(--gg)));
 }
@@ -493,14 +493,13 @@ html.lang-fr .t-en { display: none !important; }
   margin-top: 0;
 }
 
-/* SOCIALS : left edge (Instagram) snaps onto col 10 right-edge dash */
-/* x_right(10) = mg - gg + 10 * colunit, percent of hero width (no scrollbar drift) */
+/* SOCIALS : right-aligned to the page margin, tightened gap */
 .hero_socials {
   position: absolute;
   bottom: 3.2rem;
-  left: calc(var(--mg) - var(--gg) + 10 * (100% - 2 * var(--mg) + var(--gg)) / 12);
+  right: var(--mg);
   display: flex;
-  gap: 2.8rem;
+  gap: 1.6rem;
   z-index: 2;
 }
 
@@ -527,7 +526,9 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .works_hd {
-  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
   margin-bottom: 3.2rem;
 }
 
@@ -549,9 +550,6 @@ html.lang-fr .t-en { display: none !important; }
   font-size: 1.1rem;
   letter-spacing: 0.05em;
   color: rgba(10,10,10,0.35);
-  position: absolute;
-  top: 0.4em;
-  right: 0;
 }
 
 .works_grid {
