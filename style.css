@@ -738,7 +738,7 @@ html.lang-fr .t-en { display: none !important; }
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1.1rem;
   font-weight: 500;
-  color: #F8F6F2;
+  color: rgba(10,10,10,0.55);
   letter-spacing: 0.01em;
   /* snap left edge onto col 2 dash */
   margin-left: calc((100% - 11 * var(--gg)) / 12);
@@ -747,29 +747,9 @@ html.lang-fr .t-en { display: none !important; }
 
 .about {
   position: relative;
-  background: #0A0A0A;
+  background: #ffffff;
   min-height: 100vh;
   padding: 10rem var(--mg) 8rem;
-  isolation: isolate;
-}
-
-/* About: lignes continues (pas pointillées), alignées sur la grille */
-.about::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image: repeating-linear-gradient(
-    90deg,
-    transparent calc(var(--col-unit) - 1px),
-    rgba(248,246,242,0.09) calc(var(--col-unit) - 1px),
-    rgba(248,246,242,0.09) var(--col-unit),
-    transparent var(--col-unit)
-  );
-  background-size: var(--col-unit) 100%;
-  background-position: calc(var(--mg) - var(--gg)) 0;
-  background-attachment: fixed;
 }
 
 .about_inner {
@@ -782,14 +762,14 @@ html.lang-fr .t-en { display: none !important; }
   align-items: center;
   gap: 1.2rem;
   margin-bottom: 4rem;
-  border-top: 1px solid rgba(248,246,242,0.12);
+  border-top: 1px solid rgba(10,10,10,0.1);
   padding-top: 2rem;
 }
 .about_tag_num,
 .about_tag_label {
   font-family: 'Courier Prime', monospace;
   font-size: 1rem;
-  color: rgba(248,246,242,0.55);
+  color: rgba(10,10,10,0.35);
   letter-spacing: 0.1em;
 }
 
@@ -799,7 +779,7 @@ html.lang-fr .t-en { display: none !important; }
   font-size: clamp(3.5rem, 5.2vw, 7.5rem);
   letter-spacing: -0.03em;
   line-height: 1;
-  color: #F8F6F2;
+  color: #0A0A0A;
   position: relative;
   z-index: 1;
   /* snap left edge onto col 2 dash */
@@ -819,7 +799,7 @@ html.lang-fr .t-en { display: none !important; }
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.7;
-  color: rgba(248,246,242,0.82);
+  color: rgba(10,10,10,0.72);
 }
 .about_desc p + p { margin-top: 1.3em; }
 
@@ -830,16 +810,16 @@ html.lang-fr .t-en { display: none !important; }
   font-family: 'Courier Prime', monospace;
   font-size: 0.88rem;
   letter-spacing: 0.1em;
-  color: rgba(248,246,242,0.65);
+  color: rgba(10,10,10,0.5);
   text-decoration: none;
   text-transform: uppercase;
-  border-bottom: 1px solid rgba(248,246,242,0.3);
+  border-bottom: 1px solid rgba(10,10,10,0.25);
   padding-bottom: 2px;
   transition: color 0.2s, border-color 0.2s;
 }
 .about_more:hover {
-  color: #F8F6F2;
-  border-color: rgba(248,246,242,0.7);
+  color: #0A0A0A;
+  border-color: rgba(10,10,10,0.6);
 }
 
 /* ── EXPERIENCE + EDUCATION ───────────────────────────────────── */
