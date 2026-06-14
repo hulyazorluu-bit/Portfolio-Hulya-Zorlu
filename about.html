@@ -6,197 +6,592 @@
   <title>À Propos — Hulya Zorlu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      min-height: 100%;
-      background: #ffffff;
-      color: #000000;
-      font-family: 'Inter', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: clip;
+    @font-face {
+      font-family: montrealbook;
+      font-display: swap;
+      src: url(assets/fonts/NeueMontreal-Regular.woff2) format("woff2"),
+           url(assets/fonts/NeueMontreal-Regular.woff) format("woff");
     }
 
-    /* ── BACK LINK ─────────────────────────────────────────── */
-    .back {
-      position: fixed;
-      top: 28px;
-      left: 80px;
-      z-index: 50;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(0,0,0,0.38);
+    :root {
+      --bg: #F8F6F2;
+      --fg: #0A0A0A;
+      --mg: 30px;
+      --gg: 24px;
+      --col-unit: calc((100vw - 2 * var(--mg) + var(--gg)) / 12);
+      --rule: rgba(10,10,10,0.1);
+      --muted: rgba(10,10,10,0.42);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 10px; scroll-behavior: smooth; }
+    body {
+      font-family: montrealbook, 'Helvetica Neue', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ──────────────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 var(--mg);
+      height: 4.8rem;
+      background: var(--fg);
+    }
+    .nav-back {
+      font-family: montrealbook, sans-serif;
+      font-size: 1.2rem;
+      color: rgba(248,246,242,0.55);
       text-decoration: none;
+      letter-spacing: 0.02em;
       transition: color 0.2s;
     }
-    .back:hover { color: #000; }
+    .nav-back:hover { color: #F8F6F2; }
+    .nav-index {
+      font-family: 'Courier Prime', monospace;
+      font-size: 1rem;
+      color: rgba(248,246,242,0.38);
+      letter-spacing: 0.08em;
+    }
 
-    /* ── MAIN GRID ─────────────────────────────────────────── */
-    /* text = flexible, photo = fixed 543px (Figma exact), + 80px right margin */
-    .layout {
-      display: grid;
-      grid-template-columns: 1fr 543px;
-      padding-right: 80px;
+    /* ── OPENING SPREAD ───────────────────────────────────── */
+    .opening {
       min-height: 100vh;
-      align-items: start;
-    }
-
-    /* ── LEFT COLUMN — text ────────────────────────────────── */
-    .left {
-      padding: 184px 48px 80px 80px;
-    }
-
-    .label {
-      font-size: 20px;
-      font-weight: 500;
-      line-height: 1;
-      color: #000;
-      margin-bottom: 8px;
-    }
-
-    .title {
-      font-size: 50px;
-      font-weight: 700;
-      line-height: 1.1;
-      color: #000;
-      margin-bottom: 56px;
-    }
-
-    /* ── Q&A THREE COLUMNS ─────────────────────────────────── */
-    .cols {
+      padding-top: 4.8rem;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-      align-items: start;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--gg);
+      padding-left: var(--mg);
+      padding-right: 0;
+      background: var(--bg);
+      position: relative;
     }
 
-    .col {
-      font-size: 15px;
-      font-weight: 400;
-      line-height: 1.65;
-      color: #000;
+    .opening-left {
+      grid-column: 1 / 8;
+      padding: 6rem 4rem 6rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
     }
 
-    .col p { margin-bottom: 12px; }
-    .col p:last-child { margin-bottom: 0; }
-
-    .col strong {
+    .opening-tag {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.9rem;
       font-weight: 700;
-      display: block;
-      margin-bottom: 5px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 3.2rem;
     }
 
-    /* ── RIGHT COLUMN — PHOTO ──────────────────────────────── */
-    .right {
-      padding-top: 184px;
+    .opening-name {
+      font-family: montrealbook, sans-serif;
+      font-size: clamp(8rem, 12.5vw, 18rem);
+      font-weight: 400;
+      letter-spacing: -0.04em;
+      line-height: 0.87;
+      color: var(--fg);
+      margin-bottom: 4rem;
     }
 
-    /* Photo container : exact Figma dimensions 543×711 */
-    .photo-wrap {
-      width: 543px;
-      height: 711px;
+    .opening-role {
+      font-family: 'Courier Prime', monospace;
+      font-size: 1.4rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      line-height: 1.5;
+    }
+
+    .opening-photo {
+      grid-column: 8 / 13;
+      position: relative;
       overflow: hidden;
-      background: #eeece9;
+      /* Photo saigne jusqu'au bord droit — pas de padding-right sur .opening */
     }
 
-    .photo-wrap img {
-      width: 104.49%;      /* slight overflow to avoid gap, matches Figma */
+    .opening-photo img {
+      width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: top center;
-      margin-left: -0.25%;
       display: block;
     }
 
-    /* ── RESPONSIVE ────────────────────────────────────────── */
-    @media (max-width: 1100px) {
-      .layout {
-        grid-template-columns: 1fr;
-        padding-right: 0;
-      }
-      /* Photo comes first on tablet/mobile */
-      .right {
-        order: -1;
-        padding-top: 0;
-      }
-      .photo-wrap {
-        width: 100%;
-        height: 60vw;
-        min-height: 300px;
-      }
-      .photo-wrap img { width: 100%; margin-left: 0; }
-      .left {
-        padding: 48px 32px 64px 32px;
-      }
-      .title {
-        font-size: clamp(28px, 6vw, 44px);
-        margin-bottom: 36px;
-      }
-      .cols {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      .back { left: 24px; top: 20px; }
+    /* ── STRUCTURE ÉDITORIALE COMMUNE ─────────────────────── */
+    .chapter {
+      padding: 0 var(--mg);
     }
 
-    @media (min-width: 1101px) and (max-width: 1300px) {
-      .title { font-size: 38px; }
-      .left { padding-left: 60px; }
-      .back { left: 60px; }
-      .photo-wrap { width: 100%; }
+    .chapter-rule {
+      height: 1px;
+      background: var(--fg);
+    }
+
+    .chapter-header {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--gg);
+      padding: 2.4rem 0 5.6rem;
+      align-items: end;
+    }
+
+    .chapter-num {
+      grid-column: 1 / 2;
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0.14em;
+      padding-bottom: 0.6rem;
+    }
+
+    .chapter-title {
+      grid-column: 2 / 8;
+      font-family: montrealbook, sans-serif;
+      font-size: clamp(3.6rem, 5vw, 7.2rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 0.92;
+      color: var(--fg);
+    }
+
+    /* ── CHAPTER 01 — BIO ─────────────────────────────────── */
+    .bio-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--gg);
+      padding-bottom: 9rem;
+    }
+
+    .bio-col {
+      font-family: 'Courier Prime', monospace;
+      font-size: 1.2rem;
+      color: rgba(10,10,10,0.82);
+      line-height: 1.75;
+      letter-spacing: 0.01em;
+    }
+
+    .bio-col:nth-child(1) { grid-column: 2 / 5; }
+    .bio-col:nth-child(2) { grid-column: 5 / 9; }
+    .bio-col:nth-child(3) { grid-column: 9 / 13; }
+
+    .bio-col p { margin-bottom: 1.6rem; }
+    .bio-col p:last-child { margin-bottom: 0; }
+
+    .bio-col strong {
+      font-weight: 700;
+      display: block;
+      color: var(--fg);
+      margin-bottom: 0.8rem;
+      font-style: normal;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── EXPERIENCE / FORMATION / CERTIF ROWS ─────────────── */
+    .xp-section {
+      padding-bottom: 8rem;
+    }
+
+    /* Sub-label (Diplômes) */
+    .sub-label-wrap {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--gg);
+      padding: 1.6rem 0 0;
+      margin-bottom: 0;
+    }
+    .sub-label {
+      grid-column: 2 / 5;
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* Column headers (first row) */
+    .xp-cols-header {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--gg);
+      padding: 0 0 0.8rem;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 0;
+    }
+    .xp-col-lbl {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+    .xp-col-lbl:nth-child(1) { grid-column: 2 / 4; }
+    .xp-col-lbl:nth-child(2) { grid-column: 4 / 8; }
+    .xp-col-lbl:nth-child(3) { grid-column: 8 / 10; }
+    .xp-col-lbl:nth-child(4) { grid-column: 10 / 13; }
+
+    /* Each experience entry */
+    .xp-entry {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--gg);
+      padding: 2.4rem 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+    }
+
+    .xp-idx {
+      grid-column: 1 / 2;
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      padding-top: 0.4rem;
+    }
+
+    .xp-date {
+      grid-column: 2 / 4;
+      font-family: 'Courier Prime', monospace;
+      font-size: 1rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      line-height: 1.45;
+      padding-top: 0.35rem;
+    }
+
+    .xp-org {
+      grid-column: 4 / 8;
+    }
+
+    .xp-org-name {
+      font-family: montrealbook, sans-serif;
+      font-size: 1.55rem;
+      color: var(--fg);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .xp-org-type {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      letter-spacing: 0.01em;
+      line-height: 1.45;
+    }
+
+    .xp-tags {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.82rem;
+      color: rgba(10,10,10,0.32);
+      margin-top: 0.6rem;
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+    }
+
+    .xp-loc {
+      grid-column: 8 / 10;
+      font-family: 'Courier Prime', monospace;
+      font-size: 1rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      padding-top: 0.35rem;
+    }
+
+    .xp-role {
+      grid-column: 10 / 13;
+      font-family: 'Courier Prime', monospace;
+      font-size: 1.05rem;
+      color: var(--fg);
+      letter-spacing: 0.02em;
+      line-height: 1.45;
+      padding-top: 0.3rem;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    .footer {
+      background: var(--fg);
+      padding: 3.2rem var(--mg);
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--gg);
+      align-items: center;
+    }
+    .footer-left {
+      grid-column: 1 / 5;
+      font-family: 'Courier Prime', monospace;
+      font-size: 1rem;
+      color: rgba(248,246,242,0.42);
+      letter-spacing: 0.04em;
+    }
+    .footer-mid {
+      grid-column: 5 / 9;
+      font-family: 'Courier Prime', monospace;
+      font-size: 1rem;
+      color: rgba(248,246,242,0.42);
+      letter-spacing: 0.04em;
+    }
+    .footer-right {
+      grid-column: 9 / 13;
+      font-family: 'Courier Prime', monospace;
+      font-size: 1rem;
+      color: rgba(248,246,242,0.42);
+      letter-spacing: 0.04em;
+      text-align: right;
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .opening {
+        display: flex;
+        flex-direction: column-reverse;
+        padding-right: 0;
+        padding-left: 0;
+        min-height: auto;
+      }
+      .opening-photo {
+        width: 100%;
+        height: 70vw;
+        min-height: 280px;
+      }
+      .opening-left {
+        padding: 4rem var(--mg);
+        justify-content: flex-start;
+      }
+      .opening-name { font-size: clamp(6rem, 16vw, 10rem); }
+      .chapter-header { display: block; padding: 2rem 0 3.2rem; }
+      .chapter-title { font-size: 3.4rem; margin-top: 1rem; }
+      .bio-grid { display: flex; flex-direction: column; gap: 3.2rem; padding-bottom: 5rem; }
+      .xp-cols-header { display: none; }
+      .xp-entry { display: flex; flex-direction: column; gap: 0.5rem; padding: 2rem 0; }
+      .xp-date { font-size: 0.9rem; }
+      .xp-loc { text-transform: uppercase; font-size: 0.85rem; }
+      .footer { display: flex; flex-direction: column; gap: 0.8rem; }
+      .footer-right { text-align: left; }
+      .sub-label-wrap { display: block; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
     }
   </style>
 </head>
 <body>
 
-  <a href="index.html" class="back">&larr; Portfolio</a>
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav-back">&larr; Portfolio</a>
+    <span class="nav-index">Hulya Zorlu &mdash; 2026</span>
+  </nav>
 
-  <div class="layout">
+  <!-- OPENING SPREAD -->
+  <section class="opening">
+    <div class="opening-left">
+      <p class="opening-tag">À propos de moi</p>
+      <h1 class="opening-name">Hulya<br>Zorlu</h1>
+      <p class="opening-role">Designer UX/UI&nbsp;&mdash; Paris, 2026</p>
+    </div>
+    <div class="opening-photo">
+      <img src="assets/hulya.jpg" alt="Hulya Zorlu" />
+    </div>
+  </section>
 
-    <!-- LEFT : label + title + 3 colonnes Q&A -->
-    <div class="left">
-
-      <p class="label">À Propos de moi</p>
-      <h1 class="title">Designer UX/UI&nbsp;— Paris, 2026</h1>
-
-      <div class="cols">
-
-        <!-- Colonne 1 -->
-        <div class="col">
-          <p><strong>Comment es-tu arrivée au design&nbsp;?</strong>
-          Mon parcours a pris un chemin un peu différent avant d'arriver au design. Diplômée d'un Master en Data Analytics&nbsp;&amp; Marketing Management, cette formation m'a appris à analyser les comportements, interpréter les données et comprendre les mécanismes qui influencent les décisions des utilisateurs.</p>
-          <p>Mes expériences en agence de publicité et en marketing m'ont permis de prendre conscience de mon attrait pour les dimensions plus créatives des projets. En travaillant sur des problématiques de communication et d'expérience de marque, j'ai découvert que j'étais particulièrement attirée par la conception, la mise en forme des idées et la recherche de solutions visuelles et fonctionnelles.</p>
-        </div>
-
-        <!-- Colonne 2 -->
-        <div class="col">
-          <p>C'est dans ce contexte que j'ai progressivement exploré l'UX/UI Design, en y retrouvant un équilibre entre créativité, analyse et résolution de problèmes.</p>
-          <p><strong>Quelles compétences tu as développées en cours de route&nbsp;?</strong>
-          Pour aller plus loin dans cette direction, je me suis formée en UX/UI Design, ainsi qu'en design graphique et développement web. Aujourd'hui, je travaille principalement avec Figma et je continue à développer mes compétences en HTML, CSS et JavaScript afin de mieux comprendre les contraintes techniques et collaborer efficacement avec les équipes produit et développement.</p>
-        </div>
-
-        <!-- Colonne 3 -->
-        <div class="col">
-          <p><strong>Ce qui t'anime dans ton travail&nbsp;?</strong>
-          Ce qui m'anime au quotidien, c'est de transformer des insights utilisateurs en expériences simples, intuitives et utiles. J'aime explorer les comportements, remettre en question les évidences et trouver l'équilibre entre les besoins des utilisateurs et les objectifs business.</p>
-          <p>Quand je ne suis pas sur Figma, on me trouve souvent en train d'observer les détails d'une application, de tester un nouveau produit digital ou de me demander pourquoi un bouton est placé exactement à cet endroit.</p>
-        </div>
-
-      </div>
+  <!-- CHAPTER 01 — PARCOURS -->
+  <div class="chapter">
+    <div class="chapter-rule"></div>
+    <div class="chapter-header">
+      <span class="chapter-num">01</span>
+      <h2 class="chapter-title">À propos de moi</h2>
     </div>
 
-    <!-- RIGHT : photo -->
-    <div class="right">
-      <div class="photo-wrap">
-        <img src="assets/hulya.jpg" alt="Hulya Zorlu" />
-      </div>
-    </div>
+    <div class="bio-grid">
 
+      <div class="bio-col">
+        <p><strong>Comment es-tu arrivée au design&nbsp;?</strong>
+        Mon parcours a pris un chemin un peu différent avant d'arriver au design. Diplômée d'un Master en Data Analytics&nbsp;&amp; Marketing Management, cette formation m'a appris à analyser les comportements, interpréter les données et comprendre les mécanismes qui influencent les décisions des utilisateurs.</p>
+        <p>Mes expériences en agence de publicité et en marketing m'ont permis de prendre conscience de mon attrait pour les dimensions plus créatives des projets. En travaillant sur des problématiques de communication et d'expérience de marque, j'ai découvert que j'étais particulièrement attirée par la conception, la mise en forme des idées et la recherche de solutions visuelles et fonctionnelles.</p>
+      </div>
+
+      <div class="bio-col">
+        <p>C'est dans ce contexte que j'ai progressivement exploré l'UX/UI Design, en y retrouvant un équilibre entre créativité, analyse et résolution de problèmes.</p>
+        <p><strong>Quelles compétences tu as développées en cours de route&nbsp;?</strong>
+        Pour aller plus loin dans cette direction, je me suis formée en UX/UI Design, ainsi qu'en design graphique et développement web. Aujourd'hui, je travaille principalement avec Figma et je continue à développer mes compétences en HTML, CSS et JavaScript afin de mieux comprendre les contraintes techniques et collaborer efficacement avec les équipes produit et développement.</p>
+      </div>
+
+      <div class="bio-col">
+        <p><strong>Ce qui t'anime dans ton travail&nbsp;?</strong>
+        Ce qui m'anime au quotidien, c'est de transformer des insights utilisateurs en expériences simples, intuitives et utiles. J'aime explorer les comportements, remettre en question les évidences et trouver l'équilibre entre les besoins des utilisateurs et les objectifs business.</p>
+        <p>Quand je ne suis pas sur Figma, on me trouve souvent en train d'observer les détails d'une application, de tester un nouveau produit digital ou de me demander pourquoi un bouton est placé exactement à cet endroit.</p>
+      </div>
+
+    </div>
   </div>
+
+  <!-- CHAPTER 02 — EXPÉRIENCE -->
+  <div class="chapter">
+    <div class="chapter-rule"></div>
+    <div class="chapter-header">
+      <span class="chapter-num">02</span>
+      <h2 class="chapter-title">Expérience</h2>
+    </div>
+
+    <div class="xp-section">
+      <div class="xp-cols-header">
+        <span class="xp-col-lbl">Période</span>
+        <span class="xp-col-lbl">Organisation</span>
+        <span class="xp-col-lbl">Lieu</span>
+        <span class="xp-col-lbl">Poste</span>
+      </div>
+
+      <div class="xp-entry">
+        <span class="xp-idx">01</span>
+        <span class="xp-date">Mar 2023<br>Sep 2024</span>
+        <div class="xp-org">
+          <p class="xp-org-name">TANKE</p>
+          <p class="xp-org-type">Agence Créative de Marketing d'Influence</p>
+          <p class="xp-tags">Recherche UX &middot; Tests utilisateurs &middot; +15% inscription &middot; Agile</p>
+        </div>
+        <span class="xp-loc">Paris</span>
+        <span class="xp-role">UX Project Manager</span>
+      </div>
+
+      <div class="xp-entry">
+        <span class="xp-idx">02</span>
+        <span class="xp-date">Juil. &mdash; Août 2024</span>
+        <div class="xp-org">
+          <p class="xp-org-name">OLYMPIC BROADCASTING</p>
+          <p class="xp-tags">JO Paris 2024 &middot; Diffuseurs internationaux &middot; Accréditations &middot; FR/EN/TR</p>
+        </div>
+        <span class="xp-loc">Paris</span>
+        <span class="xp-role">Coordinatrice Liaison Internationale</span>
+      </div>
+
+      <div class="xp-entry">
+        <span class="xp-idx">03</span>
+        <span class="xp-date">Sep &mdash; Déc 2022</span>
+        <div class="xp-org">
+          <p class="xp-org-name">AUSTRALIEGAD</p>
+          <p class="xp-org-type">Agence de Publicité</p>
+          <p class="xp-tags">Benchmarks &middot; Kantar &middot; TikTok Pro &middot; +12% performance &middot; Pitch clients</p>
+        </div>
+        <span class="xp-loc">Paris</span>
+        <span class="xp-role">Planneur Stratégique</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 03 — FORMATION -->
+  <div class="chapter">
+    <div class="chapter-rule"></div>
+    <div class="chapter-header">
+      <span class="chapter-num">03</span>
+      <h2 class="chapter-title">Formation</h2>
+    </div>
+
+    <div class="xp-section">
+      <div class="sub-label-wrap">
+        <span class="sub-label">Diplômes</span>
+      </div>
+      <div class="xp-cols-header">
+        <span class="xp-col-lbl">Période</span>
+        <span class="xp-col-lbl">Établissement</span>
+        <span class="xp-col-lbl">Lieu</span>
+        <span class="xp-col-lbl">Diplôme</span>
+      </div>
+
+      <div class="xp-entry">
+        <span class="xp-idx">01</span>
+        <span class="xp-date">2022 &mdash; 2024</span>
+        <div class="xp-org">
+          <p class="xp-org-name">INSEEC BUSINESS SCHOOL</p>
+          <p class="xp-tags">Data Analytics &middot; Marketing &middot; Agile &middot; Scoring</p>
+        </div>
+        <span class="xp-loc">Paris</span>
+        <span class="xp-role">MSc Data Analytics &amp; Marketing Management</span>
+      </div>
+
+      <div class="xp-entry">
+        <span class="xp-idx">02</span>
+        <span class="xp-date">2018 &mdash; 2021</span>
+        <div class="xp-org">
+          <p class="xp-org-name">UNIV. JEAN MONNET</p>
+          <p class="xp-tags">Langues &middot; Commerce &middot; FR / EN / TR</p>
+        </div>
+        <span class="xp-loc">Saint-Étienne</span>
+        <span class="xp-role">Licence Langues Appliquées &amp; Commerce International</span>
+      </div>
+
+      <div class="xp-entry">
+        <span class="xp-idx">03</span>
+        <span class="xp-date">2020 &mdash; 2021</span>
+        <div class="xp-org">
+          <p class="xp-org-name">UNIVERSIDADE DO ALGARVE</p>
+          <p class="xp-tags">Administration &middot; Comptabilité &middot; Microéconomie</p>
+        </div>
+        <span class="xp-loc">Faro, Portugal</span>
+        <span class="xp-role">Erasmus &mdash; Administration des Affaires</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAPTER 04 — CERTIFICATIONS -->
+  <div class="chapter">
+    <div class="chapter-rule"></div>
+    <div class="chapter-header">
+      <span class="chapter-num">04</span>
+      <h2 class="chapter-title">Certifications</h2>
+    </div>
+
+    <div class="xp-section">
+      <div class="xp-cols-header">
+        <span class="xp-col-lbl">Période</span>
+        <span class="xp-col-lbl">École</span>
+        <span class="xp-col-lbl">Lieu</span>
+        <span class="xp-col-lbl">Certificat</span>
+      </div>
+
+      <div class="xp-entry">
+        <span class="xp-idx">01</span>
+        <span class="xp-date">Mar &mdash; Juil 2026</span>
+        <div class="xp-org">
+          <p class="xp-org-name">EMLYON BUSINESS SCHOOL &mdash; LA TOILE</p>
+          <p class="xp-tags">UX/UI &middot; Figma &middot; Wireframing &middot; HTML / CSS / JS</p>
+        </div>
+        <span class="xp-loc">Paris</span>
+        <span class="xp-role">Certificat Design UX/UI &amp; Développement Web</span>
+      </div>
+
+      <div class="xp-entry">
+        <span class="xp-idx">02</span>
+        <span class="xp-date">2024 &mdash; 2025</span>
+        <div class="xp-org">
+          <p class="xp-org-name">EDAA &mdash; ÉCOLE D'ARTS APPLIQUÉS</p>
+          <p class="xp-tags">Typographie &middot; Identité visuelle &middot; Photoshop &middot; Illustrator</p>
+        </div>
+        <span class="xp-loc">Paris</span>
+        <span class="xp-role">Certificat Design Graphique</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="footer-left">Hulya Zorlu &middot; Designer UX/UI &middot; 2026</span>
+    <span class="footer-mid">Paris, France</span>
+    <span class="footer-right"><a href="index.html" style="color:rgba(248,246,242,0.42);text-decoration:none;">&larr; Portfolio</a></span>
+  </footer>
 
 </body>
 </html>
