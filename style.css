@@ -852,6 +852,7 @@ html.lang-fr .t-en { display: none !important; }
   position: absolute;
   bottom: 0;
   right: 0;
+  left: calc(11 * (100% + var(--gg)) / 12);
   font-family: 'Courier Prime', monospace;
   font-size: 0.88rem;
   letter-spacing: 0.1em;
@@ -860,6 +861,9 @@ html.lang-fr .t-en { display: none !important; }
   text-transform: uppercase;
   border-bottom: 1px solid rgba(248,246,242,0.3);
   padding-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   transition: color 0.2s, border-color 0.2s;
 }
 .about_more:hover {
