@@ -497,7 +497,7 @@ html.lang-fr .t-en { display: none !important; }
 .hero_socials {
   position: absolute;
   bottom: 3.2rem;
-  left: calc(var(--mg) - var(--gg) + 11 * (100% - 2 * var(--mg) + var(--gg)) / 12);
+  left: calc(var(--mg) - var(--gg) + 10 * (100% - 2 * var(--mg) + var(--gg)) / 12);
   display: flex;
   gap: 1rem;
   z-index: 2;
