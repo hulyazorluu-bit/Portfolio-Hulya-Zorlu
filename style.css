@@ -449,6 +449,9 @@ html.lang-fr .t-en { display: none !important; }
 
 .Atitle { display: block; }
 
+/* Z glyph has 1px less left side-bearing than H — optical correction */
+#title-zorlu { margin-left: 1px; }
+
 .ttj {
   display: block;
   /* pas de overflow:hidden — évite que le Y soit coupé */
@@ -900,8 +903,8 @@ html.lang-fr .t-en { display: none !important; }
   letter-spacing: -0.03em;
   line-height: 0.92;
   color: var(--fg);
-  /* snap left edge onto col 2 dash (indent exactly one column) */
-  margin-left: calc((100% - 11 * var(--gg)) / 12);
+  /* snap left edge onto col 2 dash; -1px optical ink alignment */
+  margin-left: calc((100% - 11 * var(--gg)) / 12 - 1px);
   margin-bottom: 0;
 }
 
@@ -923,25 +926,36 @@ html.lang-fr .t-en { display: none !important; }
 
 .xp_row {
   display: grid;
-  grid-template-columns: 13rem 1fr 5rem 12rem 2fr auto;
-  column-gap: var(--gg);
+  /*
+   * Template ancré sur la grille 12 colonnes de la page.
+   * Col 1 = (col-unit - gg) : compense le gutter initial.
+   * Cols 2-12 = col-unit chacune, column-gap: 0.
+   * → bord gauche de chaque cellule coïncide exactement avec un tiret de grille.
+   *
+   * Affectation page-grille :
+   *   date      → tiret col 1  (grid-col 2/4)
+   *   entreprise → tiret col 3  (grid-col 4/7)
+   *   [col 7 vide — espace naturel d'une colonne]
+   *   lieu      → tiret col 7  (grid-col 8/10)
+   *   rôle      → tiret col 9  (grid-col 10/12)
+   *   flèche    → tiret col 11 (grid-col 12/13)
+   */
+  grid-template-columns: calc(var(--col-unit) - var(--gg)) repeat(11, var(--col-unit));
+  column-gap: 0;
   align-items: center;
   padding: 2.4rem 0;
-  transition: background 0.25s ease, color 0.25s ease, padding 0.25s ease;
+  transition: background 0.25s ease, color 0.25s ease;
 }
-/* Swiss column placement: 1=date, 2=company, 3=empty, 4=location, 5=role, 6=arrow */
-.xp_row > .xp_date     { grid-column: 1; }
-.xp_row > .xp_co_wrap  { grid-column: 2; }
-.xp_row > .xp_co       { grid-column: 2; }
-.xp_row > .xp_loc      { grid-column: 4; }
-.xp_row > .xp_role     { grid-column: 5; }
-.xp_row > .xp_arr      { grid-column: 6; }
+.xp_row > .xp_date    { grid-column: 2 / 4; }
+.xp_row > .xp_co_wrap { grid-column: 4 / 7; }
+.xp_row > .xp_co      { grid-column: 4 / 7; }
+.xp_row > .xp_loc     { grid-column: 8 / 10; }
+.xp_row > .xp_role    { grid-column: 10 / 12; }
+.xp_row > .xp_arr     { grid-column: 12 / 13; justify-self: end; }
 
 .xp_item:hover .xp_row {
   background: var(--fg);
   color: var(--bg);
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
 }
 
 .xp_date {
