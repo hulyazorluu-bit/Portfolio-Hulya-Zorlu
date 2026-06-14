@@ -822,14 +822,14 @@ html.lang-fr .t-en { display: none !important; }
 
 .about_desc {
   position: absolute;
-  left: calc(50% - 12px);  /* col 6 right-edge dash, same axis as hero title */
+  left: calc(var(--mg) - var(--gg) + 8 * var(--col-unit));
   top: 50%;
   transform: translateY(-50%);
   width: 25%;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 1.4rem;
+  font-family: 'Courier Prime', monospace;
+  font-size: 1.2rem;
   font-weight: 400;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.03em;
   line-height: 1.7;
   color: rgba(248,246,242,0.82);
 }
