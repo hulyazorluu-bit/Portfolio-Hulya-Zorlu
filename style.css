@@ -429,7 +429,7 @@ html.lang-fr .t-en { display: none !important; }
 /* x_right(6) = 50% - gg/2 = calc(50% - 12px), width independent */
 .hero_cnt {
   position: absolute;
-  left: calc(50% - 12px);
+  left: calc(var(--mg) - var(--gg) + 6 * var(--col-unit));
   width: calc((100% - 324px) / 3 + 72px);
   top: 50%;
   transform: translateY(-50%);
