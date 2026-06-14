@@ -493,13 +493,13 @@ html.lang-fr .t-en { display: none !important; }
   margin-top: 0;
 }
 
-/* SOCIALS : right-aligned to the page margin, tightened gap */
+/* SOCIALS : left edge snapped to col 11 right-edge dash, overflow toward right margin allowed */
 .hero_socials {
   position: absolute;
   bottom: 3.2rem;
-  right: var(--mg);
+  left: calc(var(--mg) - var(--gg) + 11 * (100% - 2 * var(--mg) + var(--gg)) / 12);
   display: flex;
-  gap: 1.6rem;
+  gap: 1rem;
   z-index: 2;
 }
 
@@ -1201,7 +1201,7 @@ html.lang-fr .t-en { display: none !important; }
 
   .cnt_tt { font-size: clamp(5rem, 14vw, 9rem); }
 
-  .hero_socials { left: auto; right: var(--mg); gap: 1.6rem; }
+  .hero_socials { left: auto; right: var(--mg); gap: 1rem; }
 
   .about_desc { left: var(--mg); width: calc(100% - 2 * var(--mg)); position: relative; top: auto; transform: none; margin-top: 3rem; }
 }
