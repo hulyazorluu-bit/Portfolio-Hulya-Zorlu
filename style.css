@@ -891,12 +891,19 @@ html.lang-fr .t-en { display: none !important; }
 
 .xp_row {
   display: grid;
-  grid-template-columns: 12rem 18rem 10rem 1fr auto;
+  grid-template-columns: 13rem 1fr 5rem 12rem 2fr auto;
+  column-gap: var(--gg);
   align-items: center;
-  gap: 2rem;
   padding: 2.4rem 0;
   transition: background 0.25s ease, color 0.25s ease, padding 0.25s ease;
 }
+/* Swiss column placement: 1=date, 2=company, 3=empty, 4=location, 5=role, 6=arrow */
+.xp_row > .xp_date     { grid-column: 1; }
+.xp_row > .xp_co_wrap  { grid-column: 2; }
+.xp_row > .xp_co       { grid-column: 2; }
+.xp_row > .xp_loc      { grid-column: 4; }
+.xp_row > .xp_role     { grid-column: 5; }
+.xp_row > .xp_arr      { grid-column: 6; }
 
 .xp_item:hover .xp_row {
   background: var(--fg);
@@ -1183,6 +1190,8 @@ html.lang-fr .t-en { display: none !important; }
   .about_title { font-size: clamp(3.2rem, 8vw, 6rem); }
   .about_cols { grid-template-columns: 1fr; gap: 3rem; }
   .xp_row { grid-template-columns: 1fr; gap: 0.4rem; }
+  .xp_row > .xp_date, .xp_row > .xp_co_wrap, .xp_row > .xp_co,
+  .xp_row > .xp_loc, .xp_row > .xp_role, .xp_row > .xp_arr { grid-column: 1; }
   .xp_co { font-size: 1.2rem; }
   .skills_grid { grid-template-columns: 1fr 1fr; }
   .contact_foot { flex-direction: column; align-items: flex-start; gap: 2rem; }
