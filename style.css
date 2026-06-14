@@ -444,6 +444,7 @@ html.lang-fr .t-en { display: none !important; }
   letter-spacing: -0.04em;
   line-height: 0.9;
   color: var(--fg);
+  margin-left: -0.06em;
 }
 
 .Atitle { display: block; }
