@@ -74,7 +74,7 @@ button { background: none; border: none; cursor: pointer; padding: 0; }
     repeating-linear-gradient(to bottom, rgba(10,10,10,0.08) 0, rgba(10,10,10,0.08) 9px, transparent 9px, transparent 18px),
     repeating-linear-gradient(to bottom, rgba(10,10,10,0.08) 0, rgba(10,10,10,0.08) 9px, transparent 9px, transparent 18px);
   background-size: 1px 18px, 1px 18px;
-  background-position: left 0px top 0, left 6px top 0;
+  background-position: right 0px top 0, right 6px top 0;
   background-repeat: repeat-y, repeat-y;
 }
 
@@ -177,6 +177,8 @@ html.lang-fr .t-en { display: none !important; }
   display: flex;
   align-items: center;
   gap: 2.8rem;
+  /* snap left edge onto col 7 right-edge dash (shift left one gutter) */
+  transform: translateX(calc(-1 * var(--gg)));
 }
 
 .nav_lk {
@@ -422,11 +424,11 @@ html.lang-fr .t-en { display: none !important; }
   overflow: visible;
 }
 
-/* ── TITLE BLOCK — col 7 left edge, Swiss grid snap ──────────── */
-/* Col 7 left = mg + 6 × col-unit = calc(50% + 12px)            */
+/* TITLE BLOCK : left edge snaps onto col 6 right-edge dash */
+/* x_right(6) = 50% - gg/2 = calc(50% - 12px), width independent */
 .hero_cnt {
   position: absolute;
-  left: calc(50% + 12px);
+  left: calc(50% - 12px);
   width: calc((100% - 324px) / 3 + 72px);
   top: 50%;
   transform: translateY(-50%);
@@ -491,12 +493,12 @@ html.lang-fr .t-en { display: none !important; }
   margin-top: 0;
 }
 
-/* ── SOCIALS — col 9 left edge, Swiss grid snap ──────────────── */
-/* Col 9 left = mg + 8 × col-unit                               */
+/* SOCIALS : left edge (Instagram) snaps onto col 8 right-edge dash */
+/* x_right(8) = mg - gg + 8 * colunit, percent of hero width (no scrollbar drift) */
 .hero_socials {
   position: absolute;
   bottom: 3.2rem;
-  left: calc(var(--mg) + 8 * var(--col-unit));
+  left: calc(var(--mg) - var(--gg) + 8 * (100% - 2 * var(--mg) + var(--gg)) / 12);
   display: flex;
   gap: 2.8rem;
   z-index: 2;
@@ -536,6 +538,8 @@ html.lang-fr .t-en { display: none !important; }
   letter-spacing: -0.01em;
   line-height: 1.2;
   display: block;
+  /* snap left edge onto col 2 dash (indent exactly one column) */
+  margin-left: calc((100% - 11 * var(--gg)) / 12);
   padding-right: 0.06em;
   color: var(--fg);
 }
@@ -561,6 +565,8 @@ html.lang-fr .t-en { display: none !important; }
 .work_item {
   display: block;
   cursor: default;
+  /* snap cover left edge onto a dash; translate keeps cover size intact */
+  transform: translateX(calc(-1 * var(--gg)));
 }
 
 /* Grid alignment — each card snaps to a column left edge */
@@ -724,7 +730,7 @@ html.lang-fr .t-en { display: none !important; }
     rgba(248,246,242,0.10) calc((100% - 2 * var(--mg) - 11 * var(--gg)) / 12 + var(--gg))
   );
   background-size: calc((100% - 2 * var(--mg) - 11 * var(--gg)) / 12 + var(--gg)) 100%;
-  background-position: var(--mg) 0;
+  background-position: calc(var(--mg) - var(--gg)) 0;
   background-attachment: fixed;
 }
 
@@ -735,6 +741,8 @@ html.lang-fr .t-en { display: none !important; }
   font-weight: 500;
   color: #F8F6F2;
   letter-spacing: 0.01em;
+  /* snap left edge onto col 2 dash */
+  margin-left: calc((100% - 11 * var(--gg)) / 12);
   margin-bottom: 1.2rem;
 }
 
@@ -775,13 +783,15 @@ html.lang-fr .t-en { display: none !important; }
   color: #F8F6F2;
   position: relative;
   z-index: 1;
+  /* snap left edge onto col 2 dash */
+  margin-left: calc((100% - 11 * var(--gg)) / 12);
 }
 .about_t1,
 .about_t2 { display: block; }
 
 .about_desc {
   position: absolute;
-  left: calc(var(--mg) + 6 * var(--col-unit));  /* col 7 left */
+  left: calc(50% - 12px);  /* col 6 right-edge dash, same axis as hero title */
   top: 50%;
   transform: translateY(-50%);
   width: 25%;
@@ -859,6 +869,8 @@ html.lang-fr .t-en { display: none !important; }
   letter-spacing: -0.03em;
   line-height: 0.92;
   color: var(--fg);
+  /* snap left edge onto col 2 dash (indent exactly one column) */
+  margin-left: calc((100% - 11 * var(--gg)) / 12);
   margin-bottom: 0;
 }
 
@@ -1071,6 +1083,8 @@ html.lang-fr .t-en { display: none !important; }
 
 .contact_body {
   margin-top: 4rem;
+  /* snap left edge onto col 2 dash */
+  margin-left: calc((100% - 11 * var(--gg)) / 12);
 }
 
 .contact_pre {
@@ -1206,7 +1220,7 @@ html.lang-fr .t-en { display: none !important; }
   .cnt_sc { bottom: 2.4rem; }
 
   .works_grid { grid-template-columns: 1fr; }
-  .work_item               { grid-column: auto; }
+  .work_item               { grid-column: auto; transform: none; }
   .work_item:nth-child(2)  { grid-column: auto; width: auto; }
   .work_item:nth-child(3)  { grid-column: auto; }
   .works_title { font-size: clamp(3.5rem, 12vw, 6rem); }
