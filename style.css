@@ -750,6 +750,26 @@ html.lang-fr .t-en { display: none !important; }
   background: #0A0A0A;
   min-height: 100vh;
   padding: 10rem var(--mg) 8rem;
+  isolation: isolate;
+}
+
+/* About: lignes continues (pas pointillées), alignées sur la grille */
+.about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent calc(var(--col-unit) - 1px),
+    rgba(248,246,242,0.09) calc(var(--col-unit) - 1px),
+    rgba(248,246,242,0.09) var(--col-unit),
+    transparent var(--col-unit)
+  );
+  background-size: var(--col-unit) 100%;
+  background-position: calc(var(--mg) - var(--gg)) 0;
+  background-attachment: fixed;
 }
 
 .about_inner {
