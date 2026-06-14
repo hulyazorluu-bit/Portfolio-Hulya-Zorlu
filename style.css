@@ -903,8 +903,7 @@ html.lang-fr .t-en { display: none !important; }
   letter-spacing: -0.03em;
   line-height: 0.92;
   color: var(--fg);
-  /* snap left edge onto col 2 dash; -1px optical ink alignment */
-  margin-left: calc((100% - 11 * var(--gg)) / 12 - 1px);
+  margin-left: 0;
   margin-bottom: 0;
 }
 
