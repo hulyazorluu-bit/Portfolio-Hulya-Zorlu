@@ -174,12 +174,12 @@ html.lang-fr .t-en { display: none !important; }
 .nav--dark .nav_clock { color: rgba(248,246,242,0.4); }
 
 .nav_right {
-  grid-column: 9 / 13;
+  grid-column: 8 / 13;
   display: flex;
   align-items: center;
   gap: 3rem;
-  /* snap left edge onto col 8 right-edge dash (shift left one gutter) */
-  transform: translateX(calc(-1 * var(--gg)));
+  /* snap first link onto col 8 right-edge dash */
+  transform: translateX(calc(var(--col-unit) - var(--gg)));
 }
 
 .nav_lk {
