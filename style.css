@@ -154,7 +154,7 @@ html.lang-fr .t-en { display: none !important; }
 
 .nav_brand {
   font-family: 'Courier Prime', monospace;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: rgba(10,10,10,0.65);
@@ -164,7 +164,7 @@ html.lang-fr .t-en { display: none !important; }
 
 .nav_clock {
   font-family: 'Courier Prime', monospace;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: rgba(10,10,10,0.45);
@@ -183,7 +183,7 @@ html.lang-fr .t-en { display: none !important; }
 
 .nav_lk {
   font-family: 'Courier Prime', monospace;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--fg);
@@ -194,7 +194,7 @@ html.lang-fr .t-en { display: none !important; }
 
 .nav_cta {
   font-family: 'Courier Prime', monospace;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: #F0EEE9;
@@ -462,7 +462,7 @@ html.lang-fr .t-en { display: none !important; }
 .tt3 {
   font-family: montrealbook;
   font-weight: 400;
-  font-size: 1.55rem;
+  font-size: 1.65rem;
   letter-spacing: -0.01em;
   line-height: 1.4;
   color: var(--fg);
@@ -471,7 +471,7 @@ html.lang-fr .t-en { display: none !important; }
 .Awrite {
   font-family: 'Courier Prime', monospace;
   font-weight: 400;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: rgba(10,10,10,0.4);
@@ -505,7 +505,7 @@ html.lang-fr .t-en { display: none !important; }
 
 .social_lk {
   font-family: 'Courier Prime', monospace;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: rgba(10,10,10,0.45);
