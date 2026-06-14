@@ -493,12 +493,12 @@ html.lang-fr .t-en { display: none !important; }
   margin-top: 0;
 }
 
-/* SOCIALS : left edge (Instagram) snaps onto col 8 right-edge dash */
-/* x_right(8) = mg - gg + 8 * colunit, percent of hero width (no scrollbar drift) */
+/* SOCIALS : left edge (Instagram) snaps onto col 9 right-edge dash */
+/* x_right(9) = mg - gg + 9 * colunit, percent of hero width (no scrollbar drift) */
 .hero_socials {
   position: absolute;
   bottom: 3.2rem;
-  left: calc(var(--mg) - var(--gg) + 8 * (100% - 2 * var(--mg) + var(--gg)) / 12);
+  left: calc(var(--mg) - var(--gg) + 9 * (100% - 2 * var(--mg) + var(--gg)) / 12);
   display: flex;
   gap: 2.8rem;
   z-index: 2;
