@@ -679,6 +679,16 @@ html.lang-fr .t-en { display: none !important; }
   margin-top: 0.35rem;
 }
 
+.work_result {
+  flex-basis: 100%;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: rgba(10,10,10,0.5);
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
 .work_num {
   font-family: 'Courier Prime', monospace;
   font-size: 1.1rem;

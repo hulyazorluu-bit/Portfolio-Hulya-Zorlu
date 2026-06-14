@@ -681,6 +681,47 @@
     .footer span:nth-child(3) { grid-column: 9 / 13; text-align: right; }
 
     /* ── RESPONSIVE ───────────────────────────────────────── */
+    /* ── S10 METRICS ─────────────────────────────────────── */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--gg);
+    }
+    .metric-card {
+      grid-column: span 4;
+      padding: 4rem 3.2rem;
+      border: 1px solid var(--rule);
+    }
+    .metric-card--accent {
+      background: var(--fg);
+      border-color: var(--fg);
+    }
+    .metric-num {
+      font-family: montrealbook, sans-serif;
+      font-size: 7.2rem;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      margin-bottom: 1.6rem;
+    }
+    .metric-card--accent .metric-num { color: var(--bg); }
+    .metric-label {
+      font-family: montrealbook, sans-serif;
+      font-size: 1.4rem;
+      color: var(--fg);
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+    }
+    .metric-card--accent .metric-label { color: var(--bg); }
+    .metric-desc {
+      font-family: 'Courier Prime', monospace;
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.55;
+      letter-spacing: 0.01em;
+    }
+    .metric-card--accent .metric-desc { color: rgba(248,246,242,0.5); }
+
     @media (max-width: 900px) {
       .hero {
         display: flex;
@@ -697,6 +738,7 @@
       .personas-grid,
       .ds-grid { display: flex; flex-direction: column; gap: 3.2rem; }
       .test-grid { display: flex; flex-direction: column; gap: 3.6rem; }
+      .metrics-grid { display: flex; flex-direction: column; gap: 0; }
       .footer { display: flex; flex-direction: column; gap: 1rem; text-align: left !important; }
     }
 
@@ -1253,6 +1295,32 @@
           <div class="principle"><p class="principle-name">Coh&eacute;rence</p><p class="principle-desc">Design system unifi&eacute;</p></div>
           <div class="principle"><p class="principle-name">Premium</p><p class="principle-desc">Accessible &agrave; tous les profils</p></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="section section--alt">
+    <div class="section-header">
+      <p class="section-number">10</p>
+      <h2 class="section-title">R&eacute;sultats &amp; Impact</h2>
+      <p class="section-sub">Ce que ce projet a produit, en chiffres et en d&eacute;cisions.</p>
+    </div>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <p class="metric-num">20</p>
+        <p class="metric-label">Wireframes Low-Fi</p>
+        <p class="metric-desc">Test&eacute;s et valid&eacute;s par 3 utilisateurs r&eacute;els lors du premier round de tests</p>
+      </div>
+      <div class="metric-card">
+        <p class="metric-num">6</p>
+        <p class="metric-label">Corrections UX</p>
+        <p class="metric-desc">Int&eacute;gr&eacute;es directement apr&egrave;s les observations terrain des testeurs sur prototype</p>
+      </div>
+      <div class="metric-card metric-card--accent">
+        <p class="metric-num">90+</p>
+        <p class="metric-label">Interactions</p>
+        <p class="metric-desc">Document&eacute;es dans le prototype interactif final, pr&ecirc;t pour la pr&eacute;sentation pitch</p>
       </div>
     </div>
   </section>
