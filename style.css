@@ -738,7 +738,7 @@ html.lang-fr .t-en { display: none !important; }
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1.1rem;
   font-weight: 500;
-  color: rgba(10,10,10,0.55);
+  color: #F8F6F2;
   letter-spacing: 0.01em;
   /* snap left edge onto col 2 dash */
   margin-left: calc((100% - 11 * var(--gg)) / 12);
@@ -747,9 +747,40 @@ html.lang-fr .t-en { display: none !important; }
 
 .about {
   position: relative;
-  background: #ffffff;
+  background: #0A0A0A;
   min-height: 100vh;
   padding: 10rem var(--mg) 8rem;
+}
+
+/* Tirets pointillés blancs alignés sur la grille — même rythme 9px/9px que le Mbg */
+.about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(90deg,
+      transparent 0,
+      transparent calc(var(--col-unit) - 1px),
+      rgba(248,246,242,0.12) calc(var(--col-unit) - 1px),
+      rgba(248,246,242,0.12) var(--col-unit)
+    ),
+    repeating-linear-gradient(90deg,
+      transparent 0,
+      transparent calc(var(--col-unit) - 7px),
+      rgba(248,246,242,0.12) calc(var(--col-unit) - 7px),
+      rgba(248,246,242,0.12) calc(var(--col-unit) - 6px)
+    );
+  background-size: var(--col-unit) 100%, var(--col-unit) 100%;
+  background-position: calc(var(--mg) - var(--gg)) 0, calc(var(--mg) - var(--gg)) 0;
+  background-attachment: fixed, fixed;
+  -webkit-mask-image: repeating-linear-gradient(to bottom,
+    black 0, black 9px, transparent 9px, transparent 18px
+  );
+  mask-image: repeating-linear-gradient(to bottom,
+    black 0, black 9px, transparent 9px, transparent 18px
+  );
 }
 
 .about_inner {
@@ -762,14 +793,14 @@ html.lang-fr .t-en { display: none !important; }
   align-items: center;
   gap: 1.2rem;
   margin-bottom: 4rem;
-  border-top: 1px solid rgba(10,10,10,0.1);
+  border-top: 1px solid rgba(248,246,242,0.12);
   padding-top: 2rem;
 }
 .about_tag_num,
 .about_tag_label {
   font-family: 'Courier Prime', monospace;
   font-size: 1rem;
-  color: rgba(10,10,10,0.35);
+  color: rgba(248,246,242,0.55);
   letter-spacing: 0.1em;
 }
 
@@ -779,7 +810,7 @@ html.lang-fr .t-en { display: none !important; }
   font-size: clamp(3.5rem, 5.2vw, 7.5rem);
   letter-spacing: -0.03em;
   line-height: 1;
-  color: #0A0A0A;
+  color: #F8F6F2;
   position: relative;
   z-index: 1;
   /* snap left edge onto col 2 dash */
@@ -799,7 +830,7 @@ html.lang-fr .t-en { display: none !important; }
   font-weight: 400;
   letter-spacing: -0.01em;
   line-height: 1.7;
-  color: rgba(10,10,10,0.72);
+  color: rgba(248,246,242,0.82);
 }
 .about_desc p + p { margin-top: 1.3em; }
 
@@ -810,16 +841,16 @@ html.lang-fr .t-en { display: none !important; }
   font-family: 'Courier Prime', monospace;
   font-size: 0.88rem;
   letter-spacing: 0.1em;
-  color: rgba(10,10,10,0.5);
+  color: rgba(248,246,242,0.65);
   text-decoration: none;
   text-transform: uppercase;
-  border-bottom: 1px solid rgba(10,10,10,0.25);
+  border-bottom: 1px solid rgba(248,246,242,0.3);
   padding-bottom: 2px;
   transition: color 0.2s, border-color 0.2s;
 }
 .about_more:hover {
-  color: #0A0A0A;
-  border-color: rgba(10,10,10,0.6);
+  color: #F8F6F2;
+  border-color: rgba(248,246,242,0.7);
 }
 
 /* ── EXPERIENCE + EDUCATION ───────────────────────────────────── */
