@@ -822,10 +822,10 @@ html.lang-fr .t-en { display: none !important; }
 
 .about_desc {
   position: absolute;
-  left: calc(7 * var(--col-unit) - var(--gg));
+  left: calc((7 * 100% - 5 * var(--gg)) / 12);
   top: 50%;
   transform: translateY(-50%);
-  width: 25%;
+  width: calc(4 * (100% + var(--gg)) / 12 - var(--gg));
   font-family: 'Courier Prime', monospace;
   font-size: 1.2rem;
   font-weight: 400;
