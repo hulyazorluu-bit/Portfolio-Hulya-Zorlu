@@ -822,7 +822,7 @@ html.lang-fr .t-en { display: none !important; }
 
 .about_desc {
   position: absolute;
-  left: calc(var(--mg) - var(--gg) + 7 * var(--col-unit));
+  left: calc(7 * var(--col-unit) - var(--gg));
   top: 50%;
   transform: translateY(-50%);
   width: 25%;
