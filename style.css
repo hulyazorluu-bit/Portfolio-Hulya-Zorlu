@@ -1040,6 +1040,7 @@ html.lang-fr .t-en { display: none !important; }
   padding: 0 var(--mg) 10rem;
   background: #000;
 }
+.skills::before { display: none; }
 
 .skills_hd {
   display: flex;
