@@ -173,11 +173,11 @@ html.lang-fr .t-en { display: none !important; }
 .nav--dark .nav_clock { color: rgba(248,246,242,0.4); }
 
 .nav_right {
-  grid-column: 8 / 13;
+  grid-column: 9 / 13;
   display: flex;
   align-items: center;
   gap: 2.8rem;
-  /* snap left edge onto col 7 right-edge dash (shift left one gutter) */
+  /* snap left edge onto col 8 right-edge dash (shift left one gutter) */
   transform: translateX(calc(-1 * var(--gg)));
 }
 
