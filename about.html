@@ -15,161 +15,157 @@
            url(assets/fonts/NeueMontreal-Regular.woff) format("woff");
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 10px; }
     body {
       font-family: 'Inter', sans-serif;
-      background: #ffffff;
-      color: #000000;
+      background: #fff;
+      color: #000;
       overflow-x: clip;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── SKIP LINK ──────────────────────────────────────────── */
+    /* SKIP */
     .skip-link {
       position: absolute; left: 80px; top: -100%;
-      background: #000; color: #fff;
-      font-size: 1.4rem; padding: 0.8rem 1.6rem;
-      text-decoration: none; z-index: 999;
+      background: #000; color: #fff; font-size: 14px;
+      padding: 8px 16px; text-decoration: none; z-index: 999;
     }
     .skip-link:focus { top: 0; }
 
-    /* ── NAV ─────────────────────────────────────────────────
-     * height = 4.8rem = 48px  (html base 10px)
-     */
+    /* NAV — 48px height */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
-      padding: 0 80px; height: 4.8rem;
+      padding: 0 80px; height: 48px;
       background: #0A0A0A;
     }
     .nav-back {
-      font-family: montrealbook, sans-serif; font-size: 1.4rem;
+      font-family: montrealbook, sans-serif; font-size: 14px;
       color: rgba(248,246,242,0.55); text-decoration: none;
-      letter-spacing: 0.02em; padding: 1.2rem 0; transition: color 0.2s;
+      letter-spacing: 0.02em; padding: 12px 0; transition: color 0.2s;
     }
     .nav-back:hover { color: #F8F6F2; }
-    .nav-back:focus-visible {
-      color: #F8F6F2;
-      outline: 2px solid rgba(248,246,242,0.7);
-      outline-offset: 4px;
-    }
-    .nav-meta {
-      font-family: 'Inter', sans-serif; font-size: 1.1rem;
-      color: rgba(248,246,242,0.35); letter-spacing: 0.06em;
-    }
+    .nav-back:focus-visible { color: #F8F6F2; outline: 2px solid rgba(248,246,242,0.7); outline-offset: 4px; }
+    .nav-meta { font-size: 11px; color: rgba(248,246,242,0.35); letter-spacing: 0.06em; }
 
-    /* ── PAGE WRAPPER ─────────────────────────────────────────
-     * Figma total width: 1440px, left margin: 80px
-     * margin-top = nav height = 48px
+    /* PAGE
+     * margin-top = nav 48px
+     * padding-left = 80px  (Figma left margin)
+     * padding-right = 70px (Figma right : 1440-1370=70px)
      */
     .page {
-      margin-top: 4.8rem;   /* nav = 48px */
-      padding: 0 80px 80px;
+      margin-top: 48px;
+      padding-left: 80px;
+      padding-right: 70px;
+      padding-bottom: 80px;
     }
 
-    /* ── TITRE ───────────────────────────────────────────────
-     * Figma: top=109px from page top → 109-48=61px below nav
-     * font-size: 60px, font-weight: 700
+    /* TITRE
+     * Figma : left=80px top=109px width=715px height=68px
+     * top dans le contenu (hors nav) = 109px
+     * margin-bottom = 231px (photo top) - 109px - 68px = 54px
      */
     .page-title {
-      font-family: 'Inter', sans-serif;
-      font-size: 6rem;          /* 60px */
-      font-weight: 700;
+      padding-top: 109px;
+      width: 715px;
       color: #000;
-      line-height: 1.13;
-      letter-spacing: -0.02em;
-      padding-top: 6.1rem;      /* 61px : 109px - 48px nav */
-      margin-bottom: 5.4rem;    /* 54px gap avant le contenu */
+      font-family: 'Inter', sans-serif;
+      font-size: 60px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      margin-bottom: 54px;
     }
 
-    /* ── GRILLE CONTENU ──────────────────────────────────────
-     * Valeurs exactes Figma (base 1440px, margin 80px) :
-     *   photo    : 519px
-     *   gap      :  65px  (ajusté pour total 1280px = 1440-2×80)
-     *   col 1    : 205px
-     *   gap      :  59px
-     *   col 2    : 205px
-     *   gap      :  22px
-     *   col 3    : 205px
-     *   total    : 1280px ✓
+    /* GRILLE CONTENU
+     * Positions Figma (left=0 = left margin 80px) :
+     *   photo  left=0      width=519px  → col 1
+     *   gap    519→674     width=75px   → col 2
+     *   text1  left=674    width=205px  → col 3
+     *   gap    879→938     width=59px   → col 4
+     *   text2  left=938    width=205px  → col 5
+     *   gap    1143→1165   width=22px   → col 6
+     *   text3  left=1165   width=205px  → col 7
+     *   total = 519+75+205+59+205+22+205 = 1290px = 1440-80-70 ✓
      *
-     * Cols texte démarrent 20px plus bas que la photo
-     * (Figma: photo top=231px, cols top=251px)
+     * Cols texte démarrent 20px sous la photo (251px - 231px)
      */
     .content {
       display: grid;
-      grid-template-columns: 519px 65px 205px 59px 205px 22px 205px;
+      grid-template-columns: 519px 75px 205px 59px 205px 22px 205px;
       align-items: start;
     }
 
-    /* PHOTO — colonne 1 */
-    .photo-block {
-      grid-column: 1;
-    }
+    /* PHOTO : 519×753px, ratio 51/74 */
+    .photo-block { grid-column: 1; }
     .photo-block img {
-      width: 100%;
-      height: auto;
       display: block;
+      width: 519px;
+      height: 753px;
+      aspect-ratio: 51 / 74;
+      object-fit: cover;
+      object-position: top center;
     }
 
-    /* COLONNES TEXTE — colonnes 3, 5, 7 */
+    /* COLONNES TEXTE */
     .text-col {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.6rem;        /* 16px */
-      font-weight: 400;
-      line-height: 1.55;
       color: #000;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
       text-align: justify;
       hyphens: auto;
       -webkit-hyphens: auto;
       overflow-wrap: break-word;
-      padding-top: 2rem;        /* 20px décalage par rapport à la photo */
+      width: 205px;
+      padding-top: 20px; /* offset 251px-231px = 20px */
     }
 
     .text-col-1 { grid-column: 3; }
     .text-col-2 { grid-column: 5; }
     .text-col-3 { grid-column: 7; }
 
-    .text-col p { margin-bottom: 1.2rem; }
+    .text-col p { margin-bottom: 12px; }
     .text-col p:last-child { margin-bottom: 0; }
 
-    /* Question en gras */
+    /* Questions en gras */
     .q {
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-style: normal;
       font-weight: 700;
+      line-height: normal;
       display: block;
-      margin-bottom: 0.4rem;
-      text-align: left;         /* question non justifiée */
+      text-align: left;
       hyphens: none;
+      margin-bottom: 4px;
     }
 
-    /* ── RESPONSIVE ──────────────────────────────────────────
-     * En dessous de 1280px on repasse en layout fluide
-     */
+    /* RESPONSIVE */
     @media (max-width: 1300px) {
-      .content {
-        grid-template-columns: 38% 4% 1fr 4% 1fr 2% 1fr;
-      }
+      .page { padding-left: 40px; padding-right: 40px; }
+      .page-title { width: 100%; font-size: 48px; }
+      .content { grid-template-columns: 38% 4% 1fr 4% 1fr 2% 1fr; }
+      .photo-block img { width: 100%; height: auto; }
     }
 
     @media (max-width: 900px) {
-      .page { padding: 0 40px 60px; }
-      .page-title { font-size: 4.8rem; padding-top: 4rem; margin-bottom: 3.6rem; }
-      .content {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
-        gap: 3.2rem;
-      }
+      .page { padding-left: 24px; padding-right: 24px; padding-bottom: 48px; }
+      .page-title { font-size: 36px; padding-top: 48px; margin-bottom: 32px; }
+      .content { grid-template-columns: 1fr 1fr; gap: 24px; }
       .photo-block { grid-column: 1 / 3; }
-      .text-col { padding-top: 0; }
+      .photo-block img { width: 100%; height: auto; }
+      .text-col { width: 100%; padding-top: 0; }
       .text-col-1 { grid-column: 1; }
       .text-col-2 { grid-column: 2; }
       .text-col-3 { grid-column: 1 / 3; }
     }
 
-    @media (max-width: 600px) {
-      .page { padding: 0 24px 48px; }
-      .page-title { font-size: 3.6rem; }
+    @media (max-width: 560px) {
       .content { grid-template-columns: 1fr; }
       .photo-block,
       .text-col-1,
@@ -196,26 +192,26 @@
 
     <div class="content">
 
-      <!-- PHOTO — col 1 -->
+      <!-- PHOTO 519×753px ratio 51/74 -->
       <div class="photo-block">
         <img src="assets/hulya.jpg" alt="Portrait de Hulya Zorlu, designer UX/UI" />
       </div>
 
-      <!-- COLONNE 1 — col 3 -->
+      <!-- COL 1 : 205px — Question 1 -->
       <div class="text-col text-col-1" lang="fr">
         <p><span class="q">Comment es-tu arrivée au design&nbsp;?</span>Je n'ai pas commencé directement par le design. J'ai d'abord suivi un Master en Data Analytics &amp; Marketing Management, qui m'a permis d'apprendre à analyser les comportements utilisateurs, à interpréter des données et à mieux comprendre les facteurs qui influencent les décisions.</p>
         <p>Par la suite, mes expériences en agence de publicité et en marketing ont été un vrai tournant. En travaillant sur des problématiques de communication et d'expérience de marque, j'ai progressivement réalisé que ce qui m'attirait le plus était la dimension créative des projets.</p>
         <p>Je me suis alors particulièrement intéressée à la conception, à la mise en forme des idées et à la recherche de solutions à la fois visuelles et fonctionnelles. Le design s'est imposé naturellement dans mon parcours.</p>
       </div>
 
-      <!-- COLONNE 2 — col 5 -->
+      <!-- COL 2 : 205px — Suite + Question 2 -->
       <div class="text-col text-col-2" lang="fr">
         <p>C'est dans ce contexte que j'ai progressivement exploré l'UX/UI Design, en y retrouvant un équilibre entre créativité, analyse et résolution de problèmes.</p>
         <p><span class="q">Quelles compétences tu as développées en cours de route&nbsp;?</span>Pour approfondir cette direction, je me suis formée à l'UX/UI Design, ainsi qu'au design graphique et au développement web.</p>
         <p>Aujourd'hui, j'utilise principalement Figma dans mon travail au quotidien, tout en continuant à développer mes compétences en HTML, CSS et JavaScript. Cela me permet de mieux comprendre les contraintes techniques et de collaborer plus efficacement avec les équipes produit et développement.</p>
       </div>
 
-      <!-- COLONNE 3 — col 7 -->
+      <!-- COL 3 : 205px — Question 3 -->
       <div class="text-col text-col-3" lang="fr">
         <p><span class="q">Ce qui t'anime dans ton travail&nbsp;?</span>Au quotidien, ce qui m'anime, c'est de transformer des insights utilisateurs en expériences simples, intuitives et utiles. J'aime analyser les comportements, remettre en question les évidences et chercher le bon équilibre entre les besoins des utilisateurs et les objectifs business.</p>
         <p>En dehors de Figma, je suis souvent en train d'observer les détails d'une interface, de tester de nouveaux produits digitaux ou de me demander pourquoi certains choix de design ont été faits, comme l'emplacement d'un bouton ou la structure d'un parcours utilisateur.</p>
