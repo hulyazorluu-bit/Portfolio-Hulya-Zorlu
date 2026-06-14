@@ -499,7 +499,7 @@ html.lang-fr .t-en { display: none !important; }
   bottom: 3.2rem;
   left: calc(var(--mg) - var(--gg) + 10 * (100% - 2 * var(--mg) + var(--gg)) / 12);
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   z-index: 2;
 }
 
