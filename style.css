@@ -834,6 +834,7 @@ html.lang-fr .t-en { display: none !important; }
   color: #F8F6F2;
   position: relative;
   z-index: 1;
+  transform: translateX(calc(-1 * var(--gg)));
 }
 .about_t1,
 .about_t2 { display: block; }
@@ -847,13 +848,14 @@ html.lang-fr .t-en { display: none !important; }
   letter-spacing: 0.03em;
   line-height: 1.7;
   color: rgba(248,246,242,0.82);
+  transform: translateX(calc(-1 * var(--gg)));
 }
 .about_desc p + p { margin-top: 1.3em; }
 
 .about_more {
   position: absolute;
   bottom: 0;
-  left: calc(6 * (100% + var(--gg)) / 12);
+  left: calc(6 * (100% - var(--gg)) / 12);
   font-family: 'Courier Prime', monospace;
   font-size: 0.88rem;
   letter-spacing: 0.1em;
