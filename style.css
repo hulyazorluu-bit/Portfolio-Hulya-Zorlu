@@ -763,7 +763,7 @@ html.lang-fr .t-en { display: none !important; }
   position: relative;
   background: #0A0A0A;
   min-height: 100vh;
-  padding: 6rem var(--mg) 8rem;
+  padding: 4rem var(--mg) 8rem;
 }
 
 /* Tirets pointillés blancs alignés sur la grille — même rythme 9px/9px que le Mbg */
@@ -964,9 +964,9 @@ html.lang-fr .t-en { display: none !important; }
 .xp_row > .xp_date    { grid-column: 2 / 4; }
 .xp_row > .xp_co_wrap { grid-column: 4 / 7; }
 .xp_row > .xp_co      { grid-column: 4 / 7; }
-.xp_row > .xp_loc     { grid-column: 8 / 10; }
-.xp_row > .xp_role    { grid-column: 10 / 12; }
-.xp_row > .xp_arr     { grid-column: 12 / 13; justify-self: end; }
+.xp_row > .xp_loc     { grid-column: 7 / 8; }
+.xp_row > .xp_role    { grid-column: 8 / 10; }
+.xp_row > .xp_arr     { grid-column: 10 / 11; justify-self: end; }
 
 .xp_item:hover .xp_row {
   background: var(--fg);
