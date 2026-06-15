@@ -648,6 +648,7 @@ html.lang-fr .t-en { display: none !important; }
 .work_item:nth-child(2) {
   justify-self: auto;
   width: auto;
+  transform: none;
 }
 
 /* Project 2 — SVG cover adapts to natural image proportions */
