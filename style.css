@@ -574,7 +574,7 @@ html.lang-fr .t-en { display: none !important; }
 
 /* Grid alignment — each card snaps to a column left edge */
 .work_item               { grid-column: 2 / 6; }
-.work_item:nth-child(2)  { grid-column: 7 / 13; }
+.work_item:nth-child(2)  { grid-column: 8 / 13; }
 .work_item:nth-child(3)  { grid-column: 2 / 5; transform: none; }
 
 .work_thumb {
@@ -644,11 +644,10 @@ html.lang-fr .t-en { display: none !important; }
 /* Project 1 — square */
 .work_item:nth-child(1) .work_thumb { aspect-ratio: 1 / 1; }
 
-/* Project 2 — large card, cols 5-12 */
+/* Project 2 — large card, cols 8-12 */
 .work_item:nth-child(2) {
   justify-self: auto;
   width: auto;
-  transform: none;
 }
 
 /* Project 2 — SVG cover adapts to natural image proportions */
