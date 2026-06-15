@@ -882,11 +882,11 @@ html.lang-fr .t-en { display: none !important; }
   display: flex;
   align-items: baseline;
   gap: 1.6rem;
-  padding: 4rem 0 0;
+  padding: 2.4rem 0 0;
   border-top: 1px solid rgba(10,10,10,0.1);
-  margin-bottom: 3rem;
+  margin-bottom: 1.6rem;
 }
-.xp_hd--form { margin-top: 6rem; }
+.xp_hd--form { margin-top: 3.2rem; }
 
 .xp_sub_hd {
   padding: 1.4rem 0 0.4rem;
@@ -957,7 +957,7 @@ html.lang-fr .t-en { display: none !important; }
   grid-template-columns: calc(var(--col-unit) - var(--gg)) repeat(11, var(--col-unit));
   column-gap: 0;
   align-items: center;
-  padding: 2.4rem 0;
+  padding: 1.4rem 0;
   transition: background 0.25s ease, color 0.25s ease;
 }
 .xp_row > .xp_date    { grid-column: 2 / 4; }
