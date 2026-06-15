@@ -31,7 +31,7 @@
   --bg: #F8F6F2;
   --fg: #0A0A0A;
   --col-line: rgba(10,10,10,0.07);
-  --mg: 30px;
+  --mg: 16px;
   --gg: 24px;
   /* column unit: col_width + gap = (100vw - 2*mg + gg) / 12 */
   --col-unit: calc((100vw - 2 * var(--mg) + var(--gg)) / 12);
