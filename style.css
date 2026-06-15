@@ -763,7 +763,7 @@ html.lang-fr .t-en { display: none !important; }
   position: relative;
   background: #0A0A0A;
   min-height: 100vh;
-  padding: 10rem var(--mg) 8rem;
+  padding: 6rem var(--mg) 8rem;
 }
 
 /* Tirets pointillés blancs alignés sur la grille — même rythme 9px/9px que le Mbg */
@@ -801,8 +801,7 @@ html.lang-fr .t-en { display: none !important; }
   position: relative;
   min-height: calc(100vh - 18rem);
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: var(--gg);
+  grid-template-columns: repeat(12, calc((100% + var(--gg)) / 12));
   align-items: start;
 }
 
@@ -812,7 +811,7 @@ html.lang-fr .t-en { display: none !important; }
   display: flex;
   align-items: center;
   gap: 1.2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   border-top: 1px solid rgba(248,246,242,0.12);
   padding-top: 2rem;
 }
@@ -825,7 +824,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 
 .about_title {
-  grid-column: 2 / 7;
+  grid-column: 3 / 8;
   grid-row: 2;
   font-family: montrealbook, 'Helvetica Neue', sans-serif;
   font-weight: 400;
@@ -840,7 +839,7 @@ html.lang-fr .t-en { display: none !important; }
 .about_t2 { display: block; }
 
 .about_desc {
-  grid-column: 8 / 13;
+  grid-column: 9 / 12;
   grid-row: 2;
   font-family: 'Courier Prime', monospace;
   font-size: 1.2rem;
@@ -1277,7 +1276,7 @@ html.lang-fr .t-en { display: none !important; }
   .hero_socials { left: auto; right: var(--mg); gap: 1rem; }
 
   .about_inner { grid-template-columns: 1fr; }
-  .about_tag { grid-column: 1; }
+  .about_tag { grid-column: 1; grid-row: 1; }
   .about_title { grid-column: 1; grid-row: 2; }
   .about_desc { grid-column: 1; grid-row: 3; margin-top: 3rem; }
 }
