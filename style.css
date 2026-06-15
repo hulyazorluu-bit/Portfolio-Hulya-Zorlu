@@ -575,7 +575,7 @@ html.lang-fr .t-en { display: none !important; }
 /* Grid alignment — each card snaps to a column left edge */
 .work_item               { grid-column: 2 / 6; }
 .work_item:nth-child(2)  { grid-column: 8 / 13; }
-.work_item:nth-child(3)  { grid-column: 2 / 5; transform: none; }
+.work_item:nth-child(3)  { grid-column: 3 / 6; }
 
 .work_thumb {
   width: 100%;
