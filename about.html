@@ -60,10 +60,10 @@
       letter-spacing: 0.05em;
       text-transform: uppercase;
       text-decoration: none;
-      color: rgba(28,28,30,0.45);
-      transition: color 0.15s;
+      color: #1C1C1E;
+      transition: opacity 0.15s;
     }
-    .top-link:hover { color: #1C1C1E; }
+    .top-link:hover { opacity: 0.45; }
     .top-link.active { color: #1C1C1E; }
 
     /* ── COLONNE GAUCHE ── */
@@ -76,15 +76,10 @@
       gap: 20px;
       padding: 20px;
     }
-    .photo {
-      flex: 1;
-      min-height: 0;
-    }
     .photo img {
       display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
     }
     .left-name {
       font-size: 1.15rem;
@@ -248,7 +243,7 @@
 
     <!-- BARRE DU HAUT -->
     <div class="top-bar">
-      <span class="top-bar-label">Hulya Zorlu</span>
+      <span class="top-bar-label">&Agrave;&nbsp;Propos</span>
       <nav class="top-nav" aria-label="Navigation principale">
         <a href="index.html" class="top-link">&larr;&nbsp;Portfolio</a>
         <a href="index.html#works" class="top-link">Projets</a>
@@ -257,9 +252,8 @@
       </nav>
     </div>
 
-    <!-- GAUCHE : nom + photo -->
+    <!-- GAUCHE : photo -->
     <div class="col-left">
-      <div class="left-name">HULYA<br>ZORLU</div>
       <div class="photo">
         <img src="assets/hulyaa.jpg" alt="Portrait de Hulya Zorlu, designer UX/UI" />
       </div>
@@ -269,7 +263,6 @@
     <div class="col-right">
 
       <div class="right-header">
-        <p class="right-name">Hulya Zorlu</p>
         <p class="right-role">Designer UX/UI &amp; Strat&eacute;gie Digitale</p>
         <p class="right-contact"><a href="mailto:zorluu.hulya@gmail.com">zorluu.hulya@gmail.com</a></p>
       </div>
@@ -285,11 +278,11 @@
         <p class="section-title">Formation</p>
         <div class="edu-item">
           <p class="edu-degree">UX/UI Design &mdash; Design Graphique &mdash; D&eacute;veloppement Web</p>
-          <p class="edu-year">2024 &ndash; 2026</p>
+          <p class="edu-year">La Toile &middot; 2026</p>
         </div>
         <div class="edu-item">
           <p class="edu-degree">Master Data Analytics &amp;&nbsp;Marketing Management</p>
-          <p class="edu-year">2021 &ndash; 2024</p>
+          <p class="edu-year">INSEEC &middot; 2024</p>
         </div>
       </div>
 
@@ -332,11 +325,6 @@
     <!-- BARRE DU BAS -->
     <div class="bottom-bar">
       <span class="bottom-label">&Agrave; Propos</span>
-      <nav class="bottom-nav" aria-label="Navigation">
-        <a href="index.html" class="bottom-link">&larr; Portfolio</a>
-        <a href="index.html#works" class="bottom-link">Projets &rarr;</a>
-        <a href="index.html#xp" class="bottom-link">Exp&eacute;rience &rarr;</a>
-      </nav>
     </div>
 
   </div>
