@@ -280,7 +280,12 @@ function revealPage() {
 
   /* 1 — Nav right: char reveal simultaneously */
   document.querySelectorAll('.nav_lk .typewriter').forEach(twEl => {
-    charReveal(twEl, { stagger: STAGGER });
+    if (twEl.querySelector('.t-fr, .t-en')) {
+      const container = twEl.closest('.typewriter-container');
+      if (container) { container.style.opacity = '1'; container.classList.add('done'); }
+    } else {
+      charReveal(twEl, { stagger: STAGGER });
+    }
   });
 
   /* CONTACT: fade in + char reveal */
