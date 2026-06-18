@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="lang-fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -186,6 +186,15 @@
       align-items: center;
     }
     .footer span { font-size: 12px; color: #8E8E93; }
+
+    /* LANGUAGE */
+    html.lang-en .t-fr { display: none !important; }
+    html.lang-fr .t-en { display: none !important; }
+    .lang-toggle { display:flex; align-items:center; gap:0.3rem; }
+    .lang-btn { font-family:'Inter',sans-serif; font-size:0.8rem; letter-spacing:0.1em; color:rgba(28,28,30,0.35); background:none; border:none; cursor:pointer; padding:0; transition:color 0.2s; }
+    .lang-btn:hover { color:#1C1C1E; }
+    .lang-btn.active { color:#1C1C1E; }
+    .lang-sep { font-family:'Inter',sans-serif; font-size:0.8rem; color:rgba(28,28,30,0.15); }
   </style>
 </head>
 <body>
@@ -194,6 +203,11 @@
   <nav class="nav">
     <div class="nav-left">
       <a href="index.html" class="nav-back">&larr; Portfolio</a>
+    </div>
+    <div class="lang-toggle" style="position:absolute;left:50%;transform:translateX(-50%);">
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="en">EN</button>
     </div>
     <div class="nav-right">
       <a href="https://www.figma.com/proto/0NM5ghnJNSKCaTUVtCliof/CASE-STUDY-Commande-sans-allerg%C3%A8nes?node-id=335-29&t=nMXrUssuDSzthEH0-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&fuid=1019515482737911889"
@@ -208,7 +222,8 @@
     <p class="hero-tag">02 &mdash; Case Study UX/UI</p>
     <h1 class="hero-title">Commande sans allerg&egrave;nes</h1>
     <p class="hero-desc">
-      Conception d&rsquo;une exp&eacute;rience de commande adapt&eacute;e aux personnes souffrant d&rsquo;allergies alimentaires. De la recherche utilisateur au prototype interactif.
+      <span class="t-fr">Conception d&rsquo;une exp&eacute;rience de commande adapt&eacute;e aux personnes souffrant d&rsquo;allergies alimentaires. De la recherche utilisateur au prototype interactif.</span>
+      <span class="t-en">Designing an ordering experience tailored for people with food allergies. From user research to interactive prototype.</span>
     </p>
     <div class="hero-meta">
       <div class="meta-item">
@@ -216,22 +231,22 @@
         <p class="meta-value">Case Study UX/UI</p>
       </div>
       <div class="meta-item">
-        <p class="meta-label">Outil</p>
+        <p class="meta-label"><span class="t-fr">Outil</span><span class="t-en">Tool</span></p>
         <p class="meta-value">Figma</p>
       </div>
       <div class="meta-item">
-        <p class="meta-label">Ann&eacute;e</p>
+        <p class="meta-label"><span class="t-fr">Ann&eacute;e</span><span class="t-en">Year</span></p>
         <p class="meta-value">2026</p>
       </div>
     </div>
     <div class="cta-group">
       <a href="https://www.figma.com/proto/0NM5ghnJNSKCaTUVtCliof/CASE-STUDY-Commande-sans-allerg%C3%A8nes?node-id=335-29&t=nMXrUssuDSzthEH0-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&fuid=1019515482737911889"
          target="_blank" rel="noopener" class="btn-primary">
-        Voir le prototype &rarr;
+        <span class="t-fr">Voir le prototype</span><span class="t-en">View prototype</span> &rarr;
       </a>
       <a href="https://www.figma.com/design/0NM5ghnJNSKCaTUVtCliof/CASE-STUDY-Commande-sans-allerg%C3%A8nes?node-id=0-1&p=f&t=ZXnMBwU9TdNGYP3T-0"
          target="_blank" rel="noopener" class="btn-secondary">
-        Voir le fichier design &rarr;
+        <span class="t-fr">Voir le fichier design</span><span class="t-en">View design file</span> &rarr;
       </a>
     </div>
   </section>
@@ -243,12 +258,18 @@
 
   <!-- FIGMA EMBED -->
   <section class="figma-section">
-    <p class="figma-label">Fichier Figma &mdash; Commande sans allerg&egrave;nes</p>
-    <div class="figma-embed-wrap">
+    <p class="figma-label">
+      <span class="t-fr">Fichier Figma &mdash; Commande sans allerg&egrave;nes</span>
+      <span class="t-en">Figma File &mdash; Allergen-free ordering</span>
+    </p>
+    <div class="figma-embed-wrap t-fr">
       <iframe
         src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fdesign%2F0NM5ghnJNSKCaTUVtCliof%2FCASE-STUDY-Commande-sans-allerg%25C3%25A8nes%3Fnode-id%3D0-1%26p%3Df%26t%3DZXnMBwU9TdNGYP3T-0"
         allowfullscreen
-        title="Commande sans allerg&egrave;nes - Figma Design"></iframe>
+        title="Commande sans allergènes - Figma Design"></iframe>
+    </div>
+    <div class="figma-embed-wrap t-en">
+      <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/design/0NM5ghnJNSKCaTUVtCliof/CASE-STUDY-Commande-sans-allerg%C3%A8nes?node-id=338-29&embed-host=share" allowfullscreen></iframe>
     </div>
   </section>
 
@@ -256,8 +277,9 @@
   <footer class="footer">
     <span>Commande sans allerg&egrave;nes &middot; Case Study UX/UI &middot; 2026</span>
     <span>Hulya Z.</span>
-    <span>Projet acad&eacute;mique</span>
+    <span><span class="t-fr">Projet acad&eacute;mique</span><span class="t-en">Academic project</span></span>
   </footer>
 
+  <script src="main.js"></script>
 </body>
 </html>
