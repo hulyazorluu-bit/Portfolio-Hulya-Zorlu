@@ -22,6 +22,8 @@
       const cws = splitChars(ctaEl);
       cws.forEach(cw => cw.classList.add('done'));
     }
+    /* Notify other scripts (fx-sections, etc.) */
+    document.dispatchEvent(new CustomEvent('langchange', { detail: { lang: l } }));
   }
 
   document.addEventListener('click', e => {

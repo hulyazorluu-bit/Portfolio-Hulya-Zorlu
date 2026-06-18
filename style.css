@@ -91,15 +91,15 @@ html.lang-en .t-fr { display: none !important; }
 html.lang-fr .t-en { display: none !important; }
 
 .lang-toggle {
+  grid-column: 3 / 4;
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  margin-right: 0.8rem;
 }
 .lang-btn {
   font-family: 'Courier Prime', monospace;
-  font-size: 0.8rem;
-  letter-spacing: 0.1em;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
   color: rgba(10,10,10,0.35);
   background: none;
   border: none;
@@ -111,9 +111,13 @@ html.lang-fr .t-en { display: none !important; }
 .lang-btn.active { color: var(--fg); }
 .lang-sep {
   font-family: 'Courier Prime', monospace;
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   color: rgba(10,10,10,0.15);
 }
+.nav--dark .lang-btn { color: rgba(248,246,242,0.4); }
+.nav--dark .lang-btn:hover,
+.nav--dark .lang-btn.active { color: rgba(248,246,242,0.95); }
+.nav--dark .lang-sep { color: rgba(248,246,242,0.2); }
 
 /* ── NAV — grille 12 cols ─────────────────────────────────────── */
 .nav {
@@ -147,7 +151,7 @@ html.lang-fr .t-en { display: none !important; }
 
 
 .nav_left {
-  grid-column: 1 / 8;
+  grid-column: 1 / 3;
   display: flex;
   align-items: center;
   gap: 0.6rem;

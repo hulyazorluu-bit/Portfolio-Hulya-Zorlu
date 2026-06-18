@@ -2,6 +2,7 @@
    Section headings — 3D letter reveal on scroll
    Each letter flips in from rotateX(-72deg) with stagger.
    Respects active language (EN/FR) — never concatenates both.
+   Re-animates on language switch.
    ============================================================ */
 (function () {
   'use strict';
@@ -18,24 +19,26 @@
   ].join('\n');
   document.head.appendChild(style);
 
-  /* ── Get active-language text only ───────────────────────── */
-  function getActiveText(el) {
-    var lang = /lang-fr/.test(document.documentElement.className) ? 'fr' : 'en';
-    /* Try the active language span first */
-    var span = el.querySelector('.t-' + lang);
-    if (span) return span.textContent.trim();
-    /* Fallback: EN span */
-    var enSpan = el.querySelector('.t-en');
-    if (enSpan) return enSpan.textContent.trim();
-    /* Plain text element (no lang spans) */
-    return el.childNodes[0] && el.childNodes[0].nodeType === 3
-      ? el.childNodes[0].textContent.trim()
-      : el.textContent.trim();
+  /* ── Get active-language text (ALL matching spans) ───────── */
+  function getActiveText(el, lang) {
+    var spans = el.querySelectorAll('.t-' + lang);
+    if (spans.length > 0) {
+      return Array.prototype.map.call(spans, function (s) {
+        return s.textContent.trim();
+      }).join(' ');
+    }
+    var enSpans = el.querySelectorAll('.t-en');
+    if (enSpans.length > 0) {
+      return Array.prototype.map.call(enSpans, function (s) {
+        return s.textContent.trim();
+      }).join(' ');
+    }
+    return el.textContent.trim();
   }
 
   /* ── Split text into animated char spans ─────────────── */
-  function splitEl(el) {
-    var text = getActiveText(el);
+  function splitEl(el, lang) {
+    var text = getActiveText(el, lang);
     if (!text) return [];
     el.innerHTML = '';
     var chars = [];
@@ -67,41 +70,67 @@
     });
   }
 
+  /* ── Determine dark section ──────────────────────────── */
+  function isDarkEl(el) {
+    var sec = el.closest('section');
+    return sec && (
+      sec.classList.contains('section-dark') ||
+      sec.id === 'skills' || sec.id === 'about'
+    );
+  }
+
   /* ── Setup ───────────────────────────────────────────── */
   var SELECTORS = ['.works_title', '.about_title', '.xp_title'];
+  var targets = [];
+
+  function getLang() {
+    return /lang-fr/.test(document.documentElement.className) ? 'fr' : 'en';
+  }
 
   function setup() {
-    var targets = [];
+    targets = [];
     SELECTORS.forEach(function (sel) {
       document.querySelectorAll(sel).forEach(function (el) {
+        el._originalHTML = el.innerHTML;
         targets.push(el);
       });
     });
     if (!targets.length) return;
 
+    var lang = getLang();
+
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         observer.unobserve(entry.target);
+        entry.target._revealed = true;
         var chars = entry.target._rc;
         if (chars) reveal(chars);
       });
     }, { threshold: 0.3 });
 
     targets.forEach(function (el) {
-      var sec    = el.closest('section');
-      var isDark = sec && (
-        sec.classList.contains('section-dark') ||
-        sec.id === 'skills' || sec.id === 'about'
-      );
-      var chars = splitEl(el);
-      if (isDark) {
-        chars.forEach(function (c) { c.style.color = '#F8F6F2'; });
-      }
+      var dark  = isDarkEl(el);
+      var chars = splitEl(el, lang);
+      if (dark) chars.forEach(function (c) { c.style.color = '#F8F6F2'; });
       el._rc = chars;
       observer.observe(el);
     });
   }
+
+  /* ── Re-run when language switches ──────────────────── */
+  document.addEventListener('langchange', function (e) {
+    var lang = e.detail && e.detail.lang ? e.detail.lang : getLang();
+    targets.forEach(function (el) {
+      if (!el._originalHTML) return;
+      el.innerHTML = el._originalHTML;
+      var dark  = isDarkEl(el);
+      var chars = splitEl(el, lang);
+      if (dark) chars.forEach(function (c) { c.style.color = '#F8F6F2'; });
+      el._rc = chars;
+      if (el._revealed) reveal(chars);
+    });
+  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', setup);
