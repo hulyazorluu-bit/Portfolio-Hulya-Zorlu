@@ -73,13 +73,18 @@
       border-right: 1px solid #1C1C1E;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 20px;
       padding: 20px;
+    }
+    .photo {
+      flex: 1;
+      min-height: 0;
     }
     .photo img {
       display: block;
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
     }
     .left-name {
       font-size: 1.15rem;
@@ -87,6 +92,7 @@
       text-transform: uppercase;
       line-height: 1.35;
       color: #1C1C1E;
+      flex-shrink: 0;
     }
 
     /* ── COLONNE DROITE ── */
@@ -251,12 +257,12 @@
       </nav>
     </div>
 
-    <!-- GAUCHE : photo + nom -->
+    <!-- GAUCHE : nom + photo -->
     <div class="col-left">
+      <div class="left-name">HULYA<br>ZORLU</div>
       <div class="photo">
         <img src="assets/hulyaa.jpg" alt="Portrait de Hulya Zorlu, designer UX/UI" />
       </div>
-      <div class="left-name">HULYA<br>ZORLU</div>
     </div>
 
     <!-- DROITE : tout le contenu -->
@@ -279,11 +285,11 @@
         <p class="section-title">Formation</p>
         <div class="edu-item">
           <p class="edu-degree">UX/UI Design &mdash; Design Graphique &mdash; D&eacute;veloppement Web</p>
-          <p class="edu-year">2024 &ndash; 2025</p>
+          <p class="edu-year">2024 &ndash; 2026</p>
         </div>
         <div class="edu-item">
           <p class="edu-degree">Master Data Analytics &amp;&nbsp;Marketing Management</p>
-          <p class="edu-year">2021 &ndash; 2023</p>
+          <p class="edu-year">2021 &ndash; 2024</p>
         </div>
       </div>
 
