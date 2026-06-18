@@ -301,16 +301,13 @@ function revealPage() {
     revealChars(charEls, { stagger: STAGGER });
   }
 
-  /* 2 — Nav left: lang-toggle typewriter + clock simultaneously */
+  /* 2 — Nav left: lang-toggle char reveal (same as nav links) */
   const navLeft = document.querySelector('.nav_left');
   if (navLeft) navLeft.style.opacity = '1';
 
-  const langTw = document.getElementById('lang-tw');
-  if (langTw) {
-    const langContainer = document.getElementById('lang-tw-container');
-    if (langContainer) langContainer.style.opacity = '1';
-    triggerTypewriter(langTw, 13, null);
-  }
+  document.querySelectorAll('.lang-toggle .typewriter').forEach(twEl => {
+    charReveal(twEl, { stagger: STAGGER });
+  });
 
   const brandTw = document.getElementById('brand-tw');
   if (brandTw) charReveal(brandTw, { stagger: 28 });

@@ -287,8 +287,9 @@ html.lang-fr .t-en { display: none !important; }
 /* Nav left hidden at start — JS reveals via typewriter */
 .nav_left { opacity: 0; }
 
-/* Nav right links: typewriter-container starts hidden */
-.nav_lk .typewriter-container { opacity: 0; }
+/* Nav right links + lang-toggle: typewriter-container starts hidden */
+.nav_lk .typewriter-container,
+.lang-toggle .typewriter-container { opacity: 0; }
 
 /* Socials hidden at start */
 .social_lk { opacity: 0; }
