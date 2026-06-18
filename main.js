@@ -280,14 +280,13 @@ function charReveal(twEl, { stagger = 30, onDone } = {}) {
 function revealPage() {
   const STAGGER = 28;
 
-  /* 1 — Nav right: char reveal simultaneously */
+  /* 1 — Nav right: char reveal on the active language span only */
+  const _navLang = localStorage.getItem('lang') || 'fr';
   document.querySelectorAll('.nav_lk .typewriter').forEach(twEl => {
-    if (twEl.querySelector('.t-fr, .t-en')) {
-      const container = twEl.closest('.typewriter-container');
-      if (container) { container.style.opacity = '1'; container.classList.add('done'); }
-    } else {
-      charReveal(twEl, { stagger: STAGGER });
-    }
+    const activeSpan = twEl.querySelector('.t-' + _navLang) || twEl;
+    const container = twEl.closest('.typewriter-container');
+    if (container) container.classList.add('done');
+    charReveal(activeSpan, { stagger: STAGGER });
   });
 
   /* CONTACT: fade in + char reveal */
