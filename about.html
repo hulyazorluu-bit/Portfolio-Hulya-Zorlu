@@ -6,7 +6,7 @@
   <title>À Propos — Hulya Zorlu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Courier+Prime&display=swap" rel="stylesheet" />
   <style>
     @font-face {
       font-family: montrealbook;
@@ -15,195 +15,379 @@
            url(assets/fonts/NeueMontreal-Regular.woff) format("woff");
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --mg: 16px;
+      --gg: 24px;
+      --col: calc((100vw - 2 * var(--mg) + var(--gg)) / 12);
+      --fg: #F8F6F2;
+      --bg: #0A0A0A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 10px; }
     body {
       font-family: montrealbook, 'Helvetica Neue', sans-serif;
-      background: #F8F6F2;
-      color: #1C1C1E;
+      background: var(--bg);
+      color: var(--fg);
       overflow-x: clip;
       -webkit-font-smoothing: antialiased;
     }
 
     /* SKIP */
-    .skip-link {
-      position: absolute; left: 80px; top: -100%;
-      background: #1C1C1E; color: #F8F6F2; font-size: 14px;
-      padding: 8px 16px; text-decoration: none; z-index: 999;
+    .skip {
+      position: absolute; left: -9999px;
+      background: var(--bg); color: var(--fg);
+      font-size: 1.3rem; padding: 8px 16px;
+      text-decoration: none; z-index: 999;
     }
-    .skip-link:focus { top: 0; }
+    .skip:focus { left: var(--mg); top: 8px; }
 
-    /* RETOUR — lien simple en haut à gauche, pas de barre */
-    .back-link {
-      position: absolute;
-      top: 24px;
-      left: 80px;
-      color: #1C1C1E;
-      font-family: montrealbook, sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-      text-decoration: none;
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
       z-index: 100;
-      transition: opacity 0.2s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 56px;
+      padding: 0 var(--mg);
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(248,246,242,0.07);
     }
-    .back-link:hover { opacity: 0.5; }
-    .back-link:focus-visible { outline: 2px solid #1C1C1E; outline-offset: 3px; }
+    .nav_back {
+      font-family: 'Courier Prime', monospace;
+      font-size: 1.15rem;
+      letter-spacing: 0.08em;
+      color: rgba(248,246,242,0.4);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav_back:hover { color: var(--fg); }
+    .nav_id {
+      font-family: 'Courier Prime', monospace;
+      font-size: 1.15rem;
+      letter-spacing: 0.06em;
+      color: rgba(248,246,242,0.25);
+      text-transform: uppercase;
+    }
 
-    /* PAGE */
+    /* GRID BG */
     .page {
-      padding-left: 80px;
-      padding-right: 70px;
-      padding-bottom: 80px;
-      padding-top: 109px;
+      position: relative;
+      padding-top: 56px;
+    }
+    .page::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        repeating-linear-gradient(90deg,
+          transparent 0,
+          transparent calc(var(--col) - 1px),
+          rgba(248,246,242,0.08) calc(var(--col) - 1px),
+          rgba(248,246,242,0.08) var(--col)
+        ),
+        repeating-linear-gradient(90deg,
+          transparent 0,
+          transparent calc(var(--col) - 7px),
+          rgba(248,246,242,0.08) calc(var(--col) - 7px),
+          rgba(248,246,242,0.08) calc(var(--col) - 6px)
+        );
+      background-size: var(--col) 100%, var(--col) 100%;
+      background-position: calc(var(--mg) - var(--gg)) 0, calc(var(--mg) - var(--gg)) 0;
+      -webkit-mask-image: repeating-linear-gradient(to bottom,
+        black 0, black 9px, transparent 9px, transparent 18px
+      );
+      mask-image: repeating-linear-gradient(to bottom,
+        black 0, black 9px, transparent 9px, transparent 18px
+      );
     }
 
-    /* TITRE — colonne gauche, même rangée que le texte */
-    .page-title {
-      grid-column: 1 / 3;
-      grid-row: 1;
-      color: #1C1C1E;
-      font-family: 'Inter', sans-serif;
-      font-size: 60px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
-    }
-
-    /* GRILLE CONTENU
-     * Row 1 : titre (col 1-2) | textes (cols 3, 5, 7) — même axe horizontal
-     * Row 2 : photo (col 1)
-     */
-    .content {
+    /* HERO */
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 7rem var(--mg) 6rem;
       display: grid;
-      grid-template-columns: 380px 60px 230px 40px 230px 40px 230px;
-      align-items: start;
-      row-gap: 56px;
+      grid-template-columns: repeat(12, calc((100% + var(--gg)) / 12));
+      grid-template-rows: auto auto;
+      row-gap: 5.6rem;
+      align-items: end;
     }
 
-    /* PHOTO : row 2, sous le titre */
-    .photo-block { grid-column: 1; grid-row: 2; }
-    .photo-block img {
+    .hero_tag {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+      border-bottom: 1px solid rgba(248,246,242,0.10);
+      padding-bottom: 2.4rem;
+    }
+    .hero_tag_num {
+      font-family: 'Courier Prime', monospace;
+      font-size: 1.1rem;
+      color: rgba(248,246,242,0.28);
+      letter-spacing: 0.1em;
+    }
+    .hero_tag_dash {
+      width: 20px;
+      height: 1px;
+      background: rgba(248,246,242,0.18);
+      flex-shrink: 0;
+    }
+    .hero_tag_label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 1.1rem;
+      color: rgba(248,246,242,0.28);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero_name {
+      grid-column: 1 / 9;
+      grid-row: 2;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: clamp(5.5rem, 9vw, 13rem);
+      letter-spacing: -0.04em;
+      line-height: 0.9;
+      color: var(--fg);
+      transform: translateX(calc(-1 * var(--gg)));
+    }
+
+    .hero_info {
+      grid-column: 9 / 13;
+      grid-row: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 2.8rem;
+      transform: translateX(calc(-1 * var(--gg)));
+    }
+    .info_label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(248,246,242,0.28);
+      margin-bottom: 0.5rem;
+    }
+    .info_value {
+      font-family: montrealbook, sans-serif;
+      font-size: 1.4rem;
+      color: var(--fg);
+      line-height: 1.45;
+    }
+
+    /* CONTENT */
+    .content {
+      position: relative;
+      z-index: 1;
+      padding: 6rem var(--mg) 0;
+      display: grid;
+      grid-template-columns: repeat(12, calc((100% + var(--gg)) / 12));
+      align-items: start;
+      border-top: 1px solid rgba(248,246,242,0.10);
+    }
+
+    .photo {
+      grid-column: 1 / 5;
+      grid-row: 1;
+      transform: translateX(calc(-1 * var(--gg)));
+    }
+    .photo img {
       display: block;
       width: 100%;
       height: auto;
     }
 
-    /* COLONNES TEXTE — même rangée que le titre (row 1) */
-    .text-col {
-      color: #1C1C1E;
+    .txt {
       font-family: montrealbook, 'Helvetica Neue', sans-serif;
-      font-size: 13px;
-      font-style: normal;
-      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 1.7;
+      color: rgba(248,246,242,0.72);
+      transform: translateX(calc(-1 * var(--gg)));
+    }
+    .txt p + p { margin-top: 1.6em; }
+    .txt_1 { grid-column: 5 / 9; grid-row: 1; }
+    .txt_2 { grid-column: 9 / 13; grid-row: 1; }
+    .txt_3 {
+      grid-column: 5 / 10;
+      grid-row: 2;
+      margin-top: 5.6rem;
+      padding-bottom: 8rem;
+    }
+
+    /* STRIP */
+    .strip {
+      position: relative;
+      z-index: 1;
+      margin: 0 var(--mg);
+      padding: 3.6rem 0 8rem;
+      border-top: 1px solid rgba(248,246,242,0.10);
+      display: grid;
+      grid-template-columns: repeat(12, calc((100% + var(--gg)) / 12));
+    }
+    .strip_item { transform: translateX(calc(-1 * var(--gg))); }
+    .strip_item:nth-child(1) { grid-column: 1 / 4; }
+    .strip_item:nth-child(2) { grid-column: 4 / 7; }
+    .strip_item:nth-child(3) { grid-column: 7 / 10; }
+    .strip_item:nth-child(4) { grid-column: 10 / 13; }
+    .strip_label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(248,246,242,0.28);
+      margin-bottom: 0.9rem;
+    }
+    .strip_value {
+      font-family: montrealbook, sans-serif;
+      font-size: 1.3rem;
+      color: var(--fg);
       line-height: 1.55;
-      text-align: justify;
-      text-justify: inter-word;
-      text-wrap: pretty;
-      hyphens: auto;
-      -webkit-hyphens: auto;
-      -moz-hyphens: auto;
-      -ms-hyphens: auto;
-      hyphenate-limit-chars: 5 2 2;
-      hyphenate-limit-lines: 3;
-      overflow-wrap: break-word;
-      word-break: normal;
-      word-spacing: -0.01em;
-      width: 230px;
-      padding-top: 0;
     }
-
-    .text-col-1 { grid-column: 3; grid-row: 1; }
-    .text-col-2 { grid-column: 5; grid-row: 1; }
-    .text-col-3 { grid-column: 7; grid-row: 1; }
-
-    .text-col p { margin-bottom: 12px; }
-    .text-col p:last-child { margin-bottom: 0; }
-
-    /* Questions en gras */
-    .q {
-      color: #1C1C1E;
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 1.45;
-      display: block;
-      text-align: left;
-      hyphens: none;
-      -webkit-hyphens: none;
-      word-break: keep-all;
-      overflow-wrap: normal;
-      margin-bottom: 6px;
+    .strip_link {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(248,246,242,0.25);
+      padding-bottom: 1px;
+      transition: border-color 0.2s;
     }
+    .strip_link:hover { border-color: rgba(248,246,242,0.6); }
 
     /* RESPONSIVE */
-    @media (max-width: 1300px) {
-      .page { padding-left: 40px; padding-right: 40px; }
-      .page-title { font-size: 48px; }
-      .content { grid-template-columns: 38% 4% 1fr 4% 1fr 2% 1fr; row-gap: 48px; }
-      .photo-block img { width: 100%; height: auto; }
-    }
-
-    @media (max-width: 900px) {
-      .page { padding-left: 24px; padding-right: 24px; padding-bottom: 48px; padding-top: 48px; }
-      .page-title { font-size: 36px; grid-column: 1 / 3; grid-row: 1; }
-      .content { grid-template-columns: 1fr 1fr; row-gap: 32px; column-gap: 24px; }
-      .photo-block { grid-column: 1 / 3; grid-row: 3; }
-      .photo-block img { width: 100%; height: auto; }
-      .text-col { width: 100%; padding-top: 0; }
-      .text-col-1 { grid-column: 1; grid-row: 2; }
-      .text-col-2 { grid-column: 2; grid-row: 2; }
-      .text-col-3 { grid-column: 1 / 3; grid-row: 3; }
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        row-gap: 3.2rem;
+        padding: 5rem var(--mg) 4rem;
+      }
+      .hero_name { grid-column: 1; transform: none; font-size: clamp(3.8rem, 10vw, 7rem); }
+      .hero_info  { grid-column: 1; grid-row: 3; transform: none; flex-direction: row; flex-wrap: wrap; gap: 2.4rem 4rem; }
+      .content { grid-template-columns: 1fr 1fr; padding: 4rem var(--mg) 0; }
+      .photo { grid-column: 1 / 3; grid-row: 1; transform: none; margin-bottom: 4rem; }
+      .txt { transform: none; }
+      .txt_1 { grid-column: 1; grid-row: 2; }
+      .txt_2 { grid-column: 2; grid-row: 2; }
+      .txt_3 { grid-column: 1 / 3; grid-row: 3; margin-top: 3.2rem; }
+      .strip { grid-template-columns: 1fr 1fr; gap: 3.2rem; }
+      .strip_item { transform: none; }
+      .strip_item:nth-child(1),
+      .strip_item:nth-child(2),
+      .strip_item:nth-child(3),
+      .strip_item:nth-child(4) { grid-column: auto; }
     }
 
     @media (max-width: 560px) {
-      .content { grid-template-columns: 1fr; row-gap: 24px; }
-      .page-title { grid-column: 1; grid-row: 1; }
-      .text-col-1 { grid-column: 1; grid-row: 2; }
-      .text-col-2 { grid-column: 1; grid-row: 3; }
-      .text-col-3 { grid-column: 1; grid-row: 4; }
-      .photo-block { grid-column: 1; grid-row: 5; }
+      .content { grid-template-columns: 1fr; }
+      .photo { grid-column: 1; }
+      .txt_2 { grid-column: 1; grid-row: 3; margin-top: 3.2rem; }
+      .txt_3 { grid-column: 1; grid-row: 4; }
+      .strip { grid-template-columns: 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
-    :focus-visible { outline: 2px solid #000; outline-offset: 3px; }
+    :focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
   </style>
 </head>
 <body>
 
-  <a href="#contenu" class="skip-link">Aller au contenu principal</a>
+  <a href="#contenu" class="skip">Aller au contenu principal</a>
 
-  <a href="index.html" class="back-link" aria-label="Retour au portfolio">&larr; Portfolio</a>
+  <nav class="nav" aria-label="Navigation">
+    <a href="index.html" class="nav_back" aria-label="Retour au portfolio">&larr;&nbsp;Portfolio</a>
+    <span class="nav_id" aria-hidden="true">Hulya Zorlu</span>
+  </nav>
 
   <main id="contenu" class="page">
 
-    <div class="content">
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="page-title">
 
-      <h1 class="page-title">À propos de moi</h1>
+      <div class="hero_tag" aria-hidden="true">
+        <span class="hero_tag_num">00</span>
+        <span class="hero_tag_dash"></span>
+        <span class="hero_tag_label">&Agrave;&nbsp;propos</span>
+      </div>
 
-      <!-- PHOTO 519×753px ratio 51/74 -->
-      <div class="photo-block">
+      <h1 class="hero_name" id="page-title">
+        <span style="display:block">HULYA</span>
+        <span style="display:block">ZORLU</span>
+      </h1>
+
+      <div class="hero_info">
+        <div>
+          <p class="info_label">R&ocirc;le</p>
+          <p class="info_value">Designer UX/UI<br>&amp;&nbsp;Strat&eacute;gie Digitale</p>
+        </div>
+        <div>
+          <p class="info_label">Formation</p>
+          <p class="info_value">Master Data Analytics<br>&amp;&nbsp;Marketing Management</p>
+        </div>
+        <div>
+          <p class="info_label">Statut</p>
+          <p class="info_value">Disponible</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- CONTENT -->
+    <section class="content" aria-label="Parcours">
+
+      <div class="photo">
         <img src="assets/hulya.jpg" alt="Portrait de Hulya Zorlu, designer UX/UI" />
       </div>
 
-      <!-- COL 1 : 205px — Question 1 -->
-      <div class="text-col text-col-1" lang="fr">
-        <p><span class="q">Comment es&#8209;tu arrivée au design&nbsp;?</span>Je n'ai pas commencé directement par le design. J'ai d'abord suivi un Master en Data Analytics &amp; Marketing Management, qui m'a permis d'apprendre à analyser les comportements utilisateurs, à interpréter des données et à mieux comprendre les facteurs qui influencent les décisions.</p>
-        <p>Par la suite, mes expériences en agence de publicité et en marketing ont été un vrai tournant. En travaillant sur des campagnes digitales, des stratégies de contenu et des lancements de marque, j'ai progressivement réalisé que ce qui m'attirait le plus était la dimension créative des projets.</p>
-        <p>Je me suis alors particulièrement intéressée à la conception, à la mise en forme des idées et à la recherche de solutions à la fois visuelles et fonctionnelles. Le design s'est imposé naturellement dans mon parcours.</p>
+      <div class="txt txt_1" lang="fr">
+        <p>Je n&rsquo;ai pas commenc&eacute; directement par le design. J&rsquo;ai d&rsquo;abord suivi un Master en Data Analytics &amp;&nbsp;Marketing Management, qui m&rsquo;a permis d&rsquo;analyser les comportements utilisateurs, d&rsquo;interpr&eacute;ter des donn&eacute;es et de mieux comprendre les facteurs qui influencent les d&eacute;cisions.</p>
+        <p>Mes exp&eacute;riences en agence de publicit&eacute; et en marketing ont &eacute;t&eacute; un vrai tournant. En travaillant sur des campagnes digitales, des strat&eacute;gies de contenu et des lancements de marque, j&rsquo;ai progressivement r&eacute;alis&eacute; que ce qui m&rsquo;attirait le plus &eacute;tait la dimension cr&eacute;ative des projets.</p>
+        <p>Je me suis alors particuli&egrave;rement int&eacute;ress&eacute;e &agrave; la conception, &agrave; la mise en forme des id&eacute;es et &agrave; la recherche de solutions &agrave; la fois visuelles et fonctionnelles. Le design s&rsquo;est impos&eacute; naturellement.</p>
       </div>
 
-      <!-- COL 2 : 205px — Suite + Question 2 -->
-      <div class="text-col text-col-2" lang="fr">
-        <p>C'est dans ce contexte que j'ai progressivement exploré l'UX/UI Design, en y retrouvant un équilibre entre créativité, analyse et résolution de problèmes.</p>
-        <p><span class="q">Quelles compétences tu as développées en cours de route&nbsp;?</span>Pour approfondir cette direction, je me suis formée à l'UX/UI Design, ainsi qu'au design graphique et au développement web.</p>
-        <p>Aujourd'hui, j'utilise principalement Figma dans mes projets — de Wevent, une app événementielle conçue de A à Z avec recherche utilisateur et 2 rounds de tests, à un case study sur les commandes sans allergènes. Je développe aussi mes compétences en HTML, CSS et JavaScript pour mieux collaborer avec les équipes produit.</p>
+      <div class="txt txt_2" lang="fr">
+        <p>C&rsquo;est dans ce contexte que j&rsquo;ai explor&eacute; l&rsquo;UX/UI Design, en y retrouvant un &eacute;quilibre entre cr&eacute;ativit&eacute;, analyse et r&eacute;solution de probl&egrave;mes. Pour approfondir cette direction, je me suis &eacute;galement form&eacute;e au design graphique et au d&eacute;veloppement web.</p>
+        <p>Aujourd&rsquo;hui, j&rsquo;utilise principalement Figma&nbsp;: de Wevent, une app &eacute;v&eacute;nementielle con&ccedil;ue de A &agrave; Z avec recherche utilisateur et deux rounds de tests, &agrave; un case study sur les commandes sans allerg&egrave;nes. Je d&eacute;veloppe aussi mes comp&eacute;tences en HTML, CSS et JavaScript pour mieux collaborer avec les &eacute;quipes produit.</p>
       </div>
 
-      <!-- COL 3 : 205px — Question 3 -->
-      <div class="text-col text-col-3" lang="fr">
-        <p><span class="q">Ce qui t'anime dans ton travail&nbsp;?</span>Au quotidien, ce qui m'anime, c'est de transformer des insights utilisateurs en expériences simples, intuitives et utiles. J'aime analyser les comportements, remettre en question les évidences et chercher le bon équilibre entre les besoins des utilisateurs et les objectifs business.</p>
-        <p>En dehors de Figma, je suis souvent en train d'observer les détails d'une interface, de démonter le parcours d'une app que j'utilise au quotidien, ou de noter ce qui coince dans un formulaire de commande. Ce sont ces frictions du réel qui alimentent mes réflexions de design.</p>
+      <div class="txt txt_3" lang="fr">
+        <p>Au quotidien, ce qui m&rsquo;anime, c&rsquo;est de transformer des insights utilisateurs en exp&eacute;riences simples, intuitives et utiles. J&rsquo;aime analyser les comportements, remettre en question les &eacute;vidences et chercher le bon &eacute;quilibre entre les besoins des utilisateurs et les objectifs business.</p>
+        <p>En dehors de Figma, je suis souvent en train d&rsquo;observer les d&eacute;tails d&rsquo;une interface, de d&eacute;monter le parcours d&rsquo;une app que j&rsquo;utilise au quotidien, ou de noter ce qui coince dans un formulaire de commande. Ce sont ces frictions du r&eacute;el qui alimentent mes r&eacute;flexions de design.</p>
+      </div>
+
+    </section>
+
+    <!-- STRIP -->
+    <div class="strip" role="list" aria-label="Informations cl&eacute;s">
+
+      <div class="strip_item" role="listitem">
+        <p class="strip_label">Formation</p>
+        <p class="strip_value">Master Data Analytics<br>&amp;&nbsp;Marketing Management</p>
+      </div>
+
+      <div class="strip_item" role="listitem">
+        <p class="strip_label">Sp&eacute;cialit&eacute;</p>
+        <p class="strip_value">UX/UI Design<br>Design Graphique</p>
+      </div>
+
+      <div class="strip_item" role="listitem">
+        <p class="strip_label">Outils</p>
+        <p class="strip_value">Figma &middot; Illustrator<br>HTML&nbsp;/&nbsp;CSS&nbsp;/&nbsp;JS</p>
+      </div>
+
+      <div class="strip_item" role="listitem">
+        <p class="strip_label">Contact</p>
+        <p class="strip_value">
+          <a href="mailto:zorluu.hulya@gmail.com" class="strip_link">zorluu.hulya<br>@gmail.com</a>
+        </p>
       </div>
 
     </div>
