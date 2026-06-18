@@ -97,7 +97,7 @@ html.lang-fr .t-en { display: none !important; }
 }
 .lang-btn {
   font-family: 'Courier Prime', monospace;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   letter-spacing: 0.06em;
   color: rgba(10,10,10,0.35);
   background: none;
@@ -110,7 +110,7 @@ html.lang-fr .t-en { display: none !important; }
 .lang-btn.active { color: var(--fg); }
 .lang-sep {
   font-family: 'Courier Prime', monospace;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: rgba(10,10,10,0.15);
 }
 .nav--dark .lang-btn { color: rgba(248,246,242,0.4); }
