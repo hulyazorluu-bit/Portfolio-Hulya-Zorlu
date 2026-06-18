@@ -1,8 +1,7 @@
 /* ============================================================
    Section headings — 3D letter reveal on scroll
-   Each letter flips in from rotateX(-72deg) with stagger.
-   Respects active language (EN/FR) — never concatenates both.
-   Re-animates on language switch.
+   Animates .t-fr and .t-en spans independently so CSS
+   language switching (display:none) keeps working at all times.
    ============================================================ */
 (function () {
   'use strict';
@@ -19,28 +18,11 @@
   ].join('\n');
   document.head.appendChild(style);
 
-  /* ── Get active-language text (ALL matching spans) ───────── */
-  function getActiveText(el, lang) {
-    var spans = el.querySelectorAll('.t-' + lang);
-    if (spans.length > 0) {
-      return Array.prototype.map.call(spans, function (s) {
-        return s.textContent.trim();
-      }).join(' ');
-    }
-    var enSpans = el.querySelectorAll('.t-en');
-    if (enSpans.length > 0) {
-      return Array.prototype.map.call(enSpans, function (s) {
-        return s.textContent.trim();
-      }).join(' ');
-    }
-    return el.textContent.trim();
-  }
-
-  /* ── Split text into animated char spans ─────────────── */
-  function splitEl(el, lang) {
-    var text = getActiveText(el, lang);
+  /* ── Split ONE span into animated chars (keeps the span itself) ── */
+  function splitSpan(span, color) {
+    var text = span.textContent.trim();
     if (!text) return [];
-    el.innerHTML = '';
+    span.innerHTML = '';
     var chars = [];
     for (var i = 0; i < text.length; i++) {
       var ch = text[i];
@@ -48,16 +30,52 @@
         var sp = document.createElement('span');
         sp.className = 'sec-reveal-space';
         sp.setAttribute('aria-hidden', 'true');
-        el.appendChild(sp);
+        span.appendChild(sp);
       } else {
         var wrap  = document.createElement('span');
         wrap.className = 'sec-reveal-wrap';
         var inner = document.createElement('span');
         inner.className = 'sec-reveal-char';
         inner.textContent = ch;
+        if (color) inner.style.color = color;
         wrap.appendChild(inner);
-        el.appendChild(wrap);
+        span.appendChild(wrap);
         chars.push(inner);
+      }
+    }
+    return chars;
+  }
+
+  /* ── Split element: animate t-fr and t-en spans separately ── */
+  function splitEl(el, color) {
+    var frSpan = el.querySelector('.t-fr');
+    var enSpan = el.querySelector('.t-en');
+    var chars = [];
+    if (frSpan) chars = chars.concat(splitSpan(frSpan, color));
+    if (enSpan) chars = chars.concat(splitSpan(enSpan, color));
+    /* Plain element with no language spans */
+    if (!frSpan && !enSpan) {
+      var text = el.textContent.trim();
+      if (!text) return [];
+      el.innerHTML = '';
+      for (var i = 0; i < text.length; i++) {
+        var ch = text[i];
+        if (ch === ' ') {
+          var sp2 = document.createElement('span');
+          sp2.className = 'sec-reveal-space';
+          sp2.setAttribute('aria-hidden', 'true');
+          el.appendChild(sp2);
+        } else {
+          var wrap2  = document.createElement('span');
+          wrap2.className = 'sec-reveal-wrap';
+          var inner2 = document.createElement('span');
+          inner2.className = 'sec-reveal-char';
+          inner2.textContent = ch;
+          if (color) inner2.style.color = color;
+          wrap2.appendChild(inner2);
+          el.appendChild(wrap2);
+          chars.push(inner2);
+        }
       }
     }
     return chars;
@@ -70,67 +88,39 @@
     });
   }
 
-  /* ── Determine dark section ──────────────────────────── */
-  function isDarkEl(el) {
-    var sec = el.closest('section');
-    return sec && (
-      sec.classList.contains('section-dark') ||
-      sec.id === 'skills' || sec.id === 'about'
-    );
-  }
-
   /* ── Setup ───────────────────────────────────────────── */
   var SELECTORS = ['.works_title', '.about_title', '.xp_title'];
-  var targets = [];
-
-  function getLang() {
-    return /lang-fr/.test(document.documentElement.className) ? 'fr' : 'en';
-  }
 
   function setup() {
-    targets = [];
+    var targets = [];
     SELECTORS.forEach(function (sel) {
       document.querySelectorAll(sel).forEach(function (el) {
-        el._originalHTML = el.innerHTML;
         targets.push(el);
       });
     });
     if (!targets.length) return;
 
-    var lang = getLang();
-
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
         observer.unobserve(entry.target);
-        entry.target._revealed = true;
         var chars = entry.target._rc;
         if (chars) reveal(chars);
       });
     }, { threshold: 0.3 });
 
     targets.forEach(function (el) {
-      var dark  = isDarkEl(el);
-      var chars = splitEl(el, lang);
-      if (dark) chars.forEach(function (c) { c.style.color = '#F8F6F2'; });
+      var sec    = el.closest('section');
+      var isDark = sec && (
+        sec.classList.contains('section-dark') ||
+        sec.id === 'skills' || sec.id === 'about'
+      );
+      var color  = isDark ? '#F8F6F2' : null;
+      var chars  = splitEl(el, color);
       el._rc = chars;
       observer.observe(el);
     });
   }
-
-  /* ── Re-run when language switches ──────────────────── */
-  document.addEventListener('langchange', function (e) {
-    var lang = e.detail && e.detail.lang ? e.detail.lang : getLang();
-    targets.forEach(function (el) {
-      if (!el._originalHTML) return;
-      el.innerHTML = el._originalHTML;
-      var dark  = isDarkEl(el);
-      var chars = splitEl(el, lang);
-      if (dark) chars.forEach(function (c) { c.style.color = '#F8F6F2'; });
-      el._rc = chars;
-      if (el._revealed) reveal(chars);
-    });
-  });
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', setup);
