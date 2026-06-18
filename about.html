@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="lang-fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -235,6 +235,34 @@
     }
 
     :focus-visible { outline: 2px solid #1C1C1E; outline-offset: 3px; }
+
+    /* ── LANGUAGE TOGGLE ── */
+    html.lang-en .t-fr { display: none !important; }
+    html.lang-fr .t-en { display: none !important; }
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .lang-btn {
+      font-family: 'Courier Prime', 'Courier New', monospace;
+      font-size: 1.05rem;
+      letter-spacing: 0.1em;
+      color: rgba(28,28,30,0.35);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.2s;
+      text-transform: uppercase;
+    }
+    .lang-btn:hover { color: #1C1C1E; }
+    .lang-btn.active { color: #1C1C1E; }
+    .lang-sep {
+      font-family: 'Courier Prime', 'Courier New', monospace;
+      font-size: 1.05rem;
+      color: rgba(28,28,30,0.15);
+    }
   </style>
 </head>
 <body>
@@ -243,9 +271,14 @@
 
     <!-- BARRE DU HAUT -->
     <div class="top-bar">
-      <a href="index.html" class="top-link">&larr;&nbsp;Portfolio</a>
-      <nav class="top-nav" aria-label="Navigation principale">
-        <a href="about.html" class="top-link active">&Agrave;&nbsp;Propos</a>
+      <a href="index.html" class="top-link"><span class="t-fr">← Portfolio</span><span class="t-en">← Portfolio</span></a>
+      <nav class="top-nav" aria-label="Navigation principale" style="display:flex;align-items:center;gap:2rem;">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="fr">FR</button>
+          <span class="lang-sep">/</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="about.html" class="top-link active"><span class="t-fr">À Propos</span><span class="t-en">About</span></a>
       </nav>
     </div>
 
@@ -261,19 +294,28 @@
 
       <div class="right-header">
         <p class="right-name">Hulya Zorlu</p>
-        <p class="right-role">Designer UX/UI &amp; Strat&eacute;gie Digitale</p>
+        <p class="right-role"><span class="t-fr">Designer UX/UI &amp; Strat&eacute;gie Digitale</span><span class="t-en">UX/UI Designer &amp; Digital Strategy</span></p>
         <p class="right-contact"><a href="mailto:zorluu.hulya@gmail.com">zorluu.hulya@gmail.com</a></p>
       </div>
 
-      <div class="section bio" lang="fr">
-        <p class="section-title">Profil</p>
-        <p>Issue d&rsquo;un Master en Data Analytics &amp;&nbsp;Marketing Management &agrave; l&rsquo;INSEEC, j&rsquo;ai d&eacute;couvert le design UX/UI lors de mon alternance en tant que UX Project Manager chez Tanke, agence cr&eacute;ative sp&eacute;cialis&eacute;e en marketing d&rsquo;influence. J&rsquo;ai rapidement compris que la rigueur analytique de mon parcours data pouvait s&rsquo;appliquer directement &agrave; la compr&eacute;hension des comportements utilisateurs et &agrave; la conception d&rsquo;interfaces.</p>
-        <p>D&eacute;termin&eacute;e &agrave; me sp&eacute;cialiser, j&rsquo;ai obtenu le Certificat Design UX/UI &amp; D&eacute;veloppement Web &agrave; l&rsquo;emlyon Business School (La Toile). Au sein de projets de groupe, j&rsquo;ai conduit l&rsquo;ensemble du processus de conception, de la recherche utilisateur au prototypage, et acquis les bases du d&eacute;veloppement front-end pour int&eacute;grer mes designs en HTML, CSS et JavaScript.</p>
-        <p>Aujourd&rsquo;hui, j&rsquo;aspire &agrave; exercer pleinement le m&eacute;tier de designer UX/UI. Mon parcours data m&rsquo;apporte une approche rigoureuse de la recherche utilisateur, ma sensibilit&eacute; visuelle renforce ma dimension UI, et mes bases en HTML, CSS et JavaScript me permettent de collaborer avec les &eacute;quipes produit d&egrave;s la phase de conception.</p>
+      <div class="section bio">
+        <p class="section-title"><span class="t-fr">Profil</span><span class="t-en">Profile</span></p>
+        <p>
+          <span class="t-fr">Issue d&rsquo;un Master en Data Analytics &amp;&nbsp;Marketing Management &agrave; l&rsquo;INSEEC, j&rsquo;ai d&eacute;couvert le design UX/UI lors de mon alternance en tant que UX Project Manager chez Tanke, agence cr&eacute;ative sp&eacute;cialis&eacute;e en marketing d&rsquo;influence. J&rsquo;ai rapidement compris que la rigueur analytique de mon parcours data pouvait s&rsquo;appliquer directement &agrave; la compr&eacute;hension des comportements utilisateurs et &agrave; la conception d&rsquo;interfaces.</span>
+          <span class="t-en">Coming from a Master's in Data Analytics &amp; Marketing Management at INSEEC, I discovered UX/UI design during my work-study as a UX Project Manager at Tanke, a creative influence marketing agency. I quickly realized that the analytical rigor of my data background could be directly applied to understanding user behavior and designing interfaces.</span>
+        </p>
+        <p>
+          <span class="t-fr">D&eacute;termin&eacute;e &agrave; me sp&eacute;cialiser, j&rsquo;ai obtenu le Certificat Design UX/UI &amp; D&eacute;veloppement Web &agrave; l&rsquo;emlyon Business School (La Toile). Au sein de projets de groupe, j&rsquo;ai conduit l&rsquo;ensemble du processus de conception, de la recherche utilisateur au prototypage, et acquis les bases du d&eacute;veloppement front-end pour int&eacute;grer mes designs en HTML, CSS et JavaScript.</span>
+          <span class="t-en">Determined to specialize, I earned the UX/UI Design &amp; Web Development Certificate at emlyon Business School (La Toile). In group projects, I led the full design process from user research to prototyping, and gained front-end development skills to implement my designs in HTML, CSS and JavaScript.</span>
+        </p>
+        <p>
+          <span class="t-fr">Aujourd&rsquo;hui, j&rsquo;aspire &agrave; exercer pleinement le m&eacute;tier de designer UX/UI. Mon parcours data m&rsquo;apporte une approche rigoureuse de la recherche utilisateur, ma sensibilit&eacute; visuelle renforce ma dimension UI, et mes bases en HTML, CSS et JavaScript me permettent de collaborer avec les &eacute;quipes produit d&egrave;s la phase de conception.</span>
+          <span class="t-en">Today, I aspire to fully practice UX/UI design. My data background brings a rigorous approach to user research, my visual sensibility strengthens the UI dimension, and my HTML, CSS and JavaScript foundations allow me to collaborate with product teams from the very first design phase.</span>
+        </p>
       </div>
 
       <div class="section">
-        <p class="section-title">Formation</p>
+        <p class="section-title"><span class="t-fr">Formation</span><span class="t-en">Education</span></p>
         <div class="edu-item">
           <p class="edu-degree">Certificat Design UX/UI &amp; D&eacute;veloppement Web</p>
           <p class="edu-year">emlyon - La Toile &middot; 2026</p>
@@ -285,20 +327,20 @@
       </div>
 
       <div class="section">
-        <p class="section-title">Comp&eacute;tences</p>
+        <p class="section-title"><span class="t-fr">Comp&eacute;tences</span><span class="t-en">Skills</span></p>
         <div class="skills-grid">
           <div>
             <p class="skill-group-title">UX Design</p>
             <ul class="skill-list">
-              <li>Recherche Utilisateur</li>
-              <li>Tests d&rsquo;Utilisabilit&eacute;</li>
+              <li><span class="t-fr">Recherche Utilisateur</span><span class="t-en">User Research</span></li>
+              <li><span class="t-fr">Tests d&rsquo;Utilisabilit&eacute;</span><span class="t-en">Usability Testing</span></li>
               <li>Wireframing</li>
-              <li>Strat&eacute;gie UX</li>
-              <li>Parcours Utilisateur</li>
+              <li><span class="t-fr">Strat&eacute;gie UX</span><span class="t-en">UX Strategy</span></li>
+              <li><span class="t-fr">Parcours Utilisateur</span><span class="t-en">User Journey</span></li>
             </ul>
           </div>
           <div>
-            <p class="skill-group-title">UI &amp; Outils</p>
+            <p class="skill-group-title"><span class="t-fr">UI &amp; Outils</span><span class="t-en">UI &amp; Tools</span></p>
             <ul class="skill-list">
               <li>Figma</li>
               <li>Affinity Designer</li>
@@ -308,11 +350,11 @@
             </ul>
           </div>
           <div>
-            <p class="skill-group-title">Langues</p>
+            <p class="skill-group-title"><span class="t-fr">Langues</span><span class="t-en">Languages</span></p>
             <ul class="skill-list">
-              <li>Fran&ccedil;ais <span class="skill-lvl">Natif</span></li>
-              <li>Anglais <span class="skill-lvl">C1</span></li>
-              <li>Turc <span class="skill-lvl">Natif</span></li>
+              <li><span class="t-fr">Français</span><span class="t-en">French</span> <span class="skill-lvl"><span class="t-fr">Natif</span><span class="t-en">Native</span></span></li>
+              <li><span class="t-fr">Anglais</span><span class="t-en">English</span> <span class="skill-lvl">C1</span></li>
+              <li><span class="t-fr">Turc</span><span class="t-en">Turkish</span> <span class="skill-lvl"><span class="t-fr">Natif</span><span class="t-en">Native</span></span></li>
             </ul>
           </div>
         </div>
@@ -325,5 +367,6 @@
 
   </div>
 
+  <script src="main.js"></script>
 </body>
 </html>
