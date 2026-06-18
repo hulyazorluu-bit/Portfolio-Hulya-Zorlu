@@ -21,6 +21,8 @@
       --col: calc((100vw - 2 * var(--mg) + var(--gg)) / 12);
       --fg: #1C1C1E;
       --bg: #F8F6F2;
+      --muted: rgba(28,28,30,0.38);
+      --border: rgba(28,28,30,0.10);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,7 +35,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* SKIP */
     .skip {
       position: absolute; left: -9999px;
       background: var(--bg); color: var(--fg);
@@ -52,16 +53,16 @@
       align-items: center;
       height: 56px;
       padding: 0 var(--mg);
-      background: rgba(248,246,242,0.95);
+      background: rgba(248,246,242,0.94);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(28,28,30,0.08);
+      border-bottom: 1px solid var(--border);
     }
     .nav_back {
       font-family: 'Courier Prime', monospace;
       font-size: 1.15rem;
       letter-spacing: 0.08em;
-      color: rgba(28,28,30,0.45);
+      color: var(--muted);
       text-decoration: none;
       text-transform: uppercase;
       transition: color 0.2s;
@@ -71,15 +72,11 @@
       font-family: 'Courier Prime', monospace;
       font-size: 1.15rem;
       letter-spacing: 0.06em;
-      color: rgba(28,28,30,0.3);
+      color: rgba(28,28,30,0.25);
       text-transform: uppercase;
     }
 
     /* GRID BG */
-    .page {
-      position: relative;
-      padding-top: 56px;
-    }
     .page::before {
       content: '';
       position: fixed;
@@ -90,14 +87,14 @@
         repeating-linear-gradient(90deg,
           transparent 0,
           transparent calc(var(--col) - 1px),
-          rgba(28,28,30,0.10) calc(var(--col) - 1px),
-          rgba(28,28,30,0.10) var(--col)
+          rgba(28,28,30,0.06) calc(var(--col) - 1px),
+          rgba(28,28,30,0.06) var(--col)
         ),
         repeating-linear-gradient(90deg,
           transparent 0,
           transparent calc(var(--col) - 7px),
-          rgba(28,28,30,0.10) calc(var(--col) - 7px),
-          rgba(28,28,30,0.10) calc(var(--col) - 6px)
+          rgba(28,28,30,0.06) calc(var(--col) - 7px),
+          rgba(28,28,30,0.06) calc(var(--col) - 6px)
         );
       background-size: var(--col) 100%, var(--col) 100%;
       background-position: calc(var(--mg) - var(--gg)) 0, calc(var(--mg) - var(--gg)) 0;
@@ -109,189 +106,167 @@
       );
     }
 
-    /* HERO */
-    .hero {
+    /* PAGE */
+    .page {
       position: relative;
-      z-index: 1;
-      padding: 7rem var(--mg) 6rem;
+      padding-top: 56px;
+      min-height: 100vh;
       display: grid;
       grid-template-columns: repeat(12, calc((100% + var(--gg)) / 12));
-      grid-template-rows: auto auto;
-      row-gap: 5.6rem;
-      align-items: end;
+      grid-template-rows: 1fr auto;
+      padding-left: var(--mg);
+      padding-right: var(--mg);
     }
 
-    .hero_tag {
-      grid-column: 1 / -1;
-      grid-row: 1;
-      display: flex;
-      align-items: center;
-      gap: 1.6rem;
-      border-bottom: 1px solid rgba(28,28,30,0.12);
-      padding-bottom: 2.4rem;
-    }
-    .hero_tag_num {
-      font-family: 'Courier Prime', monospace;
-      font-size: 1.1rem;
-      color: rgba(28,28,30,0.35);
-      letter-spacing: 0.1em;
-    }
-    .hero_tag_dash {
-      width: 20px;
-      height: 1px;
-      background: rgba(28,28,30,0.2);
-      flex-shrink: 0;
-    }
-    .hero_tag_label {
-      font-family: 'Courier Prime', monospace;
-      font-size: 1.1rem;
-      color: rgba(28,28,30,0.35);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .hero_name {
-      grid-column: 1 / 9;
-      grid-row: 2;
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: clamp(5.5rem, 9vw, 13rem);
-      letter-spacing: -0.04em;
-      line-height: 0.9;
-      color: var(--fg);
-      transform: translateX(calc(-1 * var(--gg)));
-    }
-
-    .hero_info {
-      grid-column: 9 / 13;
-      grid-row: 2;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      gap: 2.8rem;
-      transform: translateX(calc(-1 * var(--gg)));
-    }
-    .info_label {
-      font-family: 'Courier Prime', monospace;
-      font-size: 1rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(28,28,30,0.35);
-      margin-bottom: 0.5rem;
-    }
-    .info_value {
-      font-family: montrealbook, sans-serif;
-      font-size: 1.4rem;
-      color: var(--fg);
-      line-height: 1.45;
-    }
-
-    /* CONTENT */
-    .content {
-      position: relative;
-      z-index: 1;
-      padding: 6rem var(--mg) 0;
-      display: grid;
-      grid-template-columns: repeat(12, calc((100% + var(--gg)) / 12));
-      align-items: start;
-      border-top: 1px solid rgba(28,28,30,0.12);
-    }
-
+    /* PHOTO — col 1-5, pleine hauteur */
     .photo {
-      grid-column: 1 / 5;
-      grid-row: 1 / 3;
+      grid-column: 1 / 6;
+      grid-row: 1;
+      position: sticky;
+      top: 56px;
+      height: calc(100vh - 56px);
+      overflow: hidden;
       transform: translateX(calc(-1 * var(--gg)));
+      z-index: 1;
     }
     .photo img {
       display: block;
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
     }
 
-    .txt {
-      font-family: montrealbook, 'Helvetica Neue', sans-serif;
-      font-size: 1.4rem;
-      line-height: 1.7;
-      color: rgba(28,28,30,0.65);
+    /* SIDEBAR — col 6-12 */
+    .sidebar {
+      grid-column: 6 / 13;
+      grid-row: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 5.6rem 0 0;
       transform: translateX(calc(-1 * var(--gg)));
-    }
-    .txt p + p { margin-top: 1.6em; }
-    .txt_1 { grid-column: 5 / 9; grid-row: 1; }
-    .txt_2 { grid-column: 9 / 13; grid-row: 1; }
-    .txt_3 {
-      grid-column: 5 / 9;
-      grid-row: 2;
-      margin-top: 4.8rem;
-      padding-bottom: 8rem;
+      z-index: 1;
+      position: relative;
     }
 
-    /* STRIP */
-    .strip {
-      position: relative;
-      z-index: 1;
-      margin: 0 var(--mg);
-      padding: 3.6rem 0 8rem;
-      border-top: 1px solid rgba(28,28,30,0.12);
-      display: grid;
-      grid-template-columns: repeat(12, calc((100% + var(--gg)) / 12));
+    .tag {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      padding-bottom: 2.4rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 4.8rem;
     }
-    .strip_item { transform: translateX(calc(-1 * var(--gg))); }
-    .strip_item:nth-child(1) { grid-column: 1 / 4; }
-    .strip_item:nth-child(2) { grid-column: 4 / 7; }
-    .strip_item:nth-child(3) { grid-column: 7 / 10; }
-    .strip_item:nth-child(4) { grid-column: 10 / 13; }
-    .strip_label {
+    .tag_num {
       font-family: 'Courier Prime', monospace;
-      font-size: 1rem;
+      font-size: 1.05rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    .tag_dash {
+      width: 18px;
+      height: 1px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+    .tag_label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 1.05rem;
+      color: var(--muted);
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(28,28,30,0.35);
-      margin-bottom: 0.9rem;
     }
-    .strip_value {
+
+    .name {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: clamp(4rem, 5.2vw, 7.2rem);
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      color: var(--fg);
+      margin-bottom: 1.8rem;
+    }
+
+    .role {
+      font-family: montrealbook, sans-serif;
+      font-size: 1.6rem;
+      color: var(--muted);
+      line-height: 1.4;
+      margin-bottom: 4.8rem;
+    }
+
+    .bio_divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 4rem;
+    }
+
+    .bio {
+      font-family: montrealbook, sans-serif;
+      font-size: 1.45rem;
+      line-height: 1.75;
+      color: rgba(28,28,30,0.68);
+      max-width: 56ch;
+      flex: 1;
+    }
+    .bio p + p { margin-top: 1.8em; }
+
+    .meta_row {
+      display: flex;
+      gap: 4.8rem;
+      flex-wrap: wrap;
+      padding: 3.2rem 0 6rem;
+      margin-top: 4rem;
+      border-top: 1px solid var(--border);
+    }
+    .meta_label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+    .meta_value {
       font-family: montrealbook, sans-serif;
       font-size: 1.3rem;
       color: var(--fg);
-      line-height: 1.55;
+      line-height: 1.45;
     }
-    .strip_link {
+    .meta_link {
       color: inherit;
       text-decoration: none;
-      border-bottom: 1px solid rgba(28,28,30,0.25);
+      border-bottom: 1px solid rgba(28,28,30,0.22);
       padding-bottom: 1px;
       transition: border-color 0.2s;
     }
-    .strip_link:hover { border-color: rgba(28,28,30,0.6); }
+    .meta_link:hover { border-color: var(--fg); }
 
     /* RESPONSIVE */
-    @media (max-width: 860px) {
-      .hero {
+    @media (max-width: 900px) {
+      .page {
         grid-template-columns: 1fr;
-        row-gap: 3.2rem;
-        padding: 5rem var(--mg) 4rem;
+        display: block;
+        padding-top: 56px;
       }
-      .hero_name { grid-column: 1; transform: none; font-size: clamp(3.8rem, 10vw, 7rem); }
-      .hero_info  { grid-column: 1; grid-row: 3; transform: none; flex-direction: row; flex-wrap: wrap; gap: 2.4rem 4rem; }
-      .content { grid-template-columns: 1fr 1fr; padding: 4rem var(--mg) 0; }
-      .photo { grid-column: 1 / 3; grid-row: 1; transform: none; margin-bottom: 4rem; }
-      .txt { transform: none; }
-      .txt_1 { grid-column: 1; grid-row: 2; }
-      .txt_2 { grid-column: 2; grid-row: 2; }
-      .txt_3 { grid-column: 1 / 3; grid-row: 3; margin-top: 3.2rem; }
-      .strip { grid-template-columns: 1fr 1fr; gap: 3.2rem; }
-      .strip_item { transform: none; }
-      .strip_item:nth-child(1),
-      .strip_item:nth-child(2),
-      .strip_item:nth-child(3),
-      .strip_item:nth-child(4) { grid-column: auto; }
+      .photo {
+        position: relative;
+        top: 0;
+        height: 60vw;
+        transform: none;
+        margin: 0 calc(-1 * var(--mg));
+      }
+      .sidebar {
+        transform: none;
+        padding: 4rem 0 0;
+      }
+      .bio { max-width: 100%; }
     }
 
     @media (max-width: 560px) {
-      .content { grid-template-columns: 1fr; }
-      .photo { grid-column: 1; }
-      .txt_2 { grid-column: 1; grid-row: 3; margin-top: 3.2rem; }
-      .txt_3 { grid-column: 1; grid-row: 4; }
-      .strip { grid-template-columns: 1fr; }
+      .name { font-size: clamp(3.5rem, 9vw, 5.5rem); }
+      .meta_row { gap: 2.4rem; }
     }
 
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
@@ -307,91 +282,58 @@
     <span class="nav_id" aria-hidden="true">Hulya Zorlu</span>
   </nav>
 
-  <main id="contenu" class="page">
+  <div id="contenu" class="page">
 
-    <!-- HERO -->
-    <section class="hero" aria-labelledby="page-title">
-
-      <div class="hero_tag" aria-hidden="true">
-        <span class="hero_tag_num">00</span>
-        <span class="hero_tag_dash"></span>
-        <span class="hero_tag_label">&Agrave;&nbsp;propos</span>
-      </div>
-
-      <h1 class="hero_name" id="page-title">
-        <span style="display:block">HULYA</span>
-        <span style="display:block">ZORLU</span>
-      </h1>
-
-      <div class="hero_info">
-        <div>
-          <p class="info_label">R&ocirc;le</p>
-          <p class="info_value">Designer UX/UI<br>&amp;&nbsp;Strat&eacute;gie Digitale</p>
-        </div>
-        <div>
-          <p class="info_label">Formation</p>
-          <p class="info_value">Master Data Analytics<br>&amp;&nbsp;Marketing Management</p>
-        </div>
-        <div>
-          <p class="info_label">Statut</p>
-          <p class="info_value">Disponible</p>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- CONTENT -->
-    <section class="content" aria-label="Parcours">
-
-      <div class="photo">
-        <img src="assets/hulya.jpg" alt="Portrait de Hulya Zorlu, designer UX/UI" />
-      </div>
-
-      <div class="txt txt_1" lang="fr">
-        <p>Issue d&rsquo;un Master en Data Analytics &amp;&nbsp;Marketing Management, j&rsquo;ai construit mon parcours &agrave; l&rsquo;intersection de la donn&eacute;e, de la strat&eacute;gie et de la cr&eacute;ation. En agence de publicit&eacute;, sur des campagnes digitales et des lancements de marque, j&rsquo;ai affin&eacute; ma compr&eacute;hension des comportements utilisateurs et des m&eacute;canismes qui guident les d&eacute;cisions.</p>
-        <p>C&rsquo;est cette proximit&eacute; avec la dimension cr&eacute;ative et strat&eacute;gique des projets qui m&rsquo;a men&eacute;e vers le design&nbsp;: un territoire o&ugrave; l&rsquo;analyse et la conception se rejoignent naturellement.</p>
-      </div>
-
-      <div class="txt txt_2" lang="fr">
-        <p>Form&eacute;e &agrave; l&rsquo;UX/UI Design, au design graphique et au d&eacute;veloppement web, je con&ccedil;ois des exp&eacute;riences de bout en bout. Figma est mon outil principal&nbsp;: j&rsquo;ai men&eacute; Wevent, une app &eacute;v&eacute;nementielle, de la recherche utilisateur jusqu&rsquo;au prototype valid&eacute; en deux rounds de tests.</p>
-        <p>Je d&eacute;veloppe en parall&egrave;le mes comp&eacute;tences en HTML, CSS et JavaScript pour collaborer efficacement avec les &eacute;quipes produit et technique.</p>
-      </div>
-
-      <div class="txt txt_3" lang="fr">
-        <p>Ce qui me porte, c&rsquo;est de transformer des insights utilisateurs en exp&eacute;riences simples, intuitives et utiles. J&rsquo;aime remettre en question les &eacute;vidences, identifier les frictions et trouver le bon &eacute;quilibre entre les besoins des utilisateurs et les objectifs business.</p>
-        <p>Je suis constamment en train d&rsquo;observer les d&eacute;tails d&rsquo;une interface ou de d&eacute;monter le parcours d&rsquo;une app. Ce regard critique du quotidien est au c&oelig;ur de ma pratique du design.</p>
-      </div>
-
-    </section>
-
-    <!-- STRIP -->
-    <div class="strip" role="list" aria-label="Informations cl&eacute;s">
-
-      <div class="strip_item" role="listitem">
-        <p class="strip_label">Formation</p>
-        <p class="strip_value">Master Data Analytics<br>&amp;&nbsp;Marketing Management</p>
-      </div>
-
-      <div class="strip_item" role="listitem">
-        <p class="strip_label">Sp&eacute;cialit&eacute;</p>
-        <p class="strip_value">UX/UI Design<br>Design Graphique</p>
-      </div>
-
-      <div class="strip_item" role="listitem">
-        <p class="strip_label">Outils</p>
-        <p class="strip_value">Figma &middot; Illustrator<br>HTML&nbsp;/&nbsp;CSS&nbsp;/&nbsp;JS</p>
-      </div>
-
-      <div class="strip_item" role="listitem">
-        <p class="strip_label">Contact</p>
-        <p class="strip_value">
-          <a href="mailto:zorluu.hulya@gmail.com" class="strip_link">zorluu.hulya<br>@gmail.com</a>
-        </p>
-      </div>
-
+    <!-- PHOTO gauche, sticky pleine hauteur -->
+    <div class="photo" aria-hidden="true">
+      <img src="assets/hulya.jpg" alt="Portrait de Hulya Zorlu, designer UX/UI" />
     </div>
 
-  </main>
+    <!-- CONTENU droite -->
+    <main class="sidebar">
+
+      <div class="tag" aria-hidden="true">
+        <span class="tag_num">00</span>
+        <span class="tag_dash"></span>
+        <span class="tag_label">&Agrave;&nbsp;propos</span>
+      </div>
+
+      <h1 class="name">HULYA<br>ZORLU</h1>
+
+      <p class="role">Designer UX/UI &amp;&nbsp;Strat&eacute;gie Digitale</p>
+
+      <div class="bio_divider"></div>
+
+      <div class="bio" lang="fr">
+        <p>Issue d&rsquo;un Master en Data Analytics &amp;&nbsp;Marketing Management, j&rsquo;ai construit mon parcours &agrave; l&rsquo;intersection de la donn&eacute;e, de la strat&eacute;gie et de la cr&eacute;ation. En agence de publicit&eacute;, sur des campagnes digitales et des lancements de marque, j&rsquo;ai affin&eacute; ma compr&eacute;hension des comportements utilisateurs et des m&eacute;canismes qui guident les d&eacute;cisions.</p>
+        <p>Form&eacute;e &agrave; l&rsquo;UX/UI Design, au design graphique et au d&eacute;veloppement web, je con&ccedil;ois des exp&eacute;riences de bout en bout. J&rsquo;ai men&eacute; Wevent, une app &eacute;v&eacute;nementielle, de la recherche utilisateur jusqu&rsquo;au prototype valid&eacute; en deux rounds de tests. Je d&eacute;veloppe aussi mes comp&eacute;tences en HTML, CSS et JavaScript pour collaborer efficacement avec les &eacute;quipes produit.</p>
+        <p>Ce qui me porte, c&rsquo;est de transformer des insights utilisateurs en exp&eacute;riences simples, intuitives et utiles. J&rsquo;aime remettre en question les &eacute;vidences, identifier les frictions r&eacute;elles et trouver le bon &eacute;quilibre entre les besoins des utilisateurs et les objectifs business.</p>
+      </div>
+
+      <div class="meta_row" aria-label="Informations cl&eacute;s">
+        <div>
+          <p class="meta_label">Formation</p>
+          <p class="meta_value">Master Data Analytics<br>&amp;&nbsp;Marketing Management</p>
+        </div>
+        <div>
+          <p class="meta_label">Sp&eacute;cialit&eacute;</p>
+          <p class="meta_value">UX/UI Design<br>Design Graphique</p>
+        </div>
+        <div>
+          <p class="meta_label">Statut</p>
+          <p class="meta_value">Disponible</p>
+        </div>
+        <div>
+          <p class="meta_label">Contact</p>
+          <p class="meta_value">
+            <a href="mailto:zorluu.hulya@gmail.com" class="meta_link">zorluu.hulya@gmail.com</a>
+          </p>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
 
 </body>
 </html>
