@@ -6,7 +6,7 @@
   <title>À Propos — Hulya Zorlu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Courier+Prime&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital@0;1&display=swap" rel="stylesheet" />
   <style>
     @font-face {
       font-family: montrealbook;
@@ -15,323 +15,281 @@
            url(assets/fonts/NeueMontreal-Regular.woff) format("woff");
     }
 
-    :root {
-      --mg: 16px;
-      --gg: 24px;
-      --col: calc((100vw - 2 * var(--mg) + var(--gg)) / 12);
-      --fg: #1C1C1E;
-      --bg: #F8F6F2;
-      --muted: rgba(28,28,30,0.38);
-      --border: rgba(28,28,30,0.10);
-    }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 10px; }
     body {
-      font-family: montrealbook, 'Helvetica Neue', sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      overflow-x: clip;
+      font-family: 'Courier Prime', 'Courier New', monospace;
+      background: #F8F6F2;
+      color: #1C1C1E;
       -webkit-font-smoothing: antialiased;
-    }
-
-    .skip {
-      position: absolute; left: -9999px;
-      background: var(--bg); color: var(--fg);
-      font-size: 1.3rem; padding: 8px 16px;
-      text-decoration: none; z-index: 999;
-    }
-    .skip:focus { left: var(--mg); top: 8px; }
-
-    /* NAV */
-    .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 56px;
-      padding: 0 var(--mg);
-      background: rgba(248,246,242,0.94);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav_back {
-      font-family: 'Courier Prime', monospace;
-      font-size: 1.15rem;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .nav_back:hover { color: var(--fg); }
-    .nav_id {
-      font-family: 'Courier Prime', monospace;
-      font-size: 1.15rem;
-      letter-spacing: 0.06em;
-      color: rgba(28,28,30,0.25);
-      text-transform: uppercase;
-    }
-
-    /* GRID BG */
-    .page::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image:
-        repeating-linear-gradient(90deg,
-          transparent 0,
-          transparent calc(var(--col) - 1px),
-          rgba(28,28,30,0.06) calc(var(--col) - 1px),
-          rgba(28,28,30,0.06) var(--col)
-        ),
-        repeating-linear-gradient(90deg,
-          transparent 0,
-          transparent calc(var(--col) - 7px),
-          rgba(28,28,30,0.06) calc(var(--col) - 7px),
-          rgba(28,28,30,0.06) calc(var(--col) - 6px)
-        );
-      background-size: var(--col) 100%, var(--col) 100%;
-      background-position: calc(var(--mg) - var(--gg)) 0, calc(var(--mg) - var(--gg)) 0;
-      -webkit-mask-image: repeating-linear-gradient(to bottom,
-        black 0, black 9px, transparent 9px, transparent 18px
-      );
-      mask-image: repeating-linear-gradient(to bottom,
-        black 0, black 9px, transparent 9px, transparent 18px
-      );
-    }
-
-    /* PAGE */
-    .page {
-      position: relative;
-      padding-top: 56px;
       min-height: 100vh;
-      display: grid;
-      grid-template-columns: repeat(12, calc((100% + var(--gg)) / 12));
-      grid-template-rows: 1fr auto;
-      padding-left: var(--mg);
-      padding-right: var(--mg);
     }
 
-    /* PHOTO — col 1-5, pleine hauteur */
-    .photo {
-      grid-column: 1 / 6;
+    /* ── CADRE EXTÉRIEUR ── */
+    .frame {
+      margin: 12px;
+      min-height: calc(100vh - 24px);
+      border: 1px solid #1C1C1E;
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      grid-template-rows: 1fr auto;
+    }
+
+    /* ── COLONNE GAUCHE ── */
+    .col-left {
+      grid-column: 1;
       grid-row: 1;
-      position: sticky;
-      top: 56px;
-      height: calc(100vh - 56px);
-      overflow: hidden;
-      transform: translateX(calc(-1 * var(--gg)));
-      z-index: 1;
+      border-right: 1px solid #1C1C1E;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
     }
     .photo img {
       display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
+      height: auto;
+    }
+    .left-name {
+      font-size: 1.15rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1.35;
+      color: #1C1C1E;
     }
 
-    /* SIDEBAR — col 6-12 */
-    .sidebar {
-      grid-column: 6 / 13;
+    /* ── COLONNE DROITE ── */
+    .col-right {
+      grid-column: 2;
       grid-row: 1;
-      display: flex;
-      flex-direction: column;
-      padding: 5.6rem 0 0 4rem;
-      transform: translateX(calc(-1 * var(--gg)));
-      z-index: 1;
-      position: relative;
+      padding: 28px 44px 40px;
     }
 
-    .tag {
-      display: flex;
-      align-items: center;
-      gap: 1.4rem;
-      padding-bottom: 2.4rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 4.8rem;
+    .right-header { margin-bottom: 2.8rem; }
+    .right-name {
+      font-size: 1.25rem;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.3rem;
     }
-    .tag_num {
-      font-family: 'Courier Prime', monospace;
-      font-size: 1.05rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
+    .right-role {
+      font-size: 1.2rem;
+      color: rgba(28,28,30,0.45);
+      margin-bottom: 0.3rem;
     }
-    .tag_dash {
-      width: 18px;
-      height: 1px;
-      background: var(--border);
-      flex-shrink: 0;
+    .right-contact {
+      font-size: 1.2rem;
+      color: rgba(28,28,30,0.45);
     }
-    .tag_label {
-      font-family: 'Courier Prime', monospace;
-      font-size: 1.05rem;
-      color: var(--muted);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    .name {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: clamp(4rem, 5.2vw, 7.2rem);
-      letter-spacing: -0.03em;
-      line-height: 0.95;
-      color: var(--fg);
-      margin-bottom: 1.8rem;
-    }
-
-    .role {
-      font-family: montrealbook, sans-serif;
-      font-size: 1.6rem;
-      color: var(--muted);
-      line-height: 1.4;
-      margin-bottom: 4.8rem;
-    }
-
-    .bio_divider {
-      width: 100%;
-      height: 1px;
-      background: var(--border);
-      margin-bottom: 4rem;
-    }
-
-    .bio {
-      font-family: montrealbook, sans-serif;
-      font-size: 1.45rem;
-      line-height: 1.75;
-      color: rgba(28,28,30,0.68);
-      max-width: 56ch;
-      flex: 1;
-    }
-    .bio p + p { margin-top: 1.8em; }
-
-    .meta_row {
-      display: flex;
-      gap: 4.8rem;
-      flex-wrap: wrap;
-      padding: 3.2rem 0 6rem;
-      margin-top: 4rem;
-      border-top: 1px solid var(--border);
-    }
-    .meta_label {
-      font-family: 'Courier Prime', monospace;
-      font-size: 0.95rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.6rem;
-    }
-    .meta_value {
-      font-family: montrealbook, sans-serif;
-      font-size: 1.3rem;
-      color: var(--fg);
-      line-height: 1.45;
-    }
-    .meta_link {
+    .right-contact a {
       color: inherit;
       text-decoration: none;
-      border-bottom: 1px solid rgba(28,28,30,0.22);
-      padding-bottom: 1px;
-      transition: border-color 0.2s;
     }
-    .meta_link:hover { border-color: var(--fg); }
+    .right-contact a:hover { text-decoration: underline; }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .page {
+    /* ── SECTIONS ── */
+    .section {
+      padding-top: 2.4rem;
+      margin-top: 2.4rem;
+      border-top: 1px solid rgba(28,28,30,0.14);
+    }
+    .section-title {
+      font-size: 1.05rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(28,28,30,0.38);
+      margin-bottom: 1.4rem;
+    }
+
+    /* BIO */
+    .bio p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: #1C1C1E;
+      max-width: 70ch;
+    }
+    .bio p + p { margin-top: 1.2em; }
+
+    /* FORMATION */
+    .edu-item + .edu-item { margin-top: 1.4rem; }
+    .edu-degree {
+      font-size: 1.2rem;
+      line-height: 1.5;
+    }
+    .edu-year {
+      font-size: 1.05rem;
+      color: rgba(28,28,30,0.38);
+      margin-top: 0.2rem;
+    }
+
+    /* COMPÉTENCES */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0 4rem;
+    }
+    .skill-group-title {
+      font-size: 1.05rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(28,28,30,0.38);
+      margin-bottom: 0.9rem;
+    }
+    .skill-list {
+      list-style: none;
+      font-size: 1.2rem;
+      line-height: 1.75;
+    }
+    .skill-lvl {
+      font-size: 1rem;
+      color: rgba(28,28,30,0.38);
+      margin-left: 0.5em;
+    }
+
+    /* ── BARRE DU BAS ── */
+    .bottom-bar {
+      grid-column: 1 / 3;
+      grid-row: 2;
+      border-top: 1px solid #1C1C1E;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 11px 20px;
+    }
+    .bottom-label {
+      font-size: 1.05rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #1C1C1E;
+    }
+    .bottom-nav {
+      display: flex;
+      gap: 3.2rem;
+    }
+    .bottom-link {
+      font-size: 1.05rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #1C1C1E;
+      transition: opacity 0.15s;
+    }
+    .bottom-link:hover { opacity: 0.45; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .frame {
         grid-template-columns: 1fr;
-        display: block;
-        padding-top: 56px;
+        grid-template-rows: auto 1fr auto;
+        margin: 8px;
       }
-      .photo {
-        position: relative;
-        top: 0;
-        height: 60vw;
-        transform: none;
-        margin: 0 calc(-1 * var(--mg));
+      .col-left {
+        grid-column: 1; grid-row: 1;
+        border-right: none;
+        border-bottom: 1px solid #1C1C1E;
+        flex-direction: row;
+        align-items: flex-end;
+        gap: 2rem;
+        padding: 16px;
       }
-      .sidebar {
-        transform: none;
-        padding: 4rem 0 0;
-      }
-      .bio { max-width: 100%; }
+      .photo { width: 88px; flex-shrink: 0; }
+      .col-right { grid-column: 1; grid-row: 2; padding: 24px; }
+      .bottom-bar { grid-column: 1; grid-row: 3; flex-wrap: wrap; gap: 1rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; row-gap: 2rem; }
     }
 
-    @media (max-width: 560px) {
-      .name { font-size: clamp(3.5rem, 9vw, 5.5rem); }
-      .meta_row { gap: 2.4rem; }
+    @media (max-width: 480px) {
+      .skills-grid { grid-template-columns: 1fr; row-gap: 2rem; }
+      .bottom-nav { gap: 1.6rem; }
     }
 
-    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
-    :focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+    :focus-visible { outline: 2px solid #1C1C1E; outline-offset: 3px; }
   </style>
 </head>
 <body>
 
-  <a href="#contenu" class="skip">Aller au contenu principal</a>
+  <div class="frame" role="main">
 
-  <nav class="nav" aria-label="Navigation">
-    <a href="index.html" class="nav_back" aria-label="Retour au portfolio">&larr;&nbsp;Portfolio</a>
-    <span class="nav_id" aria-hidden="true">Hulya Zorlu</span>
-  </nav>
-
-  <div id="contenu" class="page">
-
-    <!-- PHOTO gauche, sticky pleine hauteur -->
-    <div class="photo" aria-hidden="true">
-      <img src="assets/hulya.jpg" alt="Portrait de Hulya Zorlu, designer UX/UI" />
+    <!-- GAUCHE : photo + nom -->
+    <div class="col-left">
+      <div class="photo">
+        <img src="assets/hulya_photobooth.jpg" alt="Portrait de Hulya Zorlu, designer UX/UI" />
+      </div>
+      <div class="left-name">HULYA<br>ZORLU</div>
     </div>
 
-    <!-- CONTENU droite -->
-    <main class="sidebar">
+    <!-- DROITE : tout le contenu -->
+    <div class="col-right">
 
-      <div class="tag" aria-hidden="true">
-        <span class="tag_num">00</span>
-        <span class="tag_dash"></span>
-        <span class="tag_label">&Agrave;&nbsp;propos</span>
+      <div class="right-header">
+        <p class="right-name">Hulya Zorlu</p>
+        <p class="right-role">Designer UX/UI &amp; Strat&eacute;gie Digitale</p>
+        <p class="right-contact"><a href="mailto:zorluu.hulya@gmail.com">zorluu.hulya@gmail.com</a></p>
       </div>
 
-      <h1 class="name">HULYA<br>ZORLU</h1>
-
-      <p class="role">Designer UX/UI &amp;&nbsp;Strat&eacute;gie Digitale</p>
-
-      <div class="bio_divider"></div>
-
-      <div class="bio" lang="fr">
+      <div class="section bio" lang="fr">
+        <p class="section-title">Profil</p>
         <p>Issue d&rsquo;un Master en Data Analytics &amp;&nbsp;Marketing Management, j&rsquo;ai construit mon parcours &agrave; l&rsquo;intersection de la donn&eacute;e, de la strat&eacute;gie et de la cr&eacute;ation. En agence de publicit&eacute;, sur des campagnes digitales et des lancements de marque, j&rsquo;ai affin&eacute; ma compr&eacute;hension des comportements utilisateurs et des m&eacute;canismes qui guident les d&eacute;cisions.</p>
-        <p>Form&eacute;e &agrave; l&rsquo;UX/UI Design, au design graphique et au d&eacute;veloppement web, je con&ccedil;ois des exp&eacute;riences de bout en bout. J&rsquo;ai men&eacute; Wevent, une app &eacute;v&eacute;nementielle, de la recherche utilisateur jusqu&rsquo;au prototype valid&eacute; en deux rounds de tests. Je d&eacute;veloppe aussi mes comp&eacute;tences en HTML, CSS et JavaScript pour collaborer efficacement avec les &eacute;quipes produit.</p>
-        <p>Ce qui me porte, c&rsquo;est de transformer des insights utilisateurs en exp&eacute;riences simples, intuitives et utiles. J&rsquo;aime remettre en question les &eacute;vidences, identifier les frictions r&eacute;elles et trouver le bon &eacute;quilibre entre les besoins des utilisateurs et les objectifs business.</p>
+        <p>Form&eacute;e &agrave; l&rsquo;UX/UI Design, au design graphique et au d&eacute;veloppement web, je con&ccedil;ois des exp&eacute;riences de bout en bout. J&rsquo;ai men&eacute; Wevent, une app &eacute;v&eacute;nementielle, de la recherche utilisateur jusqu&rsquo;au prototype valid&eacute; en deux rounds de tests. Je d&eacute;veloppe aussi mes comp&eacute;tences en HTML, CSS et JavaScript pour collaborer avec les &eacute;quipes produit.</p>
+        <p>Ce qui me porte, c&rsquo;est de transformer des insights utilisateurs en exp&eacute;riences simples, intuitives et utiles. J&rsquo;aime remettre en question les &eacute;vidences, identifier les frictions et trouver le bon &eacute;quilibre entre besoins utilisateurs et objectifs business.</p>
       </div>
 
-      <div class="meta_row" aria-label="Informations cl&eacute;s">
-        <div>
-          <p class="meta_label">Formation</p>
-          <p class="meta_value">Master Data Analytics<br>&amp;&nbsp;Marketing Management</p>
+      <div class="section">
+        <p class="section-title">Formation</p>
+        <div class="edu-item">
+          <p class="edu-degree">UX/UI Design &mdash; Design Graphique &mdash; D&eacute;veloppement Web</p>
+          <p class="edu-year">2024 &ndash; 2025</p>
         </div>
-        <div>
-          <p class="meta_label">Sp&eacute;cialit&eacute;</p>
-          <p class="meta_value">UX/UI Design<br>Design Graphique</p>
-        </div>
-        <div>
-          <p class="meta_label">Statut</p>
-          <p class="meta_value">Disponible</p>
-        </div>
-        <div>
-          <p class="meta_label">Contact</p>
-          <p class="meta_value">
-            <a href="mailto:zorluu.hulya@gmail.com" class="meta_link">zorluu.hulya@gmail.com</a>
-          </p>
+        <div class="edu-item">
+          <p class="edu-degree">Master Data Analytics &amp;&nbsp;Marketing Management</p>
+          <p class="edu-year">2021 &ndash; 2023</p>
         </div>
       </div>
 
-    </main>
+      <div class="section">
+        <p class="section-title">Comp&eacute;tences</p>
+        <div class="skills-grid">
+          <div>
+            <p class="skill-group-title">UX Design</p>
+            <ul class="skill-list">
+              <li>Recherche Utilisateur</li>
+              <li>Tests d&rsquo;Utilisabilit&eacute;</li>
+              <li>Wireframing</li>
+              <li>Strat&eacute;gie UX</li>
+              <li>Parcours Utilisateur</li>
+            </ul>
+          </div>
+          <div>
+            <p class="skill-group-title">UI &amp; Outils</p>
+            <ul class="skill-list">
+              <li>Figma</li>
+              <li>Affinity Designer</li>
+              <li>Illustrator &middot; Photoshop</li>
+              <li>HTML / CSS / JS</li>
+              <li>Design System</li>
+            </ul>
+          </div>
+          <div>
+            <p class="skill-group-title">Langues</p>
+            <ul class="skill-list">
+              <li>Fran&ccedil;ais <span class="skill-lvl">Natif</span></li>
+              <li>Anglais <span class="skill-lvl">C1</span></li>
+              <li>Turc <span class="skill-lvl">Natif</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BARRE DU BAS -->
+    <div class="bottom-bar">
+      <span class="bottom-label">&Agrave; Propos</span>
+      <nav class="bottom-nav" aria-label="Navigation">
+        <a href="index.html" class="bottom-link">&larr; Portfolio</a>
+        <a href="index.html#works" class="bottom-link">Projets &rarr;</a>
+        <a href="index.html#xp" class="bottom-link">Exp&eacute;rience &rarr;</a>
+      </nav>
+    </div>
 
   </div>
 
