@@ -301,9 +301,16 @@ function revealPage() {
     revealChars(charEls, { stagger: STAGGER });
   }
 
-  /* 2 — Nav left: brand char reveal + clock typewriter simultaneously */
+  /* 2 — Nav left: lang-toggle typewriter + clock simultaneously */
   const navLeft = document.querySelector('.nav_left');
   if (navLeft) navLeft.style.opacity = '1';
+
+  const langTw = document.getElementById('lang-tw');
+  if (langTw) {
+    const langContainer = document.getElementById('lang-tw-container');
+    if (langContainer) langContainer.style.opacity = '1';
+    triggerTypewriter(langTw, 13, null);
+  }
 
   const brandTw = document.getElementById('brand-tw');
   if (brandTw) charReveal(brandTw, { stagger: 28 });
@@ -342,7 +349,8 @@ function revealPage() {
     if (portTw) triggerTypewriter(portTw, 22, null);
 
     if (scrollEl) {
-      const SCROLL_TEXT = '[défiler pour explorer]';
+      const _scrollLang = localStorage.getItem('lang') || 'fr';
+      const SCROLL_TEXT = _scrollLang === 'fr' ? '[défiler pour explorer]' : '[scroll to explore]';
       const INIT_DUR = 2600;
       scrollEl.style.opacity = '1';
       scramble(scrollEl, SCROLL_TEXT, { duration: INIT_DUR });
