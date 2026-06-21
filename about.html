@@ -1,228 +1,375 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="lang-fr">
 <head>
   <meta charset="UTF-8" />
+  <script>
+    (function(){var l=localStorage.getItem('lang')||'fr';document.documentElement.className='lang-'+l;})();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hülya Zorlu — À propos</title>
+  <title>About — Hulya Zorlu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital@0;1&display=swap" rel="stylesheet" />
   <style>
+    @font-face {
+      font-family: montrealbook;
+      font-display: swap;
+      src: url(assets/fonts/NeueMontreal-Regular.woff2) format("woff2"),
+           url(assets/fonts/NeueMontreal-Regular.woff) format("woff");
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      height: 100%;
-      background: #0A0A0A;
-      color: #F8F6F2;
-      font-family: 'Inter', sans-serif;
+    html { font-size: 10px; }
+    body {
+      font-family: 'Courier Prime', 'Courier New', monospace;
+      background: #FFFFFF;
+      color: #1C1C1E;
       -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── BACK LINK ── */
-    .back {
-      position: fixed;
-      top: 28px;
-      left: 36px;
-      z-index: 50;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(248,246,242,0.45);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .back:hover { color: #F8F6F2; }
-
-    /* ── LAYOUT ── */
-    .page {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
       min-height: 100vh;
     }
 
-    /* ── LEFT — PHOTO ── */
-    .col-photo {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow: hidden;
+    /* ── CADRE EXTÉRIEUR ── */
+    .frame {
+      margin: 12px;
+      min-height: calc(100vh - 24px);
+      border: 1px solid #1C1C1E;
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      grid-template-rows: auto 1fr auto;
     }
-    .photo-wrap {
-      width: 100%;
-      height: 100%;
-      background: #111;
+
+    /* ── BARRE DU HAUT ── */
+    .top-bar {
+      grid-column: 1 / 3;
+      grid-row: 1;
+      border-bottom: 1px solid #1C1C1E;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 11px 20px;
     }
-    .photo-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
+    .top-bar-label {
+      font-size: 1.05rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #1C1C1E;
+    }
+    .top-nav {
+      display: flex;
+      gap: 3.2rem;
+    }
+    .top-link {
+      font-size: 1.05rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #1C1C1E;
+      transition: opacity 0.15s;
+    }
+    .top-link:hover { opacity: 0.45; }
+    .top-link.active { color: #1C1C1E; }
+
+    /* ── COLONNE GAUCHE ── */
+    .col-left {
+      grid-column: 1;
+      grid-row: 2;
+      border-right: 1px solid #1C1C1E;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+    }
+    .photo img {
       display: block;
-      filter: grayscale(8%);
-    }
-    /* Placeholder shown until real photo is added */
-    .photo-placeholder {
       width: 100%;
-      height: 100%;
+      height: auto;
+    }
+    .left-name {
+      font-size: 1.15rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1.35;
+      color: #1C1C1E;
+      flex-shrink: 0;
+    }
+
+    /* ── COLONNE DROITE ── */
+    .col-right {
+      grid-column: 2;
+      grid-row: 2;
+      padding: 28px 44px 40px;
+    }
+
+    .right-header { margin-bottom: 2.8rem; }
+    .right-name {
+      font-size: 1.25rem;
+      letter-spacing: 0.03em;
+      margin-bottom: 0.3rem;
+    }
+    .right-role {
+      font-size: 1.2rem;
+      color: rgba(28,28,30,0.45);
+      margin-bottom: 0.3rem;
+    }
+    .right-contact {
+      font-size: 1.2rem;
+      color: rgba(28,28,30,0.45);
+    }
+    .right-contact a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .right-contact a:hover { text-decoration: underline; }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding-top: 2.4rem;
+      margin-top: 2.4rem;
+      border-top: 1px solid rgba(28,28,30,0.14);
+    }
+    .section-title {
+      font-size: 1.05rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(28,28,30,0.38);
+      margin-bottom: 1.4rem;
+    }
+
+    /* BIO */
+    .bio p {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: #1C1C1E;
+      max-width: 70ch;
+    }
+    .bio p + p { margin-top: 1.2em; }
+
+    /* FORMATION */
+    .edu-item + .edu-item { margin-top: 1.4rem; }
+    .edu-degree {
+      font-size: 1.2rem;
+      line-height: 1.5;
+    }
+    .edu-year {
+      font-size: 1.05rem;
+      color: rgba(28,28,30,0.38);
+      margin-top: 0.2rem;
+    }
+
+    /* COMPÉTENCES */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0 4rem;
+    }
+    .skill-group-title {
+      font-size: 1.05rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(28,28,30,0.38);
+      margin-bottom: 0.9rem;
+    }
+    .skill-list {
+      list-style: none;
+      font-size: 1.2rem;
+      line-height: 1.75;
+    }
+    .skill-lvl {
+      font-size: 1rem;
+      color: rgba(28,28,30,0.38);
+      margin-left: 0.5em;
+    }
+
+    /* ── BARRE DU BAS ── */
+    .bottom-bar {
+      grid-column: 1 / 3;
+      grid-row: 3;
+      border-top: 1px solid #1C1C1E;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 11px 20px;
+    }
+    .bottom-label {
+      font-size: 1.05rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #1C1C1E;
+    }
+    .bottom-nav {
+      display: flex;
+      gap: 3.2rem;
+    }
+    .bottom-link {
+      font-size: 1.05rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #1C1C1E;
+      transition: opacity 0.15s;
+    }
+    .bottom-link:hover { opacity: 0.45; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .frame {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        margin: 8px;
+      }
+      .col-left {
+        grid-column: 1; grid-row: 1;
+        border-right: none;
+        border-bottom: 1px solid #1C1C1E;
+        flex-direction: row;
+        align-items: flex-end;
+        gap: 2rem;
+        padding: 16px;
+      }
+      .photo { width: 88px; flex-shrink: 0; }
+      .col-right { grid-column: 1; grid-row: 2; padding: 24px; }
+      .bottom-bar { grid-column: 1; grid-row: 3; flex-wrap: wrap; gap: 1rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; row-gap: 2rem; }
+    }
+
+    @media (max-width: 480px) {
+      .skills-grid { grid-template-columns: 1fr; row-gap: 2rem; }
+      .bottom-nav { gap: 1.6rem; }
+    }
+
+    :focus-visible { outline: 2px solid #1C1C1E; outline-offset: 3px; }
+
+    /* ── LANGUAGE TOGGLE ── */
+    html.lang-en .t-fr { display: none !important; }
+    html.lang-fr .t-en { display: none !important; }
+    .lang-toggle {
       display: flex;
       align-items: center;
-      justify-content: center;
-      background: #111;
-      color: rgba(248,246,242,0.15);
-      font-size: 11px;
-      letter-spacing: 0.16em;
+      gap: 0.3rem;
+    }
+    .lang-btn {
+      font-family: 'Courier Prime', 'Courier New', monospace;
+      font-size: 1.05rem;
+      letter-spacing: 0.1em;
+      color: rgba(28,28,30,0.35);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: color 0.2s;
       text-transform: uppercase;
-      font-weight: 600;
     }
-
-    /* ── RIGHT — CONTENT ── */
-    .col-content {
-      padding: 88px 60px 80px 64px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-
-    .content-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(248,246,242,0.35);
-      margin-bottom: 48px;
-    }
-
-    .title-block {
-      margin-bottom: 48px;
-    }
-    .title-hello {
-      font-size: clamp(4rem, 6.5vw, 8rem);
-      font-weight: 900;
-      line-height: 0.88;
-      letter-spacing: -0.04em;
-      color: #F8F6F2;
-      text-transform: uppercase;
-      display: block;
-    }
-    .title-sub {
-      font-size: clamp(1.1rem, 2vw, 1.6rem);
-      font-weight: 300;
-      letter-spacing: -0.01em;
-      color: rgba(248,246,242,0.55);
-      margin-top: 20px;
-      line-height: 1.3;
-    }
-    .title-sub strong {
-      font-weight: 700;
-      color: #F8F6F2;
-    }
-
-    .rule {
-      width: 100%;
-      height: 1px;
-      background: rgba(248,246,242,0.1);
-      margin-bottom: 40px;
-    }
-
-    .bio {
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-    }
-    .bio p {
-      font-size: 0.97rem;
-      font-weight: 400;
-      line-height: 1.82;
-      color: rgba(248,246,242,0.7);
-    }
-    .bio p:last-child {
-      font-style: italic;
-      color: rgba(248,246,242,0.4);
-    }
-
-    .bottom-link {
-      margin-top: 64px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(248,246,242,0.3);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(248,246,242,0.15);
-      padding-bottom: 3px;
-      align-self: flex-start;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .bottom-link:hover {
-      color: #F8F6F2;
-      border-color: rgba(248,246,242,0.5);
-    }
-
-    /* ── MOBILE ── */
-    @media (max-width: 768px) {
-      .page { grid-template-columns: 1fr; }
-      .col-photo {
-        position: relative;
-        height: 70vw;
-        min-height: 300px;
-      }
-      .back { top: 20px; left: 20px; }
-      .col-content { padding: 48px 24px 64px; }
+    .lang-btn:hover { color: #1C1C1E; }
+    .lang-btn.active { color: #1C1C1E; }
+    .lang-sep {
+      font-family: 'Courier Prime', 'Courier New', monospace;
+      font-size: 1.05rem;
+      color: rgba(28,28,30,0.15);
     }
   </style>
 </head>
 <body>
 
-  <a href="index.html" class="back">&larr; Portfolio</a>
+  <div class="frame" role="main">
 
-  <div class="page">
+    <!-- BARRE DU HAUT -->
+    <div class="top-bar">
+      <a href="index.html" class="top-link"><span class="t-fr">← Portfolio</span><span class="t-en">← Portfolio</span></a>
+      <nav class="top-nav" aria-label="Navigation principale" style="display:flex;align-items:center;gap:2rem;">
+        <div class="lang-toggle">
+          <button class="lang-btn" data-lang="fr">FR</button>
+          <span class="lang-sep">/</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="about.html" class="top-link active"><span class="t-fr">À Propos</span><span class="t-en">About</span></a>
+      </nav>
+    </div>
 
-    <!-- PHOTO -->
-    <div class="col-photo">
-      <div class="photo-wrap">
-        <!-- Remplacer par votre photo : <img src="assets/photo-hulya.jpg" alt="Hülya Zorlu" /> -->
-        <div class="photo-placeholder">Photo &agrave; venir</div>
+    <!-- GAUCHE : photo -->
+    <div class="col-left">
+      <div class="photo">
+        <img src="assets/hulyaa.jpg" alt="Hulya Zorlu, UX/UI Designer" />
       </div>
     </div>
 
-    <!-- CONTENT -->
-    <div class="col-content">
+    <!-- DROITE : tout le contenu -->
+    <div class="col-right">
 
-      <p class="content-label">Designer UX/UI &mdash; Paris, 2026</p>
-
-      <div class="title-block">
-        <span class="title-hello">Hello,</span>
-        <p class="title-sub">moi c&rsquo;est <strong>H&uuml;lya.</strong></p>
+      <div class="right-header">
+        <p class="right-name">Hulya Zorlu</p>
+        <p class="right-role"><span class="t-fr">Designer UX/UI &amp; Strat&eacute;gie Digitale</span><span class="t-en">UX/UI Designer &amp; Digital Strategy</span></p>
+        <p class="right-contact"><a href="mailto:zorluu.hulya@gmail.com">zorluu.hulya@gmail.com</a></p>
       </div>
 
-      <div class="rule"></div>
-
-      <div class="bio">
+      <div class="section bio">
+        <p class="section-title"><span class="t-fr">Profil</span><span class="t-en">Profile</span></p>
         <p>
-          Mon parcours n&rsquo;est pas celui d&rsquo;une designer traditionnelle, et c&rsquo;est justement ce qui fait ma force.
+          <span class="t-fr">Issue d&rsquo;un Master en Data Analytics &amp;&nbsp;Marketing Management &agrave; l&rsquo;INSEEC, j&rsquo;ai d&eacute;couvert le design UX/UI lors de mon alternance en tant que UX Project Manager chez Tanke, agence cr&eacute;ative sp&eacute;cialis&eacute;e en marketing d&rsquo;influence. J&rsquo;ai rapidement compris que la rigueur analytique de mon parcours data pouvait s&rsquo;appliquer directement &agrave; la compr&eacute;hension des comportements utilisateurs et &agrave; la conception d&rsquo;interfaces.</span>
+          <span class="t-en">Coming from a Master's in Data Analytics &amp; Marketing Management at INSEEC, I discovered UX/UI design during my work-study program as a UX Project Manager at Tanke &mdash; a creative influence marketing agency. I quickly recognized how my analytical background could be directly applied to understanding user behavior and shaping interface decisions.</span>
         </p>
         <p>
-          J&rsquo;ai commenc&eacute; par &eacute;tudier le commerce international avant de poursuivre un MSc en Data Analytics &amp; Marketing Management. Cette formation m&rsquo;a appris &agrave; analyser les comportements, interpr&eacute;ter les donn&eacute;es et comprendre les m&eacute;canismes qui influencent les d&eacute;cisions des utilisateurs.
+          <span class="t-fr">D&eacute;termin&eacute;e &agrave; me sp&eacute;cialiser, j&rsquo;ai obtenu le Certificat Design UX/UI &amp; D&eacute;veloppement Web &agrave; l&rsquo;emlyon Business School (La Toile). Au sein de projets de groupe, j&rsquo;ai conduit l&rsquo;ensemble du processus de conception, de la recherche utilisateur au prototypage, et acquis les bases du d&eacute;veloppement front-end pour int&eacute;grer mes designs en HTML, CSS et JavaScript.</span>
+          <span class="t-en">Driven to specialize, I earned the UX/UI Design &amp; Web Development Certificate at emlyon Business School (La Toile). Working on group projects, I led the full design process &mdash; from user research through to prototyping &mdash; while developing front-end skills to implement my designs in HTML, CSS, and JavaScript.</span>
         </p>
         <p>
-          Mes exp&eacute;riences en agence de publicit&eacute; et en marketing m&rsquo;ont permis de prendre conscience de mon attrait pour les dimensions plus cr&eacute;atives des projets. En travaillant sur des probl&eacute;matiques de communication et d&rsquo;exp&eacute;rience de marque, j&rsquo;ai d&eacute;couvert que j&rsquo;&eacute;tais particuli&egrave;rement attir&eacute;e par la conception, la mise en forme des id&eacute;es et la recherche de solutions visuelles et fonctionnelles. C&rsquo;est dans ce contexte que j&rsquo;ai progressivement explor&eacute; l&rsquo;UX/UI Design, en y retrouvant un &eacute;quilibre entre cr&eacute;ativit&eacute;, analyse et r&eacute;solution de probl&egrave;mes.
-        </p>
-        <p>
-          Pour approfondir cette sp&eacute;cialisation, j&rsquo;ai suivi des formations en design graphique, en UX/UI Design et en d&eacute;veloppement web. Aujourd&rsquo;hui, je travaille principalement avec Figma et je continue &agrave; d&eacute;velopper mes comp&eacute;tences en HTML, CSS et JavaScript afin de mieux comprendre les contraintes techniques et collaborer efficacement avec les &eacute;quipes produit et d&eacute;veloppement.
-        </p>
-        <p>
-          Ce qui m&rsquo;anime au quotidien, c&rsquo;est de transformer des insights utilisateurs en exp&eacute;riences simples, intuitives et utiles. J&rsquo;aime explorer les comportements, remettre en question les &eacute;vidences et trouver l&rsquo;&eacute;quilibre entre les besoins des utilisateurs et les objectifs business.
-        </p>
-        <p>
-          Quand je ne suis pas sur Figma, on me trouve souvent en train d&rsquo;observer les d&eacute;tails d&rsquo;une application, de tester un nouveau produit digital ou de me demander pourquoi un bouton est plac&eacute; exactement &agrave; cet endroit.
+          <span class="t-fr">Aujourd&rsquo;hui, j&rsquo;aspire &agrave; exercer pleinement le m&eacute;tier de designer UX/UI. Mon parcours data m&rsquo;apporte une approche rigoureuse de la recherche utilisateur, ma sensibilit&eacute; visuelle renforce ma dimension UI, et mes bases en HTML, CSS et JavaScript me permettent de collaborer avec les &eacute;quipes produit d&egrave;s la phase de conception.</span>
+          <span class="t-en">My goal is to practice UX/UI design at a high level. My data background brings rigor to user research, my visual sensibility sharpens the UI dimension, and my technical foundation lets me collaborate effectively with product teams from day one.</span>
         </p>
       </div>
 
-      <a href="index.html" class="bottom-link">&larr; Retour au portfolio</a>
+      <div class="section">
+        <p class="section-title"><span class="t-fr">Formation</span><span class="t-en">Education</span></p>
+        <div class="edu-item">
+          <p class="edu-degree">Certificat Design UX/UI &amp; D&eacute;veloppement Web</p>
+          <p class="edu-year">emlyon - La Toile &middot; 2026</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-degree">Master Data Analytics &amp;&nbsp;Marketing Management</p>
+          <p class="edu-year">INSEEC &middot; 2024</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <p class="section-title"><span class="t-fr">Comp&eacute;tences</span><span class="t-en">Skills</span></p>
+        <div class="skills-grid">
+          <div>
+            <p class="skill-group-title">UX Design</p>
+            <ul class="skill-list">
+              <li><span class="t-fr">Recherche Utilisateur</span><span class="t-en">User Research</span></li>
+              <li><span class="t-fr">Tests d&rsquo;Utilisabilit&eacute;</span><span class="t-en">Usability Testing</span></li>
+              <li>Wireframing</li>
+              <li><span class="t-fr">Strat&eacute;gie UX</span><span class="t-en">UX Strategy</span></li>
+              <li><span class="t-fr">Parcours Utilisateur</span><span class="t-en">User Journey Mapping</span></li>
+            </ul>
+          </div>
+          <div>
+            <p class="skill-group-title"><span class="t-fr">UI &amp; Outils</span><span class="t-en">UI &amp; Tools</span></p>
+            <ul class="skill-list">
+              <li>Figma</li>
+              <li>Affinity Designer</li>
+              <li>Illustrator &middot; Photoshop</li>
+              <li>HTML / CSS / JS</li>
+              <li>Design System</li>
+            </ul>
+          </div>
+          <div>
+            <p class="skill-group-title"><span class="t-fr">Langues</span><span class="t-en">Languages</span></p>
+            <ul class="skill-list">
+              <li><span class="t-fr">Français</span><span class="t-en">French</span> <span class="skill-lvl"><span class="t-fr">Natif</span><span class="t-en">Native</span></span></li>
+              <li><span class="t-fr">Anglais</span><span class="t-en">English</span> <span class="skill-lvl">C1</span></li>
+              <li><span class="t-fr">Turc</span><span class="t-en">Turkish</span> <span class="skill-lvl"><span class="t-fr">Natif</span><span class="t-en">Native</span></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
 
     </div>
+
+    <!-- BARRE DU BAS -->
+    <div class="bottom-bar"></div>
+
   </div>
 
+  <script src="main.js"></script>
 </body>
 </html>

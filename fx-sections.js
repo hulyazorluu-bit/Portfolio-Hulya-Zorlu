@@ -1,7 +1,7 @@
 /* ============================================================
    Section headings — 3D letter reveal on scroll
-   Each letter flips in from rotateX(-72deg) with stagger.
-   Respects active language (EN/FR) — never concatenates both.
+   Animates .t-fr and .t-en spans independently so CSS
+   language switching (display:none) keeps working at all times.
    ============================================================ */
 (function () {
   'use strict';
@@ -9,7 +9,7 @@
   /* ── Inject styles ──────────────────────────────────────── */
   var style = document.createElement('style');
   style.textContent = [
-    '.sec-reveal-wrap{display:inline-block;overflow:hidden;vertical-align:bottom;perspective:600px;}',
+    '.sec-reveal-wrap{display:inline-block;vertical-align:bottom;perspective:600px;}',
     '.sec-reveal-char{display:inline-block;opacity:0;',
     '  transform:rotateX(-72deg) translateY(18px);transform-origin:50% 100%;',
     '  transition:opacity 0.55s cubic-bezier(.22,1,.36,1),transform 0.55s cubic-bezier(.22,1,.36,1);}',
@@ -18,26 +18,11 @@
   ].join('\n');
   document.head.appendChild(style);
 
-  /* ── Get active-language text only ───────────────────────── */
-  function getActiveText(el) {
-    var lang = /lang-fr/.test(document.documentElement.className) ? 'fr' : 'en';
-    /* Try the active language span first */
-    var span = el.querySelector('.t-' + lang);
-    if (span) return span.textContent.trim();
-    /* Fallback: EN span */
-    var enSpan = el.querySelector('.t-en');
-    if (enSpan) return enSpan.textContent.trim();
-    /* Plain text element (no lang spans) */
-    return el.childNodes[0] && el.childNodes[0].nodeType === 3
-      ? el.childNodes[0].textContent.trim()
-      : el.textContent.trim();
-  }
-
-  /* ── Split text into animated char spans ─────────────── */
-  function splitEl(el) {
-    var text = getActiveText(el);
+  /* ── Split ONE span into animated chars (keeps the span itself) ── */
+  function splitSpan(span, color) {
+    var text = span.textContent.trim();
     if (!text) return [];
-    el.innerHTML = '';
+    span.innerHTML = '';
     var chars = [];
     for (var i = 0; i < text.length; i++) {
       var ch = text[i];
@@ -45,16 +30,52 @@
         var sp = document.createElement('span');
         sp.className = 'sec-reveal-space';
         sp.setAttribute('aria-hidden', 'true');
-        el.appendChild(sp);
+        span.appendChild(sp);
       } else {
         var wrap  = document.createElement('span');
         wrap.className = 'sec-reveal-wrap';
         var inner = document.createElement('span');
         inner.className = 'sec-reveal-char';
         inner.textContent = ch;
+        if (color) inner.style.color = color;
         wrap.appendChild(inner);
-        el.appendChild(wrap);
+        span.appendChild(wrap);
         chars.push(inner);
+      }
+    }
+    return chars;
+  }
+
+  /* ── Split element: animate t-fr and t-en spans separately ── */
+  function splitEl(el, color) {
+    var frSpan = el.querySelector('.t-fr');
+    var enSpan = el.querySelector('.t-en');
+    var chars = [];
+    if (frSpan) chars = chars.concat(splitSpan(frSpan, color));
+    if (enSpan) chars = chars.concat(splitSpan(enSpan, color));
+    /* Plain element with no language spans */
+    if (!frSpan && !enSpan) {
+      var text = el.textContent.trim();
+      if (!text) return [];
+      el.innerHTML = '';
+      for (var i = 0; i < text.length; i++) {
+        var ch = text[i];
+        if (ch === ' ') {
+          var sp2 = document.createElement('span');
+          sp2.className = 'sec-reveal-space';
+          sp2.setAttribute('aria-hidden', 'true');
+          el.appendChild(sp2);
+        } else {
+          var wrap2  = document.createElement('span');
+          wrap2.className = 'sec-reveal-wrap';
+          var inner2 = document.createElement('span');
+          inner2.className = 'sec-reveal-char';
+          inner2.textContent = ch;
+          if (color) inner2.style.color = color;
+          wrap2.appendChild(inner2);
+          el.appendChild(wrap2);
+          chars.push(inner2);
+        }
       }
     }
     return chars;
@@ -94,10 +115,8 @@
         sec.classList.contains('section-dark') ||
         sec.id === 'skills' || sec.id === 'about'
       );
-      var chars = splitEl(el);
-      if (isDark) {
-        chars.forEach(function (c) { c.style.color = '#F8F6F2'; });
-      }
+      var color  = isDark ? '#F8F6F2' : null;
+      var chars  = splitEl(el, color);
       el._rc = chars;
       observer.observe(el);
     });

@@ -1,103 +1,109 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="lang-fr">
 <head>
   <meta charset="UTF-8" />
+  <script>
+    (function(){var l=localStorage.getItem('lang')||'fr';document.documentElement.className='lang-'+l;})();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Commande sans allergènes - Case Study UX/UI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    @font-face {
-      font-family: montrealbook;
-      font-display: swap;
-      src: url(assets/fonts/NeueMontreal-Regular.woff2) format("woff2"),
-           url(assets/fonts/NeueMontreal-Regular.woff) format("woff");
-      font-weight: 400;
-    }
-
-    :root {
-      --bg: #F8F6F2;
-      --fg: #0A0A0A;
-      --fg-40: rgba(10,10,10,0.4);
-      --fg-60: rgba(10,10,10,0.6);
-      --border: rgba(10,10,10,0.1);
-      --border-md: rgba(10,10,10,0.18);
-      --alt-bg: #F0EEEA;
-      --mono: 'IBM Plex Mono', 'Courier New', monospace;
-    }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: montrealbook, 'Helvetica Neue', sans-serif; background: var(--bg); color: var(--fg); line-height: 1.5; }
-    a { text-decoration: none; color: inherit; }
+    body { font-family: 'Inter', sans-serif; background: #fff; color: #1C1C1E; line-height: 1.5; }
 
     /* NAV */
     .nav {
-      background: rgba(248,246,242,0.94);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border-bottom: 1px solid var(--border);
+      background: #1C1C1E;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 80px;
+      padding: 18px 80px;
       position: sticky;
       top: 0;
       z-index: 100;
     }
     .nav-left { display: flex; align-items: center; gap: 28px; }
-    .nav-back {
-      font-family: var(--mono);
-      color: var(--fg-40);
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .nav-back:hover { color: var(--fg); }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-back { color: #8E8E93; text-decoration: none; font-size: 13px; transition: color 0.2s; }
+    .nav-back:hover { color: #FF6B35; }
     .nav-figma {
-      font-family: var(--mono);
-      color: var(--fg);
-      font-size: 10px;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: 1px solid var(--fg);
-      padding: 8px 16px;
-      border-radius: 0;
+      color: #FF6B35;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid #FF6B35;
+      padding: 6px 16px;
+      border-radius: 4px;
       transition: background 0.2s, color 0.2s;
     }
-    .nav-figma:hover { background: var(--fg); color: var(--bg); }
+    .nav-figma:hover { background: #FF6B35; color: #1C1C1E; }
+
+    /* FIGMA EMBED */
+    .figma-section {
+      background: #0A0A0A;
+      padding: 64px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .figma-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #8E8E93;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      align-self: flex-start;
+    }
+    .figma-embed-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 700px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .figma-embed-wrap iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: none;
+    }
 
     /* HERO */
     .hero {
-      background: var(--bg);
+      background: #F5F0E8;
       padding: 100px 80px 80px;
       position: relative;
-      border-bottom: 1px solid var(--border);
     }
-    .hero::before { display: none; }
+    .hero::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0;
+      width: 4px; height: 100%;
+      background: #FF6B35;
+    }
     .hero-tag {
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--fg-40);
+      font-size: 12px;
+      font-weight: 700;
+      color: #FF6B35;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 24px;
     }
     .hero-title {
-      font-family: montrealbook, 'Helvetica Neue', sans-serif;
-      font-size: clamp(3.5rem, 6vw, 7.5rem);
-      font-weight: 400;
-      color: var(--fg);
-      line-height: 1;
-      letter-spacing: -0.03em;
+      font-size: 72px;
+      font-weight: 700;
+      color: #1C1C1E;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
       max-width: 800px;
       margin-bottom: 32px;
     }
     .hero-desc {
-      font-size: 15px;
-      color: var(--fg-60);
+      font-size: 16px;
+      color: #2C2C2E;
       max-width: 600px;
       line-height: 1.7;
       margin-bottom: 48px;
@@ -105,62 +111,65 @@
     .hero-meta {
       display: flex;
       gap: 48px;
-      margin-bottom: 48px;
+      margin-bottom: 56px;
       flex-wrap: wrap;
-      padding-top: 32px;
-      border-top: 1px solid var(--border);
     }
+    .meta-item {}
     .meta-label {
-      font-family: var(--mono);
       font-size: 10px;
-      color: var(--fg-40);
+      font-weight: 700;
+      color: #8E8E93;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-bottom: 6px;
     }
     .meta-value {
       font-size: 14px;
-      font-weight: 400;
-      color: var(--fg);
+      font-weight: 600;
+      color: #1C1C1E;
     }
 
     /* CTA BUTTONS */
-    .cta-group { display: flex; gap: 14px; flex-wrap: wrap; }
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
     .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--fg);
-      color: var(--bg);
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 14px 24px;
-      border-radius: 0;
-      transition: opacity 0.2s;
+      background: #FF6B35;
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 14px 28px;
+      border-radius: 4px;
+      transition: background 0.2s;
     }
-    .btn-primary:hover { opacity: 0.75; }
+    .btn-primary:hover { background: #e55a25; }
     .btn-secondary {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       background: transparent;
-      color: var(--fg);
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 14px 24px;
-      border-radius: 0;
-      border: 1px solid var(--border-md);
+      color: #1C1C1E;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 14px 28px;
+      border-radius: 4px;
+      border: 1.5px solid #1C1C1E;
       transition: background 0.2s, color 0.2s;
     }
-    .btn-secondary:hover { background: var(--fg); color: var(--bg); }
+    .btn-secondary:hover { background: #1C1C1E; color: #fff; }
 
     /* COVER IMAGE */
     .cover-section {
-      background: var(--fg);
+      background: #0A0A0A;
       padding: 0;
       line-height: 0;
     }
@@ -169,49 +178,26 @@
       display: block;
       max-height: 600px;
       object-fit: cover;
-      opacity: 0.95;
-    }
-
-    /* FIGMA EMBED */
-    .figma-section {
-      padding: 80px;
-      border-top: 1px solid var(--border);
-      background: var(--bg);
-    }
-    .figma-label {
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--fg-40);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 24px;
-    }
-    .figma-container {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      border: 1px solid var(--border-md);
-    }
-    .figma-container iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
     }
 
     /* FOOTER */
-    .footer { background: var(--fg); padding: 24px 80px; display: flex; justify-content: space-between; align-items: center; }
-    .footer span { font-family: var(--mono); font-size: 10px; color: rgba(248,246,242,0.4); text-transform: uppercase; letter-spacing: 0.08em; }
-
-    @media (max-width: 900px) {
-      .nav { padding: 14px 24px; }
-      .hero { padding: 64px 24px 48px; }
-      .figma-section { padding: 48px 24px; }
-      .footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+    .footer {
+      background: #1C1C1E;
+      padding: 24px 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
+    .footer span { font-size: 12px; color: #8E8E93; }
+
+    /* LANGUAGE */
+    html.lang-en .t-fr { display: none !important; }
+    html.lang-fr .t-en { display: none !important; }
+    .lang-toggle { display:flex; align-items:center; gap:0.3rem; }
+    .lang-btn { font-family:'Inter',sans-serif; font-size:0.8rem; letter-spacing:0.1em; color:rgba(28,28,30,0.35); background:none; border:none; cursor:pointer; padding:0; transition:color 0.2s; }
+    .lang-btn:hover { color:#1C1C1E; }
+    .lang-btn.active { color:#1C1C1E; }
+    .lang-sep { font-family:'Inter',sans-serif; font-size:0.8rem; color:rgba(28,28,30,0.15); }
   </style>
 </head>
 <body>
@@ -221,8 +207,17 @@
     <div class="nav-left">
       <a href="index.html" class="nav-back">&larr; Portfolio</a>
     </div>
-    <a href="https://www.figma.com/proto/0NM5ghnJNSKCaTUVtCliof/CASE-STUDY-Commande-sans-allerg%C3%A8nes?node-id=335-29&t=nMXrUssuDSzthEH0-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&fuid=1019515482737911889"
-       target="_blank" rel="noopener" class="nav-figma">Prototype &rarr;</a>
+    <div class="lang-toggle" style="position:absolute;left:50%;transform:translateX(-50%);">
+      <button class="lang-btn" data-lang="fr">FR</button>
+      <span class="lang-sep">/</span>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
+    <div class="nav-right">
+      <a href="https://www.figma.com/proto/0NM5ghnJNSKCaTUVtCliof/CASE-STUDY-Commande-sans-allerg%C3%A8nes?node-id=335-29&t=nMXrUssuDSzthEH0-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&fuid=1019515482737911889"
+         target="_blank" rel="noopener" class="nav-figma">Prototype &rarr;</a>
+      <a href="https://www.figma.com/design/0NM5ghnJNSKCaTUVtCliof/CASE-STUDY-Commande-sans-allerg%C3%A8nes?node-id=0-1&p=f&t=ZXnMBwU9TdNGYP3T-0"
+         target="_blank" rel="noopener" class="nav-figma">Figma &rarr;</a>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -230,7 +225,8 @@
     <p class="hero-tag">02 &mdash; Case Study UX/UI</p>
     <h1 class="hero-title">Commande sans allerg&egrave;nes</h1>
     <p class="hero-desc">
-      Conception d&rsquo;une exp&eacute;rience de commande adapt&eacute;e aux personnes souffrant d&rsquo;allergies alimentaires. De la recherche utilisateur au prototype interactif.
+      <span class="t-fr">Conception d&rsquo;une exp&eacute;rience de commande adapt&eacute;e aux personnes souffrant d&rsquo;allergies alimentaires. De la recherche utilisateur au prototype interactif.</span>
+      <span class="t-en">Designing an allergen-aware ordering experience &mdash; from user research to interactive prototype.</span>
     </p>
     <div class="hero-meta">
       <div class="meta-item">
@@ -238,39 +234,53 @@
         <p class="meta-value">Case Study UX/UI</p>
       </div>
       <div class="meta-item">
-        <p class="meta-label">Outil</p>
+        <p class="meta-label"><span class="t-fr">Outil</span><span class="t-en">Tool</span></p>
         <p class="meta-value">Figma</p>
       </div>
       <div class="meta-item">
-        <p class="meta-label">Ann&eacute;e</p>
+        <p class="meta-label"><span class="t-fr">Ann&eacute;e</span><span class="t-en">Year</span></p>
         <p class="meta-value">2026</p>
       </div>
     </div>
     <div class="cta-group">
       <a href="https://www.figma.com/proto/0NM5ghnJNSKCaTUVtCliof/CASE-STUDY-Commande-sans-allerg%C3%A8nes?node-id=335-29&t=nMXrUssuDSzthEH0-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&fuid=1019515482737911889"
          target="_blank" rel="noopener" class="btn-primary">
-        Voir le prototype &rarr;
+        <span class="t-fr">Voir le prototype</span><span class="t-en">View prototype</span> &rarr;
       </a>
-      <a href="https://www.figma.com/design/0NM5ghnJNSKCaTUVtCliof/CASE-STUDY-Commande-sans-allerg%C3%A8nes?node-id=0-1&p=f&t=6P7kkzSp2JTR4bdA-0"
+      <a href="https://www.figma.com/design/0NM5ghnJNSKCaTUVtCliof/CASE-STUDY-Commande-sans-allerg%C3%A8nes?node-id=0-1&p=f&t=ZXnMBwU9TdNGYP3T-0"
          target="_blank" rel="noopener" class="btn-secondary">
-        Voir le fichier design &rarr;
+        <span class="t-fr">Voir le fichier design</span><span class="t-en">View design file</span> &rarr;
       </a>
     </div>
   </section>
 
   <!-- COVER -->
   <section class="cover-section">
-    <img src="assets/projet3.svg" alt="Commande sans allerg&egrave;nes" class="cover-img" />
+    <img src="assets/commande_allergenes.svg" alt="Commande sans allerg&egrave;nes" class="cover-img" />
   </section>
 
   <!-- FIGMA EMBED -->
   <section class="figma-section">
-    <p class="figma-label">Prototype interactif — Figma</p>
-    <div class="figma-container">
+    <p class="figma-label">
+      <span class="t-fr">Fichier Figma &mdash; Commande sans allerg&egrave;nes</span>
+      <span class="t-en">Figma File &mdash; Allergen-Free Ordering</span>
+    </p>
+    <div class="figma-embed-wrap t-fr">
       <iframe
+        style="border: 1px solid rgba(0, 0, 0, 0.1);"
+        width="800"
+        height="450"
         src="https://embed.figma.com/design/0NM5ghnJNSKCaTUVtCliof/CASE-STUDY-Commande-sans-allerg%C3%A8nes?node-id=335-29&embed-host=share"
-        allowfullscreen
-        title="CASE STUDY — Commande sans allergènes">
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="figma-embed-wrap t-en">
+      <iframe
+        style="border: 1px solid rgba(0, 0, 0, 0.1);"
+        width="800"
+        height="450"
+        src="https://embed.figma.com/design/0NM5ghnJNSKCaTUVtCliof/CASE-STUDY-Commande-sans-allerg%C3%A8nes?node-id=338-29&embed-host=share"
+        allowfullscreen>
       </iframe>
     </div>
   </section>
@@ -279,8 +289,9 @@
   <footer class="footer">
     <span>Commande sans allerg&egrave;nes &middot; Case Study UX/UI &middot; 2026</span>
     <span>Hulya Z.</span>
-    <span>Projet acad&eacute;mique</span>
+    <span><span class="t-fr">Projet acad&eacute;mique</span><span class="t-en">Academic project</span></span>
   </footer>
 
+  <script src="main.js"></script>
 </body>
 </html>

@@ -2,13 +2,16 @@
 <html lang="fr" class="lang-fr">
 <head>
   <meta charset="UTF-8" />
+  <script>
+    (function(){var l=localStorage.getItem('lang')||'fr';document.documentElement.className='lang-'+l;})();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hulya Zorlu - Designer UI/UX basée à Paris." />
+  <meta name="description" content="Hulya Zorlu - UI/UX Designer based in Paris." />
   <title>Hulya Zorlu - Designer UI/UX</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=81" />
 </head>
 <body>
 
@@ -39,43 +42,36 @@
 
   <!-- NAV -->
   <nav class="nav" id="nav">
-    <div class="nav-glass" aria-hidden="true">
-      <div class="nav-glass__l1"></div>
-      <div class="nav-glass__l2"></div>
-      <div class="nav-glass__l3"></div>
-      <div class="nav-glass__l4"></div>
-    </div>
     <div class="nav_left">
-      <span class="nav_brand">
-        <span class="typewriter-container" id="brand-tw-container">
-          <span class="typewriter" id="brand-tw">HULYAZORLU_PAR</span>
-        </span>
-      </span>
-      <span class="nav_clock">
-        <span class="typewriter-container" id="clock-tw-container">
-          <span class="typewriter tw-type" id="clock-tw">00:00 AM</span>
-        </span>
-      </span>
+      <div class="lang-toggle">
+        <button class="lang-btn" data-lang="fr">
+          <span class="typewriter-container"><span class="typewriter">FR</span></span>
+        </button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" data-lang="en">
+          <span class="typewriter-container"><span class="typewriter">EN</span></span>
+        </button>
+      </div>
     </div>
     <div class="nav_right">
       <a href="#projects" class="nav_lk">
         <span class="typewriter-container">
-          <span class="typewriter">Projets</span>
+          <span class="typewriter"><span class="t-fr">Projets</span><span class="t-en">Projects</span></span>
         </span>
       </a>
       <a href="#about" class="nav_lk">
         <span class="typewriter-container">
-          <span class="typewriter">À propos</span>
+          <span class="typewriter"><span class="t-fr">À propos</span><span class="t-en">About</span></span>
         </span>
       </a>
       <a href="#experience" class="nav_lk">
         <span class="typewriter-container">
-          <span class="typewriter">Expérience</span>
+          <span class="typewriter"><span class="t-fr">Expérience</span><span class="t-en">Experience</span></span>
         </span>
       </a>
       <a href="#skills" class="nav_lk">
         <span class="typewriter-container">
-          <span class="typewriter">Compétences</span>
+          <span class="typewriter"><span class="t-fr">Compétences</span><span class="t-en">Skills</span></span>
         </span>
       </a>
       <a href="#contact" class="nav_cta">
@@ -89,19 +85,19 @@
 
   <!-- MOBILE MENU -->
   <div class="mob-menu" id="mob-menu" aria-hidden="true">
-    <button class="mob-close" id="mob-close" aria-label="Fermer">✕</button>
+    <button class="mob-close" id="mob-close" aria-label="Fermer / Close">✕</button>
     <nav class="mob-nav">
-      <a href="#projects" class="mob-link">Projets</a>
-      <a href="#about" class="mob-link">À propos</a>
-      <a href="#experience" class="mob-link">Expérience</a>
-      <a href="#skills" class="mob-link">Compétences</a>
-      <a href="#contact" class="mob-link">Parlons</a>
+      <a href="#projects" class="mob-link"><span class="t-fr">Projets</span><span class="t-en">Projects</span></a>
+      <a href="#about" class="mob-link"><span class="t-fr">À propos</span><span class="t-en">About</span></a>
+      <a href="#experience" class="mob-link"><span class="t-fr">Expérience</span><span class="t-en">Experience</span></a>
+      <a href="#skills" class="mob-link"><span class="t-fr">Compétences</span><span class="t-en">Skills</span></a>
+      <a href="#contact" class="mob-link"><span class="t-fr">Parlons</span><span class="t-en">Let's talk</span></a>
     </nav>
     <div class="mob-footer">
       <a href="https://www.instagram.com/hueliyaz/" target="_blank" rel="noopener">INSTAGRAM</a>
       <a href="https://www.linkedin.com/in/hulya-zorlu/" target="_blank" rel="noopener">LINKEDIN</a>
       <a href="https://github.com/hulyazorluu-bit" target="_blank" rel="noopener">GITHUB</a>
-      <a href="assets/CV_portfolio.pdf" target="_blank" rel="noopener" class="read-cv-lk">READ.CV</a>
+      <a href="assets/CV_portfolio.pdf" target="_blank" rel="noopener" class="read-cv-lk"><span class="t-fr">Lire.CV</span><span class="t-en">Read.CV</span></a>
     </div>
   </div>
 
@@ -128,7 +124,10 @@
       </h2>
 
       <div class="cnt_bt">
-        <h3 class="tt3">Designer UI/UX<br>Basée à Paris</h3>
+        <h3 class="tt3">
+          <span class="t-fr">Designer UI/UX<br>Basée à Paris</span>
+          <span class="t-en">UI/UX Designer<br>Based in Paris</span>
+        </h3>
         <h4 class="Awrite" id="portfolio-txt">
           <span class="typewriter-container"><span class="typewriter tw-type">PORTFOLIO_26</span></span>
         </h4>
@@ -137,15 +136,14 @@
 
     <!-- SCROLL TO EXPLORE -->
     <div class="cnt_sc">
-      <h4 class="Awrite" id="scroll-txt">[défiler pour explorer]</h4>
+      <h4 class="Awrite" id="scroll-txt">
+        <span class="t-fr">[défiler pour explorer]</span>
+        <span class="t-en">[scroll to explore]</span>
+      </h4>
     </div>
 
     <!-- SOCIALS -->
     <div class="hero_socials">
-      <a href="https://www.instagram.com/hueliyaz/" target="_blank" rel="noopener" class="social_lk">
-        <span class="typewriter-container"><span class="typewriter">INSTAGRAM</span></span>
-        <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
-      </a>
       <a href="https://www.linkedin.com/in/hulya-zorlu/" target="_blank" rel="noopener" class="social_lk">
         <span class="typewriter-container"><span class="typewriter">LINKEDIN</span></span>
         <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
@@ -155,7 +153,7 @@
         <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
       </a>
       <a href="assets/CV_portfolio.pdf" target="_blank" rel="noopener" class="social_lk read-cv-lk">
-        <span class="typewriter-container"><span class="typewriter">READ.CV</span></span>
+        <span class="typewriter-container"><span class="typewriter"><span class="t-fr">Lire.CV</span><span class="t-en">Read.CV</span></span></span>
         <svg viewBox="0 0 7 7" fill="none"><path d="M6.49 3.52H5.68V2.05l.07-.78-.04-.01-.77.86L.91 6.16.34 5.58l4.03-4.03.86-.77-.01-.04-.78.07H2.98V0l3.51 0v3.52Z" fill="currentColor"/></svg>
       </a>
     </div>
@@ -165,7 +163,7 @@
   <!-- FEATURED WORKS -->
   <section class="works section-light" id="projects">
     <div class="works_hd">
-      <h2 class="works_title">Projets sélectionnés</h2>
+      <h2 class="works_title"><span class="t-fr">Projets sélectionnés</span><span class="t-en">Selected work</span></h2>
       <span class="works_count">[002]</span>
     </div>
 
@@ -177,23 +175,26 @@
         </div>
         <div class="work_meta">
           <span class="work_num">001_</span><span class="work_name">WEVENT APP</span>
-          <span class="work_tech">Recherche UX · Design UI · Figma</span>
+          <span class="work_tech">iOS &middot; 2026</span>
+          <span class="work_result"><span class="t-fr">Application de gestion et de partage d&rsquo;&eacute;v&eacute;nements entre amis.</span><span class="t-en">A mobile app to create, organize and share events with friends.</span></span>
         </div>
       </a>
 
       <a href="https://www.figma.com/proto/0NM5ghnJNSKCaTUVtCliof/CASE-STUDY-Commande-sans-allerg%C3%A8nes?node-id=335-29&t=6P7kkzSp2JTR4bdA-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" target="_blank" rel="noopener" class="work_item">
         <div class="work_thumb work_thumb--b">
-          <img src="assets/projet3.svg" alt="Projet 2" class="work_cover">
+          <img src="assets/commande_allergenes.svg" alt="Allergen-free ordering" class="work_cover">
         </div>
         <div class="work_meta">
-          <span class="work_num">002_</span><span class="work_name">Allergy Safe Ordering</span>
+          <span class="work_num">002_</span><span class="work_name">Commande sans allergènes</span>
+          <span class="work_tech">Redesign &middot; 2026</span>
+          <span class="work_result"><span class="t-fr">Interface de commande s&eacute;curis&eacute;e pour personnes allergiques.</span><span class="t-en">A secure ordering interface designed for people with food allergies.</span></span>
         </div>
       </a>
 
       <div class="work_item work_item--soon">
         <div class="work_thumb work_thumb--c">
-          <img src="assets/tamino.svg" alt="Projet en cours" class="work_bg work_cover--blur">
-          <div class="work_soon_overlay"><span class="work_soon_text">&Agrave; venir</span></div>
+          <img src="assets/tamino.svg" alt="Project coming soon" class="work_bg work_cover--blur">
+          <div class="work_soon_overlay"><span class="work_soon_text"><span class="t-fr">&Agrave; venir</span><span class="t-en">Coming soon</span></span></div>
         </div>
         <div class="work_meta">
           <span class="work_num">003_</span><span class="work_name">Projet 3</span>
@@ -204,29 +205,35 @@
   </section>
 
   <!-- SEE MORE custom cursor -->
-  <div class="see-cursor" id="see-cursor" aria-hidden="true">VOIR PLUS</div>
+  <div class="see-cursor" id="see-cursor" aria-hidden="true"><span class="t-fr">VOIR PLUS</span><span class="t-en">SEE MORE</span></div>
 
   <!-- ABOUT -->
   <section class="about section-dark" id="about">
     <div class="about_inner">
 
       <div class="about_tag">
-        <span class="about_tag_label">À PROPOS</span>
+        <span class="about_tag_label"><span class="t-fr">À PROPOS</span><span class="t-en">ABOUT</span></span>
       </div>
 
-      <p class="about_pretitle">À propos de moi</p>
+
 
       <h2 class="about_title">
-        <span class="about_t1">Designer UX/UI</span>
-        <span class="about_t2">&amp; Strat&eacute;gie Digitale</span>
+        <span class="about_t1"><span class="t-fr">Designer UX/UI</span><span class="t-en">UX/UI Designer</span></span>
+        <span class="about_t2"><span class="t-fr">&amp; Strat&eacute;gie Digitale</span><span class="t-en">&amp; Digital Strategy</span></span>
       </h2>
 
       <div class="about_desc">
-        <p>Apr&egrave;s un parcours en marketing, data et strat&eacute;gie en agence, j&rsquo;ai choisi de me sp&eacute;cialiser dans le design UX/UI pour me rapprocher de ce qui me passionne le plus&nbsp;: comprendre les comportements et concevoir des exp&eacute;riences qui ont du sens.</p>
-        <p>Aujourd&rsquo;hui, je combine recherche utilisateur, pens&eacute;e strat&eacute;gique et design visuel pour cr&eacute;er des produits &agrave; la fois utiles, intuitifs et align&eacute;s avec les objectifs business. Je d&eacute;veloppe &eacute;galement mes comp&eacute;tences en HTML, CSS et d&eacute;veloppement web afin de mieux collaborer avec les &eacute;quipes produit et tech.</p>
+        <p>
+          <span class="t-fr">Apr&egrave;s un parcours en marketing, data et strat&eacute;gie en agence, j&rsquo;ai choisi de me sp&eacute;cialiser dans le design UX/UI pour me rapprocher de ce qui me passionne le plus&nbsp;: comprendre les comportements et concevoir des exp&eacute;riences qui ont du sens.</span>
+          <span class="t-en">After building my background in marketing, data, and agency strategy, I chose to specialize in UX/UI design &mdash; drawn by what drives me most: understanding human behavior and crafting experiences that genuinely matter.</span>
+        </p>
+        <p>
+          <span class="t-fr">Aujourd&rsquo;hui, je combine recherche utilisateur, pens&eacute;e strat&eacute;gique et design visuel pour cr&eacute;er des produits &agrave; la fois utiles, intuitifs et align&eacute;s avec les objectifs business. Je d&eacute;veloppe &eacute;galement mes comp&eacute;tences en HTML, CSS et d&eacute;veloppement web afin de mieux collaborer avec les &eacute;quipes produit et tech.</span>
+          <span class="t-en">Today, I bring together user research, strategic thinking, and visual design to create products that are useful, intuitive, and aligned with business goals. I'm also building my front-end skills in HTML, CSS, and JavaScript to work more seamlessly with product and engineering teams.</span>
+        </p>
       </div>
 
-      <a href="about.html" class="about_more">En savoir plus &nearr;</a>
+      <a href="about.html" class="about_more"><span class="t-fr">En savoir plus</span><span class="t-en">Learn more</span> &nearr;</a>
 
     </div>
   </section>
@@ -235,18 +242,18 @@
   <section class="xp section-light" id="experience">
 
     <div class="xp_hd">
-      <h2 class="xp_title">Expérience</h2>
+      <h2 class="xp_title"><span class="t-fr">Expérience</span><span class="t-en">Experience</span></h2>
     </div>
 
     <div class="xp_list">
 
 
-      <div class="xp_item" data-desc="Recherche UX · Tests utilisateurs · +15% inscription · Agile">
+      <div class="xp_item" data-desc-fr="Tribz · Recherche UX · Tests utilisateurs · Analyse comportementale · Recommandations UI · Inscription +15% · Analyse produit -25% · Agile" data-desc-en="Tribz · UX Research · User testing · Behavioral analysis · UI recommendations · Registration +15% · Product analysis -25% · Agile">
         <div class="xp_row">
           <span class="xp_date">Mar 2023 - Sep 2024</span>
           <div class="xp_co_wrap">
             <span class="xp_co">TANKE</span>
-            <span class="xp_type">Agence Créative de Marketing d'Influence</span>
+            <span class="xp_type"><span class="t-fr">Agence Créative de Marketing d'Influence</span><span class="t-en">Creative Influence Marketing Agency</span></span>
           </div>
           <span class="xp_loc">Paris</span>
           <span class="xp_role">UX Project Manager</span>
@@ -255,26 +262,26 @@
         <div class="xp_reveal"></div>
       </div>
 
-      <div class="xp_item" data-desc="JO Paris 2024 · Diffuseurs internationaux · Accréditations · FR/EN/TR">
+      <div class="xp_item" data-desc-fr="JO Paris 2024 · Coordination diffuseurs internationaux · Athlètes &amp; clients media · FR / EN / TR" data-desc-en="Paris Olympics 2024 · International broadcaster coordination · Athletes &amp; media clients · FR / EN / TR">
         <div class="xp_row">
           <span class="xp_date">Juil. - Août 2024</span>
           <span class="xp_co">OLYMPIC BROADCASTING</span>
           <span class="xp_loc">Paris</span>
-          <span class="xp_role">Coordinatrice Liaison Internationale</span>
+          <span class="xp_role"><span class="t-fr">Coordinatrice Liaison Internationale</span><span class="t-en">International Liaison Coordinator</span></span>
           <span class="xp_arr">→</span>
         </div>
         <div class="xp_reveal"></div>
       </div>
 
-      <div class="xp_item" data-desc="Benchmarks · Kantar · TikTok Pro · +12% performance · Pitch clients">
+      <div class="xp_item" data-desc-fr="Benchmarks concurrentiels · Kantar · TikTok Pro · Insights data · Briefs créatifs UX · Performance campagne +12% · Pitchs clients · Agile" data-desc-en="Competitive benchmarks · Kantar · TikTok Pro · Data insights · UX creative briefs · Campaign performance +12% · Client pitches · Agile">
         <div class="xp_row">
           <span class="xp_date">Sep - Déc 2022</span>
           <div class="xp_co_wrap">
             <span class="xp_co">AUSTRALIEGAD</span>
-            <span class="xp_type">Agence de Publicité</span>
+            <span class="xp_type"><span class="t-fr">Agence de Publicité</span><span class="t-en">Advertising Agency</span></span>
           </div>
           <span class="xp_loc">Paris</span>
-          <span class="xp_role">Planneur Stratégique</span>
+          <span class="xp_role"><span class="t-fr">Planneur Stratégique</span><span class="t-en">Strategic Planner</span></span>
           <span class="xp_arr">→</span>
         </div>
         <div class="xp_reveal"></div>
@@ -283,16 +290,16 @@
     </div>
 
     <div class="xp_hd xp_hd--form">
-      <h2 class="xp_title">Formation</h2>
+      <h2 class="xp_title"><span class="t-fr">Formation</span><span class="t-en">Education</span></h2>
     </div>
 
     <div class="xp_sub_hd">
-      <span class="xp_sub_label">Diplômes</span>
+      <span class="xp_sub_label"><span class="t-fr">Diplômes</span><span class="t-en">Degrees</span></span>
     </div>
 
     <div class="xp_list">
 
-      <div class="xp_item" data-desc="Data Analytics · Marketing · Agile · Scoring">
+      <div class="xp_item" data-desc-fr="Data Analytics · Analyse comportementale · Web analytics · Marketing prédictif · Scoring · Data visualisation · Data-driven" data-desc-en="Data Analytics · Behavioral analysis · Web analytics · Predictive marketing · Scoring · Data visualisation · Data-driven">
         <div class="xp_row">
           <span class="xp_date">2022 - 2024</span>
           <span class="xp_co">INSEEC BUSINESS SCHOOL</span>
@@ -303,23 +310,23 @@
         <div class="xp_reveal"></div>
       </div>
 
-      <div class="xp_item" data-desc="Langues · Commerce · FR / EN / TR">
+      <div class="xp_item" data-desc-fr="Langues appliquées · Commerce international · Traduction · FR / EN / TR" data-desc-en="Applied languages · International trade · Translation · FR / EN / TR">
         <div class="xp_row">
           <span class="xp_date">2018 - 2021</span>
           <span class="xp_co">UNIV. JEAN MONNET</span>
           <span class="xp_loc">Saint-Étienne</span>
-          <span class="xp_role">Licence Langues Appliquées &amp; Commerce International</span>
+          <span class="xp_role"><span class="t-fr">Licence Langues Appliquées &amp; Commerce International</span><span class="t-en">BA Applied Languages &amp; International Trade</span></span>
           <span class="xp_arr">→</span>
         </div>
         <div class="xp_reveal"></div>
       </div>
 
-      <div class="xp_item" data-desc="Administration · Comptabilité · Microéconomie">
+      <div class="xp_item" data-desc-fr="Business Administration · Management · Économie · Interculturel · Portugal" data-desc-en="Business Administration · Management · Economics · Intercultural · Portugal">
         <div class="xp_row">
           <span class="xp_date">2020 - 2021</span>
           <span class="xp_co">UNIVERSIDADE DO ALGARVE</span>
           <span class="xp_loc">Faro, Portugal</span>
-          <span class="xp_role">Erasmus - Administration des Affaires</span>
+          <span class="xp_role">Erasmus - Business Administration</span>
           <span class="xp_arr">→</span>
         </div>
         <div class="xp_reveal"></div>
@@ -328,28 +335,28 @@
     </div>
 
     <div class="xp_hd xp_hd--form">
-      <h2 class="xp_title">Certifications</h2>
+      <h2 class="xp_title"><span class="t-fr">Certifications</span><span class="t-en">Certifications</span></h2>
     </div>
 
     <div class="xp_list">
 
-      <div class="xp_item" data-desc="UX/UI · Figma · Wireframing · HTML / CSS / JS">
+      <div class="xp_item" data-desc-fr="Design UX/UI · Wireframing · Figma · Prototypage · Tests utilisateurs · HTML / CSS / JS · Design responsif" data-desc-en="UX/UI Design · Wireframing · Figma · Prototyping · User testing · HTML / CSS / JS · Responsive design">
         <div class="xp_row">
           <span class="xp_date">Mar - Juil 2026</span>
           <span class="xp_co">EMLYON BUSINESS SCHOOL - LA TOILE</span>
           <span class="xp_loc">Paris</span>
-          <span class="xp_role">Certificat Design UX/UI &amp; Développement Web</span>
+          <span class="xp_role"><span class="t-fr">Certificat Design UX/UI &amp; Développement Web</span><span class="t-en">UX/UI Design &amp; Web Development Certificate</span></span>
           <span class="xp_arr">→</span>
         </div>
         <div class="xp_reveal"></div>
       </div>
 
-      <div class="xp_item" data-desc="Typographie · Identité visuelle · Photoshop · Illustrator">
+      <div class="xp_item" data-desc-fr="Design graphique · Typographie · Identité visuelle · Photoshop · Illustrator · InDesign" data-desc-en="Graphic design · Typography · Visual identity · Photoshop · Illustrator · InDesign">
         <div class="xp_row">
           <span class="xp_date">2024 - 2025</span>
           <span class="xp_co">EDAA - ÉCOLE D'ARTS APPLIQUÉS</span>
           <span class="xp_loc">Paris</span>
-          <span class="xp_role">Certificat Design Graphique</span>
+          <span class="xp_role"><span class="t-fr">Certificat Design Graphique</span><span class="t-en">Graphic Design Certificate</span></span>
           <span class="xp_arr">→</span>
         </div>
         <div class="xp_reveal"></div>
@@ -363,7 +370,7 @@
   <section class="skills section-dark" id="skills">
 
     <div class="skills_hd">
-      <h2 class="xp_title skills_title">Compétences</h2>
+      <h2 class="xp_title skills_title"><span class="t-fr">Compétences</span><span class="t-en">Skills</span></h2>
     </div>
 
     <div class="skills_grid">
@@ -371,19 +378,19 @@
       <div class="skill_col">
         <span class="skill_cat">UX DESIGN</span>
         <ul class="skill_list">
-          <li class="skill_item">Recherche Utilisateur</li>
-          <li class="skill_item">Tests d'Utilisabilité</li>
+          <li class="skill_item"><span class="t-fr">Recherche Utilisateur</span><span class="t-en">User Research</span></li>
+          <li class="skill_item"><span class="t-fr">Tests d'Utilisabilité</span><span class="t-en">Usability Testing</span></li>
           <li class="skill_item">Wireframing</li>
-          <li class="skill_item">Stratégie UX</li>
-          <li class="skill_item">Parcours Utilisateur</li>
+          <li class="skill_item"><span class="t-fr">Stratégie UX</span><span class="t-en">UX Strategy</span></li>
+          <li class="skill_item"><span class="t-fr">Parcours Utilisateur</span><span class="t-en">User Journey Mapping</span></li>
         </ul>
       </div>
 
       <div class="skill_col">
-        <span class="skill_cat">UI &amp; VISUEL</span>
+        <span class="skill_cat"><span class="t-fr">UI &amp; VISUEL</span><span class="t-en">UI &amp; VISUAL</span></span>
         <ul class="skill_list">
           <li class="skill_item">Figma</li>
-          <li class="skill_item">Webflow</li>
+          <li class="skill_item">Affinity Designer</li>
           <li class="skill_item">Photoshop</li>
           <li class="skill_item">Illustrator</li>
           <li class="skill_item">HTML / CSS / JS</li>
@@ -391,22 +398,23 @@
       </div>
 
       <div class="skill_col">
-        <span class="skill_cat">MÉTHODES &amp; OUTILS</span>
+        <span class="skill_cat"><span class="t-fr">MÉTHODES &amp; OUTILS</span><span class="t-en">METHODS &amp; TOOLS</span></span>
         <ul class="skill_list">
           <li class="skill_item">Agile / Scrum</li>
           <li class="skill_item">Jira / Confluence</li>
-          <li class="skill_item">Selenium / Cypress</li>
-          <li class="skill_item">Analyse de Données</li>
-          <li class="skill_item">Analyse Heuristique</li>
+          <li class="skill_item">Notion</li>
+          <li class="skill_item">Design System</li>
+          <li class="skill_item">A/B Testing</li>
+          <li class="skill_item"><span class="t-fr">Analyse de Données</span><span class="t-en">Data Analysis</span></li>
         </ul>
       </div>
 
       <div class="skill_col">
-        <span class="skill_cat">LANGUES</span>
+        <span class="skill_cat"><span class="t-fr">LANGUES</span><span class="t-en">LANGUAGES</span></span>
         <ul class="skill_list">
-          <li class="skill_item">Français <span class="skill_lvl">NATIF</span></li>
-          <li class="skill_item">Anglais <span class="skill_lvl">C1</span></li>
-          <li class="skill_item">Turc <span class="skill_lvl">NATIF</span></li>
+          <li class="skill_item"><span class="t-fr">Français</span><span class="t-en">French</span> <span class="skill_lvl"><span class="t-fr">NATIF</span><span class="t-en">NATIVE</span></span></li>
+          <li class="skill_item"><span class="t-fr">Anglais</span><span class="t-en">English</span> <span class="skill_lvl">C1</span></li>
+          <li class="skill_item"><span class="t-fr">Turc</span><span class="t-en">Turkish</span> <span class="skill_lvl"><span class="t-fr">NATIF</span><span class="t-en">NATIVE</span></span></li>
         </ul>
       </div>
 
@@ -414,7 +422,7 @@
 
     <div class="skills_marquee" aria-hidden="true">
       <div class="marquee_track">
-        <span>FIGMA</span><span>·</span><span>WEBFLOW</span><span>·</span><span>RECHERCHE UX</span><span>·</span><span>PHOTOSHOP</span><span>·</span><span>ILLUSTRATOR</span><span>·</span><span>AGILE</span><span>·</span><span>HTML / CSS</span><span>·</span><span>ANALYSE DE DONNÉES</span><span>·</span><span>SELENIUM</span><span>·</span><span>FIGMA</span><span>·</span><span>WEBFLOW</span><span>·</span><span>RECHERCHE UX</span><span>·</span><span>PHOTOSHOP</span><span>·</span><span>ILLUSTRATOR</span><span>·</span><span>AGILE</span><span>·</span><span>HTML / CSS</span><span>·</span><span>ANALYSE DE DONNÉES</span><span>·</span><span>SELENIUM</span><span>·</span>
+        <span>FIGMA</span><span>·</span><span>WEBFLOW</span><span>·</span><span class="t-fr">RECHERCHE UX</span><span class="t-en">UX RESEARCH</span><span>·</span><span>PHOTOSHOP</span><span>·</span><span>ILLUSTRATOR</span><span>·</span><span>AGILE</span><span>·</span><span>HTML / CSS</span><span>·</span><span class="t-fr">ANALYSE DE DONNÉES</span><span class="t-en">DATA ANALYSIS</span><span>·</span><span>SELENIUM</span><span>·</span><span>FIGMA</span><span>·</span><span>WEBFLOW</span><span>·</span><span class="t-fr">RECHERCHE UX</span><span class="t-en">UX RESEARCH</span><span>·</span><span>PHOTOSHOP</span><span>·</span><span>ILLUSTRATOR</span><span>·</span><span>AGILE</span><span>·</span><span>HTML / CSS</span><span>·</span><span class="t-fr">ANALYSE DE DONNÉES</span><span class="t-en">DATA ANALYSIS</span><span>·</span><span>SELENIUM</span><span>·</span>
       </div>
     </div>
 
@@ -427,7 +435,7 @@
     </div>
 
     <div class="contact_body">
-      <p class="contact_pre">Disponible pour de nouvelles opportunités</p>
+      <p class="contact_pre"><span class="t-fr">Disponible pour de nouvelles opportunités</span><span class="t-en">Open to new opportunities</span></p>
       <a href="mailto:zorluu.hulya@gmail.com" class="contact_email">
         ZORLUU.HULYA<br>@GMAIL.COM
         <span class="contact_email_arr">↗</span>
@@ -486,4 +494,3 @@
     })();
   </script>
 </body>
-</html>

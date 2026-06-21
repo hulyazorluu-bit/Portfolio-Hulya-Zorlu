@@ -22,6 +22,8 @@
       const cws = splitChars(ctaEl);
       cws.forEach(cw => cw.classList.add('done'));
     }
+    /* Notify other scripts (fx-sections, etc.) */
+    document.dispatchEvent(new CustomEvent('langchange', { detail: { lang: l } }));
   }
 
   document.addEventListener('click', e => {
@@ -193,7 +195,13 @@ function scramble(el, finalText, { delay = 0, duration = 1200 } = {}) {
 }
 
 /* ── Scroll ticker — scramble inner text only, brackets stay fixed ─ */
+let _scrollTickerActive = false;
+
 function scrollTicker(el, text, { duration = 2200, pause = 1200 } = {}) {
+  /* Each call gets a unique token; stale closures self-abort */
+  const token = {};
+  _scrollTickerActive = token;
+
   const open   = text.indexOf('[');
   const close  = text.lastIndexOf(']');
   const prefix = text.slice(0, open + 1);
@@ -202,8 +210,10 @@ function scrollTicker(el, text, { duration = 2200, pause = 1200 } = {}) {
   const totalFrames = Math.ceil(duration / 40);
 
   function runScramble() {
+    if (_scrollTickerActive !== token) return; /* aborted */
     let frame = 0;
     function render() {
+      if (_scrollTickerActive !== token) return; /* aborted mid-run */
       const progress = frame / totalFrames;
       const scrambled = inner.map((ch, i) =>
         ch === ' '
@@ -215,12 +225,15 @@ function scrollTicker(el, text, { duration = 2200, pause = 1200 } = {}) {
       el.textContent = prefix + scrambled + suffix;
       frame++;
       if (frame <= totalFrames) requestAnimationFrame(render);
-      else { el.textContent = text; setTimeout(runScramble, pause); }
+      else {
+        el.textContent = text;
+        setTimeout(() => { if (_scrollTickerActive === token) runScramble(); }, pause);
+      }
     }
     requestAnimationFrame(render);
   }
 
-  setTimeout(runScramble, pause);
+  setTimeout(() => { if (_scrollTickerActive === token) runScramble(); }, pause);
 }
 
 
@@ -278,9 +291,13 @@ function charReveal(twEl, { stagger = 30, onDone } = {}) {
 function revealPage() {
   const STAGGER = 28;
 
-  /* 1 — Nav right: char reveal simultaneously */
+  /* 1 — Nav right: char reveal on the active language span only */
+  const _navLang = localStorage.getItem('lang') || 'fr';
   document.querySelectorAll('.nav_lk .typewriter').forEach(twEl => {
-    charReveal(twEl, { stagger: STAGGER });
+    const activeSpan = twEl.querySelector('.t-' + _navLang) || twEl;
+    const container = twEl.closest('.typewriter-container');
+    if (container) container.classList.add('done');
+    charReveal(activeSpan, { stagger: STAGGER });
   });
 
   /* CONTACT: fade in + char reveal */
@@ -294,9 +311,13 @@ function revealPage() {
     revealChars(charEls, { stagger: STAGGER });
   }
 
-  /* 2 — Nav left: brand char reveal + clock typewriter simultaneously */
+  /* 2 — Nav left: lang-toggle char reveal (same as nav links) */
   const navLeft = document.querySelector('.nav_left');
   if (navLeft) navLeft.style.opacity = '1';
+
+  document.querySelectorAll('.lang-toggle .typewriter').forEach(twEl => {
+    charReveal(twEl, { stagger: STAGGER });
+  });
 
   const brandTw = document.getElementById('brand-tw');
   if (brandTw) charReveal(brandTw, { stagger: 28 });
@@ -335,7 +356,8 @@ function revealPage() {
     if (portTw) triggerTypewriter(portTw, 22, null);
 
     if (scrollEl) {
-      const SCROLL_TEXT = '[défiler pour explorer]';
+      const _scrollLang = localStorage.getItem('lang') || 'fr';
+      const SCROLL_TEXT = _scrollLang === 'fr' ? '[défiler pour explorer]' : '[scroll to explore]';
       const INIT_DUR = 2600;
       scrollEl.style.opacity = '1';
       scramble(scrollEl, SCROLL_TEXT, { duration: INIT_DUR });
@@ -346,17 +368,36 @@ function revealPage() {
   /* Delay WebGL title canvas to match title entrance */
   setTimeout(() => document.dispatchEvent(new Event('titleReady')), TITLE_DELAY);
 
+  /* ── Restart scroll ticker on lang switch ── */
+  const scrollLangEl = document.getElementById('scroll-txt');
+  if (scrollLangEl) {
+    document.addEventListener('langchange', function(e) {
+      const newLang = (e.detail && e.detail.lang) || localStorage.getItem('lang') || 'fr';
+      const newScrollText = newLang === 'fr' ? '[défiler pour explorer]' : '[scroll to explore]';
+      scrollLangEl.textContent = newScrollText;
+      scrollTicker(scrollLangEl, newScrollText);
+    });
+  }
+
 }
 
 
 /* ── Experience item description reveal on hover ─────────────── */
 (function initXpReveal() {
-  document.querySelectorAll('.xp_item').forEach(item => {
-    const revealEl = item.querySelector('.xp_reveal');
-    if (!revealEl) return;
-    const desc = item.dataset.desc || '';
-    revealEl.textContent = desc;
-  });
+  function updateXpDescs() {
+    const lang = localStorage.getItem('lang') || 'fr';
+    document.querySelectorAll('.xp_item').forEach(item => {
+      const revealEl = item.querySelector('.xp_reveal');
+      if (!revealEl) return;
+      /* Support both old data-desc (FR only) and new data-desc-fr / data-desc-en */
+      const desc = item.dataset['desc' + lang.charAt(0).toUpperCase() + lang.slice(1)]
+        || item.dataset.desc
+        || '';
+      revealEl.textContent = desc;
+    });
+  }
+  updateXpDescs();
+  document.addEventListener('langchange', updateXpDescs);
 })();
 
 
