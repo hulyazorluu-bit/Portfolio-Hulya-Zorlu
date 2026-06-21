@@ -333,7 +333,10 @@ function revealPage() {
     link.style.opacity = '1';
   });
   document.querySelectorAll('.hero_socials .typewriter').forEach(twEl => {
-    charReveal(twEl, { stagger: STAGGER });
+    const activeSpan = twEl.querySelector('.t-' + _navLang) || twEl;
+    const container = twEl.closest('.typewriter-container');
+    if (container) container.classList.add('done');
+    charReveal(activeSpan, { stagger: STAGGER });
   });
 
   /* 4 — Title: delayed entrance so it doesn't pop instantly on load */
