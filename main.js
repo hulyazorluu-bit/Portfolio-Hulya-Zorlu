@@ -432,6 +432,11 @@ function revealPage() {
         const el = meta.querySelector(sel);
         if (!el) return;
         setTimeout(() => {
+          /* Ensure bilingual work_name shows current lang before splitting */
+          if (el.dataset.fr) {
+            const lang = localStorage.getItem('lang') || 'fr';
+            el.textContent = lang === 'en' ? (el.dataset.en || el.dataset.fr) : el.dataset.fr;
+          }
           const chars = splitChars(el);
           revealChars(chars, { stagger: 28 });
         }, i * 90);
