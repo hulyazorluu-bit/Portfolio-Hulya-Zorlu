@@ -404,6 +404,19 @@ function revealPage() {
 })();
 
 
+/* ── Work card names (data-fr / data-en) ─────────────────────── */
+(function initWorkNames() {
+  function updateWorkNames() {
+    const lang = localStorage.getItem('lang') || 'fr';
+    document.querySelectorAll('.work_name[data-fr]').forEach(el => {
+      el.textContent = lang === 'en' ? (el.dataset.en || el.dataset.fr) : el.dataset.fr;
+    });
+  }
+  updateWorkNames();
+  document.addEventListener('langchange', updateWorkNames);
+})();
+
+
 /* ── Work labels char reveal on scroll ───────────────────────── */
 (function initWorkLabels() {
   const observer = new IntersectionObserver((entries) => {
