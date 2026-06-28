@@ -749,7 +749,9 @@ html.lang-fr .t-en { display: none !important; }
   );
   background-size: calc((100% - 2 * var(--mg) - 11 * var(--gg)) / 12 + var(--gg)) 100%;
   background-position: calc(var(--mg) - var(--gg)) 0;
-  background-attachment: fixed;
+  /* NB: no background-attachment:fixed — it triggers an iOS Safari repaint
+     bug that clips overlapping text. Horizontal column alignment is
+     position-based (full-width element) so it stays aligned without it. */
 }
 
 /* ── ABOUT ────────────────────────────────────────────────────── */
@@ -793,7 +795,7 @@ html.lang-fr .t-en { display: none !important; }
     );
   background-size: var(--col-unit) 100%, var(--col-unit) 100%;
   background-position: calc(var(--mg) - var(--gg)) 0, calc(var(--mg) - var(--gg)) 0;
-  background-attachment: fixed, fixed;
+  /* no background-attachment:fixed — avoids iOS Safari clipping bug */
   -webkit-mask-image: repeating-linear-gradient(to bottom,
     black 0, black 9px, transparent 9px, transparent 18px
   );
