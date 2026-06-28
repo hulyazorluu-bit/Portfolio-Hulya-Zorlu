@@ -1255,7 +1255,7 @@ html.lang-fr .t-en { display: none !important; }
 
 /* About responsive */
 @media (max-width: 900px) {
-  .about_title { font-size: clamp(3.2rem, 8vw, 6rem); }
+  .about_title { font-size: clamp(2.6rem, 7vw, 6rem); }
   .about_cols { grid-template-columns: 1fr; gap: 3rem; }
   .xp_row { grid-template-columns: 1fr; gap: 0.4rem; }
   .xp_row > .xp_date, .xp_row > .xp_co_wrap, .xp_row > .xp_co,
@@ -1285,6 +1285,26 @@ html.lang-fr .t-en { display: none !important; }
   .about_tag { grid-column: 1; grid-row: 1; }
   .about_title { grid-column: 1; grid-row: 2; }
   .about_desc { grid-column: 1; grid-row: 3; margin-top: 3rem; }
+
+  /* Align content to the 2nd dotted grid line, remove off-screen transforms */
+  .about_tag,
+  .about_title,
+  .about_desc {
+    transform: none;
+    margin-left: calc(2 * var(--col-unit) - var(--gg));
+    margin-right: 0;
+  }
+  .about_desc { margin-left: calc(2 * var(--col-unit) - var(--gg)); }
+  .about_more { left: calc(2 * var(--col-unit) - var(--gg)); }
+
+  /* Experience / Education / Skills: same 2nd-line alignment */
+  .xp_title,
+  .xp_hd,
+  .xp_sub_hd,
+  .xp_row {
+    margin-left: calc(2 * var(--col-unit) - var(--gg));
+  }
+  .skills_hd .xp_title { margin-left: calc(2 * var(--col-unit) - var(--gg)); }
 }
 
 @media (max-width: 600px) {
