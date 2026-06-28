@@ -610,6 +610,8 @@ html.lang-fr .t-en { display: none !important; }
   overflow: hidden;
   position: relative;
 }
+/* Transparent product mockup: show it whole on the white background */
+.work_thumb--c .work_cover { object-fit: contain; }
 .work_bg {
   width: 100%;
   height: 100%;
@@ -891,11 +893,12 @@ html.lang-fr .t-en { display: none !important; }
   display: flex;
   align-items: baseline;
   gap: 1.6rem;
-  padding: 2.4rem 0 0;
-  border-top: 1px solid rgba(10,10,10,0.1);
+  padding: 0;
+  /* No bar above titles — uniform spacing for every section title */
+  margin-top: 4rem;
   margin-bottom: 1.6rem;
 }
-.xp_hd--form { margin-top: 3.2rem; }
+.xp_hd--form { margin-top: 4rem; }
 
 .xp_sub_hd {
   padding: 1.4rem 0 0.4rem;
@@ -946,10 +949,6 @@ html.lang-fr .t-en { display: none !important; }
   cursor: default;
 }
 .xp_item:last-child { border-bottom: 1px solid rgba(10,10,10,0.1); }
-/* Avoid a double rule where a list's last item is followed by a section
-   header (Formation / Certifications): drop the closing border so only the
-   header's top border shows. Keep it on the very last list. */
-.xp_list:not(:last-of-type) .xp_item:last-child { border-bottom: none; }
 
 .xp_row {
   display: grid;

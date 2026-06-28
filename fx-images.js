@@ -225,6 +225,9 @@
   function init() {
     var thumbs = document.querySelectorAll('.work_thumb');
     thumbs.forEach(function (thumb) {
+      /* Skip transparent product mockups (project 3): the WebGL canvas would
+         overlay a second copy of the image and read as a duplicate. */
+      if (thumb.classList.contains('work_thumb--c')) return;
       if (thumb.querySelector('img.work_cover')) {
         initRipple(thumb);
       }
