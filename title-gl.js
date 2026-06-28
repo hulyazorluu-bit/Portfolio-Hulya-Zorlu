@@ -251,6 +251,9 @@
   function trySetup() {
     if (ran) return;
     ran = true;
+    /* Mobile: skip the opaque WebGL title overlay (mouse-driven, useless on
+       touch) so the dotted background grid stays visible behind the title. */
+    if (window.matchMedia && window.matchMedia('(max-width: 900px)').matches) return;
     var el = document.querySelector('.cnt_tt');
     if (!el) return;
     /* Hide chars immediately — WebGL canvas will replace them */
