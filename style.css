@@ -1272,9 +1272,13 @@ html.lang-fr .t-en { display: none !important; }
   .nav_right { display: none; }
   .burger { display: flex; }
 
+  /* FR/EN toggle starts at the 2nd dotted grid line */
+  .nav_left { margin-left: calc(2 * var(--col-unit) - var(--gg)); }
+
+  /* Hero title block starts at the 2nd dotted grid line */
   .hero_cnt {
-    left: var(--mg);
-    width: calc(100% - 2 * var(--mg));
+    left: calc(var(--mg) + 2 * var(--col-unit) - var(--gg));
+    width: calc(100% - 2 * var(--mg) - 2 * var(--col-unit) + var(--gg));
   }
 
   .cnt_tt { font-size: clamp(5rem, 14vw, 9rem); }
@@ -1305,6 +1309,9 @@ html.lang-fr .t-en { display: none !important; }
     margin-left: calc(2 * var(--col-unit) - var(--gg));
   }
   .skills_hd .xp_title { margin-left: calc(2 * var(--col-unit) - var(--gg)); }
+
+  /* Selected work title: same 2nd-line alignment */
+  .works_title { margin-left: calc(2 * var(--col-unit) - var(--gg)); }
 }
 
 @media (max-width: 600px) {
@@ -1322,7 +1329,7 @@ html.lang-fr .t-en { display: none !important; }
   .work_item               { grid-column: auto; transform: none; }
   .work_item:nth-child(2)  { grid-column: auto; width: auto; }
   .work_item:nth-child(3)  { grid-column: auto; }
-  .works_title { font-size: clamp(3.5rem, 12vw, 6rem); }
+  .works_title { font-size: clamp(2.6rem, 9.5vw, 6rem); }
 }
 
 /* ── WebGL title canvas ──────────────────────────────────── */
