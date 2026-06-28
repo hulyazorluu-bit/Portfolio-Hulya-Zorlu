@@ -944,6 +944,10 @@ html.lang-fr .t-en { display: none !important; }
   cursor: default;
 }
 .xp_item:last-child { border-bottom: 1px solid rgba(10,10,10,0.1); }
+/* Avoid a double rule where a list's last item is followed by a section
+   header (Formation / Certifications): drop the closing border so only the
+   header's top border shows. Keep it on the very last list. */
+.xp_list:not(:last-of-type) .xp_item:last-child { border-bottom: none; }
 
 .xp_row {
   display: grid;
@@ -1301,16 +1305,18 @@ html.lang-fr .t-en { display: none !important; }
   .about_desc { margin-left: calc(var(--col-unit) - var(--gg)); }
   .about_more { left: calc(var(--col-unit) - var(--gg)); }
 
-  /* Experience / Education / Skills: same 2nd-line alignment */
+  /* Experience / Education / Skills: align to 1st dotted line.
+     NB: only the title/label/row get the indent — NOT their .xp_hd
+     wrapper, otherwise the title would be indented twice. */
   .xp_title,
-  .xp_hd,
   .xp_sub_hd,
   .xp_row {
     margin-left: calc(var(--col-unit) - var(--gg));
   }
+  .xp_hd { margin-left: 0; }
   .skills_hd .xp_title { margin-left: calc(var(--col-unit) - var(--gg)); }
 
-  /* Selected work title: same 2nd-line alignment */
+  /* Selected work title: align to 1st dotted line */
   .works_title { margin-left: calc(var(--col-unit) - var(--gg)); }
 }
 
