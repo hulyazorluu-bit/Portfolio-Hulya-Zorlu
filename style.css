@@ -1292,9 +1292,12 @@ html.lang-fr .t-en { display: none !important; }
   .hero_socials { left: auto; right: var(--mg); gap: 1rem; }
 
   .about_inner { grid-template-columns: 1fr; }
-  .about_tag { grid-column: 1; grid-row: 1; }
+  .about_tag { grid-column: 1; grid-row: 1; position: relative; z-index: 1; }
   .about_title { grid-column: 1; grid-row: 2; }
-  .about_desc { grid-column: 1; grid-row: 3; margin-top: 3rem; }
+  /* z-index keeps the text above the dotted ::before layer. Without the
+     desktop transform (removed on mobile) the text would otherwise paint
+     under that masked layer and iOS Safari clips the first line. */
+  .about_desc { grid-column: 1; grid-row: 3; margin-top: 3rem; position: relative; z-index: 1; }
 
   /* Align content to the 2nd dotted grid line, remove off-screen transforms */
   .about_tag,
