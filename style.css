@@ -155,6 +155,8 @@ html.lang-fr .t-en { display: none !important; }
   display: flex;
   align-items: center;
   gap: 0;
+  /* Snap FR/EN onto the 1st dotted grid line (column 1 right edge) */
+  transform: translateX(calc(-1 * var(--gg)));
 }
 
 .nav_brand {
@@ -1277,8 +1279,8 @@ html.lang-fr .t-en { display: none !important; }
   .nav_right { display: none; }
   .burger { display: flex; }
 
-  /* FR/EN toggle starts at the 2nd dotted grid line */
-  .nav_left { margin-left: calc(var(--col-unit) - var(--gg)); }
+  /* FR/EN toggle aligned to the 1st dotted grid line (no desktop shift here) */
+  .nav_left { margin-left: calc(var(--col-unit) - var(--gg)); transform: none; }
 
   /* Hero title block starts at the 2nd dotted grid line */
   .hero_cnt {
