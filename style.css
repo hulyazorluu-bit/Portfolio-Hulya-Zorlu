@@ -833,6 +833,8 @@ html.lang-fr .t-en { display: none !important; }
   color: rgba(248,246,242,0.55);
   letter-spacing: 0.1em;
 }
+/* Align "À PROPOS" onto the 1st dotted line, like the title/text below */
+.about_tag_label { margin-left: calc(var(--col-unit) - var(--gg)); }
 
 .about_title {
   grid-column: 2 / 7;
@@ -1294,6 +1296,8 @@ html.lang-fr .t-en { display: none !important; }
 
   .about_inner { grid-template-columns: 1fr; }
   .about_tag { grid-column: 1; grid-row: 1; position: relative; z-index: 1; }
+  /* mobile already aligns the whole tag — avoid double-shifting the label */
+  .about_tag_label { margin-left: 0; }
   .about_title { grid-column: 1; grid-row: 2; }
   /* z-index keeps the text above the dotted ::before layer. Without the
      desktop transform (removed on mobile) the text would otherwise paint
