@@ -48,13 +48,15 @@
 
   /* ── Split element: animate t-fr and t-en spans separately ── */
   function splitEl(el, color) {
-    var frSpan = el.querySelector('.t-fr');
-    var enSpan = el.querySelector('.t-en');
+    /* querySelectorAll: a title can hold several language spans (e.g. the
+       about title has two lines, each with its own .t-fr/.t-en). Animate them all. */
+    var frSpans = el.querySelectorAll('.t-fr');
+    var enSpans = el.querySelectorAll('.t-en');
     var chars = [];
-    if (frSpan) chars = chars.concat(splitSpan(frSpan, color));
-    if (enSpan) chars = chars.concat(splitSpan(enSpan, color));
+    frSpans.forEach(function (s) { chars = chars.concat(splitSpan(s, color)); });
+    enSpans.forEach(function (s) { chars = chars.concat(splitSpan(s, color)); });
     /* Plain element with no language spans */
-    if (!frSpan && !enSpan) {
+    if (!frSpans.length && !enSpans.length) {
       var text = el.textContent.trim();
       if (!text) return [];
       el.innerHTML = '';
